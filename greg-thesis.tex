@@ -84,6 +84,8 @@
 \usepackage[eulerchapternumbers,drafting,listings,%linedheaders,%pdfspacing,%listings,
 						subfig,beramono,eulermath,parts,dottedtoc,floatperchapter]{classicthesis}%
 
+\usepackage{color}
+
 %*******************************************************
 % Some font experiments
 %*******************************************************
@@ -213,6 +215,9 @@
 %\setcounter{page}{90}
 % use \cleardoublepage here to avoid problems with pdfbookmark
 %\cleardoublepage\myPart{Some Kind of Manual}
+\newcommand{\todo}[1]{{\color{red} \emph #1}\xspace}
+
+
 \include{Chapters/Indels1}
 \include{Chapters/Indels2}
 \include{Chapters/Mammals1}
@@ -231,7 +236,7 @@
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************
-%\cleardoublepage\include{FrontBackmatter/Bibliography}
+\cleardoublepage\include{FrontBackmatter/Bibliography}
 %\cleardoublepage\include{FrontBackmatter/Colophon}
 %\cleardoublepage\include{FrontBackmatter/Declaration}
 % ********************************************************************
