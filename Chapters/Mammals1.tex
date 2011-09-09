@@ -274,7 +274,8 @@ coverage chimpanzee assembly contained a number of sequencing errors
 leading to false inferences of positive selection. A detailed analysis
 of 302 codons with multiple spurious \nsyn substitutions in the
 original assembly showed roughly comparable effects of sequence error
-(explaining 23\% of codons), assembly error (14\% of codons) and local alignment error (30\% of codons).
+(explaining 23\% of codons), assembly error (14\% of codons) and local
+alignment error (30\% of codons).
 
 Taken together, the results of Schneider et
 al. \citeyearpar{Schneider2009Estimates} and Mallick et
@@ -317,22 +318,47 @@ on genome-wide alignments to, and gene annotations from, a reference
 genome could be criticised for potentially causing a bias towards the
 genomic properties of the reference, this approach is a reasonable
 workaround in the absence of higher-coverage sequence data or a
-painstakingly curated assembly. Furthermore, the error-correcting
+painstakingly curated assembly. Furthermore, the gene model error-correcting
 features of the Ensembl pipeline are especially beneficial, making
 more complicated methods for correcting errors from low-coverage
 genomes such as those described by \citep{TODO, PLoS One hubisz and
-  siepel} unnecessary.
+  siepel} seem largely unnecessary.
 
 \section{Source data and methods}
 
 All genomic data and gene trees used for this analysis were sourced
 from version 63 of the Ensembl Compara database \citep{TODO, Ensembl
-  2010 and EnsemblCompara GeneTrees}. For filtering 
+  2010 and EnsemblCompara GeneTrees}. Although a complete description
+of the design, implementation, and validation of the pipeline behind
+the Ensembl database is beyond the scope of this thesis, I will
+briefly outline the major aspects of the approach and some details
+which are relevant to my sitewise analysis and the ensuing discussion.
+
+The Compara pipeline begins with a set of protein-coding transcripts
+collected from each individual species' annotation database. This step
+is not exactly straightforward, as the prevalence of alternative
+splicing in Eutherian mammals makes it common for a single gene to
+harbor many different transcript structures. In terms of biology and
+evolution, alternative splicing is a very interesting
+phenomenon. Tightly linked to the evolutionary innovation of
+regulatory control and tissue-specific gene expression, the existence
+of multiple transcripts per gene is one of the likely substrates of
+biological and developmental complexity within eutherian mammals as
+compared to single-celled eukaryotes, which show less developmental
+complexity but largely similar numbers of genes \citep{TODO}. However,
+in terms of organizing biological data, pervasive alternative
+splicing---with up to dozens of transcripts per gene, showing
+tissue-specific and species-specific expression patterns, different
+levels of overall transcription, and sometimes comprising mutually
+exclusive exons---is somewhat burdensome. 
 
 \subsection{Identifying orthologous subtrees within large mammalian gene families}
 
+The first step in 
 
 \subsection{Filtering out low-quality genome sequence}
+
+
 
 
 \subsection{Filtering out clusters of \nsyn substitutions}
@@ -340,7 +366,29 @@ from version 63 of the Ensembl Compara database \citep{TODO, Ensembl
 
 \section{Analysis of the genome-wide set of orthologous mammalian trees}
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.6]{Figs/Mammals1_Fig1.pdf}
+\end{center}
+\caption{Histogram of gene tree sizes for the different node delineation methods. }
+\label{mammals1_fig1}
+\end{figure}
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[scale=0.6]{Figs/Mammals1_Fig2.pdf}
+\end{center}
+\caption{Barplot of gene copy counts for mammalian species using different node delineation methods.}
+\label{mammals1_fig1}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{Figs/Mammals1_Fig3.pdf}
+\end{center}
+\caption{Gene copy counts for mammalian species using the Eutherian node delineation method.}
+\label{mammals1_fig1}
+\end{figure}
 
 \section{Analysis of the global distribution of mammalian selective pressures}
 
