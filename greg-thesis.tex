@@ -1,6 +1,5 @@
 %input macros (i.e. write your own macros file called MacroFile1.tex)
 %\include{Macros/MacroFile1}
-
  \documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
 
 
@@ -17,7 +16,7 @@
                   /OpenAction (fitbh)  }
 \fi
 
-\title{Sitewise Error and Constraint in Mammalian Comparative Genomics}
+\title{Sitewise error and constraint in mammalian comparative genomics}
 
 \ifpdf
   \author{\href{mailto:gjuggler@gmail.com}{Gregory Jordan}}
@@ -46,11 +45,25 @@
 
 % Put all the style files you want in the directory StyleFiles and usepackage like this:
 \usepackage[square,numbers]{natbib}
+\usepackage{a4}
+\usepackage[small]{caption}
 \usepackage{xspace}
 \usepackage{Styles/watermark}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{booktabs}
 
 % Comment out the next line to get single spacing
 \onehalfspacing
+
+\renewcommand\floatpagefraction{.9}
+\renewcommand\topfraction{.9}
+\renewcommand\bottomfraction{.9}
+\renewcommand\textfraction{.1}   
+\setcounter{totalnumber}{50}
+\setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
 
 \begin{document}
 
