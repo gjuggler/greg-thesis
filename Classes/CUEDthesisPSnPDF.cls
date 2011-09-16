@@ -150,7 +150,7 @@
 \setlength{\evensidemargin}{1.96cm}
 %\setlength{\oddsidemargin}{-0.54cm}
 \setlength{\topmargin}{1mm}
-\setlength{\headheight}{1.36cm}
+%\setlength{\headheight}{1.36cm}
 \setlength{\headsep}{1.00cm}
 \setlength{\textheight}{20.84cm}
 \setlength{\textwidth}{14.5cm}
@@ -165,7 +165,7 @@
 \fancyhead[RO]{\bfseries\rightmark}
 \fancyhead[LE]{\bfseries\leftmark}
 \fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \addtolength{\headheight}{0.5pt}
 \fancypagestyle{plain}{
