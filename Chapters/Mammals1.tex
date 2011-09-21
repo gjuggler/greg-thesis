@@ -517,8 +517,8 @@ to perform well on the dataset as a whole, the reliance on protein
 distances alone means that fast-evolving proteins will be more likely
 to be under-clustered and slow-evolving proteins will be more likely
 to be over-clustered. Given that the protein evolutionary rate varies
-widely within a genome (in a study of vertebrate genes, XYZ et
-al. found $K_a$ values ranging from ZZZ to YYY, \todo), the excess of
+widely within a genome (\TODO{in a study of vertebrate genes, XYZ et
+al. found $K_a$ values ranging from ZZZ to YYY}), the excess of
 over-clustered orthologs in the Compara database is understandable and
 even somewhat expected.
 
@@ -722,7 +722,7 @@ Outgroup &  Eutheria & $TC(Eutheria) > 0.6$ \\
  &   Vertebrates & $TC(Vertebrata) > 0.6$\\
  &   Fungi/Metazoa & $TC(Fungi/Metazoa) > 0.6$\\
 Subgroups &  MammalSubgroups & $TC_{all}(Laur., Glires, Primates) > 0.1$\\
- &   MammalSubgroupsPlusOutgroup & $TC_{all}(Laur., Glires, Primates) > 0.1$ AND \\
+ &   \scriptsize{MammalSubgroupsPlusOutgroup} & $TC_{all}(Laur., Glires, Primates) > 0.1$ AND \\
  &    & $TC_{any}(Sauria, Clupeo., Ciona, Marsup.) > 0)$ \\
 Orthologs & Human Orthologs & \\
  &   Mouse Orthologs &  \\
@@ -817,7 +817,7 @@ genes within the database of root gene trees.
   show a histogram of sequence counts in bins of width 5, and the gray
   line shows the cumulative fraction of sequences contained within
   trees of that size or smaller. For clarity, 9,378 trees with 15 or
-  fewer sequences are not shown. Dashed green lines are drawn at
+  fewer sequences are not shown. Dashed blue lines are drawn at
   integral multiples of 48, the number of vertebrate species within
   Ensembl.}
 \label{ensembl_roots_hist}
@@ -1116,7 +1116,7 @@ than the 92\% of Eutheria \subtr{}s containing one human sequence.
 \centering
 \begin{tabular}{llrb{2.5cm}rrrrrrr}
 \toprule
-\multicolumn{2}{c}{Method} & &  Med. Size &  & \multicolumn{3}{c}{\% w/ Human Count} & Human & Med. & Med. \\ \cmidrule(r){6-8} \cmidrule(r){1-2}
+\multicolumn{2}{c}{Method} & &  Med. Size &  & \multicolumn{3}{c}{Human Content} & Human & Med. & Med. \\ \cmidrule(r){6-8} \cmidrule(r){1-2}
 Category & Name & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Species \\ 
   \midrule
 \input{Tables/ortholog_summary.txt}
@@ -1130,7 +1130,7 @@ Category & Name & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Specie
   white and high values in blue. The 'Human Content' columns represent
   the fraction of trees which contain the indicated number of human
   genes. 'Med. Species' is the median species count across all
-  trees. Med. - median, MPL - mean path length}
+  trees. Med. -- median, MPL -- mean path length}
 \label{ensembl_subtree_table}
 \end{table}
 \end{landscape}
@@ -1196,6 +1196,22 @@ of tree sizes for the Eutheria set of \subtr{}s is shown in Figure
 \ref{ensembl_euth_hist} and the full taxonomic distribution of copy
 counts is included in Figure \ref{ortholog_euth_dups}.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.9]{Figs/ensembl_euth_hist.pdf}
+\caption{Sequence counts for the set of \subtr{}s identified using the
+  Eutheria clade taxonomic coverage constraint. Black bars show a
+  histogram of sequence counts in bins of width 2, a gray line shows
+  the cumulative fraction of sequences contained within trees of that
+  size or smaller, and dashed blue lines are drawn at integral
+  multiples of 48, the number of vertebrate species within
+  Ensembl. The XYZ trees with more than 100 sequences are not shown.}
+\label{ensembl_euth_hist}
+\end{figure}
+
+\todo{Find num. of Eutherian trees w/ more than 100 seqs}
+
+
 \begin{landscape}
 \begin{figure}[ht]
 \centering
@@ -1221,7 +1237,7 @@ input to SLR with a series of filters and realignment steps designed
 to (a) remove low-quality sequences prone to high error rates, (b)
 realign sequences using an aligner with better performance for
 detecting sitewise positive slection, and (c) mask out short alignment
-regions with dubious elevated rates of nonsynonymous substitution. 
+regions with dubious elevated rates of \nsyn substitution.
 
 \subsection{Filtering out low-quality genome sequence}
 
@@ -1296,36 +1312,551 @@ e.g. \cite{TODO, Teytelman et al. 2011}). A more clustered
 distribution of low-quality bases would cause fewer high-quality bases
 to become masked by the minimum score approach, reaching the limit of
 5\% total filtered bases if they always occurred in codon
-triplets. Thus, anywhere from 5\% to 15\% of low-coverage nucleotides
-were expected to be filtered by this approach.
+triplets. Thus, anywhere from 5\% to 15\% of nucleotides from
+low-coverage genomes were expected to be filtered by this approach.
 
 \TODO{Collect the filtering results and show a graph / some numbers on
   the amount of filtered material. How many genes had lots of filtered
   stuff? None at all? Which species were filtered the most?}
 
-%\subsection{Realigning coding sequences}
+\subsection{Removing recent paralogs}
+
+To complement the \subtr{} splitting process, which split apart
+ancient duplications to avoid paralogous comparisons in the sitewise
+analysis, a second paralog filtering step was applied to remove more
+recent paralogs. Some of these paralogs might have resulted from gene
+duplications that occurred subsequent to the two rounds of
+whole-genome duplication in the vertebrate ancestor, but it was also
+expected that some proportion of apparent paralogs in the Ensembl gene
+trees would be the result of errors in gene annotation or in the
+Compara pipeline.
+
+A particular cause for concern in the current analysis was the
+possibility that stretches of missing or unassembled sequence in
+low-coverage genomes might produce gaps of missing data or assembly
+breakpoints between exons of a single gene, causing it to become
+annotated as two separate genes. These shortened genes would be
+treated as independent proteins by the Compara pipeline, likely being
+placed at very similar positions in the gene tree due to each having
+been derived from the same single source gene. While this result might
+not be detrimental to sitewise analysis in itself (as each shortened
+gene might be correctly aligned and provide useful information to the
+alignment), a number of factors, including the low quality of genomic
+sequence and assembly within these shortened genes, problems with
+aligning small fractions of a gene against complete sequences, and the
+potential for incorrect placement of fragmented sequences within the
+gene tree, made it desirable to remove these shortened genes.
+
+In the case of true recent paralogs, their inclusion in the sitewise
+analysis might skew the dataset towards increased levels of relaxed
+constraint or adaptive evolution, as has been hypothesized and
+observed to occur in recently-duplicated genes \citep{TODO, Lynch and
+  Conery 2000}. Most models of evolution after gene duplication
+predict that one sequence will retain the ancestral function and
+diverge less from the common ancestor than the other, so the
+least-diverged copy would be the natural one to keep as the
+'canonical' paralog for evolutionary analysis.
+
+Both gene length and sequence divergence were used to identify which
+gene among a set of recent paralogs was most suitable to retain for
+sitewise analysis. It was expected that gene length would help
+discriminate spuriously shortened genes from true genes, while
+sequence divergence would distinguish between more and less diverged
+paralogs. The mean sequence divergence, estimated using the JC69
+nucleotide model and the stock Compara gene tree alignments, was
+calculated between each putative paralog and the rest of the gene
+tree, and the ratio of the length of each putative paralog to the mean
+sequence length was also stored. Within each group of putative
+paralogs, the single gene to keep was chosen by the following rules,
+applied in order: (1) if only one sequence had a length ratio above
+0.5 and all others had a length ratio below 0.5, the longest sequence
+was kept; (2) if at least one sequence yielded a meaningful (i.e.,
+non-zero and non-infinite) mean distance estimate, the sequence with
+the lowest distance was kept; (3) if no sequence yielded a meaningful
+distance estimate (or if all estimated distances were identical), the
+longest sequence was kept.
+
+\begin{figure}[hb]
+\centering
+\includegraphics[scale=0.7]{Figs/filtered_paralogs_hist.pdf}
+\caption{Gene lengths of putative paralogs relative to the mean length
+  all sequences in the tree. Putatively paralogous genes (top panel)
+  were either kept (middle panel) or discarded (bottom panel)
+  according to rules based on their length and mean sequence
+  divergence.}
+\label{filtered_paralogs_hist}
+\end{figure}
+
+Figure \ref{filtered_paralogs_hist} shows the distribution of gene
+lengths (relative to the mean across the alignment) for all putative
+paralogs, kept paralogs, and removed paralogs. The overall
+distribution of relative lengths shows that most putative paralogs
+have lengths similar to the alignment mean (with a peak at or slightly
+above 1), but the shape of the distribution is highly asymmetric with
+a strong bias towards shorter lengths. The length distribution of the
+kept paralogs shows that the bulk of highly-shortened genes were
+successfully removed. If anything, the distribution of kept genes is
+slightly biased towards lengths greater than 1, likely due to step 3
+of the above process, where the longer gene was kept if putative
+paralogs yielded identical distance estimates.
+
+\begin{figure}[hb]
+\centering
+\includegraphics[scale=0.7]{Figs/filtered_paralogs_scatter.pdf}
+\caption{Sequence divergence of kept and discarded putative
+  paralogs. Each point represents a gene which was discarded from the
+  tree for one of three reasons: it had more sequence divergence than
+  the kept gene (\emph{Higher Divergence}; left panel), it had equal
+  sequence divergence but shorter length than the kept gene
+  (\emph{Shorter Length}; middle panel), or it had a gene length
+  (relative to the mean across all sequences) of less than 0.5 while
+  the kept copy had a relative length greater than 0.5 (\emph{Length
+    $<$ 0.5}; right panel). Divergence was measured as the mean
+  pairwise divergence between the gene and all other sequences in the
+  tree, and a value of -1 was assigned to genes for which no reliable
+  divergence estimate could be attained due to a lack of sufficient
+  data)}
+\label{filtered_paralogs_scatter}
+\end{figure}
+
+An alternate view of the results of the paralog filtering process is
+shown in Figure \ref{filtered_paralogs_scatter}, with the mean
+divergence of each discarded paralog compared that of the kept
+paralog, separated into panels according to the reason for discarding
+that gene. The spread of points above the diagonal in the first panel
+shows the difference in mean sequence divergence between the kept and
+discarded putative paralogs where divergence was used to choose
+between copies (\TODO{n=XYZ}), and the middle panel represents
+paralogs whose mean divergences were identical (\TODO{n=XYZ}). These
+two panels together show that although most recent paralogs within
+this set of gene trees contained indistinguishable levels of sequence
+divergence, around 40\% showed a moderate difference that could be
+used for selecting the less-diverged copy. The rightmost panel shows
+the subset of apparent paralogs which were discarded due to their
+short gene length; a point worth noting here is that there was no bias
+towards higher or lower divergence levels in the discarded genes (the
+coefficient of the best-fit linear model for all non-negative values
+is \TODO{$0.983 \pm 0.005$}), suggesting (as expected) that many of
+the discarded short genes were in fact derived from a single
+orthologous gene.
+
+\subsection{Realigning coding sequences}
+
+After filtering out codons with low quality scores and removing
+putative paralogs, sequences were aligned with \prank \citep{TODO,
+  Loytynoja Goldman 2008} using its codon alignment model based on the
+empirical codon model \citep{TODO, Kosiol ecm}. The simulation
+experiments described in Chapter \ref{Slrsim1} as well as numerous
+previously-reported empirical and simulation-based studies have shown
+\prank{}'s codon-based alignments to be superior for avoiding false
+positives in the detection of sitewise positive selection, strongly
+supporting the choice of \prank for this analysis.
+
+\subsection{Filtering out clusters of \nsyn substitutions}
+
+A final filtering step was evaluated for possible application to
+\prank{}-aligned sequences in order to ensure that stretches of
+aligned but nonhomologous sequence, resulting either from misalignment
+or from exon mis-annotation artifacts, were not causing elevated rates
+of \nsyn substitutions within specific regions of genes. This
+filtering step motivated by the expectation that errors resulting from
+either misalignment or exon mis-annotation would both lead to
+clustered regions of nonhomologous aligned nucleotides and,
+correspondingly, clustered regions of elevated \nsyn substitution
+rates. Clustering of \nsyn substitutions was expected because in both
+cases, the existence of one misaligned column is not independent of
+nearby columns: for mis-annotation the misalignment would span the
+length of the erroneously-annotated exon, while the global nature of
+the progressive pairwise alignments performed by \prank{} (and all
+other alignment algorithms) causes any misalignment error to be
+strongly non-independent with respect to errors in nearby alignment
+columns.
+
+These arguments provided some hope that clustered \nsyn substitutions
+could be used as a signal to detect potential misalignment and
+mis-annotated regions, but the utility of such a signal for filtering
+alignments must depend on the strength of error-caused \nsyn clusters
+relative to both the frequency of true \nsyn substitutions and their
+tendency to cluster together along the length of the protein
+sequence. Sequences separated by longer branch lengths will clearly
+show higher densities of true \nsyn substitutions, possibly drowning
+out the error-caused signal and reducing the ability to use
+substitution clusters as a discriminating factor. Furthermore, \nsyn
+substitutions were shown to be significantly more clustered than
+expected by chance in a number of genomic analyses of mammals and
+insects \citep{TODO, Callahan et al. PLoS Gen 2011, Bazykin et
+  al. Nature 2004, Wang et al. PNAS 2007}, causing some concern that a
+filter based on detecting clusters of \nsyn substitutions might
+attenuate the signal of true adaptive substitution that was one target
+of the present study.
+
+\todo{Write up the empirical investigation of \nsyn substitution clustering.}
+
+\section{Genome-wide analysis of sitewise selective pressures in mammals}
+
+\subsection{Mammalian species subsets for sitewise analysis}
+
+The SLR method was applied sequentially to several species subsets of
+each alignment of mammalian orthologs. For each subset, sequences
+corresponding to species within the subset were extracted from the
+alignment along with the corresponding \subtr and input to SLR. If
+fewer than two sequences were available for a given subset, that
+subset was skipped and its absence from the dataset was
+recorded. Eight subsets in total were selected for analysis; the
+species included in each subset and some phylogenetic measures of each
+subset are listed in Table \ref{species_set_summary}.
+
+Three subsets (Glires, Primates, and Laurasiatheria) were chosen
+because they represent the three mammalian superorders with the
+greatest taxonomic representation in Ensembl, providing an opportunity
+to compare the molecular evolutionary dynamics of three monophyletic
+mammalian groups containing varying levels of divergence, diverse
+biological characteristics, and a number of high-quality reference
+genomes. A fourth parallel mammalian subclade, named Atlantogenata and
+consisting of sloth, armadillo, tenrec, elephant and hyrax, was also
+included, but the monophyly of this group is still debated
+\citep{TODO, Murphy et al. 2007 Gen Res; Churakov et al. 2009 Gen Res}
+and it contains only one high-coverage genome. As such, it was not
+considered a primary target for the mammalian superorder analysis.
+
+Two larger species sets, Eutheria and Mammalia, were chosen for the
+purpose of measuring average sitewise selective pressures with high
+precision across a wider group of mammals. Using the Ensembl species
+tree as a guide, the estimated total synonymous branch lengths spanned
+by Ensembl species within Eutheria and Mammalia were 4.95 and 6.18,
+respectively. Simulations performed by Anisimova and Yang
+\citeyearpar{todo, Anisimova Yang 2002} and by myself in Chapter
+\ref{ch1} predicted that the greater amount of branch length in the
+Eutherian and Mammalian trees---with two to three times the value of
+1.71 for Laurasiatheria, the superorder with the largest total branch
+length---would result in significantly higher levels of power and
+accuracy for estimating sitewise \omg and detecting sitewise positive
+selection. In this respect, Mammalia and Eutheria were more similar to
+each other than to any of the superorders.
+
+However, the Mammalia and Eutheria subsets differed markedly in a
+different (and largely orthogonal) phylogenetic factor, the
+evolutionary depths of their last common ancestors. Whereas the
+ancestor of all Eutherian mammals lived ca. \todo{XYZ} mya, the
+Mammalian ancestor dates back to \todo{XYZ} mya. This suggested that a
+comparison between the sitewise results for the two groups might
+provide useful insight into the general effect of adding longer,
+deeper branches to a sitewise evolutionary analysis as well as some
+indirect evidence on the molecular evolutionary dynamics of our most
+distant mammalian relatives (the Eutheria and Mammalia groups only
+differ by the inclusion of wallaby, opossum and platypus in the
+Mammalia group).
+
+Quantitatively, as measured by the \mpl from the Ensembl species tree,
+the Eutheria subset (\mpl=0.24) is far more similar to either of the
+three superorders (\mpl from 0.13 to 0.27) than to the Mammalia subset
+(\mpl=0.54). This is due to the striking adaptive radiation of
+Eutherian mammals \citep{todo, Archibald science 1999
+  10.1126/science.285.5436.2031a and Bininda-Edmonds et al. nature
+  2007}, which caused a quick succession of speciation events around
+the K-T boundary and gives a largely star-like structure to the
+eutherian evolutionary tree. Interestingly, according to the
+time-resolved mammalian tree from Bininda-Edmonds et
+al. \citeyearpar{todo} the Diprodontia order (containing wallaby and
+opossum, two outgroups to the Eutheria clade) experienced a radiation
+similar to, but less prounced than, the Eutherian radiation; a
+comparison of the evolution of the deeply-rooted Diprodontia clade to
+its sister Eutherian clade would be very enlightening, but the species
+representation of Diprodontia (currently at one high-coverage and one
+low-coverage genome) is too limited to allow for a powerful
+analysis. Nevertheless, the inclusion of the three non-Eutherian
+species in the Mammalian species group was expected to provide an
+additional data point for aiding in an understanding of the complex
+relationship between branch length, power and biological variability
+in the analysis of sitewise selective pressures.
+
+Finally, to further investigate the complex interactions of
+evolutionary depth, biological variability and branch length on the
+results of large-scale sitewise analyses, two ``sparse'' subsets were
+created to act as controls relative to two existing species
+subsets. The species in the Sparse Glires group were chosen to
+approximate the total branch length of the Primate clade with species
+from the Glires clade, while the Sparse Mammals subset was constructed
+by selecting one species (preferably with a high-coverage genome) from
+each major mammalian branch, greatly reducing the total branch length
+covered but maintaining a similar evolutionary depth and distribution
+of branches within the species tree. The calculations shown in Table
+\ref{species_set_summary} show that the Sparse Glires group was only
+somewhat successful in its goal of approximating the Primates branch
+length (with total branch lengths of 0.99 and 0.68, respectively)
+while the Sparse Mammals group achieved a threefold lower total branch
+length compared to the full Mammalia group while maintaining a nearly
+identical \mpl.
+
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Thu Sep 15 11:19:59 2011
+\begin{table}[ht]
+\centering \footnotesize
+\begin{tabular}{lb{6cm}rrrr}
+\toprule
+ & &  \multicolumn{2}{c}{Ensembl} & \multicolumn{2}{c}{Gene Median} \\ \cmidrule(r){3-4} \cmidrule(r){5-6}
+Name & (Species Count) Species List & MPL & Total & MPL & Total \\
+  \midrule
+\input{Tables/species_set_summary.txt}
+\bottomrule
+\end{tabular}
+\caption{Species subsets used for sitewise analysis. Values under the
+  ``Ensembl'' heading were calculated from subsets of the species tree
+  used for evolutionary analyses by the Ensembl Compara pipeline,
+  while values under the ``Gene Median'' heading were calculated as
+  median values across the \ngenes gene trees analyzed (with branch
+  lengths optimized by SLR). MPL -- mean path length, Total -- total
+  branch length.}
+\label{species_set_summary}
+\end{table}
+
+\subsection{The global distribution of mammalian sitewise selective pressures}
+
+% Recreate this: https://docs.google.com/document/d/19xbx6NrAM14_JhDMiNEt7mOBoOgbMZwmVhI4hn9KNMw/edit?hl=en_US
 
 
-%\subsection{Removing recent paralogs}
+\subsection{Analysis of sitewise estimates from the mammalian superorders}
 
 
-%\subsection{Filtering out clusters of \nsyn substitutions}
+\subsection{Modeling the global distribution of sitewise selective pressures}
+
+% From 2xmammals supp. materials.
+% https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US
+We used the ‘fitdistr’ function of the MASS package for R to fit five
+distributions (gamma, lognormal, beta, Weibull, and exponential) to
+the vertebrate dN/dS values and subsequently calculated Akaike’s
+Information Criterion(AIC) for each fit. For all optimizations, a
+constant value of 0.001 was added to sites where dN/dS = 0 in order to
+satisfy the optimizer’s requirement that the probability functions
+have a defined value for all input data. Similarly, sites with dN/dS ≥
+1 were excluded from the analysis for the beta optimization. All
+distributions were also separately fit to the subset of sites with
+dN/dS ≥ 1; the AIC values from these optimizations were used to
+compare the fit of the beta distribution to the others.
+
+The fitdistr produced the following optimized parameters for each
+function: gamma (shape=0.271, rate=1.203), lognormal (meanlog=-4.079,
+sdlog=2.863), beta (shape1=0.257, shape2=1.431), Weibull
+(shape=0.3882, scale=0.07151) exponential (rate=4.441). The beta
+distribution yielded the lowest AIC when compared to the fit of other
+distributions to the subset of sites where dN/dS ≤ 1 (-2.33e7 versus
+the next best equivalent AIC of -2.11e7 for the lognormal). Of the
+distributions which were fit to the whole dataset, the lognormal
+distribution yielded the lowest AIC (-2.11e7), followed by gamma
+(-2.03e7) and exponential (-6.45e6).
+
+\subsection{Simulations to evaluate the power to detect positive selection and estimate selective pressures}
+
+% Table: https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5HhSYGuKPKpN2M0YzA5ZDQtN2FiNC00N2FhLWI0MzMtYjkwZTJmMjg2YmE5&hl=en
+
+% Text from: https://docs.google.com/document/d/1H0hBD75a2fGmJL8l0BPQQPkcmpc6jmyT3Qr8g2zUV4A/edit?authkey=CKPKivsO&hl=en_US&authkey=CKPKivsO
+
+Previous simulations on the power and accuracy of maximum-likelihood
+methods for detecting sitewise positive selection have provided strong
+evidence for increased power with increased branch length and number
+of taxa [Anisimova and Yang 2002 PMID:12032251, Massingham and Goldman
+  2005 PMID:15654091]. Other major effects observed have been a
+reduction in power when branch lengths are very short, due to the
+scarcity of data in the form of observed substitutions, and a
+reduction in accuracy when branches are very long and the ancestral
+reconstruction procedure becomes inaccurate due to saturation of
+substitutions at synonymous sites [Anisimova and Yang 2002
+  PMID:12032251]. These results have provided general guidance to
+empirical analyses, but the potential effects of tree shape,
+divergence level, distribution of dN/dS levels, and misalignment error
+make it difficult to extrapolate expected power levels or error rates
+from generic simulations to specific empirical analyses and real-world
+datasets. In order to estimate the power of the SLR method when
+applied to the present set of species and to quantify the power gained
+from the additional 20 mammalian genomes, we ran a series of
+simulation experiments with parameters tuned specifically to the
+analysis of mammalian gene families. Based on the prevoius studies
+described above we hypothesized that the addition of 20 mammalian
+genomes to the available dataset would significantly improve SLR’s
+sensitivity for detecting positive selection at a reasonable error
+rate, with some portion of that improvement coming from a reduction in
+alignment error due to the shorter average length of branches in the
+phylogenetic tree being aligned.
+
+We used the Indelible program [Fletcher and Yang 2010 PMID:19423664]
+to simulate 100 replicate codon alignments with a root sequence length
+of 500 codons for each of three trees: all 29 Eutherian mammals, the 9
+mammals with high-coverage genomes, and the four-species
+Human-Mouse-Rat-Dog quartet used in a number of previous comparative
+analyses. The dN/dS value at each simulated site was drawn from a
+discretized lognormal distribution with log(mean)=-1.864 and
+log(sd)=1.201 with the maximum dN/dS capped at 3. This distribution
+yielded a mean dN/dS of 0.277 and 6\% of sites with dN/dS > 1, which
+is consistent with our estimates from the global mammalian
+distribution. We ran each set of simulations twice: once with an
+insertion and deletion (indel) rate of zero, and once with an indel
+rate of 0.05 indel events per substitution event. The length of each
+indel event was drawn from a discretized power-law distribution with a
+parameter of 1.8, a maximum insertion or deletion length of 40 codons,
+and equal insertion and deletion lengths and probabilities. Each
+simulated alignment was aligned using PRANK’s codon model of evolution
+and analyzed with SLR. The resulting SLR score at each human sequence
+position was compared to the true dN/dS at the equivalent site in the
+true alignment and used to calculate the power and accuracy of the
+detection of positive selection for each set of simulated
+alignments. A summary of the results is provided in Supplementary
+Table S17.12.
+
+The simulation results without indels show a dramatic increase in the
+ability to detect sitewise selective pressures and sitewise positive
+selection in larger mammalian trees. We used ROC curves based on the
+true and inferred dN/dS values to calculate a number of statistics
+summarizing the performance of sitewise inference under each tree
+tested. The Spearman’s rank correlation coefficient between inferred
+and true dN/dS was 0.749, 0.849, and 0.942 in the 4-taxon, 9-taxon,
+and 29-taxon trees, respectively, representing a 10\% increase in the
+accuracy of inferred maximum-likelihood dN/dS values as a result of
+the added 20 mammalian species. The number of true positives recovered
+when controlling for a false discovery rate (FDR) below 0.1 was 50,
+782, and 3760 for the three trees; for FDR < 0.05, the numbers of true
+positives were 10, 429, and 2990. This represents a 4.8-fold increase
+for FDR<0.1 and a 6.9-fold increase for FDR<0.05 resulting from the
+additional 20 species in the tree. It should be noted that the two
+previous power estimates re
+
+\subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise dnds estimates and the detection of positive selection}
 
 
+ Multiple lines of evidence have lent support to the hypothesis that
+ GC-biased gene conversion (BGC) has been a major force in the
+ evolution of mammalian genomes [Galtier et al 2001 PMID:11693127,
+   Galtier 2003 PMID:XYZ, Dreszer et al 2007 PMID:17785536]. Both
+ empirical and theoretical results have shown that BGC can
+ significantly affect patterns of observed substitutions in both
+ selectively neutral and functionally constrained sites [Galtier et al
+   2009 PMID:19027980, Berglund et al 2009 PMID:19175294]. Recently,
+ Ratnakumar et al. [2010, PMID:20643747] re-analyzed the dataset of
+ positively-selected genes from Kosiol et al. [2008, PMID:18670650]
+ for signatures of BGC and found that up to 20\% of cases of
+ identified elevated dN/dS ratios could be due to BGC rather than
+ adaptive evolution. However, the strongest signals of BGC were found
+ only in genes showing signals of positive selection along short
+ branches in the phylogenetic tree using so-called branch-site models
+ of evolution; when the authors looked for similar BGC signatures in
+ genes with evidence for positive selection at specific sites
+ throughout the mammalian tree (e.g., genes with significant LRTs for
+ PAML’s sites model) they found no evidence for a strong BGC influence
+ [Ratnakumar et al. 2010 PMID:20643747].
 
-%\section{Results}
+The above evidence suggests that although BGC has the potential to
+produce misleading signals of branch-specific positive selection near
+recombination hotspots, the positively-selected sites we detected
+should not be strongly influenced by the non-adaptive effects of BGC
+since the dN/dS level detected by SLR is estimated from across the
+entire input phylogeny [Massingham 2005 PMID:15654091]. This is
+consistent with the observation that recombination hotspots (where
+most recombination in humans and other mammals occurs [Myers et
+  al. 2005 PMID:16224025]) tend not to be maintained over long
+evolutionary periods, although larger-scale recombination rates are
+likely more conserved [Winckler et al 2005 PMID:15705809]. Still, due
+to the potential confounding implications of BGC on the interpretation
+of signals of positive selection, we found it worthwhile to to
+empirically test for any BGC effect on our data.
 
+The BGC model predicts a recombination-associated drive towards the
+fixation of GC alleles at heterozygous sites, resulting in an expected
+correlation between AT to GC (or weak-to-strong, W-S) mutational bias
+and recombination rate [Galtier and Duret 2007, PMID:17418442]. This
+bias can lead to elevated dN/dS estimates in coding regions,
+particularly in GC-rich regions where W-S mutations are more likely to
+result in nonsynonymous changes [Berglund et al 2009]. Ratnakumar and
+colleagues identified three ways of distinguishing potential BGC
+effects from true signals of positive selection in protein-coding
+regions: (a) positive selection is not expected on its own to result
+in a strong W-S bias, (b) a BGC-associated W-S biased mutation pattern
+should extend to noncoding sites flanking the affected coding region,
+and (c) BGC is associated with recombination hotspots and regions of
+high recombination rates (and most strongly with male-specific rates)
+while there is no empirical evidence linking positive selection with
+higher recombination rates in mammals, although natural selection
+should theoretically be more efficient in regions of high
+recombination [Ratnakumar et al. 2010, PMID:20643747]. We could not
+use (a) or (b) to detect possible BGC influence since we did not
+calculate inferred ancestral mutations for either the coding or
+flanking noncoding regions of the mammalian gene families studied
+here. Instead, we turned to point (c) and tested for a correlation
+between signals of positive selection and an increase in recombination
+rates, especially the male-specific rate and in regions of high GC
+content. The predictions of the BGC hypothesis suggest that if our
+sitewise data do contain a strong BGC influence, then the
+positively-selected sites we detected would be expected to be
+associated with regions of high male-specific recombination.
 
-%\subsection{Analysis of the global distribution of mammalian selective pressures}
+We combined the sitewise codon data with male, female, and
+sex-averaged recombination rates derived from the deCODE map (using
+rates averaged over genomic bins of 1Mb downloaded from the UCSC human
+genome browser hg19 release) and human GC content calcualted in 10-kb
+windows and analyzed sites within various quantiles of GC content,
+mean recombination rate, and sitewise statistics. Supplementary Table
+S17.13 contains summaries for each subset. The ‘LRT statistic’ section
+shows that sites with higher LRT statistics (which corresponds to
+weaker purifying selection when the value is below zero and stronger
+positive selection when the value is above zero) show decreasing
+recombination rates; this trend holds true even for the highest
+quantile (mean signed_lrt between 3.648 and 108.850), which is
+composed entirely of sites with evidence for positive selection. In
+other words, the bulk of positively-selected sites are in regions of
+lower than average male recombination rates -- exactly opposite what
+would be expected in the face of strong BGC effects. The ‘Male
+Recombination’ quantiles show a similar trend, with the mean dN/dS,
+mean signed LRT and the proportion of sites identified as
+positively-selected (pos_f) all consistently decreasing as the
+recombination rate increases. The ‘GC content’ quantiles showed a
+slightly different pattern. Although the mean LRT decreased and male
+recombination increased monotonically with increasing GC content, the
+mean dN/dS and fraction of positive sites started low, increased to a
+maximum in the middle range of GC content, and decreased again in
+regions of high GC content. Thus, although the GC content quantiles
+were similar to the male recombination quantiles in their higher range
+(with similar mean dN/dS, mean LRT, and pos_f values), they differed
+slightly in their lower range (with lower dN/dS and pos_f for low GC
+quantiles). Although the exact reason for such a pattern is unclear,
+it is consistent with the existence of altered or constrained
+selective or mutational dynamics at the extreme ends of the genomic
+distribution of GC content. As GC content has been shown to correlate
+with myriad structural and evolutionary features of mammalian genomes
+[Xia et al. 2009 PMID:19521505], the existence of other (possibly
+unrelated) confounding influences such as CpG mutability or isochore
+structure is likely.
 
-
-
-%\subsection{Analysis of sitewise estimates from three mammalian sub-clades}
-
-
-
-%\subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise dnds estimates and the detection of positive selection}
-
+Theoretical and empirical evidence pointed towards an increased
+sensitivity of dN/dS estimates to BGC influence in regions of high GC
+content, so we separated out the top 10\% of sites by GC content and
+analyzed them according to quantiles of male recombination rate
+(Supplementary Table S17.13, ‘High GC, Male Recombination’. The middle
+four recombination quantiles showed a similar pattern to that observed
+for all GC contents, with mean LRT decreasing with increased male
+recombination and mean dN/dS and pos_f decreasing or hovering around
+values slightly lower than those observed across all GC contents
+(e.g., mean dN/dS in the 1-25\% bin is 0.207 for the top 10\% GC
+sites, but 0.249 for the same recombination bin across all sites). The
+highest recombination bin of the top 10\% GC sites showed a strikingly
+different pattern, however, with mean dN/dS=0.348, mean LRT=-11.262,
+and pos_f=0.0338. These values suggest a strong shift towards higher
+dN/dS values and more positively-selected sites. This jump in values
+in the highest recombination bin is not seen in the highest male
+recombination bin across all GC contents (mean dN/dS=0.207, mean
+LRT=-16.616, pos_f=0.00932) or for the highest female recombination
+bin for the top 10\% of GC sites (mean dN/dS=0.164, mean LRT=-18.475,
+pos_f=0.00449). Although the small number of sites in the bin of
+interest compared to other bins suggests possible stochastic
+artifacts, the shift is dramatic, directly opposite to the trends
+observed for the female recombination rates and for male recombination
+rates in regions of lower GC content, and is in agreement with the BGC
+prediction of elevated dN/dS estimates in regions of high GC content
+and male-specific recombination rates. This evidence raises the
+interesting possibility that BGC may have a detectable, if rather
+minor, impact on sitewise dN/dS estimates across the mammalian
+phylogeny. It is highly unlikely, however, that any such effect --
+which in our analysis was only detectable in 0.05\% of sites with the
+most extreme GC content and recombination rates -- has contaminated
+our codon-specific estimates with more than a negligible amount of
+noise resulting from the neutral but biased process of BGC.
 
 %\section{Conclusions}
 
