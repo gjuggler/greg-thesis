@@ -1,10 +1,95 @@
 %************************************************
 \chapter{The use of sitewise selective pressures to characterise the evolution of genes and domains in mammals}
 %************************************************
+\section{Introduction}
+
+% From mammals paper supp. methods...
+%https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US
+
+A clear definition of what constitutes a positively selected gene
+(PSG) is elusive and depends heavily on the model the data. Neutral
+theory, however, does provide a precise definition: the dN/dS ratio
+gives a natural threshold for distinguishing purifying from positive
+selection at dN/dS = 1, above which point positive selection can be
+inferred. This leads logically to the most stringent definition of a
+PSG as a gene whose overall mean dN/dS ratio is greater than
+1. However, as noted by Yang [5], this definition of a PSG is
+extremely conservative and is likely to be met by very few genes. To
+examine this hypothesis in the context of mammalian proteins, we
+averaged the site-wise dN/dS estimates from each gene tree tested to
+obtain an average dN/dS value, mean-dN/dS. At a threshold of
+mean-dN/dS = 1, 126 out of 15,451 gene trees analyzed showed evidence
+for positive selection (0.82\%).  At a threshold of mean-dN/dS = 0.5,
+1,438 genes were PSGs (9.3\%).
+
+More powerful scans for positive selection relax the requirement that
+the overall dN/dS of a gene is above 1 under the assumption that the
+force of positive selection is unlikely to act along an entire protein
+sequence and throughout the entire evolutionary history of a gene
+tree. This led to models that allow for variation in the dN/dS ratio
+along the sequence or along the phylogeny. If the data shows
+statistically significant evidence for positive selection under a
+given model, then it is considered a PSG – thus, the definition of a
+PSG is tightly linked to the evolutionary model being applied and the
+evolutionary clade or lineage being analyzed. In the case of the SLR
+method (which allows for variation of dN/dS along the sequence but not
+along the phylogeny), the most appropriate definition of a PSG is a
+gene where one or more sites show statistical evidence for positive
+selection after correcting for multiple tests.  With this definition,
+we find 2,865 positively selected gene trees in mammals (18.5\%). We
+may also formulate a more conservative definition in an attempt to
+minimize the number of false positives resulting from a background of
+reduced purifying constraint, considering genes with mean-dN/dS of
+less than 0.5 and at least 2 positively-selected codons to be
+PSGs. This definition yields 739 positively selected gene trees
+(4.8\%).
+
+Although the mean-dN/dS > 1 definition of a PSG is unreasonably
+conservative (and, upon manual inspection, picks out many proteins
+with especially severe alignment or gene annotation errors), the
+numbers of PSGs resulting from both codon-based definitions applied to
+the current data (4.8\% at the low end and 18.5\% at the high end) are
+similar to the range of other recently published comparative scans for
+positive selection, which identified between 3.3\% [6] and 16.6\% [7]
+of genes as PSGs in mammals or primates.
+
+
 \section{Comparison of sitewise results to previously described sets of positively selected genes}
+
 \section{Using sitewise selective pressures to characterise the evolution of genes}
 \subsection{Identifying genes subject to positive selection}
 \subsection{Identifying genes subject to strong or weak purifying selection}
+
 \section{Using sitewise selective pressures to characterise the evolution of protein domains}
+
+In order to evaluate the prevalence of positive selection in mammals
+for various domain structures, we used the Pfam domain mappings from
+the Ensembl database (release version 54) to annotate the site-wise
+dN/dS values with domain assignments. We mapped Pfam protein domain
+annotations from all sequences in a gene tree onto the alignment,
+keeping only features with a hit score greater than 20 and alignment
+sites with greater than 4 columns and an inferred dN/dS value of less
+than 50. We then removed any domains with fewer than one thousand
+annotated sites, to avoid errors resulting from small sample sizes.
+
+The domain annotations were collated in a variety of ways: (1) taking
+the mean omega value across all annotated sites [omega column in the
+  table below], (2) counting the number of PSCs within all annotated
+sites [psc], and (3) counting the number of PSCs per annotated site
+[psc_corr]. The len column represents the number of alignment sites
+containing the given Pfam annotation. When the list of domains is
+sorted by the total number of annotated PSCs we see the more familiar
+positively-selected domains at the top of the list (immunoglobulin,
+collagen), followed by more novel positively-selected domains such as
+the 7 transmembrane receptor, protein kinase domain, and ion transport
+protein.
+
 \subsection{Identifying protein domains subject to positive selection}
 \subsection{Identifying protein domains subject to strong or weak purifying selection}
+
+\section{Identifying genes under unusual selective pressures in mammalian superorders}
+
+% Don't forget to take a dig at Goodman et al. 2009 PNAS!  They
+% interpret their results (higher dN/dS in primates / laur and higher
+% mutation rate in rodents) as somehow indicating correlated evolution
+% between primates and laurasiatheria

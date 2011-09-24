@@ -1,5 +1,5 @@
 %************************************************
-\chapter{Patterns of sitewise selection in mammalian protein-coding genes}\label{ch:mammals1}
+\chapter{Patterns of sitewise selection in mammalian protein-coding genes}\label{ch_mammals1}
 %************************************************
 
 \section{Introduction}
@@ -50,7 +50,7 @@ Kerstin Lindblad-Toh, Mike Lin, Katie Pollard).
 
 \subsection{The Sitewise Likelihood Ratio test}
 
-As described in Chapter \ref{ch_bg}, differential survival of \nsyn
+As described in Section \ref{ch_intro}, differential survival of \nsyn
 and \syn mutations based on the degeneracy of the genetic code can be
 used as a source of information on the continued importance of
 mutations at a given protein-coding site over evolutionary time: a
@@ -462,9 +462,13 @@ Treefam \citep{TODO}, a database of animal gene trees which applies a
 similar set of tools to infer gene trees from a more diverse set of
 genomes, with largely similar results.
 
-\textcolor{red}{[Something about Ensembl being directed at inferreing gene tree topologies, and not being vetted for use in estimates of selective constraint]}
+\textcolor{red}{[Something about Ensembl being directed at inferreing
+    gene tree topologies, and not being vetted for use in estimates of
+    selective constraint]}
 
-\textcolor{red}{[Introduce the structure of the next few subsections: ways of massaging / filtering the Ensembl data to fit with the needs of the current project]}
+\textcolor{red}{[Introduce the structure of the next few subsections:
+    ways of massaging / filtering the Ensembl data to fit with the
+    needs of the current project]}
 
 \section{Identifying orthologous subtrees within large mammalian gene families}
 
@@ -683,17 +687,17 @@ second, it does not guarantee that each \subtr{} contains a completely
 unique set of genes. For example, a gene which was recently duplicated
 in humans would yield two \subtr{}s, one for each human paralog, with
 identical sets of non-human genes in each tree. Although the
-orthology-based might be useful when an evolutionary study is focused
-on a specific target or reference species, as is often done with human
-and mouse due to their finished genome sequence and high-quality
-annotation, I considered it to be less applicable to the current study
-due to the potential for introducing reference genome-specific biases,
-such as over-representation of genes with gene family expansions in
-the reference species or non-representation of genes which have been
-deleted in the reference species. Still, I expected that the sets of
-\subtr{}s resulting from the Ensembl ortholog annotations would serve
-as a useful reference with which to compare the other TC-based
-methods.
+orthology-based method might be useful when an evolutionary study is
+focused on a specific target or reference species, as is often done
+with human and mouse due to their finished genome sequence and
+high-quality annotation, I considered it to be less applicable to the
+current study due to the potential for introducing reference
+genome-specific biases, such as over-representation of genes with gene
+family expansions in the reference species or non-representation of
+genes which have been deleted in the reference species. Still, I
+expected that the sets of \subtr{}s resulting from the Ensembl
+ortholog annotations would serve as a useful reference with which to
+compare the other TC-based methods.
 
 \begin{figure}[ht]
 \centering
@@ -742,14 +746,13 @@ Root Nodes & Ensembl Roots &  \\
 \section{Analysis of genome-wide sets of orthologous mammalian trees}
 
 The \subtr splitting schemes described in the previous subsection were
-each applied to the 18,607 root gene trees from the Ensembl
-database. In this and the next section I will describe the resulting
-sets of trees and \subtr{}s, discuss what they reveal about the
-evolutionary history of vertebrates and the feasibility of using
-taxonomic coverage to isolate orthologous trees for sitewise analysis,
-and finally, explain my reasoning for deciding to use the subtrees
-based on the Eutherian taxonomic coverage for the subsequent sitewise
-analysis.
+applied to the 18,607 root gene trees from the Ensembl database. In
+this and the next section I will describe the resulting sets of trees
+and \subtr{}s, discuss what they reveal about the evolutionary history
+of vertebrates and the feasibility of using taxonomic coverage to
+isolate orthologous trees for sitewise analysis, and finally, explain
+my reasoning for deciding to use the subtrees based on the Eutherian
+taxonomic coverage for the subsequent sitewise analysis.
 
 \subsection{The set of root Compara gene trees}
 
@@ -1570,17 +1573,17 @@ additional data point for aiding in an understanding of the complex
 relationship between branch length, power and biological variability
 in the analysis of sitewise selective pressures.
 
-Finally, to further investigate the complex interactions of
-evolutionary depth, biological variability and branch length on the
-results of large-scale sitewise analyses, two ``sparse'' subsets were
-created to act as controls relative to two existing species
-subsets. The species in the Sparse Glires group were chosen to
-approximate the total branch length of the Primate clade with species
-from the Glires clade, while the Sparse Mammals subset was constructed
-by selecting one species (preferably with a high-coverage genome) from
-each major mammalian branch, greatly reducing the total branch length
-covered but maintaining a similar evolutionary depth and distribution
-of branches within the species tree. The calculations shown in Table
+Finally, to further investigate the combined impact of evolutionary
+depth, biological variability and branch length on the results of
+large-scale sitewise analyses, two ``sparse'' subsets were created to
+act as controls relative to two existing species subsets. The species
+in the Sparse Glires group were chosen to approximate the total branch
+length of the Primate clade with species from the Glires clade, while
+the Sparse Mammals subset was constructed by selecting one species
+(preferably with a high-coverage genome) from each major mammalian
+branch, greatly reducing the total branch length covered but
+maintaining a similar evolutionary depth and distribution of branches
+within the species tree. The branch lengths in Table
 \ref{species_set_summary} show that the Sparse Glires group was only
 somewhat successful in its goal of approximating the Primates branch
 length (with total branch lengths of 0.99 and 0.68, respectively)
@@ -1612,13 +1615,94 @@ Name & (Species Count) Species List & MPL & Total & MPL & Total \\
 
 \subsection{The global distribution of mammalian sitewise selective pressures}
 
-% Recreate this: https://docs.google.com/document/d/19xbx6NrAM14_JhDMiNEt7mOBoOgbMZwmVhI4hn9KNMw/edit?hl=en_US
+Sitewise data were collected from SLR and stored in a database for
+storage and further analysis. The Mammalia subset, containing the most
+branch length of all the datasets and representing the entire set of
+aligned sequences, and the Primate subset, containing the lowest
+overall branch length, were used to perform quality-control checks on
+the sitewise data. The point of these checks were to evaluate whether
+any additional filtering of the sitewise results was necessary before
+characterizing the global distribution of constraint in this and the
+other species subsets. Even if the sequence and alignment filters
+described above were successful at reducing the number of false
+positives due to incorrect input alignments, the behavior of SLR when
+applied to large datasets of heterogeneous alignments has not been
+well-studied, and a number of biases might have influenced the
+results. A particular point of concern was that columns with different
+patterns of gap and non-gap sequences, especially those with few
+non-gap sequences, might yield different performance
+characteristics. Although the SLR method was sensibly designed to
+account for uncertainty in the estimation of \omg and detection of
+positive selection, one might reasonably expect less-desirable
+statistical properties from sites with 2 non-gap sequences compared to
+sites with 20.
+ 
+Figure \ref{qc_hist_mammals_primates} shows the distributions of six
+sitewise values: two continuous values output by SLR (Omega and Signed
+LRT), two categorical values from SLR (Site Pattern and Random), and
+two values calculated from the codon alignment (Nongap Codons and
+Nongap Branchlength). The Nongap Codons value measures the number of
+non-gap codons in the given alignment columnn, while the Nongap
+Branchlength was calculated as the total branch length connecting all
+non-gap sequences (using the gene tree with branch lengths optimized
+by SLR). Focusing on the unfiltered Mammalian data in the top panel of
+Figure \ref{qc_hist_mammals_primates}A, the most prominent feature of
+the estimated \omg values is that \omg is zero for a majority of sites
+in both species subsets, with Primates showing a higher proportion of
+zero-\omg sites than Mammalia. Most of these zero-\omg sites contained
+\syn or constant site patterns, in which case the \ml estimate of \omg
+was always zero. The estimate of zero for \syn sites is intuitively
+correct, as the lack of any \nsyn substitutions throughout the tree
+provides no evidence for a \nsyn substitution rate of greater than
+zero. For constant sites the case is less clear, because no data
+regarding the rate of either \syn or \nsyn substitution exists;
+however, given the assumption of a constant \syn substitution rate,
+the \omg value which maximizes the likelihood of observing zero
+substitutions is zero, since that value minimizes the \nsyn (and
+total) substitution rate.
+
+The distributions of six sitewise values highlighted the bulk
+differences between the Mammalia and Primates subsets and supported
+the decision to filter out a small percentage of sites from the final
+dataset.
+
+The LRT 
+
+\begin{landscape}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.42]{Figs/qc_hist_mammals_primates.pdf}
+\caption{Distributions of sitewise values for Mammalia (A) and (B)
+  Primates, before (top row) and after (bottom row) removing sites
+  based on the filtering scheme (see text). Note: the y-axis is not
+  constant between plots, and the x-axis is not constant between (A)
+  and (B) for the Signed LRT, Nongap Codons and Nongap Branchlength
+  values.}
+\label{qc_hist_mammals_primates}
+\end{figure}
+\end{landscape}
+
+
+%From left to right, they are the maximum-likelihood estimate of
+%sitewise \omg (``Omega''), the signed LRT statistic for non-neutral
+%evolution (``LRT''), the number of non-gap codons at the current
+%alignment column (``Non-gap Codons''), the total branch length
+%connecting non-gap sequences at the current site (``Non-gap Branch
+%Length''), the substitution category of the current site (``Type''),
+%and the random flag at the current site (``Random'').
 
 
 \subsection{Analysis of sitewise estimates from the mammalian superorders}
 
 
+
+
 \subsection{Modeling the global distribution of sitewise selective pressures}
+
+
+
+% Look at the fitdistrplus methods:
+% http://cran.r-project.org/web/packages/fitdistrplus/fitdistrplus.pdf
 
 % From 2xmammals supp. materials.
 % https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US
@@ -1798,14 +1882,14 @@ shows that sites with higher LRT statistics (which corresponds to
 weaker purifying selection when the value is below zero and stronger
 positive selection when the value is above zero) show decreasing
 recombination rates; this trend holds true even for the highest
-quantile (mean signed_lrt between 3.648 and 108.850), which is
+quantile (mean signed\_lrt between 3.648 and 108.850), which is
 composed entirely of sites with evidence for positive selection. In
 other words, the bulk of positively-selected sites are in regions of
 lower than average male recombination rates -- exactly opposite what
 would be expected in the face of strong BGC effects. The ‘Male
 Recombination’ quantiles show a similar trend, with the mean dN/dS,
 mean signed LRT and the proportion of sites identified as
-positively-selected (pos_f) all consistently decreasing as the
+positively-selected (pos\_f) all consistently decreasing as the
 recombination rate increases. The ‘GC content’ quantiles showed a
 slightly different pattern. Although the mean LRT decreased and male
 recombination increased monotonically with increasing GC content, the
@@ -1813,8 +1897,8 @@ mean dN/dS and fraction of positive sites started low, increased to a
 maximum in the middle range of GC content, and decreased again in
 regions of high GC content. Thus, although the GC content quantiles
 were similar to the male recombination quantiles in their higher range
-(with similar mean dN/dS, mean LRT, and pos_f values), they differed
-slightly in their lower range (with lower dN/dS and pos_f for low GC
+(with similar mean dN/dS, mean LRT, and pos\_f values), they differed
+slightly in their lower range (with lower dN/dS and pos\_f for low GC
 quantiles). Although the exact reason for such a pattern is unclear,
 it is consistent with the existence of altered or constrained
 selective or mutational dynamics at the extreme ends of the genomic
@@ -1831,19 +1915,19 @@ analyzed them according to quantiles of male recombination rate
 (Supplementary Table S17.13, ‘High GC, Male Recombination’. The middle
 four recombination quantiles showed a similar pattern to that observed
 for all GC contents, with mean LRT decreasing with increased male
-recombination and mean dN/dS and pos_f decreasing or hovering around
+recombination and mean dN/dS and pos\_f decreasing or hovering around
 values slightly lower than those observed across all GC contents
 (e.g., mean dN/dS in the 1-25\% bin is 0.207 for the top 10\% GC
 sites, but 0.249 for the same recombination bin across all sites). The
 highest recombination bin of the top 10\% GC sites showed a strikingly
 different pattern, however, with mean dN/dS=0.348, mean LRT=-11.262,
-and pos_f=0.0338. These values suggest a strong shift towards higher
+and pos\_f=0.0338. These values suggest a strong shift towards higher
 dN/dS values and more positively-selected sites. This jump in values
 in the highest recombination bin is not seen in the highest male
 recombination bin across all GC contents (mean dN/dS=0.207, mean
-LRT=-16.616, pos_f=0.00932) or for the highest female recombination
+LRT=-16.616, pos\_f=0.00932) or for the highest female recombination
 bin for the top 10\% of GC sites (mean dN/dS=0.164, mean LRT=-18.475,
-pos_f=0.00449). Although the small number of sites in the bin of
+pos\_f=0.00449). Although the small number of sites in the bin of
 interest compared to other bins suggests possible stochastic
 artifacts, the shift is dramatic, directly opposite to the trends
 observed for the female recombination rates and for male recombination

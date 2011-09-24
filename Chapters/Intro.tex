@@ -1,17 +1,90 @@
+%************************************************
+\chapter{Introduction}\label{ch_intro}
+%************************************************
 
-\section{The degeneracy of the genetic code, \nsyn and \syn mutations, and $\omega$}
+\section{Introduction}
+\todo{Write an introductory page or two. Keep it broad, cite some old
+  stuff.}
 
-the degeneracy of the genetic
-code results in divergent structural, functional and evolutionary
-consequences for \syn and \nsyn mutations in gene-coding regions. The
-rate at which the two types of mutations accumulate in a given gene
-depends to a large extent on the magnitude of the individual selective
-disadvantage incurred by structure- or function- altering \nsyn
-mutations and the tendency of the evolving population to cause
-differential fixation of mutations based on different levels of
-selective advantage or disadvantage. Some \nsyn mutations would
-completely disable a protein necessary for life, making offspring
-harboring such mutations would be nonviable; in this case the
-differential survival of those mutations is severe and immediate. In
-many cases, however, protein-altering mutations do not have such a
-drastic effect; rather, they 
+\section{Biological background}
+  \draft{All of evolutionary biology is about understanding the history
+    of evolution, and is thus tied to the circumstances under which
+    such evolution occurred. Thus, a brief overview of that history is
+    relevant and useful in this thesis.}
+
+  \subsection{The evolutionary history of vertebrates and mammals}
+  \todo{Write a quick summary of the genome evolution of vertebrates
+    and mammals. Mention 2R duplication, genome size growth,
+    transposable elements.}
+
+  \subsection{Mammalian population structure, adaptation and natural selection}
+  \todo{Introduce the concept of adaptation (molecular
+    vs. morphological / ecological), the varied behavioral
+    characteristics of modern day mammals (focusing on mammalian
+    superorders and great apes, as expanded in mammals and gorilla
+    chapters), and the impact of population structure / population
+    size on the efficacy of natural selection.}
+
+\section{Mathematical methods for genomic analysis}
+  \todo{Introduce the importance of imperfect replication / copying as
+    the substrate of evolution and a very convenient phenomenon for
+    mathematical analysis. The balance between randomness and
+    structure in evolutionary models.}
+
+  \subsection{Codon models of evolution}
+  \todo{Introduce the idea of modeling protein evolution as a markov
+    process acting on codon sequences: the incorporation of
+    mechanistic parameters for Ts:Tv bias (kappa), dN/dS ratio
+    (omega), or empirical models a la . Talk about heterogeneity
+    the idea that real data may strongly violate certain models.}
+
+  \subsection{Hypothesis testing with likelihood ratio tests}
+  \todo{Briefly introduce the idea of nested models and likelihood
+    ratio tests (used for PAML in Slrsim and Gorilla chapters, and for
+    SLR in Mammals chapters)}
+
+  \subsection{Detecting purifying and positive selection in protein-coding sequence}
+  \todo{Briefly run through the history of detecting purifying /
+    positive selection in genes and sites. Mention history of PAML
+    models, alternative approaches, and fully describe SLR's
+    approach.}
+
+  \subsubsection{The Sitewise Likelihood Ratio test}
+
+  % From Slrsim Methods
+  SLR implements a method specifically designed for sitewise estimates
+  which has been shown in sim- ulations to perform as well as or
+  better than PAML’s sitewise random sites models (Massingham and
+  Goldman, 2005). SLR models codon evolution as a continuous-time
+  Markov process where substitutions at one site are independent of
+  substitutions at all other sites. No assumptions are made regarding
+  the distribution of ω ratios within the alignment. The value of ω is
+  considered to be an independent parame- ter at each site: after
+  first optimizing shared parameters using the whole alignment, SLR
+  uses the shared parameters and the data at each alignment site to
+  calculate a sitewise statistic for non-neutral evolution.  This
+  statistic is based on a likelihood-ratio test where the null model
+  is neutral evolution (ω = 1) and the alternative model is either
+  purifying or positive selection (ω < 1 or ω > 1, respectively). The
+  raw statistic measures the strength of evidence for non-neutral
+  evolution at each site; following Massingham and Goldman (2005) we
+  use a signed version of the SLR statistic (created by negating the
+  statistic for sites with ω < 1) as the test statistic for positive
+  selection.
+
+
+
+  \subsection{Identifying biological trends in sets of genes and proteins}
+  \todo{Introduce the Gene Ontology and Pfam databases, which annotate
+    genes or components of genes with structured ontologies of
+    functions or domains, respectively. Introduce the methods for
+    detecting enriched GO terms. Note problems and biases involved in
+    the basic methodology and describe algorithms / corrections
+    introduced to correct for certain biases: topGO for hierarchical
+    GO structure and goseq for element length.}
+
+  \subsection{Correcting for multiple testing in genome-scale datasets}
+  \todo{Note the issue of correcting for multiple testing in
+    genome-scale datasets. Clarify the differences between nominal
+    p-value, family-wise error rate, FDR. Provide examples of when /
+    where certain methods may be more applicable than others.}
