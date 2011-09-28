@@ -46,7 +46,6 @@
 
 % Put all the style files you want in the directory StyleFiles and usepackage like this:
 \usepackage[square,numbers]{natbib}
-\usepackage{a4}
 \usepackage[small]{caption}
 \usepackage{xspace}
 \usepackage{Styles/watermark}
@@ -58,14 +57,15 @@
 \usepackage{pdflscape}
 \usepackage[table]{xcolor}
 \usepackage[colorinlistoftodos, textwidth=4cm, shadow]{todonotes}
+\usepackage{a4wide}
 
 % Comment out the next line to get single spacing
 \onehalfspacing
 
 \renewcommand\floatpagefraction{.9}
-\renewcommand\topfraction{.9}
-\renewcommand\bottomfraction{.9}
-\renewcommand\textfraction{.1}   
+\renewcommand\topfraction{.95}
+\renewcommand\bottomfraction{.95}
+\renewcommand\textfraction{.2}
 \setcounter{totalnumber}{50}
 \setcounter{topnumber}{50}
 \setcounter{bottomnumber}{50}
@@ -94,12 +94,13 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
+\pagenumbering{arabic}
 \frontmatter % book mode only
-\pagenumbering{roman}
 %\include{Chapters/dedication}
 %\include{Chapters/acknowledgement}
 %\include{Chapters/abstract}
 
+\pagenumbering{arabic}
 \tableofcontents
 
 \mainmatter % book mode only
@@ -110,6 +111,7 @@
 \include{Chapters/Intro}
 %\include{Chapters/Indels1}
 %\include{Chapters/Indels2}
+\include{Chapters/Orthologs}
 \include{Chapters/Mammals1}
 %\include{Chapters/Mammals2}
 %\include{Chapters/Gorilla1}

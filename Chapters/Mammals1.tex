@@ -31,10 +31,10 @@ As the \mgp proceeded from its sequencing to analysis phase in late
 2008, it became clear that the additional branch length afforded by
 the 29-species phylogeny would enable a number of improved
 evolutionary analyses beyond the identification of constrained
-noncoding regions. Among others, these included the evolutionary
+non-coding regions. Among others, these included the evolutionary
 characterisation of gene promoters, identification of exapted
-noncoding elements, detection of evolutionary acceleration and
-deceleration in noncoding regions, and detection of purifying and
+non-coding elements, detection of evolutionary acceleration and
+deceleration in non-coding regions, and detection of purifying and
 positive selection in protein-coding genes. Given its prior
 involvement in analysing the ENCODE comparative sequencing data
 \citep{TODO} and Massingham's work on a method and software program
@@ -64,15 +64,14 @@ natural selection in favor of protein-altering mutations.
 
 Early evolutionary analyses of protein sequences showed large
 variation in the rates of amino acid change both within and between
-proteins \citep{TODO}. This variety results from the myriad structures
-and functions embodied by different proteins and protein domains
-\citep{TODO}. Continued work suggested that the overall evolutionary
-rate \cite{TODO,Koonin?} and the pattern of localised selective
-pressures \cite{TODO} of a gene can reveal important insight into its
-role in the organism. Thus, the study of rates of \nsyn and \syn
-substitution in proteins became established as an effective method for
-using evolutionary information to investigate the functional
-characteristics of genes.
+proteins resulting from the myriad structures and functions embodied
+by different proteins and protein domains \citep{TODO}. Continued work
+suggested that the overall evolutionary rate \cite{TODO,Koonin?} and
+the pattern of localised selective pressures \cite{TODO} of a gene can
+reveal important insight into its role in the organism. Thus, the
+study of rates of \nsyn and \syn substitution in proteins became
+established as an effective method for using evolutionary information
+to investigate the functional characteristics of genes.
 
 Maximum likelihood methods, introduced in Chapter \ref{TODO}, are
 commonly applied to biological sequence analysis due to their
@@ -105,23 +104,24 @@ be violated in a number of ways, some of which are described below.
 
 Alignment error results from the difficulty of reconstructing the
 evolutionary history of sequences evolving with indels and can cause
-nonhomologous codons to be placed in the same alignment column. In
+non-homologous codons to be placed in the same alignment column. In
 Chapters \ref{ch_indel1} and \ref{ch_indel2} I explored the tendency
 of multiple aligners to produce such errors, showing that \prankc
 alignments would be expected to introduce few falsely identified
 positively-selected sites resulting from alignment errors at
 mammalian-like divergence levels.
 
-Errors resulting from incorrect genomic sequence was an additional
-concern. Twenty of the genomes under study were sequenced at low
-coverage and were not assembled into chromosomes or finished to
-completion, making the likelihood of miscalled bases, spurious
-insertions or deletions, or shuffled regions due to misassembly
-relatively high \citep{TODO}. The potential effect of each of the
-aforementioned types of sequence errors on the detection of positive
-or purifying selection depends on the nature of the inference method,
-the type of sequencing error, and the branch length of the terminal
-lineage leading to the species containing the error.
+Errors resulting from the inclusion of incorrect genomic sequence in
+alignments was an additional concern. Twenty of the genomes under
+study were sequenced at low coverage and were not assembled into
+chromosomes or finished to completion, making the likelihood of
+miscalled bases, spurious insertions or deletions, or shuffled regions
+due to mis-assembly relatively high \citep{TODO}. The potential effect
+of each of the aforementioned types of sequence errors on the
+detection of positive or purifying selection depends on the nature of
+the inference method, the type of sequencing error, and the branch
+length of the terminal lineage leading to the species containing the
+error.
 
 As most codon-based inference methods assume independence between
 amino acid sites, I first consider the effect---in isolation---of a
@@ -144,16 +144,13 @@ multiple erroneous bases may cause greater elevation of the inferred
 substitution rate and $\omega$, due to the necessity of \ml methods to
 infer a multi-step path of single substitutions between the two codons
 on either side of a given evolutionary branch. The path estimated
-between two completely nonhomologous codons depends on the estimated
-codon frequencies, the genetic code, and the pseudo-mutational
-process; while a detailed investigation of the expected effect on
-inferred $\omega$ values is beyond the scope of my analysis, it is not
-unreasonable to expect a greater number of false positive \pss{}s
-resulting from codons with multiple erroneous bases than from codons
-with single errors.
-
-{\color{red} TODO: quick randomisation experiment looking at elevated
-  $\omega$ from multi-substitution codons?}
+between two completely non-homologous codons depends on the estimated
+codon frequencies, the genetic code, and the nature of the process
+causing misalignment of nonhomologous codons; while a detailed
+investigation of the expected effect on inferred $\omega$ values is
+beyond the scope of my analysis, it is not unreasonable to expect a
+greater number of false positive \pss{}s resulting from codons with
+multiple erroneous bases than from codons with single errors.
 
 Given the potentially greater impact of codons with multiple errors,
 the propensity of each of the common sequencing error types identified
@@ -167,13 +164,11 @@ distributed among or within sequence reads, which makes for a larger
 probability of multiple errors within a codon resulting from miscalled
 bases. Spurious indels within coding regions may be even more likely
 than miscalled bases to cause multiple errors within a codon due to
-the potential alignment and frameshift effects (but see the discussion
-of Ensembl's frameshift filters for low-coverage genomes in Section
-\ref{TODO}). Assembly errors, which result in larger-scale structural
-errors including missing, repeated, shuffled or inverted sequence
-regions, are most prone to produce codons with multiple erroneous
-errors due to the large amount of contiguous sequence data being
-misplaced.
+the potential alignment and frameshift effects. Assembly errors, which
+result in larger-scale structural errors including missing, repeated,
+shuffled or inverted sequence regions, are most prone to produce
+codons with multiple erroneous errors due to the large amount of
+contiguous sequence data being misplaced.
 
 I also note the impact of the inference method and terminal branch
 length on false positives resulting from sequence errors, which can be
@@ -292,941 +287,8 @@ chimpanzee-specific mutations were responsible for many false
 positives motivated the window-based filter I applied here and in
 Chapters \ref{ch_gorilla1} and \ref{ch_gorilla2}.
 
-{\color{red} TODO: Figure summarising the types of error and potential effects on the inference?}
+{\color{red} TODO: Figure summarizing the types of error and potential effects on the inference?}
 
-\subsection{Low-coverage genomes in the Ensembl database}
-
-The prevalence of missing sequence data and fragmented contigs in
-low-coverage genomes presents a unique set of problems for the
-generation of transcript annotations. In recognition of these
-differences, the procedure used by the Ensembl database to annotate
-genomes assembled from low-coverage data is distinct from the usual
-gene-building pipeline \citep{TODO, Ensembl 2006}. Briefly, a
-whole-genome alignment is produced between the human genome and each
-low-coverage target, and gene models are projected from human to the
-target genome. Small frame-disrupting insertions or deletions within
-orthologous exons are corrected, and missing exons are padded with Ns
-in order to obtain the correct transcript length.
-
-The inclusion of these error-correcting features allows intact, if not
-complete, coding transcripts to be generated for low-coverage
-genomes. The Compara gene family pipeline uses the set of transcripts
-from each species as its input \citep{TODO, Ensembl Compara}, so the
-quality of the gene models from each species has a direct impact on
-the overall quality and accuracy of gene trees. Although the reliance
-on genome-wide alignments to, and gene annotations from, a reference
-genome could be criticised for potentially causing a bias towards the
-genomic properties of the reference, this approach is a reasonable
-workaround in the absence of higher-coverage sequence data or a
-painstakingly curated assembly. Furthermore, the gene model error-correcting
-features of the Ensembl pipeline are especially beneficial, making
-more complicated methods for correcting errors from low-coverage
-genomes such as those described by \citep{TODO, PLoS One hubisz and
-  siepel} seem largely unnecessary.
-
-
-\section{The Ensembl Compara gene tree pipeline}
-
-All genomic data and gene trees used for this analysis were sourced
-from version 63 of the Ensembl Compara database \citep{TODO, Ensembl
-  2010 and EnsemblCompara GeneTrees}. Although a complete description
-of the design, implementation, and validation of the pipeline behind
-the Ensembl database is beyond the scope of this thesis, I will
-briefly outline the major aspects of the approach, focusing on a few
-details which are relevant to the current sitewise analysis and the
-ensuing discussion.
-
-The Compara pipeline begins with a set of protein-coding transcripts
-collected from each individual species' annotation database. This step
-is not exactly straightforward, as the prevalence of alternative
-splicing in Eutherian mammals makes it common for a single gene to
-harbor many different transcript structures. In terms of biology and
-evolution, alternative splicing is a very interesting
-phenomenon. Tightly linked to the evolutionary innovation of
-regulatory control and tissue-specific gene expression, the existence
-of multiple transcripts per gene is one of the likely substrates of
-biological and developmental complexity within vertebrates and mammals
-as compared to single-celled eukaryotes, which show less developmental
-complexity but largely similar numbers of genes \citep{TODO}. Further
-evidence of the unique evolutionary characteristics of
-alternatively-spliced exons comes from molecular evolutionary studies
-which have shown such exons to show, on average, higher levels of
-evolutionary constraint, possibly owing to the importance of exonic
-splice enhancers in modulating the inclusion or exclusion of their
-associated exons \citep{TODO}.
-
-However, in terms of organizing biological data, pervasive alternative
-splicing---with XYZ\% of human genes containing at least two (and up
-to several dozen) transcripts per gene \citep{TODO}, showing tissue-specific and
-species-specific expression patterns, different levels of overall
-transcription, and sometimes comprising mutually exclusive exons---is
-somewhat burdensome. The first problem is the fact that primary data
-on alternative transcript structures (e.g., resulting from expressed
-sequence tags, RNA-seq, or proteomics experiments) are largely absent
-from most organisms with sequenced genomes. Even ignoring this lack of
-data, the task of incorporating multiple transcripts per gene into an
-evolutionary analysis is non-trivial, and leaves many unresolved
-questions open to debate: should all transcripts be treated as
-independent evolutionary entities, or should some form of
-meta-transcript be produced, comprising all possible transcripts for a
-given gene? Should expression levels and tissue-specificity be taken
-into account (as both factors have been correlated with evolutionary
-rate, e.g. \citep{TODO, TODO})? And what is the expected evolutionary
-impact of the loss, gain, or modulation of the prevalence or
-tissue-specificity of a given exon or transcript in one lineage? Even
-a fairly shallow consideration of the topic quickly reveals layers of
-complexity that would quickly hinder many large-scale evolutionary
-analyses such as the current one, whose main goals are to understand
-the levels of evolutionary constraint of some subset of genes (or
-protein-coding sites) within some subset of species.
-
-As a result of these difficulties, the current design of the Compara
-pipeline only incorporates one 'canonical' transcript per gene into
-the evolutionary analysis and the resulting inferred gene trees. This
-reflects a conscious decision to sacrifice some biological fidelity
-for reduced design complexity and computational load (as the inclusion
-of multiple transcripts would inevitably require some amount of
-additional processing and/or calculation). Unfortunately, this only
-somewhat alleviates the problem, shifting the burden from ``how to
-deal with multiple transcripts in a comparative setting'' to ``how to
-choose the best representative transcript for each gene.'' In the case
-of a gene with many transcripts of varying sizes containing many
-non-overlapping exons, the negative consequences of choosing a
-non-optimal transcript are clear: too short of a transcript could
-exclude important sequence information from the dataset, while
-transcripts with spurious exons (resulting from misannotation or
-erroneous experimental evidence for a transcript) could introduce
-potentially large amounts of non-orthologous, nonfunctional, or
-nonconserved sequence into the evolutionary analysis.
-
-Fortunately, the consensus coding sequence (CCDS) project was
-initiated in 2005 to ``identify a core set of human and mouse protein
-coding regions that are consistently annotated and of high quality''
-\citep{TODO, Pruitt et al. 2009 Gen Res}. Although the transcripts
-that satisfy these two criteria will not necessarily be the same as
-those which meet the desired definition of ``the best representative
-transcript for use in an evolutionary study,'' the confidence that one
-can have in the quality and consistency of CCDS transcripts helps to
-reduce the prevalence of potentially damaging errors in the Compara
-pipeline.  Thus, in the current release (version 63), the
-``representative'' transcript used for the Compara pipeline is chosen
-on the basis of (a) existence within the CCDS set of transcripts and
-(b) the total length of the transcript's coding sequence. The
-combination of these two factors can be expected to identify a
-reasonably representative transcript, at least for the human and mouse
-genomes. The situation will be similar for genomes whose Ensembl
-annotation is derived largely from synteny and orthology to human and
-mouse annotated genes, but two classes of genomes---those resulting
-from low-coverage sequencing and those from more distant species whose
-annotations are derived from largely independent data sources---will
-still suffer from some amount error in the form of poor transcript
-choice.
-
-Once the set of canonical transcripts is chosen, the Compara pipeline
-performs an all-against-all protein BLAST search (using the Washington
-University variant of BLAST) and clusters genes into groups of
-evolutionarily-related sequences using \hclust, an
-implementation of a hierarchical clustering algorithm for sparse
-graphs. Sequences are aligned using MCoffee, a meta-aligner algorithm
-which combines the results from different aligners into one alignment
-using a maximum-consistency criterion. The aligners used for the
-M-Coffee alignment include XXX, YYY, and ZZZ. Finally, the aligned
-sequences are input to TreeBeST, which infers a gene tree (including
-gene duplication and loss events) given a set of aligned sequences and
-a known species tree \citep{TODO}. The type of the homology
-relationship between each pair of genes (e.g., one-to-one ortholog,
-one-to-many ortholog, within-species paralog) is determined using a
-simple set of rules based on the structure of the inferred gene tree
-and the annotation of ancestral nodes where a duplication event has
-likely occurred.
-
-The Compara pipeline has been a part of the Ensembl ecosystem at least
-since its first mention in \citep{TODO}. Remarkably, aside from slight
-tweaks to the protein clustering method and some changes in the exact
-aligners used, the pipeline has changed little from its original
-published form \citep{TODO}. In part, this lack of change reflects the
-ease with which sets of vertebrate orthologs can be identified using
-the existing methodology, lying in stark contrast to the equivalent
-task in sets of insect or fungal genomes where divergence levels
-between extant sequences are much larger \citep{TODO} and the shape of
-the underlying species tree may be uncertain and/or unknown
-\citep{TODO}, making the development of specialized methods or
-extensive manual annotation necessary \citep{TODO}. This is equivalent
-to saying that Ensembl's pipeline, while not perfect in its orthology
-predictions or tree inferences (as indicated in a series of
-back-and-forth papers between Ensembl scientists and XYZ,
-\citep{TODO}), has proved sufficiently accurate enough that an
-extensive reworking of the system has not yet been deemed
-necessary. Additional validation of this approach comes in the form of
-Treefam \citep{TODO}, a database of animal gene trees which applies a
-similar set of tools to infer gene trees from a more diverse set of
-genomes, with largely similar results.
-
-\textcolor{red}{[Something about Ensembl being directed at inferreing
-    gene tree topologies, and not being vetted for use in estimates of
-    selective constraint]}
-
-\textcolor{red}{[Introduce the structure of the next few subsections:
-    ways of massaging / filtering the Ensembl data to fit with the
-    needs of the current project]}
-
-\section{Identifying orthologous subtrees within large mammalian gene families}
-
-The first task in preparing the Ensembl data for sitewise analysis was
-to identify and extract a biologically meaningful set of orthologous
-mammalian subtrees from the set of gene trees within the Compara
-database. This was necessary because many Compara gene trees contain
-multiple sets of Eutherian orthologs linked by ancient gene
-duplication events, while I wished to study the evolution of each
-individual set of Eutherian orthologous genes. In other words, Compara
-gene trees are over-clustered with respect to the core set of
-Eutherian orthologs.
-
-Evidence for this over-clustering comes from Table \ref{table1}, which
-shows the number of root Compara gene trees which contain zero, one,
-or multiple genes in human, zebrafish and drosphila, as well as Figure
-\ref{fig1}, which shows the distribution of gene counts in the set of
-root Compara gene trees. The percentage of Compara trees with 2 or
-more human genes is strikingly high, at XYZ\%. If each Compara tree
-contained one single set of Eutherian orthologs, then the proportion
-of trees with multiple human gene copies could only be explained by an
-unrealistically high rate of gene duplication. A more parsimonious
-explanation would be that many Ensembl trees represent not one group
-of Eutherian orthologs, but two or more sets of Eutherian orthologous
-gene trees joined by one or more ancient duplications. This
-explanation is further supported by Figure \ref{fig1}, which shows
-concentrations of gene counts centered roughly around whole-integer
-multiples of the number of vertebrate species present in the Ensembl
-database (shown as gray dotted lines).
-
-The prevalence of over-clustered Eutherian orthologs in the Compara
-database is easily explained by a combination of the \hclust algorithm
-used for the hierarchical clustering step, which uses only protein
-distances as its source of clustering information, and the wide range
-of protein evolutionary rates in the vertebrate genome. As I mentioned
-in the previous subsection, the Compara pipeline uses all-by-all
-protein BLAST E-value scores and the \hclust algorithm to produce sets
-of sequences containing minimal average within-group E-values. No
-additional biological information, such as the source species of each
-sequence or the overall taxonomic coverage of each cluster, is used in
-identifying clusters, and no attempt is made to fit clusters to an
-expected model of orthologous gene evolution. On the one hand, the
-lack of additional information and assumptions allows the algorithm to
-remain simple and the clustering behavior to remain consistent across
-different groups of genomes; on the other hand, a number of technical
-(in the sense of non-biologically meaningful) parameters and
-thresholds must be tuned in order to result in the desired cluster
-sizes and contents. Importantly, even after these parameters are tuned
-to perform well on the dataset as a whole, the reliance on protein
-distances alone means that fast-evolving proteins will be more likely
-to be under-clustered and slow-evolving proteins will be more likely
-to be over-clustered. Given that the protein evolutionary rate varies
-widely within a genome (\TODO{in a study of vertebrate genes, XYZ et
-al. found $K_a$ values ranging from ZZZ to YYY}), the excess of
-over-clustered orthologs in the Compara database is understandable and
-even somewhat expected.
-
-I should note that my use of the phrase ``over-clustered'' refers only
-to over-clustering with respect to the current goal of analyzing
-independent sets of orthologous genes within Eutherian
-mammals. Certainly these large ``over-clustered'' trees, which
-represent a more distant evolutionary history than a single Eutherian
-orthologous group, are just as accurate with respect to the true
-evolutionary history of the genes as more narrow groupings would
-be. Furthermore, the inclusion of a deeper evolutionary context may
-sometimes be more useful to users of the Compara database, for whom an
-understanding of the overall evolutionary history of a gene may be the
-topic of primary interest.
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.3]{Figs/nbeal2_full.pdf}
-\caption{The evolutionary history of the human \gene{neurobeachin-like 2}
-  gene (\gene{NBEAL2}) and its paralogs. Left, two phylogenetic trees from
-  Ensembl Compara (release 60) are shown, summarizing the evolution of
-  \gene{NBEAL2} and its three paralogs (top) and \gene{LYST}, a presumed distant
-  paralog of \gene{NBEAL2}, and its three paralogs (bottom) in 15
-  vertebrate species. The phylogeny shows that \gene{NBEAL2} is
-  taxonomically conserved and distinct from its paralogs. Red dots
-  highlight the root nodes of Ensembl gene trees, blue dots highlight
-  the root nodes of Eutherian orthologous subtrees, and a dashed line
-  with a green dot represents the putative paralogous relationship
-  (with a hypothetical root) between the two Ensembl gene
-  trees. Right, the exon and domain structure of each human gene is
-  shown: exons are displayed alternating shades of gray, and Pfam
-  domain annotations are colored according to their Pfam identifier.}
-\label{nbeal2}
-\end{figure}
-
-Take for example the gene \gene{NBEAL2} and its human paralogs, whose gene
-trees, exon structures and domain classifications were extracted from
-Ensembl v62 and summarized in Figure \ref{nbeal2}. A recent medical
-sequencing project identified \gene{NBEAL2}, a gene of previously unknown
-function, as the putative causative gene for gray platelet syndrome, a
-predominantly recessive platelet disorder resulting in moderate to
-severe bleeding \citep{TODO}. It was important for the
-authors of this study to ensure that the \gene{NBEAL2} gene is well-conserved
-across mammals and distinct from its paralogs. The Compara pipeline
-clustered \gene{NBEAL2} with three of its closest paralogs into one tree (and
-similarly clustered four more distant \gene{NBEAL2} paralogs into a separate
-tree), yielding two views which together showed both the full
-taxonomic coverage of the \gene{NBEAL2} \subtr{} and the large amount of
-separation between paralogs. Had each Eutherian ortholog been
-displayed independently in Ensembl (using the blue ``Eutherian root'' nodes in
-Figure \ref{nbeal2}), it would have been more difficult to make such
-claims regarding the evolutionary history of \gene{NBEAL2} without further
-analysis. Conversely, had the Compara pipeline been even more
-inclusive in its clustering step and identified a hypothetical deeper
-root connecting these two sets of trees (represented by the green node
-in Figure \ref{nbeal2}), the connection between these eight genes
-would have been more immediately apparent.
-
-For the purposes of the current mammalian sitewise analysis, however,
-it was important to isolate individual mammalian gene trees for
-further processing and sitewise analysis. To this end, I designed a
-simple scheme for splitting gene trees into non-overlapping subtrees
-based on flexible taxonomic coverage criteria.
-
-I hypothesized that a relatively simple set of rules based on
-taxonomic coverage would be sufficient to identify most largely
-orthologous mammalian subtrees. This hypothesis was based on two
-well-established observations in mammalian genomes. First, the
-existence of two rounds of whole-genome duplication preceding the
-evolution of vertebrates \citep{TODO} suggested that many of the
-ancient duplication events contained within Ensembl gene trees
-occurred before the divergence of \mmls, making it possible to cleanly
-separate out taxonomically complete \mmln \subtr{}s in the majority of
-cases. This would not be possible if duplication events were common
-and spread evenly throughout the \mmln tree; if that were the case,
-many duplication events would have occurred after the divergence of
-some or all of the major \mmln groups, resulting in a larger
-proportion of \mmln genes with ``internal'' duplications and, thus,
-fewer singly orthologous trees with high taxonomic coverage. Second,
-the overall low rate of gene duplication and loss in mammals
-\citep{TODO, mammalian gene trees PLoS One} (excluding, of course, the
-aforementioned whole-genome duplication events) predicts that few
-mammalian gene trees will be subject to one or more gene duplication
-or loss events. In other words, most mammalian gene trees should
-contain sequences from a majority of mammalian species, so the
-effectiveness of using taxonomic coverage to identify mammalian
-\subtr{}s should be largely unaffected by individual (i.e., post-2R)
-gene duplication or loss events. The potential utility of taxonomic
-coverage was further bolstered by the star-like shape of the mammalian
-tree: star-like trees contain more branch length within terminal
-lineages than ladder-like trees with an equivalent total branch
-length, making it less likely that a gene duplication or loss event
-(if such events occurred randomly throughout the mammalian tree) would
-result in a significant disruption to the taxonomic coverage of the
-gene tree.
-
-The taxonomic-based tree splitting scheme works as follows. For every
-internal node $N$ of each Compara gene tree, the taxonomic coverage
-(TC) was calculated for several vertebrate clades. The TC for node $N$
-and clade $C$ is given by $TC(N,C) = species(N) / species(C) $, where
-$species(N)$ is the number of unique species represented by the
-sequences beneath node $N$ and $species(C)$ is the number of species
-within the vertebrate clade $C$. The tree is traversed from root to
-tip, and if a given set of TC constraints (referred to as the subtree
-constraints) are satisfied by both \subtr{}s below node $i$, then the
-tree is split into two \subtr{}s at node $i$ (with the new trees
-having root nodes placed at the two child nodes, $i_a$ and $i_b$). The
-traversal continues recursively until every node is tested. If only
-the original root node satisfies the subtree constraints, then the
-entire Compara tree is included in the resulting tree set; if the
-entire Compara tree fails to satisfy the subtree constraints, it is
-excluded altogether.
-
-I chose a variety of subtree constraints based on the structure of the
-vertebrate phylogeny, all of which were run against the 18,613 gene
-trees within the Compara database to generate several genome-wide sets
-of subtrees. Table \ref{subtree_constraints} shows the details of the
-various subtree constraints I used; the clade names (e.g.,
-$TC(Primates)$) are used to refer to sets of species contained within
-the Ensembl database, as defined by the NCBI taxonomy. The NCBI
-taxonomy of species contained in Ensembl is shown in Figure
-\ref{ncbi_tree}.
-
-For the Ingroup and Outgroup categories of subtree constraints, a TC
-value of greater than 0.6 was required for a single taxonomic
-clade. If the required TC value for a clade were set to 1, then all
-subtrees containing deletions in any species within the clade of
-interest would be rejected. On the other hand, requiring a TC value of
-less than 0.5 would allow for a truly singly-orthologous tree to be
-split into two \subtr{}s, with one tree having a TC below 0.5, and the
-other tree (containing the other half of the species) also having a TC
-below 0.5. Thus, 0.6 seemed to be a reasonable TC requirement for
-isolating \subtr{}s with reasonable taxonomic coverage while allowing
-for some amount of gene deletion.
-
-Two additional types of constraints were designed for use in the
-MammalSubgroups and MammalSubgroupsPlusOutgoup methods. Inspired by
-the alignment filtering method from Pollard et al. \citeyearpar{TODO},
-which required sequence data from all three major mammalian clades
-(Primates, Glires, and Laurasiatheria) to be present for a column to
-pass through the filter, the $TC_{all}$ constraint requires that the
-TC for all of the included clades is above a given threshold. To
-complement the $TC_{all}$ constraint, the $TC_{any}$ constraint
-requires that the TC for any of the included clades is above a given
-threshold. These more complicated methods were included in the
-analysis in case the simpler TC constraints within the Ingroup and
-Outgroup categories did not perform satisfactorily.
-
-The methods within the Orthologs category of subtree constraints were
-implemented separately from the rest. Instead of splitting Compara
-trees based on taxonomic criteria, the subtrees in the Orthologs
-category were defined from the sets of genes annotated by Ensembl as
-orthologs to each gene from a given source species. Thus, for each
-gene from the source species, the Compara \subtr{} containing all of
-the Ensembl-annoated orthologs was extracted and stored; this was
-guaranteed to yield exactly one \subtr{} for every gene in the source
-species. I chose to include human, mouse, zebrafish, and drosophila
-were chosen as source species for testing. This approach differs from
-the tree-splitting strategy in two ways: first, it makes use of the
-orthology annotations resulting from Ensembl's orthology pipeline, and
-second, it does not guarantee that each \subtr{} contains a completely
-unique set of genes. For example, a gene which was recently duplicated
-in humans would yield two \subtr{}s, one for each human paralog, with
-identical sets of non-human genes in each tree. Although the
-orthology-based method might be useful when an evolutionary study is
-focused on a specific target or reference species, as is often done
-with human and mouse due to their finished genome sequence and
-high-quality annotation, I considered it to be less applicable to the
-current study due to the potential for introducing reference
-genome-specific biases, such as over-representation of genes with gene
-family expansions in the reference species or non-representation of
-genes which have been deleted in the reference species. Still, I
-expected that the sets of \subtr{}s resulting from the Ensembl
-ortholog annotations would serve as a useful reference with which to
-compare the other TC-based methods.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.4]{Figs/compara_63_tree.pdf}
-\caption{The NCBI taxonomy of species within the Ensembl Compara
-  database. Note that branch lengths are not drawn to
-  scale. Low-coverage genomes are labeled in red, high-coverage
-  genomes are in black. Selected internal nodes, used are labeled in
-  blue.}
-\label{ncbi_tree}
-\end{figure}
-
-
-\begin{table}[ht] \footnotesize
-\centering
-\begin{tabular}{@{}lll@{}} \toprule
-\multicolumn{2}{c}{Method} \\ \cmidrule(r){1-2}
-   Category & Name & Constraints \\ \midrule
-Ingroup & Primates & $TC(Primates) > 0.6$ \\
- &   Glires &  $TC(Glires) > 0.6$ \\
- &   Laurasiatheria & $TC(Laurasiatheria) > 0.6$ \\
- &   Sauria & $TC(Sauria) > 0.6$ \\
- &   Fish & $TC(Clupeocephala) > 0.6$ \\
-Outgroup &  Eutheria & $TC(Eutheria) > 0.6$ \\
- &   Amniotes & $TC(Amniota) > 0.6$\\
- &   Vertebrates & $TC(Vertebrata) > 0.6$\\
- &   Fungi/Metazoa & $TC(Fungi/Metazoa) > 0.6$\\
-Subgroups &  MammalSubgroups & $TC_{all}(Laur., Glires, Primates) > 0.1$\\
- &   \scriptsize{MammalSubgroupsPlusOutgroup} & $TC_{all}(Laur., Glires, Primates) > 0.1$ AND \\
- &    & $TC_{any}(Sauria, Clupeo., Ciona, Marsup.) > 0)$ \\
-Orthologs & Human Orthologs & \\
- &   Mouse Orthologs &  \\
- &   Zebrafish Orthologs &  \\
- &   Drosophila Orthologs &  \\
-Root Nodes & Ensembl Roots &  \\
-\bottomrule
-\end{tabular}
-\caption{Subtree constraints used for identifying Eutherian
-  orthologous subtrees. Ensembl gene trees were split into subtrees
-  based on taxonomic coverage (TC) requirements at internal
-  nodes. Laur. - Laurasiatheria; Clupeo. - Clupeocephala; Marsup. -
-  Marsupiala}
-\label{subtree_constraints}
-\end{table}
-
-\section{Analysis of genome-wide sets of orthologous mammalian trees}
-
-The \subtr splitting schemes described in the previous subsection were
-applied to the 18,607 root gene trees from the Ensembl database. In
-this and the next section I will describe the resulting sets of trees
-and \subtr{}s, discuss what they reveal about the evolutionary history
-of vertebrates and the feasibility of using taxonomic coverage to
-isolate orthologous trees for sitewise analysis, and finally, explain
-my reasoning for deciding to use the subtrees based on the Eutherian
-taxonomic coverage for the subsequent sitewise analysis.
-
-\subsection{The set of root Compara gene trees}
-
-Table \ref{ensembl_root_table} presents a summary of the set of root
-Compara gene trees and the subsets of trees with more or fewer than 15
-sequences.
-
-\begin{table}[hb] \footnotesize
-\centering
-\begin{tabular}{lrb{2cm}rrrrrrr}
-\toprule
-Tree & &  Med. Size &  & \multicolumn{3}{c}{Human Content} & Human & Med. & Med. \\ \cmidrule(r){5-7}
-Set & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Species \\ 
-  \midrule
-\input{Tables/ortholog_roots_summary.txt}
-   \bottomrule
-\end{tabular}
-\caption{Summary of the set of Ensembl Compara root trees. The 'Human
-  Content' columns represent the fraction of trees which contain the
-  indicated number of human genes, and 'Human Total' is the total
-  number of human genes contained within the tree set. 'Med. Species'
-  is the median species count across all trees. Med. - median, MPL -
-  mean path length }
-\label{ensembl_root_table}
-\end{table}
-
-It is somewhat surprising that nearly half of all Compara gene trees
-contain few sequences: 9,378 out of 18,607 root trees constitute fewer
-than 15 sequences. Given the protein-based clustering performed by the
-Compara pipeline, one might expect many of these small trees to
-represent portions of larger fast-evolving gene trees whose high
-sequence divergences made the BLAST search step inaccurate or caused
-clustering via the \hclust algorithm to be ineffective. Alternatively,
-these small clusters might have resulted from exceptional
-lineage-specific gene duplications or pseudogenes mis-annotated as
-genes, creating tight clusters of very closely-related transcripts
-that were identified by \hclust as independent gene trees. Some
-evidence for the latter scenario comes from the median species counts
-and mean path lengths of the smaller versus larger trees. The subset
-of small root trees has a median species count of 2 compared to 47 for
-the large subset, indicating that the smaller trees encompass
-sequences from a very small taxonomic range. Furthermore, the median
-MPL for small trees is 0.04 compared to 1.04 for the large subset,
-revealing a much smaller level of sequence divergence within each
-tree. Together, these summary statistics indicate that the smallest
-trees in the Compara database consist of highly species-specific,
-closely-related proteins that are likely artifactual gene
-annotations.
-
-Despite the existence of many small trees in the Compara database,
-they comprise only a small fraction of all protein-coding
-sequences. Only 4\% of the human gene set---which we expect to be
-well-annotated and to contain few false positive genes due to the high
-level of manual curation and the large amount of continued
-scrutiny---is contained within the subset of small trees. This
-indicates that whatever process is causing the Compara pipeline to
-yield such a high number of small gene trees has not had too much of
-an impact on the placement of the most confident set of protein-coding
-genes within the database of root gene trees.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.9]{Figs/ensembl_roots_hist.pdf}
-\caption{Sequence counts for the set of root Compara trees. Black bars
-  show a histogram of sequence counts in bins of width 5, and the gray
-  line shows the cumulative fraction of sequences contained within
-  trees of that size or smaller. For clarity, 9,378 trees with 15 or
-  fewer sequences are not shown. Dashed blue lines are drawn at
-  integral multiples of 48, the number of vertebrate species within
-  Ensembl.}
-\label{ensembl_roots_hist}
-\end{figure}
-
-A closer examination of the distribution of tree sizes in the set of
-root Compara trees presents a clear view of the over-clustering of
-mammalian orthologous trees. The black bars in Figure
-\ref{ensembl_roots_hist} show the distribution of sequence counts for
-all trees with more than 15 sequences, with vertical dashed lines
-overlaid at multiples of 48 (the number of vertebrate species in
-Ensembl release 63). The highest peak
-of the histogram is at or slightly above 48 sequences, with the tree
-counts quickly diminishing at larger sizes. Weaker, but still
-discernable, peaks appear at larger tree sizes, with the location of
-these echo-like peaks corresponding closely to the second, third and
-fourth multiples of 48. The pattern of recurring peaks becomes
-indistinguishable at sizes above 200, but there is still a long tail
-of large trees extending out to a maximum size of 400
-sequences. Overall, the distribution of tree sizes provides good
-support for the situation described above, with the Compara pipeline
-often clustering together two or more largely-orthologous gene trees
-sharing ancient homology.
-
-It is also interesting to characterize the set of Ensembl trees by the
-proportion of all sequences which are covered by trees of a given size
-or smaller. This value is plotted in Figure \ref{ensembl_roots_hist}
-as a gray line. First, one can see that trees with fewer than 15
-sequences (which were excluded from the plot but inlcuded in the
-calculation of the cumulative fraction of sequences) represent a
-trifling fraction of the sequences within Compara; this is similar,
-but not identical, to the above-mentioned calculation that 4\% of
-human genes are contained within these smaller trees. Second, the
-steady slope of the cumulative curve contrasts with the declining
-height of the histogram. This results from the increasing number of
-sequences encompassed by each of the larger trees: although there are
-relatively few trees with more than 300 sequences, together they
-contain around 10\% of all protein-coding genes in Ensembl. Two points
-along this cumulative plot are of particular interest. First, one can
-identify the fraction of vertebrate proteins which exist as
-identifiable paralogs. Looking at the value along the x-axis where the
-largest bump in the histogram ends, at around 75 sequences, one can
-see that in total around 30\% of proteins are covered by trees of 75
-sequences or fewer. Since the pattern of bumps in the histogram
-correlate well with the number of Ensembl vertebrate species, it would
-be reasonable to state that 70\% of vertebrate proteins are contained
-within large gene trees containing sequence-based evidence of ancient
-paralogy. Second, a look-up in the reverse direction can identify the
-tree size at which 50\% of sequences are clustered. This value
-represents the size of tree that an ``average'' protein might be
-clustered in, and in some ways is a more accurate characterization of
-the set of gene trees than the median tree size. A similar calculation
-is often performed to characterize the size distribution of contigs
-(contiguous sequence blocks) within a genome assembly. This statistic,
-referred to as the N50 length, is the contig length for which 50\% of
-bases are contained in contigs of that size or larger
-\citep{TODO}. For the Ensembl root trees, the N50 tree size is 139,
-slightly less than three times the number of vertebrate species. The
-N50 tree size is shown for the root trees in Table
-\ref{ensembl_roots_hist} and in the table for taxonomically-defined
-tree sets below.
-
-Another way to characterize the distribution of gene trees is across
-the taxonomic space. A question of particular interest to the
-identification and analysis of mammalian orthologs is whether levels
-of gene presence and absence are consistent across different species
-and different levels of assembly quality. To investigate this question
-in the context of the root Ensembl trees, data were collected by
-counting the number of sequences from each species contained within
-each gene tree. Results were tabulated for each species and are
-presented in Figure \ref{ortholog_root_dups}, showing the number of
-trees containing 0, 1, 2, or more than 3 genes from each of the 53
-species in Ensembl. Comparing the range of values in the panels for
-each copy count (labeled 0, 1, 2 and 3+), one finds that most trees
-(8,000-11,000 within vertebrates) contain zero copies from a given
-species, fewer trees contain one copy (4,000-6,000) and several
-thousand contain two, three or more copies (ca. 1,000-1,500 for 2
-copies and 1,500-2,000 for 3+). The plethora of trees with zero copies
-from a given species is again a result of the existance of many small,
-species-specific trees within the root Ensembl set. Similarly, the
-high number of trees with many copies from each species reflects the
-clustering of multiple orthologous sub-trees together.
-
-A comparison of values across the range of species in Figure
-\ref{ortholog_root_dups} reveals that the zero-copy count tends to
-increase along with evolutionary distance from human, while the 1, 2
-and 3+ copy counts tend to decrease as the distance from human
-increases. Both trends are most striking at the distant end of the
-tree where the five non-vertebrate species begin. For the increase in
-zero-copy trees and the decrease in single-copy trees, the strength of
-the trend at the highest level of divergence can be partly explained
-by the very long branch lengths connecting those species to each other
-and to the more well-represented vertebrate clade: the distance-based
-clustering algorithm might reasonably be expected to produce more
-false negatives in longer branches for a number of reasons including
-the behavior of the \hclust algorithm, inaccurate BLAST E-values at
-larger distances, and heterogeneity in evolutionary rates across
-lineages \citep{TODO}. However, the dearth of 2 and 3+ copy counts in
-non-vertebrates is most likely a signal resulting from the 2R event at
-the basal vertebrate lineage, with the non-vertebrate species strongly
-depleted of multi-copy duplicates compared to their vertebrate
-relatives.
-
-It is slightly concerning that human and its close primate relatives
-contain fewer zero-copy genes and more one-copy and two-copy genes
-than any other group of vertebrates in the set of Ensembl trees. There
-is no \emph{ab initio} biological reason to expect this to be the
-case, and I suspect that the existence of such a pattern, which is
-fairly small in effect, is due to the widespread reliance on human
-annotation and protein experimental data in the annotation of
-non-human genomes. There is one region where this trend does not
-appear to be the case: in the 3+ copy count for the fish species,
-which is instead a result of gene duplicates retained after the third
-round of genome duplication which occurred in the teleost ancestor
-\citep{TODO}. The signal resulting from the teleost genome duplication
-event is clearer in the sets of taxonomically-defined \subtr{}s, so I
-will defer its discussion to the next subsection where those sets of trees are described.
-
-Finally, the differences in copy counts between species with low- and
-high-coverage genome sequences show the tendency of low-coverage
-genome sequences to yield false negatives in the gene annotation, as
-low-coverage species contain more zero-copy, roughly the same number
-of one-copy, and noticeably fewer multi-copy genes than high-coverage
-species. These clear effects of low sequencing coverage show that gene
-absence in low-coverage genomes should not be taken as evidence for
-actual gene loss and that gene duplications are systematically
-underrepresented in low-coverage genomes. The former point was
-emphasized in a recent critical analysis of the effect of low-coverage
-genomes on gene duplication inference \citep{TODO, Milinkovitch et
-  al. 2010}, but the latter point was largely ignored. Again, this
-signal is also stronger in the more stringent set of \mmln orthologous
-\subtr{}s and will be revisited in the next subsection.
-
-The preceding analysis of the set of root Ensembl trees, in which I
-characterised the distribution of trees with respect to size
-(i.e. sequence count) and across the taxonomic space, showed that
-despite the over-representation of small, species-specific trees, most
-sequences are contained in trees with biologically plausible sizes
-given the history of vertebrate genome duplications. The tree-based
-equivalent of the N50 statistic was developed for summarizing the
-distribution of differently-sized trees, and two main views of this
-distribution were introduced (in Figures \ref{ortholog_root_dups} and
-\ref{ensembl_roots_hist}), providing evidence for the clustering of
-paralogous mammalian sub-trees and for species-based and genome
-coverage-based trends in the breakdown of gene copy counts within
-these trees.
-
-\begin{landscape}
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.9]{Figs/ortholog_root_dups.pdf}
-\caption{Taxonomic distribution of gene copy counts for the root
-  Ensembl trees. The number of trees containing 0, 1, 2 or more than 3
-  sequences from each species is shown. Bars are colored blue and gray
-  for species with high- and low-coverage genomes, respectively. Note
-  that the y-axis scale is not the same for each panel.}
-\label{ortholog_root_dups}
-\end{figure}
-\end{landscape}
-
-\subsection{Sets of \subtr{}s defined by taxonomic coverage and orthology annotation}
-
-The sets of trees resulting from applying the various \subtr
-extraction methods to the root Ensembl gene trees are summarised in
-Table \ref{ensembl_subtree_table}, with the original Ensembl trees
-included at the bottom for comparison.
-
-The Ensembl Roots and Drosophila Orthologs sets are two clear
-outliers, with much higher N50 values than any other set (139 and 125
-vs. the next highest value of 56) and more trees with multiple human
-copies (0.20 and 0.43 vs. the next highest value of 0.14). In fact,
-the major differences between these sets are all attributable to the
-excess of small species-limited trees in the Ensembl Roots group: the
-Drosophila Orthologs set contains fewer trees than the Ensembl Roots
-(9,210 vs. 18,607) and a larger average tree size (60 vs. 15), closely
-resembling the set of Ensembl Roots with small trees removed as
-summarised in the third row of Table \ref{ensembl_root_table}.
-
-Within the Ingroup category of methods, the methods based on
-mammalian TC values (Primates, Glires and Laurasiatheria) produced
-largely similar sets of trees, with the Primate set containing around
-2,000 more trees and covering around 1,000 more human genes than the
-other two sets. A reason for the higher number and human coverage of
-Primate trees is not immediately apparent, although it may
-speculatively be due to an excess of primate-specific gene trees that
-are not captured by non-primate TC-based criteria. Further
-investigation of the trees unique to this set might reveal the root
-cause of this slight discrepancy.
-
-The Sauria and Fish tree sets stood in strong contrast to the
-mammal-based methods from the Ingroup category. The Sauria clade is
-represented by only four Ensembl species and diverged from the
-mammalian ancestor at an early point in the evolution of amniotes. The
-moderately lower number of trees (13,046 vs. 15,764 for
-Laurasiatheria) and the increased proportion of trees containing
-multiple human genes (0.14 vs. 0.09 for Laurasiatheria) are presumably
-consequences of the lower clade size, which could affect the TC
-calculation, and the long branch separating Sauria from the other
-vertebrate clades. The fish-based subtree constraint produced a
-strikingly different set of trees resulting from the impact of the
-teleost-specific whole genome duplication on the structure of fish
-gene trees. Although the Fish tree set contains a N50 value of 49
-which is no different from the N50 of the other Ingroup sets, Table
-\ref{ensembl_subtree_table} highlights three major differences in the
-Fish set: it contains many more trees, a higher proportion of trees
-with zero human copies, and a lower total human gene count than the
-other Ingroup sets.
-
-The reason for the drastically different Fish tree set is that the
-tree splitting procedure identifies largest non-overlapping \subtr{}s
-that satisfy the given TC criteria. Genes that were duplicated in the
-teleost lineage and retained in duplicate form (as opposed to one or
-both copies being lost in either of the descendant duplicate
-chromosomes) would result in a gene tree with two teleost-specific
-\subtr{}s, each containing a high TC value for the Clupeocephala
-clade. In this case, the splitting procedure would result in two small
-Fish subtrees, ``missing'' the single subtree of mammalain orthologs
-because two non-overlapping trees already exceeded the TC threshold of
-0.6. If, however, one of the duplicate gene copies were lost, then the
-tree would resemble a typical singly-orthologous vertebrate gene tree,
-and the splitting procedure would select a \subtr encompassing the
-entire vertebrate clade. It follows that the presence of small,
-teleost-specific gene trees in the Fish set is a signal of retained
-duplicate copies, and the size distribution of trees from the Fish
-set, shown in Figure \ref{ensembl_fish_hist}, shows that several
-thousand trees fit the expected model. If we assume that all trees
-from the Fish subset which contain zero human copies, span 5 or fewer
-species, and contain 40 or fewer sequences are likely retained
-duplicate genes, a total of 6,980 retained duplicates are identified,
-yielding a retention rate of 17.5\%, which is very much in line with a
-previously published estimate of 15\% based on a comparison of
-tetraodon, fugu and zebrafish genes \citep{TODO, Brunet et al. MBE
-  2006}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.9]{Figs/ensembl_fish_hist.pdf}
-\caption{Sequence counts for the set of \subtr{}s identified using the
-  Fish clade taxonomic coverage constraint. Black bars show a
-  histogram of sequence counts in bins of width 2, a gray line shows
-  the cumulative fraction of sequences contained within trees of that
-  size or smaller, and dashed blue lines are drawn at integral
-  multiples of 48, the number of vertebrate species within
-  Ensembl. The 255 trees with more than 100 sequences are not shown.}
-\label{ensembl_roots_hist}
-\end{figure}
-
-
-The sets of \subtr{}s resulting from the Outgroup methods were of
-special interest, as the clades used to define these TC constraints
-contained all or nearly all of the mammalian species whose orthologous
-genes I wished to study. The resulting sets of \subtr{}s show little
-variation, owing perhaps to the large sizes of the clades and their
-similar composition. Each set contained between 15 to 17 thousand
-trees, N50 values of around 49, and greater than 90\% of trees
-containing exactly one human sequence. These measures provided good
-evidence that the tree-splitting method was effectively isolating
-singly orthologous mammalian trees.  Some slight trends were apparent,
-however, with the tree count decreasing, the proportion of trees with
-human duplications increasing, and the overall human gene coverage
-decreasing as the clade size used for the TC calculation
-increased. These trends could understandably be the result of the
-minimum required tree size increasing along with the clade size,
-ranging from 21 for Eutheria to 32 for Fungi/Metazoa.
-
-The Subgroups methods did not appear to produce \subtr{}s of any
-higher quality or more biological interest than the Outgroup
-methods. The MammalsSubgroups set was more numerous than the Outgoups
-sets, but the N50 was slightly lower (46 vs. 49) and the proportion of
-zero-humany trees was higher (0.18 vs. 0.01), suggesting that the
-additional trees were spurious results containing fragmented species
-coverage. The addition of an outgroup requirement to the
-MammalSubgroupsPlusOutgroup method produced a tree set more closely
-resembling the Outgroup methods, but the human gene coverage was
-lower than that for any Outgroup method despite the overall higher
-tree count.
-
-Finally, the ortholog annotation-derived \subtr{}s provided for an
-interesting comparison between three different ortholog sources and
-between the overlapping and non-overlapping sets of \subtr{}s. As I
-mentioned at the beginning of this section, the \species{Drosophila}
-ortholog set was highly contrasted with the vertebrate sets due to the
-two rounds of whole genome duplication. There was minimal variation
-among the other ortholog sets, although it is interesting to note that
-Ensembl contained 21,873 mouse protein-coding genes while human
-contained only 19,991. Zebrafish, on the other hand, contained 24,540
-genes, in line with the 17.5\% rate of duplicate gene retension I
-estimated earlier. Overall, 76\% and 81\% of mouse and zebrafish genes
-have an apparent one-to-one ortholog in human, which is slightly lower
-than the 92\% of Eutheria \subtr{}s containing one human sequence.
-
-\begin{landscape}
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Thu Sep 15 11:19:59 2011
-\begin{table}[ht]
-\centering
-\begin{tabular}{llrb{2.5cm}rrrrrrr}
-\toprule
-\multicolumn{2}{c}{Method} & &  Med. Size &  & \multicolumn{3}{c}{Human Content} & Human & Med. & Med. \\ \cmidrule(r){6-8} \cmidrule(r){1-2}
-Category & Name & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Species \\ 
-  \midrule
-\input{Tables/ortholog_summary.txt}
-\bottomrule
-\end{tabular}
-\caption{Summary of Ensembl \subtr{}s identified using taxonomic
-  criteria or Ensembl ortholog annotations. The set of Ensembl root
-  trees (``Ensembl Roots'') from Table \ref{ensembl_root_table} is
-  included for comparison. Cells in numeric columns are shaded
-  according to their value relative to other rows, with low values in
-  white and high values in blue. The 'Human Content' columns represent
-  the fraction of trees which contain the indicated number of human
-  genes. 'Med. Species' is the median species count across all
-  trees. Med. -- median, MPL -- mean path length}
-\label{ensembl_subtree_table}
-\end{table}
-\end{landscape}
-
-Figure \ref{ortholog_stacked_bar} shows the taxonomic distribution of
-gene copy counts for the trees resulting from each of the \subtr
-methods tested. By way of reference, the values shown in the separate
-panels of Figure \ref{ortholog_root_dups} appear in Figure
-\ref{ortholog_stacked_bar} as different-colored bars in the bottom
-panel. Although the various characteristics of each of the \subtr
-methods have already been discussed at length, the taxonomic view
-reveals some salient features of the patterns of gene deletion and
-duplication within the tree sets and shows the pervasive impact of
-genome-wide duplications on the evolution of vertebrate genes. The
-large fraction of species with multiple copies in Drosophila Orthologs
-\subtr{}s is a result of the two rounds of vertebrate genome
-evolution, while the elevated fraction of multi-copy fish trees in the
-Outgroup \subtr{}s shows the impact of the teleost-specific
-duplication event.
-
-Furthermore, the relative prevalence of zero-copy and multi-copy trees
-can provide some indication of whether gene deletion or gene
-duplication is a more common process in vertebrate genomes. Focusing
-on the four Outgroup \subtr methods, the observation of a greater
-number of multi-copy trees than zero-copy genes, valid across all four
-\subtr methods and throughout all mammalian species except platypus,
-can be interpreted as tentative evidence for a greater number of gene
-duplications than gene deletions in the evolution of mammalian
-genomes. This pattern does not hold for vertebrates more distantly
-related to human, however: vertebrates beyond opossum show a distinct
-and consistent increase in zero-copy trees, and birds appear to
-exhibit a slight clade-specific drop in the proportion of multi-copy
-trees. Of course, both of these trends could be methodological
-artifacts related to the \hclust algorithm or to the methods used to
-assemble and annotate more distantly-related genomes.
-
-The distributions in Figure \ref{ortholog_stacked_bar} also reveal the
-pig to harbor a very high number of apparent gene deletions, unmatched
-by other mammalian species and nearing the proportion of zero-copy
-trees seen in platypus and more distant vertebrates. Given the
-consistently low proportion of zero-copy trees for other
-closely-related species, I would expect this number to change once a
-finished-quality pig genome sequence is included in the Ensembl
-pipeline \ref{TODO, Archivald et al. 2010}.
-
-\begin{figure}[hb]
-\centering
-\includegraphics[scale=0.7]{Figs/ortholog_stacked_bar.pdf}
-\caption{Taxonomic distribution of gene copy counts for different
-  \subtr methods. The numbers of trees containing 0 (red), 1 (green),
-  2 (blue) or more than 3 (purple) sequences from each species are
-  shown as stacked colored bars. The Ingroup and Subgroups methods
-  were omitted for clarity, as were species with low-coverage
-  genomes. Note that the y-axis scale is not the same for each panel.}
-\label{ortholog_stacked_bar}
-\end{figure}
-
-In the end, the set of Eutheria \subtr{}s was chosen as the final set
-for use in the downstream evolutionary analysis, due to the slightly
-larger number of trees and better coverage of human genes in the
-Eutheria set compared to the other Outgroup methods. The distribution
-of tree sizes for the Eutheria set of \subtr{}s is shown in Figure
-\ref{ensembl_euth_hist} and the full taxonomic distribution of copy
-counts is included in Figure \ref{ortholog_euth_dups}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.9]{Figs/ensembl_euth_hist.pdf}
-\caption{Sequence counts for the set of \subtr{}s identified using the
-  Eutheria clade taxonomic coverage constraint. Black bars show a
-  histogram of sequence counts in bins of width 2, a gray line shows
-  the cumulative fraction of sequences contained within trees of that
-  size or smaller, and dashed blue lines are drawn at integral
-  multiples of 48, the number of vertebrate species within
-  Ensembl. The XYZ trees with more than 100 sequences are not shown.}
-\label{ensembl_euth_hist}
-\end{figure}
-
-\todo{Find num. of Eutherian trees w/ more than 100 seqs}
-
-
-\begin{landscape}
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.9]{Figs/ortholog_euth_dups.pdf}
-\caption{Taxonomic distribution of gene copy counts for the Eutheria
-  \subtr{}s. The number of trees containing 0, 1, 2 or more than 3
-  sequences from each species is shown. Bars are colored blue and gray
-  for species with high- and low-coverage genomes, respectively. Note
-  that the y-axis scale is not the same for each panel.}
-\label{ortholog_euth_dups}
-\end{figure}
-\end{landscape}
 
 \section{Preparing mammalian alignments for sitewise analysis}
 
@@ -1379,7 +441,7 @@ the lowest distance was kept; (3) if no sequence yielded a meaningful
 distance estimate (or if all estimated distances were identical), the
 longest sequence was kept.
 
-\begin{figure}[hb]
+\begin{figure}
 \centering
 \includegraphics[scale=0.7]{Figs/filtered_paralogs_hist.pdf}
 \caption{Gene lengths of putative paralogs relative to the mean length
@@ -1403,7 +465,7 @@ slightly biased towards lengths greater than 1, likely due to step 3
 of the above process, where the longer gene was kept if putative
 paralogs yielded identical distance estimates.
 
-\begin{figure}[hb]
+\begin{figure}
 \centering
 \includegraphics[scale=0.7]{Figs/filtered_paralogs_scatter.pdf}
 \caption{Sequence divergence of kept and discarded putative
@@ -1593,12 +655,13 @@ identical \mpl.
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
 % Thu Sep 15 11:19:59 2011
-\begin{table}[ht]
+\begin{table}
 \centering \footnotesize
-\begin{tabular}{lb{6cm}rrrr}
+\begin{tabular}{lb{6cm}rrrrr}
 \toprule
- & &  \multicolumn{2}{c}{Ensembl} & \multicolumn{2}{c}{Gene Median} \\ \cmidrule(r){3-4} \cmidrule(r){5-6}
-Name & (Species Count) Species List & MPL & Total & MPL & Total \\
+ & &  & \multicolumn{2}{c}{Ensembl} & \multicolumn{2}{c}{Gene Median} \\
+\cmidrule(r){4-5} \cmidrule(r){6-7}
+Name & (Species Count) Species List & \Ne & MPL & Total & MPL & Total \\
   \midrule
 \input{Tables/species_set_summary.txt}
 \bottomrule
@@ -1613,7 +676,7 @@ Name & (Species Count) Species List & MPL & Total & MPL & Total \\
 \label{species_set_summary}
 \end{table}
 
-\subsection{The global distribution of mammalian sitewise selective pressures}
+\subsection{Evaluation of the bulk distributions and the design of a filtering appraoch}
 
 Sitewise data were collected from SLR and stored in a database for
 storage and further analysis. The Mammalia subset, containing the most
@@ -1636,70 +699,565 @@ account for uncertainty in the estimation of \omg and detection of
 positive selection, one might reasonably expect less-desirable
 statistical properties from sites with 2 non-gap sequences compared to
 sites with 20.
+
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[scale=0.42]{Figs/qc_hist_mammals_primates.pdf}
+\caption{Distributions of sitewise values for Mammalia (A) and (B)
+  Primates, before (top row) and after (bottom row) removing sites
+  based on the filtering scheme (see text). Note: the y-axis scale
+  varies between rows, and the x-axis scale varies between (A) and (B)
+  for the Signed LRT, Nongap Codons and Nongap Branch Length values.}
+\label{qc_hist_mammals_primates}
+\end{figure}
+\end{landscape}
  
 Figure \ref{qc_hist_mammals_primates} shows the distributions of six
 sitewise values: two continuous values output by SLR (Omega and Signed
 LRT), two categorical values from SLR (Site Pattern and Random), and
 two values calculated from the codon alignment (Nongap Codons and
-Nongap Branchlength). The Nongap Codons value measures the number of
+Nongap Branch Length). The Nongap Codons value measures the number of
 non-gap codons in the given alignment columnn, while the Nongap
-Branchlength was calculated as the total branch length connecting all
-non-gap sequences (using the gene tree with branch lengths optimized
-by SLR). Focusing on the unfiltered Mammalian data in the top panel of
-Figure \ref{qc_hist_mammals_primates}A, the most prominent feature of
-the estimated \omg values is that \omg is zero for a majority of sites
-in both species subsets, with Primates showing a higher proportion of
-zero-\omg sites than Mammalia. Most of these zero-\omg sites contained
-\syn or constant site patterns, in which case the \ml estimate of \omg
-was always zero. The estimate of zero for \syn sites is intuitively
-correct, as the lack of any \nsyn substitutions throughout the tree
-provides no evidence for a \nsyn substitution rate of greater than
+Branch Length represents the total branch length connecting all non-gap
+sequences (using the gene tree with branch lengths optimized by SLR).
+
+A prominent feature of the distribution of \omg values for the
+unfiltered Mammalian data, shown in the top panel of Figure
+\ref{qc_hist_mammals_primates}A, was the large number of sites with a
+maximum-likelihood estimated \omg of zero. Further inspection of the
+data revealed that all zero-\omg sites contained either \syn or
+constant site patterns, and all sites with constant patterns (and
+nearly all sites with \syn patterns) yielded a \ml \omg estimate of
+zero. An estimate of zero for \syn sites is intuitively appropriate,
+as the lack of any \nsyn substitutions throughout the tree would seem
+to provide no evidence for a \nsyn substitution rate of greater than
 zero. For constant sites the case is less clear, because no data
-regarding the rate of either \syn or \nsyn substitution exists;
-however, given the assumption of a constant \syn substitution rate,
+regarding the rate of either \syn or \nsyn substitutions
+exists. However, given SLR's assumption of a constant \syn
+substitution rate throughout each gene \citep{TODO, Massingham 2005},
 the \omg value which maximizes the likelihood of observing zero
 substitutions is zero, since that value minimizes the \nsyn (and
 total) substitution rate.
 
-The distributions of six sitewise values highlighted the bulk
-differences between the Mammalia and Primates subsets and supported
-the decision to filter out a small percentage of sites from the final
-dataset.
+It is interesting to note that a small proportion (ca. 0.2\%) of \syn
+sites resulted in \ml estimates greater than zero. Manual
+investigation of a number of these sites \todo{Use the sites data and
+  'seq' table to do a more quantitative analysis here?}  showed them
+all to include synonymous codons with multiple nucleotide differences
+(such as those coding for serine and arginine), for which SLR's
+mechanistic codon model---which does not allow for multiple
+simultaneous nucleotide changes--required the inference of multiple
+\nsyn substitutions and, thus, a \nsyn substitution rate of greater
+than zero. The existence of multiply-substituted codons in alignments
+has been previously reported \citep{TODO, averof et al. 2004, whelan
+  goldman 2004}, and empirical results have supported the notion that
+codon models that allow for multiple simultaneous nucleotide changes
+better describe evolution than those that do not \citep{TODO, kosiol
+  and goldman 2007}. However, the very low proportion of synonymous
+sites requiring nonzero \nsyn substitution rates suggested that the
+impact of these effects on the current dataset was minimal; this is
+likely due to the relatively short branch lengths separating the nodes
+of the mammalian tree, making it less likely that codons with multiple
+substitutions (whether the result of simultaneous multiple nucleotide
+changes or successive single changes) would be observed \citep{TODO,
+  kosiol and goldman 2007}.
 
-The LRT 
+The distributions of Nongap Codons and Nongap Branch Length values in
+the top row of Figure \ref{qc_hist_mammals_primates}A showed that many
+alignment columns contained only a few non-gap sequences. Both
+distributions were bimodal with a larger peak at the upper end of the
+range and a smaller peak at the lower end of the range. If the sites
+with low non-gap codon counts represented accurate evolutionary
+histories, the observed excess of mostly gapped sites might be taken
+as an indication that insertion events in terminal lineages or recent
+ancestral lineages were prominent enough in mammalian evolution to
+leave a noticeable signature of sites with low non-gap codon
+counts. This would be a very interesting observation, but
+unfortunately it is not likely a correct one. Given the many possible
+sources of error in the creation of Ensembl gene trees, however, a
+more likely scenario was that sites with low codon counts and low
+branch lengths came from stretches of sequence which only exist in a
+few species as a result of annotation or alignment error, with a
+higher probability of being nonhomologous and showing spurious signals
+of positive selection. This would make such sites prime candidates for
+filtering out prior to a large-scale analysis.
+
+To test the hypothesis that sites with few non-gap sequences are less
+reliable than other sites, the Mammals and Primates data were split
+into deciles by nongap branch length and sites within each decile were
+summarized by the proportion of sites showing evidence for purifying
+and positive selection; the results of this analysis are presented in
+Table \ref{bl_pos_sel_breakdown}. The lowest decile appeared to be a
+clear outlier in the Mammalia dataset, with nearly 17\% of sites
+having an estimated \omg of greater than 1 and 2\% of sites showing
+significant evidence for positive selection at a nominal 5\% error
+rate. Deciles with greater nongap branch lengths showed lower
+proportions of sites with \omg $> 1$ and less evidence for positive
+selection, with a gradual increase in both values at progressively
+higher deciles. The gradual increase in evidence for positive
+selection with increasing nongap branch length could be explained by
+genes with higher overall \dnds ratios (and perhaps more positive
+selection) producing, on average, higher estimated branch lengths due
+to the increased \nsyn substitution rate. Overall, these patterns were
+consistent with the expectation that sites with few non-gap sequences
+were not consistent with the bulk of the dataset, and Table
+\ref{bl_pos_sel_breakdown} showed that removing sites with the lowest
+10\% of nongap branch length would remove most of the apparently
+anomalous sites.
+
+The breakdown of Primates data in Table \ref{bl_pos_sel_breakdown}
+showed a trend similar the Mammalia dataset, although the distinction
+between the lowest decile and the rest of the dataset was less
+clear. The \fpos in the lowest decile was only slightly higher than in
+the next-highest decile, and \fblw was lower than in all other
+bins. The gradual increase of \fabv and \fpos in higher branch length
+deciles was similar to that seen in the Mammalia dataset,
+however. Despite weaker evidence in the Primates data for the
+erroneous nature of sites with few non-gap sequences, it still
+appeared that filtering sites in the bottom decile would improve the
+overall quality and consistency of the data.
+
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+ & BL & \multicolumn{3}{c}{Nongap BL} & \multicolumn{3}{c}{Nongap Codons} & \multicolumn{2}{c}{\omgml, \%} &  \\
+\cmidrule(r){3-5} \cmidrule(r){6-8} \cmidrule(r){9-10}
+ & Quantile & 25\% & 50\% & 75\% & 25ff\% & 50\% & 75\% & $< 1$ & $> 1$ & \psfive, \% \\
+  \midrule
+\input{Tables/bl_pos_sel_breakdown.txt}
+\bottomrule
+\end{tabular}
+\caption{Proportions of sites with evidence for purifying and positive
+  selection in the Mammalia and Primates datasets broken down by
+  nongap branch length. Sites were separated into 10 equally-sized
+  bins of nongap branch length and summarized by the $25^{th}$,
+  $50^{th}$ and $75^{th}$ percentiles of nongap branch length and
+  nongap codons, the percentage of sites with \omg estimated below or
+  above 1, and the percentage of sites with significant evidence of
+  positive selection at a nominal 5\% FPR.}
+\label{bl_pos_sel_breakdown}
+\end{table}
+
+Turning back to the bulk distributions in Figure
+\ref{qc_hist_mammals_primates}, the rightmost panel depicts the small
+set of sites designated as ``random'' by SLR. These sites were flagged
+by SLR as having a site pattern not significantly different from
+random \citep{TODO, slr something}, and they were also targeted for
+removal before analysis of the global distribution.
+
+The final filtering protocol applied to each sitewise dataset included
+three steps. First, all sites within the bottom 10\% of nongap branch
+length values were removed; second, sites flagged by SLR as ``random''
+were removed; third, all sites with fewer than four non-gap sequences
+were removed.
+
+The most prominent effect of the filter on the bulk distributions in
+Figures \ref{qc_hist_mammals_primates}A and
+\ref{qc_hist_mammals_primates}B was, as expected, the removal of the
+excess of sites with low non-gap branch lengths and non-gap codon
+counts. The distribution of \omg estimates and Signed LRT statistics
+were largely unchanged, indicating that the overall characteristics of
+each dataset were not significantly altered by the filter. The lack of
+large-scale change was a somewhat reassuring result, given that the
+filter only removed roughly 10\% of sites from each dataset.
+
+A more detailed comparison of various summary statistics for the
+filtered and unfiltered datasets showed that filtering had a
+noticeable impact on three quantities of interest: it reduced the
+proportion of constant sites, lowered the mean \omg, and slightly
+decreased the percentage of positively-selected sites. Tables
+\ref{sitewise_summary_table_1} and \ref{sitewise_summary_table_2}
+contain summary statistics and calculations performed on the filtered
+and unfiltered Mammalia and Primates data. Most of the data contained
+in these tables will be more fully described in the next subsection,
+but a comparison of the filtered and unfiltered rows for Primates and
+Mammalia provided a means by which to quantitatively assess the effect
+of filtering on particular aspects of the dataset. First, the
+percentage of constant sites was reduced in the post-filtering data,
+moving from 60.04\% to 57.62\% in Primates and from 12.62\% to 8.17\%
+in Mammalia. This was expected, as the sites removed by filtering were
+enriched in constant site patterns due to their lower non-gap branch
+lengths. Second, the mean \omg value was slightly reduced in Primates
+(from 0.32 to 0.27) and greatly reduced in Mammalia (from 0.49 to
+0.20), likely due to the removal of sites containing a small number of
+nonhomologous codons which might have produced abnormally high
+sitewise \ml \omg estimates. Third, the proportion of
+positively-selected sites (shown for a range of significance
+thresholds in Table \ref{sitewise_summary_table_2}) was moderately
+reduced in both Primates (from 0.56\% to 0.53\% at \chisqlt{0.05}) and
+Mammalia (from 0.72\% to 0.56\%). These three effects of filtering,
+each showing a shift indicating more useful data (e.g., a lower
+percentage of constant sites) or less evidence for positive selection
+(e.g., lower mean \omg and proportion of positively-selected sites) in
+the post-filtering datasets, together provided evidence supporting the
+inclusion of such a filtering step prior to the analysis and
+comparison of sitewise estimates in different species sets. Although
+most quantities of interest were not noticeably changed, those that
+were affected by filtering shifted to more conservative values, which
+was taken to be a positive sign given the persistent concern regarding
+the presence of false positives in detecting positive selection.
 
 \begin{landscape}
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.42]{Figs/qc_hist_mammals_primates.pdf}
-\caption{Distributions of sitewise values for Mammalia (A) and (B)
-  Primates, before (top row) and after (bottom row) removing sites
-  based on the filtering scheme (see text). Note: the y-axis is not
-  constant between plots, and the x-axis is not constant between (A)
-  and (B) for the Signed LRT, Nongap Codons and Nongap Branchlength
-  values.}
-\label{qc_hist_mammals_primates}
-\end{figure}
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{llrrrrrrrrrrrrr}
+\toprule
+ & &  \multicolumn{3}{c}{Site Pattern, \%} & Med. & 
+  \multicolumn{3}{c}{Nongap BL} & \multicolumn{2}{c}{\omgml} &
+\multicolumn{4}{c}{\omgml Above / Below, \%} \\
+\cmidrule(r){3-5} \cmidrule(r){7-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+Name & Sites & Const. & Syn. & Nsyn. & Codons & Med. & Mean & SD & Mean & SD &
+$< 0.5$ & $< 1$ & $> 1$ & $> 1.5$ \\
+  \midrule
+\input{Tables/sitewise_summary_table_1.txt}
+\bottomrule
+\end{tabular}
+\caption{Summary statistics and \ml \omg estimates for sitewise data
+  in eight species groups. Rows labeled ``Primates (raw)'' and
+  ``Mammalia (raw)'' were computed based on unfiltered data and are
+  included for reference. Columns under the ``\omgml Above / Below,
+  \%'' heading measure the cumulative percentage of sites with \omgml
+  below or above the indicated value. Med.---median,
+  Const.---constant, Syn.---\syn, Nsyn.---\nsyn, ML---\ml.
+\label{sitewise_summary_table_1}
+}
+
+\hspace{.2in}
+
+\centering \footnotesize
+\begin{tabular}{lrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+ & \multicolumn{8}{c}{Positively Selected Sites (\%)} &
+\multicolumn{3}{c}{\chisqlt{0.1}, \%} &
+\multicolumn{3}{c}{\chisqlt{0.05}, \%} \\
+\cmidrule(r){2-9} \cmidrule(r){6-9} \cmidrule(r){10-12} \cmidrule(r){13-15}
+Name & 
+  \multicolumn{2}{c}{\chisqlt{0.1}} & \multicolumn{2}{c}{\chisqlt{0.05}} &
+  \multicolumn{2}{c}{\chisqlt{0.01}}& \multicolumn{2}{c}{\bhfdr{0.05}} &
+  Pos & Neg & Neut. & Pos & Neg & Neut. \\
+%\cmidrule(r){2-3} \cmidrule(r){4-5} \cmidrule(r){6-7} \cmidrule(r){8-9}
+\midrule
+\input{Tables/sitewise_summary_table_2.txt}
+\bottomrule
+\end{tabular}
+\caption{Proportions of sites subject to positive, purifying and
+  neutral selection at various \slrt thresholds. The
+  Benjamini-Hochberg method \citep{TODO, BH} was used to identify the
+  \slrt threshold at which FDR$<$0.05. For columns under the headings
+  ``\chisqlt{0.1}, \%'' and ``\chisqlt{0.05}, \%'', Pos. and Neg. are
+  the percentage of sites with significant evidence for positive and
+  negative selection, respectively, and Neut. is the percentage of
+  ``neutral'' sites not showing significant evidence for non-neutral
+  selection.}
+\label{sitewise_summary_table_2}
+\end{table}
 \end{landscape}
 
+\subsection{The global distribution of sitewise selective pressures in mammals}
 
-%From left to right, they are the maximum-likelihood estimate of
-%sitewise \omg (``Omega''), the signed LRT statistic for non-neutral
-%evolution (``LRT''), the number of non-gap codons at the current
-%alignment column (``Non-gap Codons''), the total branch length
-%connecting non-gap sequences at the current site (``Non-gap Branch
-%Length''), the substitution category of the current site (``Type''),
-%and the random flag at the current site (``Random'').
+\begin{figure}
+\centering \includegraphics[scale=0.55]{Figs/global_distributions.pdf}
+\caption{\scriptsize Global distributions of site patterns and \omg estimates for
+  eight species groups. Left, bars represent the number of sites
+  showing constant, synonymous, and non-synonymous patterns. Note, the
+  y-axis is held constant between rows. Right, bars represent a
+  histogram of \ml \omg estimates where $\omega>0$. Sites where
+  $\omega>3$ are counted in the bin at $\omega=3$. A solid line is
+  drawn showing the cumulative proportion of sites with \omg below the
+  current value, and dashed lines are drawn above and below the solid
+  line, showing the cumulative proportion of sites with the lower or
+  upper range, respectively, of their 95\% confidence interval below
+  the current value.}
+\label{global_distributions}
+\end{figure}
+
+Each set of sitewise data was filtered as described above. The
+resulting global distributions of site patterns, sitewise \omg
+estimates, and 95\% confidence intervals are shown in Figure
+\ref{global_distributions}; the left panel in each row plots the
+number of sites with constant, \syn, and \nsyn patterns. All sites
+with \omgml$=0$ had constant or \syn patterns, and all sites with
+\omgml$>0$ had \nsyn patterns; the distributions of \omgml for these
+\nsyn sites are shown as histograms on the right panel in each row.
+
+\subsubsection{Site patterns and \omgml values reveal the prevalence of purifying selection in mammalian proteins}
+
+The site pattern counts in Figure \ref{global_distributions} showed
+that the branch length of each species group had a strong effect on
+the overall composition of the sitewise data. Species groups covering
+little branch length, such as Primates and Atlantogenata, contained a
+majority of constant sites, while groups comprising lots of branch
+length, such as Eutheria and Mammalia, contained few constant sites
+and roughly equal proportions of \syn and \nsyn sites. Comparing the
+Glires and Mammalia data with their corresponding ``sparse'' datasets
+confirmed that this trend was largely due to branch length as opposed
+to biological factors: the Sparse Glires data yielded a smaller
+proportion of \nsyn sites and a greater proportion of constant sites
+than the Glires data (17.41\% versus 24.08\% for \nsyn sites, 44.21\%
+versus 33.98\% for constant sites; numbers from Table
+\ref{sitewise_summary_table_1}), and the pattern for Sparse Mammalia
+and Mammalia was qualitatively the same.
+
+%I will cover the topic of branch length effects more thoroughly in the
+%simulation study presented in Section \ref{poisson_sims}, but it
+%should suffice to note here that the branch length covered by a given
+%species group had a strong impact on the distribution of site patterns
+%and the proportion of sites with \nsyn substitutions from which \nz
+%\omg estimates could be made.
+
+Turning to the distribution of these \omgml estimates, shown in Figure
+\ref{global_distributions} as a series of histograms representing the
+\omgml density (for \nz values only) and a series of solid lines
+representing the cumulative density (for all values), it is clear
+that the vast majority of protein-coding sites have evolved under
+purifying selection in mammals. The Mammalia group, which contained a
+very small proportion of potentially uninformative constant sites
+(8.17\%), showed a maximum density of \nz \omgml estimates at
+$\omega\approx0.1$, and the vast majority of sites showed some
+evidence of purifying selection, with \omgml estimates below 1. The
+height of the \omgml cumulative distribution at $\omega=1$ corresponds
+to the proportion of such sites; the exact value, included in Table
+\ref{sitewise_summary_table_1} under the ``$< 1$'' column, is
+95.74\%. The \nz \omgml values were more evenly spread in the other
+species groups, with Glires showing a maximum \nz \omgml density at
+around $\omega\approx0.25$ and Primates at $\omega\approx0.7$. This
+upwards shift in \nz \omgml estimates relative to Mammalia was likely
+due to the greater proportion of constant and \syn sites in
+lower-branch length datasets: sites which were truly evolving with
+$\omega>0$, but where no \nsyn or \syn substitutions were observed,
+would have their \omgml estimate ``pushed'' towards zero, causing an
+increase in constant sites and a concomitant upwards shift in the
+distribution of the remaining \nz \omgml values.
+
+\subsubsection{Sitewise confidence intervals and LRT statistics identify sites with significant evidence for purifying and positive selection}
+
+An important component of SLR's output is the set of statistics
+providing information about the confidence with which purifying or
+positive selection was detected. These values include the lower and
+upper bounds of \ci, the 95\% confidence interval for each \omgml
+estimate, and the LRT statistic, which corresponds to the strength of
+evidence for purifying or positive selection. Following Massingham
+\citeyearpar{TODO, massingham 2005}, I used a signed version of the
+LRT statistic (hereafter \slrt), formed by negating the LRT statistic
+for sites where \omgml$<1$, as a way to sort sites according to their
+evidence, or lack thereof, for purifying and positive selection. Thus,
+sites with \slrt$<0$ showed at least some evidence for purifying
+selection and sites with \slrt$>0$ showed at least some evidence for
+positive selection. It should be noted that the \slrt is a measure of
+the strength of evidence for purifying or positive selection, but not
+necessarily the actual strength of that selection. For example, an
+alignment covering a very large branch length might yield a strongly
+negative \slrt for a site with \omgml only moderately below 1, because
+the difference between dN and dS was highly statistically significant;
+on the other hand, a strongly-purifying site in an alignment covering
+less branch length might produce a much less-negative \slrt, even with
+\omgml near zero.
+
+Figure \ref{sites_scatters}A shows the empirical relationship between
+\slrt, \omgml and the \ci width for sites from the Mammali
+dataset. The left panel, comparing the \slrt to \nz \omgml estimates,
+shows that the two values are highly correlated, with the greatest
+number of low \omgml estimates occurring at sites with strongly
+negative \slrt{}s. Correspondingly, the middle panel shows an even
+stronger relationship between the \slrt magnitude and the \ci width,
+with the tighest windows at sites with very strong evidence for
+purifying selection. The rightmost panel compares the \omgml of each
+site with the width of its \ci, revealing a more linear and diffuse
+positive relationship between \omgml and the size of the \ci. The
+equivalent plots for Primates, shown in Figure \ref{sites_scatters}B,
+reveal similar patterns, but with more weight towards less-negative
+\slrt values, higher \omgml, and larger \ci. These differences
+highlight the impact of branch length on the amount of confidence with
+which \omg can be estimated, showing that the low branch length of the
+Primates clade rarely yields \omgml estimates with \ci intervals
+smaller than 1, while the bulk of sites from the Mammalia dataset have
+a relatively small \ci. Thus, the \omgml distribution from datasets
+with low branch lengths (e.g., Figure \ref{global_distributions})
+should be interpreted with caution, and any comparison between
+different sites or datasets must be sensitive to the amount of
+statistical confidence placed on each estimate.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{Figs/sites_scatters.pdf}
+\caption{The relationship between \slrt, \omgml, and \ci width in (a)
+  Mammalia and (b) Primates datasets. Each point represents the binned
+  density of sites; no points are drawn where no density exists, while
+  blue and red points are drawn at areas of low and high density,
+  respectively. The left panel shows sites where \omgml$<0$, the
+  middle panel shows all sites, and the right panel shows sites where
+  $0<$\xspace\omgml$<1$. Note the change in x-axis scale between plots
+  in (a) and (b), reflecting the paucity of sites in Primates with
+  strong evidence (\slrt$<$-12) for purifying selection.}
+\label{sites_scatters}
+\end{figure}
+
+The statistical information at each site could be used to identify
+sites evolving under purifying or positive selection with statistical
+confidence. Sites with a \ciup, the upper bound of the \ci interval,
+below \omg$=1$ showed evidence of purifying selection with an expected
+5\% \fpr, and sites with a \cidown above \omg$=1$ showed evidence of
+positive selection with an expected 5\% \fpr. In both cases, the 5\%
+\fpr was expected under SLR's null model of neutral evolution. There
+was a strong relationship between \ciup and the \chisq approximation
+to the \slrt distribution, whereby the set of sites with \ciup$<1$ was
+exactly equivalent to the set of sites with \slrt below the negative
+\chisq 95\% critical value. Similarly, the sites with \cidown$>1$ were
+those with \slrt above the \chisq 95\% critical value. Because of this
+equality, I will refer to \slrt values instead of \ci intervals when
+discussing sites with significant evidence for purifying or positive
+selection. In some cases, however, use of the full \ci will be
+preferable, as the \slrt critical values only correspond to one end of
+the \ci, depending on whether the site shows greater evidence for
+purifying or positive selection.
+
+Table \ref{sitewise_summary_table_2} summarizes the results from using
+the \chisq approximation to the \slrt distribution to identify sites
+subject to purifying selection and positive selection at various \fpr
+thresholds. The left group of columns show the number and proportion
+of sites with evidence for positive selection at nominal 10\%, 5\%,
+and 1\% \fpr thresholds, respectively, as well as an expected 5\% FDR
+calculated using the Benjamini Hochberg method for FDR control
+\citep{TODO, B-H control}. The two groups of columns on the right show
+the result of breaking sites into three groups (positive, negative,
+and neutral) based on the result of a \chisq test at a given \fpr
+threshold.
+
+The positive selection results reveal that between 0.2\% to 1\% of
+sites can be identified as under positive selection in mammals at
+nominal FPR thresholds, but different species groups yielded
+strikingly different estimates of the proportion of
+positively-selected sites. At a 5\% FPR threshold, Primates,
+Laurasiatheria, Eutheria, and Mammalia produced roughly comparable
+proportions of positively-selected sites, ranging from 0.43\% to
+0.72\%. The proportions of positively-selected sites in these groups
+were higher using a 10\% FPR threshold (ranging from 0.70\% to 0.97\%
+of sites) and lower using a 1\% FPR threshold (ranging from 0.14\% to
+0.28\%). When the FDR was controlled using the Benjamini-Hochberg
+method, however, only the Eutheria and Mammalia groups yielded a
+substantial number of positively-selected sites; Primates and
+Laurasiatheria were likely limited in their ability to yield
+positively-selected sites after FDR control due to their lower branch
+lengths. Interestingly, the Glires, Atlantogenata, Sparse Glires and
+Sparse Mammalia datasets produced much lower proportions of
+positively-selected sites across all \fpr thresholds. At FDR$<$0.05,
+all four groups yielded zero significant \psc{}s.
+
+In Mammalia, the breakdown of sites into positive, negative and
+neutral categories at both \fpr thresholds produced a pattern similar
+to the \omgml distribution, with overwhelming purifying constraint
+(83.87\% of sites at 5\% FPR), a small proportion of
+neutrally-evolving sites (15.57\%), and a small fraction of
+positively-selected sites (0.55\%). As expected given the use of a
+fixed \slrt threshold to identify purifying sites, the fraction of
+sites confidently identified as under purifying selection showed a
+strong dependency on the branch length of the species set, with a much
+higher power in Mammalia (83.87\% at p$<0.05$) than in Primates
+(15.97\%).
+
+Even for the Mammalia dataset, which encapsulated roughly 7.5
+synonymous substitutions per site on average, one might reasonably
+expect that the power to confidently identify sites under purifying
+selection, though higher than in Primates, was still less than
+100\%. If this were the case, then the proportion of confidently
+identified purifying sites must be an underestimate of the true
+proportion of negatively-selected sites (and, by symmetry and absent
+any methodological bias, the same should be true for
+positively-selected sites). As a result, the fractions of positively-
+and negatively-selected sites in Table \ref{sitewise_summary_table_2}
+should not be taken as best estimates of the actual proportions of
+such sites, but rather as lower bounds on those proportions. In the
+next two sub-sections, I will separately consider the issue of using
+the sets of sitewise estimates in different species groups to estimate
+the proportion of sites subject to purifying and positive selection in
+mammals.
+
+\subsubsection{Estimating the proportion of negatively-selected sites}
+
+For sites under purifying selection, 
+
+In , the value of $\approx$95\% based on \omgml$<1$ (Table
+\ref{sitewise_summary_table_1}) is likely closer to the true number;
+despite the caveats involved in ignoring the uncertainty involved in
+\omgml estimates, the 95\% number was surprisingly consistent across
+different species groups and branch lengths, ranging from
+$\approx$91\% in Primates to $\approx$97\% in Sparse Mammalia.
+
+\subsubsection{Estimating the proportion of positively-selected sites}
+
+The pattern of the prevalence of positive selection across species
+groups was surprising. First, 
+
+, showing no sign of the expected correlation with
+branch length. Theory predicts, and many studies have confirmed
+\citep{TODO, Anisimova, Massingham}, that the power of LRT-based tests
+for non-neutral selection should increase with branch length, as the
+discrimination between \nsyn and \syn substitution rates becomes more
+confident with more fixed substitutions. This was certainly the case
+for identifying purifying selection, but there was no obvious
+correlation between higher branch lengths and higher numbers of
+confidently identified \psc{}s.
+
+\subsubsection{Correlations between branch length, effective population size and sitewise summary statistics}
+
+To quantify this observation, Spearman's rank correlation coefficients
+between the median branch length of each species set and each of
+several summary statistics were calculated (Table
+\ref{summary_correlations}). Although the number of samples was small
+with only eight species groups, these correlations should be able to
+provide some indication as to which aspects of the sitewise data might
+be easily attributed to the effects of branch length and which aspects
+suggested an alternative (e.g., biological or artefactual) cause for
+the differences between species groups. The results were quite
+striking: the site classifications (constant, \syn and \nsyn) and the
+proportion of negatively-selected sites at \chisqlt{0.05} were
+strongly correlated with branch length, while the other factors,
+including mean \omgml, the proportion of sites with \omgml$<1$ and
+\omgml$<0.5$, and the proportion of positively-selected sites, were
+weakly correlated or largely uncorrelated with branch length.
+
+The results in Table \ref{summary_correlations} can be interpreted
+in a number of ways. First, they emphasized the unambiguous
+correlation between the branch length in a tree and the power to
+detect sitewise purifying selection. However, they also showed that
+various measures based on sitewise estimates contained variation
+between species groups that was not well-explained by branch length. 
+
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{Branch Length} & \multicolumn{2}{c}{\Ne} \\
+\cmidrule(r){2-3} \cmidrule(r){4-5}
+Value & Rho & P-value & Rho & P-value \\
+\midrule
+\input{Tables/summary_correlations_touchedup.txt}
+\bottomrule
+\end{tabular}
+\caption{Correlations between median non-gap branch length, \Ne, and
+  various summary statistics of the sitewise data across eight species
+  sets. The magnitude (Rho) and significance (P-value) of Spearman's
+  rank correlations between variables were calculated using \Ne values
+  from Table \ref{species_set_summary} and branch lengths and summary
+  statistics from Tables \ref{sitewise_summary_table_1} and
+  \ref{sitewise_summary_table_2}. All summary statistics except for
+  mean \omgml were measured as a fraction of total sites. More highly
+  significant correlations are shaded in darker blue. \Ne{} -- estimated
+  effective population size, BL -- non-gap branch length, \psfive
+  -- positively-selected codons at \chisqlt{0.95}.}
+\label{summary_correlations}
+\end{table}
 
 
-\subsection{Analysis of sitewise estimates from the mammalian superorders}
-
-
+\todo{Refer to Capra and Pollard 2011, who showed that primates and
+  carnivores have lots of BDS (biased divergent substitutions) while
+  glires don't!}
 
 
 \subsection{Modeling the global distribution of sitewise selective pressures}
-
-
+\label{modeling_distr}
 
 % Look at the fitdistrplus methods:
 % http://cran.r-project.org/web/packages/fitdistrplus/fitdistrplus.pdf
@@ -1728,6 +1286,25 @@ the next best equivalent AIC of -2.11e7 for the lognormal). Of the
 distributions which were fit to the whole dataset, the lognormal
 distribution yielded the lowest AIC (-2.11e7), followed by gamma
 (-2.03e7) and exponential (-6.45e6).
+
+%\subsection{Analysis of sitewise estimates from the mammalian superorders}
+
+\subsection{Simulations to evaluate the fit of empirical data to a simulated poisson process at varying branch lengths and \omg ratios}
+\label{poisson_sims}
+
+The large difference in branch lengths covered by the species sets
+under investigation letd to some uncertainty in whether differences in
+the observed summary statistics, such as the mean \omgml or the
+proportion of sites with \omgml$<1$, were due to biological
+differences between species groups (i.e., differences in the efficacy
+of purifying selection resulting from population size differences) or
+to branch length effects. For example, two 
+
+I performed a small simulation
+study to further investigate the interactions between branch length,
+effective population size, and the summary statistics presented in
+Table \ref{sitewise_summary_table_1},
+
 
 \subsection{Simulations to evaluate the power to detect positive selection and estimate selective pressures}
 
@@ -1803,29 +1380,28 @@ for FDR<0.1 and a 6.9-fold increase for FDR<0.05 resulting from the
 additional 20 species in the tree. It should be noted that the two
 previous power estimates re
 
-\subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise dnds estimates and the detection of positive selection}
+\subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise \dnds estimates and the detection of positive selection}
 
-
- Multiple lines of evidence have lent support to the hypothesis that
- GC-biased gene conversion (BGC) has been a major force in the
- evolution of mammalian genomes [Galtier et al 2001 PMID:11693127,
-   Galtier 2003 PMID:XYZ, Dreszer et al 2007 PMID:17785536]. Both
- empirical and theoretical results have shown that BGC can
- significantly affect patterns of observed substitutions in both
- selectively neutral and functionally constrained sites [Galtier et al
-   2009 PMID:19027980, Berglund et al 2009 PMID:19175294]. Recently,
- Ratnakumar et al. [2010, PMID:20643747] re-analyzed the dataset of
- positively-selected genes from Kosiol et al. [2008, PMID:18670650]
- for signatures of BGC and found that up to 20\% of cases of
- identified elevated dN/dS ratios could be due to BGC rather than
- adaptive evolution. However, the strongest signals of BGC were found
- only in genes showing signals of positive selection along short
- branches in the phylogenetic tree using so-called branch-site models
- of evolution; when the authors looked for similar BGC signatures in
- genes with evidence for positive selection at specific sites
- throughout the mammalian tree (e.g., genes with significant LRTs for
- PAML’s sites model) they found no evidence for a strong BGC influence
- [Ratnakumar et al. 2010 PMID:20643747].
+Multiple lines of evidence have lent support to the hypothesis that
+GC-biased gene conversion (BGC) has been a major force in the
+evolution of mammalian genomes [Galtier et al 2001 PMID:11693127,
+  Galtier 2003 PMID:XYZ, Dreszer et al 2007 PMID:17785536]. Both
+empirical and theoretical results have shown that BGC can
+significantly affect patterns of observed substitutions in both
+selectively neutral and functionally constrained sites [Galtier et al
+  2009 PMID:19027980, Berglund et al 2009 PMID:19175294]. Recently,
+Ratnakumar et al. [2010, PMID:20643747] re-analyzed the dataset of
+positively-selected genes from Kosiol et al. [2008, PMID:18670650] for
+signatures of BGC and found that up to 20\% of cases of identified
+elevated dN/dS ratios could be due to BGC rather than adaptive
+evolution. However, the strongest signals of BGC were found only in
+genes showing signals of positive selection along short branches in
+the phylogenetic tree using so-called branch-site models of evolution;
+when the authors looked for similar BGC signatures in genes with
+evidence for positive selection at specific sites throughout the
+mammalian tree (e.g., genes with significant LRTs for PAML’s sites
+model) they found no evidence for a strong BGC influence [Ratnakumar
+  et al. 2010 PMID:20643747].
 
 The above evidence suggests that although BGC has the potential to
 produce misleading signals of branch-specific positive selection near
@@ -1942,5 +1518,7 @@ most extreme GC content and recombination rates -- has contaminated
 our codon-specific estimates with more than a negligible amount of
 noise resulting from the neutral but biased process of BGC.
 
-%\section{Conclusions}
+\section{Conclusions}
+
+\draft{...}
 

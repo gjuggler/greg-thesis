@@ -1,0 +1,12 @@
+% latex table generated in R 2.13.0 by xtable 1.5-6 package
+% Wed Sep 28 18:29:06 2011
+ Median BL & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} & 0.37 & \cellcolor[HTML]{F8F8FF}0.36 \\ 
+  Population Size & 0.37 & \cellcolor[HTML]{C5C5FF}0.36 & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} \\ 
+  Mean \omgml & 0.14 & \cellcolor[HTML]{F2F2FF}0.75 & -0.54 & \cellcolor[HTML]{C6C6FF}0.17 \\ 
+  Constant & -1.00 & \cellcolor[HTML]{8E8EFF}0.00 & -0.37 & \cellcolor[HTML]{F8F8FF}0.36 \\ 
+  Synonymous & 0.88 & \cellcolor[HTML]{8F8FFF}0.01 & 0.48 & \cellcolor[HTML]{D7D7FF}0.23 \\ 
+  Nsynonoymous & 0.98 & \cellcolor[HTML]{8E8EFF}0.00 & 0.35 & \cellcolor[HTML]{FFFFFF}0.40 \\ 
+  \omgml $<$1 & 0.38 & \cellcolor[HTML]{C5C5FF}0.36 & 0.87 & \cellcolor[HTML]{9090FF}0.01 \\ 
+  \omgml $<$0.5 & 0.12 & \cellcolor[HTML]{F6F6FF}0.79 & 0.73 & \cellcolor[HTML]{9D9DFF}0.04 \\ 
+  \psfive & 0.07 & \cellcolor[HTML]{FFFFFF}0.88 & -0.70 & \cellcolor[HTML]{A3A3FF}0.05 \\ 
+  \nsfive & 0.98 & \cellcolor[HTML]{8E8EFF}0.00 & 0.48 & \cellcolor[HTML]{D7D7FF}0.23 \\ 

@@ -147,16 +147,15 @@
 \setlength{\hoffset}{0.00cm}
 \setlength{\voffset}{0.00cm}
 
-\setlength{\evensidemargin}{1.96cm}
-%\setlength{\oddsidemargin}{-0.54cm}
-\setlength{\topmargin}{1mm}
+%\setlength{\evensidemargin}{1.96cm}
+%\setlength{\topmargin}{1mm}
 %\setlength{\headheight}{1.36cm}
-\setlength{\headsep}{1.00cm}
-\setlength{\textheight}{20.84cm}
-\setlength{\textwidth}{14.5cm}
-\setlength{\marginparsep}{1mm}
-\setlength{\marginparwidth}{3cm}
-\setlength{\footskip}{2.36cm}
+%\setlength{\headsep}{1.00cm}
+%\setlength{\textheight}{20.84cm}
+%\setlength{\textwidth}{14.5cm}
+%\setlength{\marginparsep}{1mm}
+%\setlength{\marginparwidth}{3cm}
+%\setlength{\footskip}{2.36cm}
 
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
