@@ -12,40 +12,40 @@ low-coverage genomes presents a unique set of problems for the
 generation of transcript annotations. In recognition of these
 differences, the procedure used by the Ensembl database to annotate
 genomes assembled from low-coverage data is distinct from the usual
-gene-building pipeline \citep{TODO, Ensembl 2006}. Briefly, a
-whole-genome alignment is produced between the human genome and each
-low-coverage target, and gene models are projected from human to the
-target genome. Small frame-disrupting insertions or deletions within
+gene-building pipeline \citep{Hubbard2007}. Briefly, a whole-genome
+alignment is produced between the human genome and each low-coverage
+target, and gene models are projected from human to the target
+genome. Small frame-disrupting insertions or deletions within
 orthologous exons are corrected, and missing exons are padded with Ns
 in order to obtain the correct transcript length.
 
 The inclusion of these error-correcting features allows intact, if not
 complete, coding transcripts to be generated for low-coverage
 genomes. The Compara gene family pipeline uses the set of transcripts
-from each species as its input \citep{TODO, Ensembl Compara}, so the
-quality of the gene models from each species has a direct impact on
-the overall quality and accuracy of gene trees. Although the reliance
-on genome-wide alignments to, and gene annotations from, a reference
+from each species as its input \citep{Vilella2009}, so the quality of
+the gene models from each species has a direct impact on the overall
+quality and accuracy of gene trees. Although the reliance on
+genome-wide alignments to, and gene annotations from, a reference
 genome could be criticised for potentially causing a bias towards the
 genomic properties of the reference, this approach is a reasonable
 workaround in the absence of higher-coverage sequence data or a
-painstakingly curated assembly. Furthermore, the gene model error-correcting
-features of the Ensembl pipeline are especially beneficial, making
-more complicated methods for correcting errors from low-coverage
-genomes such as those described by \citep{TODO, PLoS One hubisz and
-  siepel} seem largely unnecessary.
+painstakingly curated assembly. Furthermore, the gene model
+error-correcting features of the Ensembl pipeline are especially
+beneficial, making more complicated methods for correcting errors from
+low-coverage genomes such as those described by \citep{Hubisz2011}
+seem largely unnecessary.
 
 
 \section{The Ensembl Compara gene tree pipeline}
 
 All genomic data and gene trees used for this analysis were sourced
-from version 63 of the Ensembl Compara database \citep{TODO, Ensembl
-  2010 and EnsemblCompara GeneTrees}. Although a complete description
-of the design, implementation, and validation of the pipeline behind
-the Ensembl database is beyond the scope of this thesis, I will
-briefly outline the major aspects of the approach, focusing on a few
-details which are relevant to the current sitewise analysis and the
-ensuing discussion.
+from version 63 of the Ensembl Compara database
+\citep{Vilella2009,Flicek2011}. Although a complete description of the
+design, implementation, and validation of the pipeline behind the
+Ensembl database is beyond the scope of this thesis, I will briefly
+outline the major aspects of the approach, focusing on a few details
+which are relevant to the current sitewise analysis and the ensuing
+discussion.
 
 The Compara pipeline begins with a set of protein-coding transcripts
 collected from each individual species' annotation database. This step
@@ -58,32 +58,33 @@ regulatory control and tissue-specific gene expression, the existence
 of multiple transcripts per gene is one of the likely substrates of
 biological and developmental complexity within vertebrates and mammals
 as compared to single-celled eukaryotes, which show less developmental
-complexity but largely similar numbers of genes \citep{TODO}. Further
-evidence of the unique evolutionary characteristics of
-alternatively-spliced exons comes from molecular evolutionary studies
-which have shown such exons to show, on average, higher levels of
-evolutionary constraint, possibly owing to the importance of exonic
-splice enhancers in modulating the inclusion or exclusion of their
-associated exons \citep{TODO}.
+complexity but largely similar numbers of genes
+\citep{Csuros2011}. Further evidence of the unique evolutionary
+characteristics of alternatively-spliced exons comes from molecular
+evolutionary studies which have shown such exons to show, on average,
+higher levels of evolutionary constraint, possibly owing to the
+importance of exonic splice enhancers in modulating the inclusion or
+exclusion of their associated exons \citep{Parmley2006}.
 
 However, in terms of organizing biological data, pervasive alternative
 splicing---with XYZ\% of human genes containing at least two (and up
-to several dozen) transcripts per gene \citep{TODO}, showing tissue-specific and
-species-specific expression patterns, different levels of overall
-transcription, and sometimes comprising mutually exclusive exons---is
-somewhat burdensome. The first problem is the fact that primary data
-on alternative transcript structures (e.g., resulting from expressed
-sequence tags, RNA-seq, or proteomics experiments) are largely absent
-from most organisms with sequenced genomes. Even ignoring this lack of
-data, the task of incorporating multiple transcripts per gene into an
-evolutionary analysis is non-trivial, and leaves many unresolved
-questions open to debate: should all transcripts be treated as
-independent evolutionary entities, or should some form of
-meta-transcript be produced, comprising all possible transcripts for a
-given gene? Should expression levels and tissue-specificity be taken
-into account (as both factors have been correlated with evolutionary
-rate, e.g. \citep{TODO, TODO})? And what is the expected evolutionary
-impact of the loss, gain, or modulation of the prevalence or
+to several dozen) transcripts per gene \citep{Mironov1999}, showing
+tissue-specific and species-specific expression patterns, different
+levels of overall transcription, and sometimes comprising mutually
+exclusive exons---is somewhat burdensome. The first problem is the
+fact that primary data on alternative transcript structures (e.g.,
+resulting from expressed sequence tags, RNA-seq, or proteomics
+experiments) are largely absent from most organisms with sequenced
+genomes. Even ignoring this lack of data, the task of incorporating
+multiple transcripts per gene into an evolutionary analysis is
+non-trivial, and leaves many unresolved questions open to debate:
+should all transcripts be treated as independent evolutionary
+entities, or should some form of meta-transcript be produced,
+comprising all possible transcripts for a given gene? Should
+expression levels and tissue-specificity be taken into account (as
+both factors have been correlated with evolutionary rate,
+e.g. \citep{Koonin2006a,Zhu2008})? And what is the expected evolutionary impact
+of the loss, gain, or modulation of the prevalence or
 tissue-specificity of a given exon or transcript in one lineage? Even
 a fairly shallow consideration of the topic quickly reveals layers of
 complexity that would quickly hinder many large-scale evolutionary
@@ -113,25 +114,24 @@ nonconserved sequence into the evolutionary analysis.
 Fortunately, the consensus coding sequence (CCDS) project was
 initiated in 2005 to ``identify a core set of human and mouse protein
 coding regions that are consistently annotated and of high quality''
-\citep{TODO, Pruitt et al. 2009 Gen Res}. Although the transcripts
-that satisfy these two criteria will not necessarily be the same as
-those which meet the desired definition of ``the best representative
-transcript for use in an evolutionary study,'' the confidence that one
-can have in the quality and consistency of CCDS transcripts helps to
-reduce the prevalence of potentially damaging errors in the Compara
-pipeline.  Thus, in the current release (version 63), the
-``representative'' transcript used for the Compara pipeline is chosen
-on the basis of (a) existence within the CCDS set of transcripts and
-(b) the total length of the transcript's coding sequence. The
-combination of these two factors can be expected to identify a
-reasonably representative transcript, at least for the human and mouse
-genomes. The situation will be similar for genomes whose Ensembl
-annotation is derived largely from synteny and orthology to human and
-mouse annotated genes, but two classes of genomes---those resulting
-from low-coverage sequencing and those from more distant species whose
-annotations are derived from largely independent data sources---will
-still suffer from some amount error in the form of poor transcript
-choice.
+\citep{Pruitt2009}. Although the transcripts that satisfy these two
+criteria will not necessarily be the same as those which meet the
+desired definition of ``the best representative transcript for use in
+an evolutionary study,'' the confidence that one can have in the
+quality and consistency of CCDS transcripts helps to reduce the
+prevalence of potentially damaging errors in the Compara pipeline.
+Thus, in the current release (version 63), the ``representative''
+transcript used for the Compara pipeline is chosen on the basis of (a)
+existence within the CCDS set of transcripts and (b) the total length
+of the transcript's coding sequence. The combination of these two
+factors can be expected to identify a reasonably representative
+transcript, at least for the human and mouse genomes. The situation
+will be similar for genomes whose Ensembl annotation is derived
+largely from synteny and orthology to human and mouse annotated genes,
+but two classes of genomes---those resulting from low-coverage
+sequencing and those from more distant species whose annotations are
+derived from largely independent data sources---will still suffer from
+some amount error in the form of poor transcript choice.
 
 Once the set of canonical transcripts is chosen, the Compara pipeline
 performs an all-against-all protein BLAST search (using the Washington
@@ -144,34 +144,36 @@ using a maximum-consistency criterion. The aligners used for the
 M-Coffee alignment include XXX, YYY, and ZZZ. Finally, the aligned
 sequences are input to TreeBeST, which infers a gene tree (including
 gene duplication and loss events) given a set of aligned sequences and
-a known species tree \citep{TODO}. The type of the homology
+a known species tree \citep{Ruan2008}. The type of the homology
 relationship between each pair of genes (e.g., one-to-one ortholog,
 one-to-many ortholog, within-species paralog) is determined using a
 simple set of rules based on the structure of the inferred gene tree
 and the annotation of ancestral nodes where a duplication event has
 likely occurred.
 
-The Compara pipeline has been a part of the Ensembl ecosystem at least
-since its first mention in \citep{TODO}. Remarkably, aside from slight
-tweaks to the protein clustering method and some changes in the exact
-aligners used, the pipeline has changed little from its original
-published form \citep{TODO}. In part, this lack of change reflects the
-ease with which sets of vertebrate orthologs can be identified using
-the existing methodology, lying in stark contrast to the equivalent
-task in sets of insect or fungal genomes where divergence levels
-between extant sequences are much larger \citep{TODO} and the shape of
+The Compara pipeline has been a part of the Ensembl ecosystem since
+its first introduction to Ensembl in release 42
+\citep{Birney2006}. Remarkably, aside from slight tweaks to the
+protein clustering method and some changes in the exact aligners used,
+the pipeline has changed little from its original published form
+\citep{Vilella2009}. In part, this lack of change reflects the ease
+with which sets of vertebrate orthologs can be identified using the
+existing methodology, lying in stark contrast to the equivalent task
+in sets of insect or fungal genomes where divergence levels between
+extant sequences are much larger \citep{Siepel2005} and the shape of
 the underlying species tree may be uncertain and/or unknown
-\citep{TODO}, making the development of specialized methods or
-extensive manual annotation necessary \citep{TODO}. This is equivalent
-to saying that Ensembl's pipeline, while not perfect in its orthology
-predictions or tree inferences (as indicated in a series of
-back-and-forth papers between Ensembl scientists and XYZ,
-\citep{TODO}), has proved sufficiently accurate enough that an
-extensive reworking of the system has not yet been deemed
-necessary. Additional validation of this approach comes in the form of
-Treefam \citep{TODO}, a database of animal gene trees which applies a
-similar set of tools to infer gene trees from a more diverse set of
-genomes, with largely similar results.
+\citep{MacKenzie2008a}, making the development of specialized methods
+or extensive manual annotation necessary
+\citep{Kellis2004,Rasmussen2007}. This is equivalent to saying that
+Ensembl's pipeline, while not perfect in its orthology predictions or
+tree inferences (as indicated in a series of back-and-forth papers
+between Milinkovitch et al. \citeyearpar{Milinkovitch2010} and Villela
+et al. \citeyearpar{Vilella2011}), has proved sufficiently accurate
+enough that an extensive reworking of the system has not yet been
+deemed necessary. Additional validation of this approach comes in the
+form of Treefam \citep{Ruan2008}, a database of animal gene trees which
+applies a similar set of tools to infer gene trees from a more diverse
+set of genomes, with largely similar results.
 
 \textcolor{red}{[Something about Ensembl being directed at inferreing
     gene tree topologies, and not being vetted for use in estimates of
@@ -275,7 +277,7 @@ Ensembl v62 and summarized in Figure \ref{nbeal2}. A recent medical
 sequencing project identified \gene{NBEAL2}, a gene of previously unknown
 function, as the putative causative gene for gray platelet syndrome, a
 predominantly recessive platelet disorder resulting in moderate to
-severe bleeding \citep{TODO}. It was important for the
+severe bleeding \citep{Albers2011}. It was important for the
 authors of this study to ensure that the \gene{NBEAL2} gene is well-conserved
 across mammals and distinct from its paralogs. The Compara pipeline
 clustered \gene{NBEAL2} with three of its closest paralogs into one tree (and
@@ -303,7 +305,7 @@ taxonomic coverage would be sufficient to identify most largely
 orthologous mammalian subtrees. This hypothesis was based on two
 well-established observations in mammalian genomes. First, the
 existence of two rounds of whole-genome duplication preceding the
-evolution of vertebrates \citep{TODO} suggested that many of the
+evolution of vertebrates \citep{Dehal2005} suggested that many of the
 ancient duplication events contained within Ensembl gene trees
 occurred before the divergence of \mmls, making it possible to cleanly
 separate out taxonomically complete \mmln \subtr{}s in the majority of
@@ -314,7 +316,7 @@ some or all of the major \mmln groups, resulting in a larger
 proportion of \mmln genes with ``internal'' duplications and, thus,
 fewer singly orthologous trees with high taxonomic coverage. Second,
 the overall low rate of gene duplication and loss in mammals
-\citep{TODO, mammalian gene trees PLoS One} (excluding, of course, the
+\citep{Demuth2006} (excluding, of course, the
 aforementioned whole-genome duplication events) predicts that few
 mammalian gene trees will be subject to one or more gene duplication
 or loss events. In other words, most mammalian gene trees should
@@ -371,7 +373,7 @@ for some amount of gene deletion.
 
 Two additional types of constraints were designed for use in the
 MammalSubgroups and MammalSubgroupsPlusOutgoup methods. Inspired by
-the alignment filtering method from Pollard et al. \citeyearpar{TODO},
+the alignment filtering method from Pollard et al. \citeyearpar{Pollard2010},
 which required sequence data from all three major mammalian clades
 (Primates, Glires, and Laurasiatheria) to be present for a column to
 pass through the filter, the $TC_{all}$ constraint requires that the
@@ -588,7 +590,7 @@ is often performed to characterize the size distribution of contigs
 (contiguous sequence blocks) within a genome assembly. This statistic,
 referred to as the N50 length, is the contig length for which 50\% of
 bases are contained in contigs of that size or larger
-\citep{TODO}. For the Ensembl root trees, the N50 tree size is 139,
+\citep{Miller2010}. For the Ensembl root trees, the N50 tree size is 139,
 slightly less than three times the number of vertebrate species. The
 N50 tree size is shown for the root trees in Table
 \ref{ensembl_roots_hist} and in the table for taxonomically-defined
@@ -629,7 +631,7 @@ clustering algorithm might reasonably be expected to produce more
 false negatives in longer branches for a number of reasons including
 the behavior of the \hclust algorithm, inaccurate BLAST E-values at
 larger distances, and heterogeneity in evolutionary rates across
-lineages \citep{TODO}. However, the dearth of 2 and 3+ copy counts in
+lineages \citep{Whelan2008}. However, the dearth of 2 and 3+ copy counts in
 non-vertebrates is most likely a signal resulting from the 2R event at
 the basal vertebrate lineage, with the non-vertebrate species strongly
 depleted of multi-copy duplicates compared to their vertebrate
@@ -646,7 +648,7 @@ non-human genomes. There is one region where this trend does not
 appear to be the case: in the 3+ copy count for the fish species,
 which is instead a result of gene duplicates retained after the third
 round of genome duplication which occurred in the teleost ancestor
-\citep{TODO}. The signal resulting from the teleost genome duplication
+\citep{Jaillon2004}. The signal resulting from the teleost genome duplication
 event is clearer in the sets of taxonomically-defined \subtr{}s, so I
 will defer its discussion to the next subsection where those sets of trees are described.
 
@@ -660,10 +662,10 @@ absence in low-coverage genomes should not be taken as evidence for
 actual gene loss and that gene duplications are systematically
 underrepresented in low-coverage genomes. The former point was
 emphasized in a recent critical analysis of the effect of low-coverage
-genomes on gene duplication inference \citep{TODO, Milinkovitch et
-  al. 2010}, but the latter point was largely ignored. Again, this
-signal is also stronger in the more stringent set of \mmln orthologous
-\subtr{}s and will be revisited in the next subsection.
+genomes on gene duplication inference \citep{Milinkovitch2010}, but
+the latter point was largely ignored. Again, this signal is also
+stronger in the more stringent set of \mmln orthologous \subtr{}s and
+will be revisited in the next subsection.
 
 The preceding analysis of the set of root Ensembl trees, in which I
 characterised the distribution of trees with respect to size
@@ -763,8 +765,7 @@ species, and contain 40 or fewer sequences are likely retained
 duplicate genes, a total of 6,980 retained duplicates are identified,
 yielding a retention rate of 17.5\%, which is very much in line with a
 previously published estimate of 15\% based on a comparison of
-tetraodon, fugu and zebrafish genes \citep{TODO, Brunet et al. MBE
-  2006}.
+tetraodon, fugu and zebrafish genes \citep{Brunet2006}.
 
 \begin{figure}
 \centering
@@ -888,7 +889,7 @@ trees seen in platypus and more distant vertebrates. Given the
 consistently low proportion of zero-copy trees for other
 closely-related species, I would expect this number to change once a
 finished-quality pig genome sequence is included in the Ensembl
-pipeline \ref{TODO, Archivald et al. 2010}.
+pipeline \citep{Archibald2010}.
 
 \begin{figure}
 \centering
