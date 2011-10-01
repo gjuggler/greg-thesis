@@ -5,6 +5,32 @@
 
 \section{Introduction}
 
+The first step in any evolutionary sequence analysis is the collection
+of homologous sequence data \citep{TODO}. 
+
+\draft{The evolutionary history of vertebrate and mammalian genomes is
+  diverse, full of genome duplications, and well-characterized relative to other species groups}
+
+\draft{Still, availability of orthologous coding alignments is limited, and orthology itself is often uncertain}
+
+\tocite{Jun2009}{They give good reasons for why orthology inference is still difficult}
+
+\tocite{Ruan2008}{Provides a non-Compara example of tree-based
+  orthology pipelines, and show that their 17k gene trees only cover
+  ~84.5\% of genes}
+
+\draft{Genomic alignments would seem to be ideal for use as an input
+  source, except for the important issues of genome / segmental
+  duplications}
+
+\draft{As preparation for the mammalian analysis presented in chapters
+  3 and 4, I undertook a small project to identify the best set of
+  orthologs to use in an analysis of mammalian protein-coding
+  genes. Part of the goal was to understand what taxonomic constraints
+  best identify largely-orthologous groups of mammalian genes, and
+  part was to evaluate whether low-coverage genomes showed high enough
+  annotation quality to be included in the analysis.}
+
 \section{Low-coverage genomes in the Ensembl database}
 
 The prevalence of missing sequence data and fragmented contigs in
@@ -34,7 +60,6 @@ error-correcting features of the Ensembl pipeline are especially
 beneficial, making more complicated methods for correcting errors from
 low-coverage genomes such as those described by \citep{Hubisz2011}
 seem largely unnecessary.
-
 
 \section{The Ensembl Compara gene tree pipeline}
 
@@ -67,7 +92,7 @@ importance of exonic splice enhancers in modulating the inclusion or
 exclusion of their associated exons \citep{Parmley2006}.
 
 However, in terms of organizing biological data, pervasive alternative
-splicing---with XYZ\% of human genes containing at least two (and up
+splicing---with 34\% of human genes containing at least two (and up
 to several dozen) transcripts per gene \citep{Mironov1999}, showing
 tissue-specific and species-specific expression patterns, different
 levels of overall transcription, and sometimes comprising mutually
@@ -136,20 +161,21 @@ some amount error in the form of poor transcript choice.
 Once the set of canonical transcripts is chosen, the Compara pipeline
 performs an all-against-all protein BLAST search (using the Washington
 University variant of BLAST) and clusters genes into groups of
-evolutionarily-related sequences using \hclust, an
-implementation of a hierarchical clustering algorithm for sparse
-graphs. Sequences are aligned using MCoffee, a meta-aligner algorithm
-which combines the results from different aligners into one alignment
-using a maximum-consistency criterion. The aligners used for the
-M-Coffee alignment include XXX, YYY, and ZZZ. Finally, the aligned
-sequences are input to TreeBeST, which infers a gene tree (including
-gene duplication and loss events) given a set of aligned sequences and
-a known species tree \citep{Ruan2008}. The type of the homology
-relationship between each pair of genes (e.g., one-to-one ortholog,
-one-to-many ortholog, within-species paralog) is determined using a
-simple set of rules based on the structure of the inferred gene tree
-and the annotation of ancestral nodes where a duplication event has
-likely occurred.
+evolutionarily-related sequences using \hclust, an implementation of a
+hierarchical clustering algorithm for sparse graphs. Sequences are
+aligned using MCoffee, a meta-aligner algorithm which combines the
+results from different aligners into one alignment using a
+maximum-consistency criterion \citep{Wallace2006}. The aligners used
+for the M-Coffee alignment include MAFFT \citep{Katoh2005}, MUSCLE
+\citep{Edgar2004}, KAlign \citep{Lassmann2009}, and T-Coffee
+\citep{Notredame2000}. Finally, the aligned sequences are input to
+TreeBeST, which infers a gene tree (including gene duplication and
+loss events) given a set of aligned sequences and a known species tree
+\citep{Ruan2008}. The type of the homology relationship between each
+pair of genes (e.g., one-to-one ortholog, one-to-many ortholog,
+within-species paralog) is determined using a simple set of rules
+based on the structure of the inferred gene tree and the annotation of
+ancestral nodes where a duplication event has likely occurred.
 
 The Compara pipeline has been a part of the Ensembl ecosystem since
 its first introduction to Ensembl in release 42
@@ -195,10 +221,10 @@ individual set of Eutherian orthologous genes. In other words, Compara
 gene trees are over-clustered with respect to the core set of
 Eutherian orthologs.
 
-Evidence for this over-clustering comes from Table \ref{table1}, which
+Evidence for this over-clustering comes from Table \ref{ensembl_root_table}, which
 shows the number of root Compara gene trees which contain zero, one,
 or multiple genes in human, zebrafish and drosphila, as well as Figure
-\ref{fig1}, which shows the distribution of gene counts in the set of
+\ref{ensembl_roots_hist}, which shows the distribution of gene counts in the set of
 root Compara gene trees. The percentage of Compara trees with 2 or
 more human genes is strikingly high, at XYZ\%. If each Compara tree
 contained one single set of Eutherian orthologs, then the proportion
@@ -234,8 +260,10 @@ to perform well on the dataset as a whole, the reliance on protein
 distances alone means that fast-evolving proteins will be more likely
 to be under-clustered and slow-evolving proteins will be more likely
 to be over-clustered. Given that the protein evolutionary rate varies
-widely within a genome (\TODO{in a study of vertebrate genes, XYZ et
-al. found $K_a$ values ranging from ZZZ to YYY}), the excess of
+widely within a genome (e.g., in a study of amino-acid substitution
+rates of roughly 6,000 orthologous genes in 7 eukaryotic species,
+Koonin et al. [\citealt{Koonin2004}] found that the middle 90\% of genes
+showed nearly fourfold variation in evolutionary rate), the excess of
 over-clustered orthologs in the Compara database is understandable and
 even somewhat expected.
 
@@ -278,7 +306,7 @@ sequencing project identified \gene{NBEAL2}, a gene of previously unknown
 function, as the putative causative gene for gray platelet syndrome, a
 predominantly recessive platelet disorder resulting in moderate to
 severe bleeding \citep{Albers2011}. It was important for the
-authors of this study to ensure that the \gene{NBEAL2} gene is well-conserved
+purpose of this study to ensure that the \gene{NBEAL2} gene was both well-conserved
 across mammals and distinct from its paralogs. The Compara pipeline
 clustered \gene{NBEAL2} with three of its closest paralogs into one tree (and
 similarly clustered four more distant \gene{NBEAL2} paralogs into a separate
@@ -286,13 +314,13 @@ tree), yielding two views which together showed both the full
 taxonomic coverage of the \gene{NBEAL2} \subtr{} and the large amount of
 separation between paralogs. Had each Eutherian ortholog been
 displayed independently in Ensembl (using the blue ``Eutherian root'' nodes in
-Figure \ref{nbeal2}), it would have been more difficult to make such
+Figure \ref{nbeal2}), it would have been more difficult for a non-expert to make such
 claims regarding the evolutionary history of \gene{NBEAL2} without further
 analysis. Conversely, had the Compara pipeline been even more
-inclusive in its clustering step and identified a hypothetical deeper
+inclusive in its clustering approach and identified the hypothetical deeper
 root connecting these two sets of trees (represented by the green node
 in Figure \ref{nbeal2}), the connection between these eight genes
-would have been more immediately apparent.
+would have been even more immediately apparent.
 
 For the purposes of the current mammalian sitewise analysis, however,
 it was important to isolate individual mammalian gene trees for
@@ -333,13 +361,12 @@ result in a significant disruption to the taxonomic coverage of the
 gene tree.
 
 The taxonomic-based tree splitting scheme works as follows. For every
-internal node $N$ of each Compara gene tree, the taxonomic coverage
-(TC) was calculated for several vertebrate clades. The TC for node $N$
+internal node $N$ of each Compara gene tree, the \ac{tc} was calculated for several vertebrate clades. The \ac{tc} for node $N$
 and clade $C$ is given by $TC(N,C) = species(N) / species(C) $, where
 $species(N)$ is the number of unique species represented by the
 sequences beneath node $N$ and $species(C)$ is the number of species
 within the vertebrate clade $C$. The tree is traversed from root to
-tip, and if a given set of TC constraints (referred to as the subtree
+tip, and if a given set of \ac{tc} constraints (referred to as the subtree
 constraints) are satisfied by both \subtr{}s below node $i$, then the
 tree is split into two \subtr{}s at node $i$ (with the new trees
 having root nodes placed at the two child nodes, $i_a$ and $i_b$). The
@@ -359,15 +386,15 @@ the Ensembl database, as defined by the NCBI taxonomy. The NCBI
 taxonomy of species contained in Ensembl is shown in Figure
 \ref{ncbi_tree}.
 
-For the Ingroup and Outgroup categories of subtree constraints, a TC
+For the Ingroup and Outgroup categories of subtree constraints, a \ac{tc}
 value of greater than 0.6 was required for a single taxonomic
-clade. If the required TC value for a clade were set to 1, then all
+clade. If the required \ac{tc} value for a clade were set to 1, then all
 subtrees containing deletions in any species within the clade of
-interest would be rejected. On the other hand, requiring a TC value of
+interest would be rejected. On the other hand, requiring a \ac{tc} value of
 less than 0.5 would allow for a truly singly-orthologous tree to be
-split into two \subtr{}s, with one tree having a TC below 0.5, and the
-other tree (containing the other half of the species) also having a TC
-below 0.5. Thus, 0.6 seemed to be a reasonable TC requirement for
+split into two \subtr{}s, with one tree having a \ac{tc} below 0.5, and the
+other tree (containing the other half of the species) also having a \ac{tc}
+below 0.5. Thus, 0.6 seemed to be a reasonable \ac{tc} requirement for
 isolating \subtr{}s with reasonable taxonomic coverage while allowing
 for some amount of gene deletion.
 
@@ -377,11 +404,11 @@ the alignment filtering method from Pollard et al. \citeyearpar{Pollard2010},
 which required sequence data from all three major mammalian clades
 (Primates, Glires, and Laurasiatheria) to be present for a column to
 pass through the filter, the $TC_{all}$ constraint requires that the
-TC for all of the included clades is above a given threshold. To
+\ac{tc} for all of the included clades is above a given threshold. To
 complement the $TC_{all}$ constraint, the $TC_{any}$ constraint
-requires that the TC for any of the included clades is above a given
+requires that the \ac{tc} for any of the included clades is above a given
 threshold. These more complicated methods were included in the
-analysis in case the simpler TC constraints within the Ingroup and
+analysis in case the simpler \ac{tc} constraints within the Ingroup and
 Outgroup categories did not perform satisfactorily.
 
 The methods within the Orthologs category of subtree constraints were
@@ -410,11 +437,11 @@ family expansions in the reference species or non-representation of
 genes which have been deleted in the reference species. Still, I
 expected that the sets of \subtr{}s resulting from the Ensembl
 ortholog annotations would serve as a useful reference with which to
-compare the other TC-based methods.
+compare the other \ac{tc}-based methods.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.4]{Figs/compara_63_tree.pdf}
+\includegraphics[scale=0.6]{Figs/compara_63_tree.pdf}
 \caption{The NCBI taxonomy of species within the Ensembl Compara
   database. Note that branch lengths are not drawn to
   scale. Low-coverage genomes are labeled in red, high-coverage
@@ -450,7 +477,7 @@ Root Nodes & Ensembl Roots &  \\
 \end{tabular}
 \caption{Subtree constraints used for identifying Eutherian
   orthologous subtrees. Ensembl gene trees were split into subtrees
-  based on taxonomic coverage (TC) requirements at internal
+  based on \acf{tc} requirements at internal
   nodes. Laur. - Laurasiatheria; Clupeo. - Clupeocephala; Marsup. -
   Marsupiala}
 \label{subtree_constraints}
@@ -713,13 +740,13 @@ resembling the set of Ensembl Roots with small trees removed as
 summarised in the third row of Table \ref{ensembl_root_table}.
 
 Within the Ingroup category of methods, the methods based on
-mammalian TC values (Primates, Glires and Laurasiatheria) produced
+mammalian \ac{tc} values (Primates, Glires and Laurasiatheria) produced
 largely similar sets of trees, with the Primate set containing around
 2,000 more trees and covering around 1,000 more human genes than the
 other two sets. A reason for the higher number and human coverage of
 Primate trees is not immediately apparent, although it may
 speculatively be due to an excess of primate-specific gene trees that
-are not captured by non-primate TC-based criteria. Further
+are not captured by non-primate \ac{tc}-based criteria. Further
 investigation of the trees unique to this set might reveal the root
 cause of this slight discrepancy.
 
@@ -730,7 +757,7 @@ mammalian ancestor at an early point in the evolution of amniotes. The
 moderately lower number of trees (13,046 vs. 15,764 for
 Laurasiatheria) and the increased proportion of trees containing
 multiple human genes (0.14 vs. 0.09 for Laurasiatheria) are presumably
-consequences of the lower clade size, which could affect the TC
+consequences of the lower clade size, which could affect the \ac{tc}
 calculation, and the long branch separating Sauria from the other
 vertebrate clades. The fish-based subtree constraint produced a
 strikingly different set of trees resulting from the impact of the
@@ -744,14 +771,14 @@ other Ingroup sets.
 
 The reason for the drastically different Fish tree set is that the
 tree splitting procedure identifies largest non-overlapping \subtr{}s
-that satisfy the given TC criteria. Genes that were duplicated in the
+that satisfy the given \ac{tc} criteria. Genes that were duplicated in the
 teleost lineage and retained in duplicate form (as opposed to one or
 both copies being lost in either of the descendant duplicate
 chromosomes) would result in a gene tree with two teleost-specific
-\subtr{}s, each containing a high TC value for the Clupeocephala
+\subtr{}s, each containing a high \ac{tc} value for the Clupeocephala
 clade. In this case, the splitting procedure would result in two small
 Fish subtrees, ``missing'' the single subtree of mammalain orthologs
-because two non-overlapping trees already exceeded the TC threshold of
+because two non-overlapping trees already exceeded the \ac{tc} threshold of
 0.6. If, however, one of the duplicate gene copies were lost, then the
 tree would resemble a typical singly-orthologous vertebrate gene tree,
 and the splitting procedure would select a \subtr encompassing the
@@ -771,20 +798,20 @@ tetraodon, fugu and zebrafish genes \citep{Brunet2006}.
 \centering
 \includegraphics[scale=0.9]{Figs/ensembl_fish_hist.pdf}
 \caption{Sequence counts for the set of \subtr{}s identified using the
-  Fish clade taxonomic coverage constraint. Black bars show a
+  Fish clade taxonomic coverage constraint, showing an excess of small
+ \subtr{}s resulting from the teleost genome duplication. Black bars show a
   histogram of sequence counts in bins of width 2, a gray line shows
   the cumulative fraction of sequences contained within trees of that
   size or smaller, and dashed blue lines are drawn at integral
   multiples of 48, the number of vertebrate species within
   Ensembl. The 255 trees with more than 100 sequences are not shown.}
-\label{ensembl_roots_hist}
+\label{ensembl_fish_hist}
 \end{figure}
 
-
 The sets of \subtr{}s resulting from the Outgroup methods were of
-special interest, as the clades used to define these TC constraints
+special interest, as the clades used to define these \ac{tc} constraints
 contained all or nearly all of the mammalian species whose orthologous
-genes I wished to study. The resulting sets of \subtr{}s show little
+genes I wished to study. The resulting sets of \subtr{}s showed little
 variation, owing perhaps to the large sizes of the clades and their
 similar composition. Each set contained between 15 to 17 thousand
 trees, N50 values of around 49, and greater than 90\% of trees
@@ -793,7 +820,7 @@ evidence that the tree-splitting method was effectively isolating
 singly orthologous mammalian trees.  Some slight trends were apparent,
 however, with the tree count decreasing, the proportion of trees with
 human duplications increasing, and the overall human gene coverage
-decreasing as the clade size used for the TC calculation
+decreasing as the clade size used for the \ac{tc} calculation
 increased. These trends could understandably be the result of the
 minimum required tree size increasing along with the clade size,
 ranging from 21 for Eutheria to 32 for Fungi/Metazoa.
@@ -916,7 +943,7 @@ counts is included in Figure \ref{ortholog_euth_dups}.
 \centering
 \includegraphics[scale=0.9]{Figs/ortholog_euth_dups.pdf}
 \caption{Taxonomic distribution of gene copy counts for the Eutheria
-  \subtr{}s. The number of trees containing 0, 1, 2 or more than 3
+  \subtr{}s defined by \ac{tc}. The number of trees containing 0, 1, 2 or more than 3
   sequences from each species is shown. Bars are colored blue and gray
   for species with high- and low-coverage genomes, respectively. Note
   that the y-axis scale is not the same for each panel.}
@@ -933,8 +960,10 @@ counts is included in Figure \ref{ortholog_euth_dups}.
   the cumulative fraction of sequences contained within trees of that
   size or smaller, and dashed blue lines are drawn at integral
   multiples of 48, the number of vertebrate species within
-  Ensembl. The XYZ trees with more than 100 sequences are not shown.}
+  Ensembl. The 230 trees with more than 100 sequences are not shown.}
 \label{ensembl_euth_hist}
 \end{figure}
 
-\todo{Find num. of Eutherian trees w/ more than 100 seqs}
+\section{Conclusions}
+
+\draft{Restate the goals: figure out which \ac{tc} criteria could be used to isolate largely-orthologous mammalian gene trees}

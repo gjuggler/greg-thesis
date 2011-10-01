@@ -292,21 +292,22 @@ positives motivated the window-based filter I developed and applied
 here and in the analysis of primate genomes in Chapters
 \ref{ch_gorilla1} and \ref{ch_gorilla2}.
 
-\draft{TODO: Figure summarizing the types of error and potential effects on the inference?}
+\draft{Possible figure summarizing the types of error and potential
+  effects on the inference?}
 
 \section{Preparing mammalian alignments for sitewise analysis}
 
-As discussed in the introduction to this chapter, the effects of
-sequencing, annotation and alignment error on the results of
-comparative evolutionary analyses can be severe, with a high potential
-for false positive results when using sensitive evolutionary models
-\citep{Mallick2009,Schneider2009}. In order to minimize the potential
-for false positive results in this study, sequences were prepared for
-input to SLR with a series of filters and realignment steps designed
-to (a) remove low-quality sequences prone to high error rates, (b)
-realign sequences using an aligner with better performance for
-detecting sitewise positive slection, and (c) mask out short alignment
-regions with dubious elevated rates of \nsyn substitution.
+The effects of sequencing, annotation and alignment error on the
+results of comparative evolutionary analyses can be severe, with a
+high potential for false positive results when using sensitive
+evolutionary models \citep{Mallick2009,Schneider2009}. In order to
+minimize the potential for false positive results in this study,
+sequences were prepared for input to SLR with a series of filters and
+realignment steps designed to remove low-quality sequences prone
+to high error rates, realign sequences using an aligner with
+better performance for detecting sitewise positive slection, and
+mask out short alignment regions with dubious elevated rates of \nsyn
+substitution.
 
 \subsection{Filtering out low-quality genome sequence}
 
@@ -324,23 +325,22 @@ from 0 to 99. A Phred score represents the probability, calculated by
 the sequencing and/or assembly program, that a given base call is
 incorrect. This probability is usually concisely expressed as the
 negative logarithm of the probability of an error multiplied by ten,
-or $Q = -10log_{10}P$ where $Q$ is the Phred score and $P$ is the
+or $Q=-10log_{10}P$, where $Q$ is the Phred score and $P$ is the
 probability of an incorrect base call \citep{Cock2010}.
 
 Unfortunately, Ensembl does not store quality scores from its source
-genome assemblies, so Phred quality scores were downloaded for all
-genomes with readily available Phred-like quality scores (\TODO{make a
-  list of genome assemblies and quality score sources}). Most quality
-scores were provided as a single file in FASTA format with one string
-of numerical scores per assembled contig. Since the process of
-filtering a mammalian coding alignment required collecting scores from
-many different species at many disjoint genomic locations, an index
-file was created for each quality score string based on the contig
-name and sequence position to allow for quicker score lookup and
-retrieval.
+genome assemblies, so Phred quality scores had to be manually
+downloaded for all genomes with readily available Phred-like quality
+scores. Most quality scores were provided as a single file in FASTA
+format with one string of numerical scores per assembled contig. Since
+the process of filtering a single mammalian coding alignment required
+collecting scores from many different quality score files for many
+disjoint genomic locations, a custom script was designed to process
+each quality score file to allow for quicker score retrieval and
+better memory performance.
 
 A suitable score threshold for filtering coding regions was chosen
-based on the work of Hubisz et al. \citeyearpar{Hubisz2011}, who
+based on a study by Hubisz et al. \citeyearpar{Hubisz2011}, who
 performed a detailed analysis of Phred quality scores and observed
 error rates in low-coverage mammalian genome assemblies by comparing
 the low-coverage assemblies to matched regions of high-quality
@@ -363,7 +363,7 @@ codons: all codons containing one or more nucleotides with a score
 below 25 were masked out with three ambiguous nucleotides,
 'NNN'.
 
-The expected proportion of filtered nucleotides can be calculated from
+The expected proportion of filtered nucleotides could be calculated from
 the fraction of bases below the Phred score threshold of 25. According
 to the cumulative distribution of quality scores found in Hubisz et
 al. \citeyearpar{Hubisz2011}, approximately 5\% of bases in low-coverage
@@ -444,11 +444,12 @@ longest sequence was kept.
 \begin{figure}
 \centering
 \includegraphics[scale=0.7]{Figs/filtered_paralogs_hist.pdf}
-\caption{Gene lengths of putative paralogs relative to the mean length
-  all sequences in the tree. Putatively paralogous genes (top panel)
-  were either kept (middle panel) or discarded (bottom panel)
-  according to rules based on their length and mean sequence
-  divergence.}
+\caption{Gene lengths of all putative paralogs, normalized to the mean
+  length all sequences in the enclosing tree of each
+  paralog. Putatively paralogous genes (top panel) were either
+  discarded (middle panel) or kept (bottom panel) according to rules
+  based on their length and mean sequence divergence from other
+  aligned sequences.}
 \label{filtered_paralogs_hist}
 \end{figure}
 
@@ -554,7 +555,7 @@ concern that a filter based on detecting clusters of \nsyn
 substitutions might attenuate the signal of true adaptive substitution
 that was one target of the present study.
 
-\todo{Write up the empirical investigation of \nsyn substitution clustering.}
+\draft{Write up the empirical investigation of \nsyn substitution clustering.}
 
 \section{Genome-wide analysis of sitewise selective pressures in mammals}
 
@@ -1122,8 +1123,8 @@ the result of breaking sites into three groups (positive, negative,
 and neutral) based on the result of a \chisq test at a given \fpr
 threshold.
 
-The positive selection results reveal that between 0.2\% to 1\% of
-sites can be identified as under positive selection in mammals at
+The positive selection results demonstrated that between 0.2\% to 1\%
+of sites could be identified as under positive selection in mammals at
 nominal FPR thresholds, but different species groups yielded
 strikingly different estimates of the proportion of
 positively-selected sites. At a 5\% FPR threshold, Primates,
@@ -1134,11 +1135,11 @@ were higher using a 10\% FPR threshold (ranging from 0.70\% to 0.97\%
 of sites) and lower using a 1\% FPR threshold (ranging from 0.14\% to
 0.28\%). When the FDR was controlled using the Benjamini-Hochberg
 method, however, only the Eutheria and Mammalia groups yielded a
-substantial number of positively-selected sites; Primates and
-Laurasiatheria were likely limited in their ability to yield
-positively-selected sites after FDR control due to their lower branch
-lengths. Interestingly, the Glires, Atlantogenata, Sparse Glires and
-Sparse Mammalia datasets produced much lower proportions of
+substantial number of positively-selected sites; the Primates and
+Laurasiatheria data were likely limited in their power to yield
+positively-selected sites after FDR control due to their lower total
+branch lengths. Interestingly, the Glires, Atlantogenata, Sparse
+Glires and Sparse Mammalia datasets produced much lower proportions of
 positively-selected sites across all \fpr thresholds. At FDR$<$0.05,
 all four groups yielded zero significant \psc{}s.
 
@@ -1151,25 +1152,24 @@ positively-selected sites (0.55\%). As expected given the use of a
 fixed \slrt threshold to identify purifying sites, the fraction of
 sites confidently identified as under purifying selection showed a
 strong dependency on the branch length of the species set, with a much
-higher power in Mammalia (83.87\% at p$<0.05$) than in Primates
-(15.97\%).
+higher power in Mammalia than in Primates (83.87\% vs. 15.97\%).
 
 Even for the Mammalia dataset, which encapsulated roughly 7.5
 synonymous substitutions per site on average, one might reasonably
 expect that the power to confidently identify sites under purifying
 selection, though higher than in Primates, was still less than
-100\%. If this were the case, then the proportion of confidently
+100\%. If this is the case, then the proportion of confidently
 identified purifying sites must be an underestimate of the true
-proportion of negatively-selected sites (and, by symmetry and absent
-any methodological bias, the same should be true for
-positively-selected sites). As a result, the fractions of positively-
-and negatively-selected sites in Table \ref{sitewise_summary_table_2}
+proportion of negatively-selected sites (and by symmetry, absent any
+methodological bias, the same should be true for positively-selected
+sites). As a result, the fractions of positively- and
+negatively-selected sites in Table \ref{sitewise_summary_table_2}
 should not be taken as best estimates of the actual proportions of
-such sites, but rather as lower bounds on those proportions. In the
-next two sub-sections, I will separately consider the issue of using
-the sets of sitewise estimates in different species groups to estimate
-the proportion of sites subject to purifying and positive selection in
-mammals.
+such sites, but more appropriately as lower bounds on those
+proportions. In fact, In the next two sub-sections, I will separately consider
+the issue of using the sets of sitewise estimates in different species
+groups to estimate the proportion of sites subject to purifying and
+positive selection in mammals.
 
 \subsubsection{Estimating the proportion of negatively-selected sites}
 
@@ -1259,8 +1259,54 @@ Value & Rho & P-value & Rho & P-value \\
 \subsection{Modeling the global distribution of sitewise selective pressures}
 \label{modeling_distr}
 
-% Look at the fitdistrplus methods:
-% http://cran.r-project.org/web/packages/fitdistrplus/fitdistrplus.pdf
+
+\begin{landscape}
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{llrrrrrrrrrrrrrrr}
+\toprule
+ &  
+ & \multicolumn{2}{c}{Log-normal} 
+ & \multicolumn{2}{c}{Gamma} 
+ & \multicolumn{2}{c}{Exponential} 
+ & \multicolumn{2}{c}{Beta} 
+ & \multicolumn{2}{c}{Weibull} \\
+\cmidrule(r){3-4}
+\cmidrule(r){5-6}
+\cmidrule(r){7-8}
+\cmidrule(r){9-10}
+\cmidrule(r){11-12}
+
+Species Set & Data Type
+ & \omgmean & \% $>1$
+ & \omgmean & \% $>1$
+ & \omgmean & \% $>1$
+ & \omgmean & \% $>1$
+ & \omgmean & \% $>1$
+\\
+  \midrule
+\input{Tables/distribution_fits.txt}
+\bottomrule
+\end{tabular}
+\caption{}
+\label{distribution_fits}
+\end{table}
+\end{landscape}
+
+
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+Species Set & Distribution & AIC & $d$AIC & Parameter A & Parameter B
+\\
+  \midrule
+\input{Tables/distribution_params.txt}
+\bottomrule
+\end{tabular}
+\caption{}
+\label{distribution_params}
+\end{table}
 
 % From 2xmammals supp. materials.
 % https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US

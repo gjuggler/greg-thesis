@@ -1,5 +1,8 @@
+\newcommand{\tocite}[2]{\draft{To cite: \citet{#1} --- #2}}
+
+
 \newcommand{\TODO}[1]{\textcolor{red}{TODO} \todo{#1}\xspace}
-\newcommand{\draft}[1]{\textcolor{gray}{#1}\xspace}
+\newcommand{\draft}[1]{\textcolor{gray}{[#1]}\xspace}
 %\newcommand{\todo}{\textcolor{red}{TO-DO}\xspace}
 
 \newcommand{\gene}[1]{\emph{#1}}
@@ -16,12 +19,16 @@
 \newcommand{\pamlTwo}{PAML M2\xspace}
 \newcommand{\pamlEight}{PAML M8\xspace}
 
+\acrodef{fpr}[FPR]{false positive rate}
 \newcommand{\fpr}{FPR\xspace}
 \newcommand{\pss}{PSS\xspace}
 \newcommand{\psg}{PSG\xspace}
 
 % Indel1
 \newcommand{\prankc}{PRANK$_{\textrm{C}}$\xspace}
+
+% Orthologs
+\acrodef{tc}[TC]{taxonomic coverage}
 
 % Mammals1
 \newcommand{\mgp}{Mammalian Genome Project\xspace}
@@ -36,6 +43,7 @@
 \newcommand{\dnds}{dN/dS\xspace}
 \newcommand{\omg}{$\omega$\xspace}
 \newcommand{\omgml}{$\omega_{ML}$\xspace}
+\newcommand{\omgmean}{$\bar{\omega}$\xspace}
 \newcommand{\psc}{PSC\xspace}
 \newcommand{\nsc}{NSC\xspace}
 \newcommand{\nsfive}{NSC$_{5\%}$\xspace}
