@@ -97,7 +97,7 @@ evolutionary analysis presented in Chapters \ref{ch_mammals1} and
 understand the distribution of orthologous genes within vertebrate
 genomes, identify which taxonomic constraints would best define
 largely-orthologous groups of mammalian genes, and evaluate whether
-low-coverage genomes, which are unique to the Compara database of
+\lcv genomes, which are unique to the Compara database of
 orthologs, showed high enough annotation quality and consistency to be
 included in the mammalian evolutionary analysis. Throughout the
 chapter, attention will be paid to those aspects of the gene tree
@@ -106,45 +106,67 @@ downstream evolutionary analysis.
 
 \section{Low-coverage genomes in the Ensembl database}
 
-A feature that distinguished \cmp from Treefam and Optic is its
-inclusion of several mammalian genomes which have been sequenced to
-low coverage as a part of the \ac{mgp}. The motivation and goals of
-the \ac{mgp} will be outlined in the next chapter, but the inclusion
-of these low-coverage genome sequences in \cmp represented a major
+A major feature that distinguishes \cmp from the Treefam and Optic
+databases is the inclusion in \cmp of several mammalian genomes which
+have been sequenced to low coverage as a part of the \ac{mgp}. The
+inclusion of these additional genomes was a major reason why I
+performed the analysis described in the following chapters using
+Ensembl as a source of gene trees and alignments, representing a major
 advantage over otherwise similar orthology databases due to the
-greater species sampling density.
+greater species sampling density. With respect to the actual
+sequencing of the \lcv mammalian genomes, the motivation and goals of
+the \ac{mgp} itself will be outlined in the next chapter. For the
+purpose of the present discussion, I will outline the way \lcv genomes
+are handled within the Ensembl annotation pipeline, as certain
+features of the \lcv genomes cause characteristic anomalies in the
+orthology analyses, as will be shown in the ensuing analysis.
 
-The prevalence of missing sequence data and fragmented contigs in
-low-coverage genomes presented a unique set of problems for the
-generation of transcript annotations. In recognition of these
-differences, the procedure used by \cmp to annotate genomes assembled
-from low-coverage data is distinct from the usual gene-building
-pipeline \citep{Hubbard2007}. Briefly, a whole-genome alignment is
-produced between the human genome and each low-coverage target, and
-gene models are projected from human to the target genome. Small
-frame-disrupting insertions or deletions within orthologous exons are
-corrected, and missing exons are padded with Ns in order to obtain the
-correct transcript length. The inclusion of these error-correcting
-features allows intact, if not complete, coding transcripts to be
-generated for low-coverage genomes. The Compara gene family pipeline
-uses the set of transcripts from each species as its input
-\citep{Vilella2009}, so the quality of the gene models from each
-species has a direct impact on the overall quality and accuracy of
-gene trees. Although the reliance on genome-wide alignments to, and
-gene annotations from, a reference genome could be criticised for
-potentially causing a bias towards the genomic properties of the
-reference, this approach is a reasonable workaround in the absence of
-higher-coverage sequence data or a painstakingly curated
-assembly. Furthermore, the gene model error-correcting features of the
-Ensembl pipeline are especially beneficial, making more complicated
-methods for correcting errors from low-coverage genomes such as those
-described by \citep{Hubisz2011} seem less necessary.
+The prevalence of missing sequence data and fragmented contigs in \lcv
+genomes presented a unique set of problems for the generation of
+transcript annotations in \ens. In recognition of these differences,
+the procedure used by \cmp to annotate genomes assembled from \lcv
+data is distinct from the usual gene-building pipeline
+\citep{Hubbard2007}. Briefly, a whole-genome alignment is produced
+between the human genome and each \lcv target genome, and gene models
+are projected from human to the target genome. Small frame-disrupting
+insertions or deletions within orthologous exons are corrected, and
+missing or incomplete exons are padded with Ns in order to produce a
+transcript with a length equal to that of the human reference
+transcript. The inclusion of these error-correcting features allows
+for a set of intact, if not complete, coding transcripts to be
+generated for \lcv genomes, leveraging the high level of sequence
+similarity between human and other \euth mammals to project genes
+and transcripts from the high-quality human genome to the unannotated,
+highly fragmented \lcv genome assemblies. Still, in many cases the
+\ens pipeline could not map complete genes or transcripts from human
+to the target genome, causing difficulty in identifying
+duplications. On one hand, the lack of completely assembled
+chromosomes meant that segmental duplications in \lcv genomes were
+often unresolved or unidentifiable, making it difficult or impossible
+to confidently identify recently duplicated genes. On the other hand,
+the shorter length of assembled fragments caused genes to occasionally
+be split between two sequence fragments; the \ens pipeline currently
+annotates such genes as two separate shortened gene fragments,
+resulting in an excess of shortened apparent paralogs in resulting
+gene trees (see Section \ref{sub_removing_paralogs} for more detail on
+this artifact).
 
-However, certain aspects of the
-low-coverage genomes led to artifacts in the representation of their
-genes within the \cmp gene trees, as will be 
+The \cmp gene family pipeline, which I describe in more detail below,
+uses the set of annotated transcripts from each species as its input
+\citep{Vilella2009}, so the quality of gene annotation from each
+source genome has a direct impact on the overall quality and accuracy
+of the resulting gene trees. Although the reliance on genome-wide
+alignments to, and gene annotations from, a reference genome could be
+criticised for potentially causing a bias towards the genomic
+properties of the reference, this approach is a reasonable workaround
+in the absence of higher-coverage sequence data or a painstakingly
+curated assembly. Furthermore, the gene model error-correcting
+features of the Ensembl pipeline are especially beneficial, making
+more complicated methods for correcting errors from \lcv genomes such
+as those described by \citep{Hubisz2011} seem less necessary.
 
 \section{The Ensembl Compara gene tree pipeline}
+\label{section_compara_pipeline}
 
 All genomic data and gene trees used for this analysis were sourced
 from version 63 of the Ensembl Compara database
@@ -158,7 +180,7 @@ analysis and ensuing discussion.
 The Compara pipeline begins with a set of protein-coding transcripts
 collected from each individual species' annotation database. This step
 is not exactly straightforward, however, as the prevalence of
-alternative splicing in Eutherian mammals makes it common for a single
+alternative splicing in \euth mammals makes it common for a single
 gene to harbor many different transcript structures.
 
 In terms of biology and evolution, alternative splicing is a very
@@ -246,24 +268,24 @@ database, which contains orthologous groups identified within a wide
 range of animal and fungal clades, uses the transcript with the
 maximum length as the canonical transcript \citep{Heger2008}.
 
-Once the set of canonical transcripts is chosen, the Compara pipeline
-performs an all-against-all protein BLAST search (using the Washington
-University variant of BLAST) and clusters genes into groups of
-evolutionarily-related sequences using \hclust, an implementation of a
-hierarchical clustering algorithm for sparse graphs. Sequences are
-aligned using MCoffee, a meta-aligner algorithm which combines the
-results from different aligners into one alignment using a
-maximum-consistency criterion \citep{Wallace2006}. The aligners used
-for the M-Coffee alignment include MAFFT \citep{Katoh2005}, MUSCLE
-\citep{Edgar2004}, KAlign \citep{Lassmann2009}, and T-Coffee
-\citep{Notredame2000}. Finally, the aligned sequences are input to
-TreeBeST, which infers a gene tree (including gene duplication and
-loss events) given a set of aligned sequences and a known species tree
-\citep{Ruan2008}. The type of the homology relationship between each
-pair of genes (e.g., one-to-one ortholog, one-to-many ortholog,
-within-species paralog) is determined using a simple set of rules
-based on the structure of the inferred gene tree and the annotation of
-ancestral nodes where a duplication event has likely occurred.
+Once the set of canonical transcripts is chosen, an all-against-all
+protein BLAST search is performed using the Washington University
+variant of BLAST and genes are clustered into homologous groups using
+\hclust, an implementation of a hierarchical clustering algorithm for
+sparse graphs. Sequences are aligned using MCoffee, a meta-aligner
+algorithm which combines the results from different aligners into one
+alignment using a maximum-consistency criterion
+\citep{Wallace2006}. The aligners used for the M-Coffee alignment
+include MAFFT \citep{Katoh2005}, MUSCLE \citep{Edgar2004}, KAlign
+\citep{Lassmann2009}, and T-Coffee \citep{Notredame2000}. Finally, the
+aligned sequences are input to TreeBeST, which infers a gene tree
+(including gene duplication and loss events) given a set of aligned
+sequences and a known species tree \citep{Ruan2008}. The type of the
+homology relationship between each pair of genes (e.g., one-to-one
+ortholog, one-to-many ortholog, within-species paralog) is determined
+using a simple set of rules based on the structure of the inferred
+gene tree and the annotation of ancestral nodes where a duplication
+event has likely occurred.
 
 The Compara pipeline has been a part of the Ensembl ecosystem since
 its first introduction to Ensembl in release 42
@@ -297,70 +319,92 @@ applied a similar set of tools to infer gene trees from a more diverse
 set of genomes, producing qualitatively similar results
 \citep{Vilella2009}.
 
+\section{Quantifying paralogous relationships within Ensembl gene trees}
 
-\section{Identifying orthologous subtrees within large mammalian gene families}
+The first task in preparing the \cmp data for subsequent sitewise
+analysis was to identify and extract a set of gene trees or gene
+\subtr{}s comprising largely of orthologous relationships within
+mammals (i.e. \acp{lot}), avoiding as much as possible the inclusion
+of paralogous relationships. It was necessary to postprocess the \cmp
+gene trees in order to achieve this goal, because many of the \cmp
+trees contained multiple sets of complete \mammln orthologous trees
+linked by ancient gene duplication events, while I wished to study the
+evolution of each \mammln \ac{lot} in isolation. In other words, the
+Compara gene trees could be charcterized as being over-clustered with
+respect to the core set of \mammln orthologous trees. This
+over-clustering was not necessarily inaccurate with respect to the
+evolutionary history of vertebrate genes, but it was not a desirable
+feature for my intended use of the data. This section is concerned
+with identifying and quantifying the level of such over-clustering
+within the Compara database.
 
-The first task in preparing the Ensembl data for sitewise analysis was
-to identify and extract a biologically meaningful set of orthologous
-mammalian subtrees from the set of gene trees within the Compara
-database. This was necessary because many Compara gene trees contain
-multiple sets of Eutherian orthologs linked by ancient gene
-duplication events, while I wished to study the evolution of each
-individual set of Eutherian orthologous genes. In other words, Compara
-gene trees are over-clustered with respect to the core set of
-Eutherian orthologs.
+I first collected the set of 18,607 \cmp gene trees and analyzed their
+overall size and the number of human genes contained within each
+tree. The results of this analysis are presented in Table
+\ref{ensembl_root_table} and Figure \ref{ensembl_roots_hist}; a
+complete description of these data will follow in Section
+\ref{section_root_compara_trees}, but the aspects relevant to
+characterizing the amount of paralogy contained within these trees
+will be discussed here.
 
-Evidence for this over-clustering comes from Table \ref{ensembl_root_table}, which
-shows the number of root Compara gene trees which contain zero, one,
-or multiple genes in human, zebrafish and drosphila, as well as Figure
-\ref{ensembl_roots_hist}, which shows the distribution of gene counts in the set of
-root Compara gene trees. The percentage of Compara trees with 2 or
-more human genes is strikingly high, at XYZ\%. If each Compara tree
-contained one single set of Eutherian orthologs, then the proportion
-of trees with multiple human gene copies could only be explained by an
-unrealistically high rate of gene duplication. A more parsimonious
-explanation would be that many Ensembl trees represent not one group
-of Eutherian orthologs, but two or more sets of Eutherian orthologous
-gene trees joined by one or more ancient duplications. This
-explanation is further supported by Figure \ref{fig1}, which shows
-concentrations of gene counts centered roughly around whole-integer
-multiples of the number of vertebrate species present in the Ensembl
-database (shown as gray dotted lines).
+The first row of Table \ref{ensembl_root_table} shows various summary
+statistics from the full set of \cmp gene trees, with the columns
+under the ``Human Content'' heading showing the fraction of all gene
+trees containing zero, one, or two or more human genes. Evidence for
+the existence of large numbers of paralogs within \cmp trees came from
+the observation that 20\% of \cmp trees contained 2 or more human
+genes. If each Compara tree contained only one set of \mammln
+orthologs, then the 20\% of trees with multiple human gene copies
+could only be explained by an unrealistically high rate of gene
+duplication in the lineage leading towards human. Instead, a more
+parsimonious explanation was that many of the Ensembl trees contained
+not one group of \mammln \acp{lot}, but two or more sets of \mammln
+\acp{lot} joined by one or more ancient duplication events. This
+explanation was further supported by Figure \ref{ensembl_roots_hist},
+which shows a histogram of total gene counts in the Ensembl root
+trees. A large number of trees contained more than 48 sequences (the
+number of vertebrate genomes in \ens), with clear peaks in the
+histogram of trees with 2, 3, and 4 times the number of vertebrate
+genomes in \ens. These patterns were highly consistent with a high
+number of \cmp gene trees containing multiple \mammln \acp{lot}.
 
-The prevalence of over-clustered Eutherian orthologs in the Compara
-database is easily explained by a combination of the \hclust algorithm
+The prevalence of over-clustered \euth orthologs in the Compara
+database could be explained by a combination of the \hclust algorithm
 used for the hierarchical clustering step, which uses only protein
 distances as its source of clustering information, and the wide range
 of protein evolutionary rates in the vertebrate genome. As I mentioned
-in the previous subsection, the Compara pipeline uses all-by-all
-protein BLAST E-value scores and the \hclust algorithm to produce sets
-of sequences containing minimal average within-group E-values. No
-additional biological information, such as the source species of each
-sequence or the overall taxonomic coverage of each cluster, is used in
-identifying clusters, and no attempt is made to fit clusters to an
-expected model of orthologous gene evolution. On the one hand, the
-lack of additional information and assumptions allows the algorithm to
-remain simple and the clustering behavior to remain consistent across
-different groups of genomes; on the other hand, a number of technical
-(in the sense of non-biologically meaningful) parameters and
-thresholds must be tuned in order to result in the desired cluster
-sizes and contents. Importantly, even after these parameters are tuned
-to perform well on the dataset as a whole, the reliance on protein
-distances alone means that fast-evolving proteins will be more likely
-to be under-clustered and slow-evolving proteins will be more likely
-to be over-clustered. Given that the protein evolutionary rate varies
-widely within a genome (e.g., in a study of amino-acid substitution
-rates of roughly 6,000 orthologous genes in 7 eukaryotic species,
-Koonin et al. [\citealt{Koonin2004}] found that the middle 90\% of genes
-showed nearly fourfold variation in evolutionary rate), the excess of
-over-clustered orthologs in the Compara database is understandable and
-even somewhat expected.
+in Section \ref{section_compara_pipeline}, the Compara pipeline uses
+all-by-all protein BLAST E-value scores and the \hclust algorithm to
+produce sets of sequences containing minimal average within-group
+E-values. No additional biological information, such as the source
+species of each sequence or the overall \ac{tc} of each cluster, is
+used in identifying clusters, and no attempt is made to fit clusters
+to an expected model of orthologous gene evolution. On the one hand,
+the lack of additional information and assumptions allows the
+algorithm to remain simple and the clustering behavior to remain
+consistent across different groups of genomes; on the other hand, a
+number of technical (in the sense of non-biologically meaningful)
+parameters and thresholds must be tuned in order to result in the
+desired cluster sizes and contents. Importantly, even after these
+parameters were tuned to perform well on the dataset as a whole (i.e.,
+to successfully cluster a majority of vertebrate orthologs), the
+reliance on protein distances alone means that fast-evolving proteins
+will be more likely to be under-clustered and slow-evolving proteins
+will be more likely to be over-clustered. The rate of protein
+evolution varies widely within a genome, as evidenced by a study of
+amino-acid substitution rates of roughly 6,000 eukaryotic orthologous
+genes by Koonin et al. [\citealt{Koonin2004}], who found that the
+middle 90\% of genes show a nearly fourfold variation in evolutionary
+rate. Given this wide range of protein evolutionary rates, the excess
+of over-clustered orthologs in the Compara database is understandable
+and even somewhat expected.
 
-I should note that my use of the phrase ``over-clustered'' refers only
-to over-clustering with respect to the current goal of analyzing
-independent sets of orthologous genes within Eutherian
-mammals. Certainly these large ``over-clustered'' trees, which
-represent a more distant evolutionary history than a single Eutherian
+Before continuing with a description of a method to identify \acp{lot}
+within \cmp gene trees, I should note that my use of the phrase
+``over-clustered'' refers only to over-clustering with respect to the
+current goal of analyzing independent sets of orthologous genes within
+\mamml{}s. Certainly these large ``over-clustered'' trees, which
+represent a more distant evolutionary history than a single \mammln
 orthologous group, are just as accurate with respect to the true
 evolutionary history of the genes as more narrow groupings would
 be. Furthermore, the inclusion of a deeper evolutionary context may
@@ -368,9 +412,9 @@ sometimes be more useful to users of the Compara database, for whom an
 understanding of the overall evolutionary history of a gene may be the
 topic of primary interest.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
-\includegraphics[scale=0.3]{Figs/nbeal2_full.pdf}
+\includegraphics[scale=0.35]{Figs/nbeal2_full.pdf}
 \caption{The evolutionary history of the human \gene{neurobeachin-like 2}
   gene (\gene{NBEAL2}) and its paralogs. Left, two phylogenetic trees from
   Ensembl Compara (release 60) are shown, summarizing the evolution of
@@ -379,7 +423,7 @@ topic of primary interest.
   vertebrate species. The phylogeny shows that \gene{NBEAL2} is
   taxonomically conserved and distinct from its paralogs. Red dots
   highlight the root nodes of Ensembl gene trees, blue dots highlight
-  the root nodes of Eutherian orthologous subtrees, and a dashed line
+  the root nodes of \euth orthologous subtrees, and a dashed line
   with a green dot represents the putative paralogous relationship
   (with a hypothetical root) between the two Ensembl gene
   trees. Right, the exon and domain structure of each human gene is
@@ -388,82 +432,93 @@ topic of primary interest.
 \label{nbeal2}
 \end{figure}
 
-Take for example the gene \gene{NBEAL2} and its human paralogs, whose gene
-trees, exon structures and domain classifications were extracted from
-Ensembl v62 and summarized in Figure \ref{nbeal2}. A recent medical
-sequencing project identified \gene{NBEAL2}, a gene of previously unknown
-function, as the putative causative gene for gray platelet syndrome, a
-predominantly recessive platelet disorder resulting in moderate to
-severe bleeding \citep{Albers2011}. It was important for the
-purpose of this study to ensure that the \gene{NBEAL2} gene was both well-conserved
-across mammals and distinct from its paralogs. The Compara pipeline
-clustered \gene{NBEAL2} with three of its closest paralogs into one tree (and
-similarly clustered four more distant \gene{NBEAL2} paralogs into a separate
-tree), yielding two views which together showed both the full
-taxonomic coverage of the \gene{NBEAL2} \subtr{} and the large amount of
-separation between paralogs. Had each Eutherian ortholog been
-displayed independently in Ensembl (using the blue ``Eutherian root'' nodes in
-Figure \ref{nbeal2}), it would have been more difficult for a non-expert to make such
-claims regarding the evolutionary history of \gene{NBEAL2} without further
-analysis. Conversely, had the Compara pipeline been even more
-inclusive in its clustering approach and identified the hypothetical deeper
-root connecting these two sets of trees (represented by the green node
-in Figure \ref{nbeal2}), the connection between these eight genes
-would have been even more immediately apparent.
+As an example, take the gene \gene{NBEAL2} and its human paralogs,
+whose gene trees, exon structures and domain classifications were
+extracted from Ensembl v62 and summarized in Figure \ref{nbeal2}. A
+recent medical sequencing project identified \gene{NBEAL2}, a gene of
+previously unknown function, as the putative causative gene for gray
+platelet syndrome, a predominantly recessive platelet disorder
+resulting in moderate to severe bleeding \citep{Albers2011}. I
+performed, with Botond Sipos, an evolutionary analysis of
+\gene{NBEAL2} for the article describing the discovery, and it was
+important for the purpose of this study to ensure that the
+\gene{NBEAL2} gene was both well-conserved across mammals and distinct
+from its paralogs. The \cmp pipeline clustered \gene{NBEAL2} with
+three of its closest paralogs into one tree (and similarly clustered
+four more distant \gene{NBEAL2} paralogs into a separate tree),
+yielding two views which together showed both the full taxonomic
+coverage of the \gene{NBEAL2} \subtr{} and the large amount of
+evolutionary distance between paralogs. Had each \mammln ortholog been
+displayed independently in \ens (i.e., using the blue ``\euth root''
+nodes in Figure \ref{nbeal2}), it would have been more difficult for a
+non-expert to make such claims regarding the evolutionary history of
+\gene{NBEAL2} without further analysis. Conversely, had the \cmp
+pipeline been even more inclusive in its clustering approach and
+identified the hypothetical deeper root connecting these two sets of
+trees (represented by the green node in Figure \ref{nbeal2}), the
+connection between these eight genes would have been even more
+immediately apparent.
 
-For the purposes of the current mammalian sitewise analysis, however,
-it was important to isolate individual mammalian gene trees for
-further processing and sitewise analysis. To this end, I designed a
-simple scheme for splitting gene trees into non-overlapping subtrees
-based on flexible taxonomic coverage criteria.
+For the purposes of my current project, however, it was important to
+isolate individual \mammln gene trees for further processing and
+sitewise analysis. To this end, I designed a simple scheme for
+splitting gene trees into non-overlapping subtrees based on flexible
+\ac{tc} criteria; the remainder of this chapter presentes
+design and results of this process when applied to the \cmp gene
+trees.
 
-I hypothesized that a relatively simple set of rules based on
-taxonomic coverage would be sufficient to identify most largely
-orthologous mammalian subtrees. This hypothesis was based on two
-well-established observations in mammalian genomes. First, the
-existence of two rounds of whole-genome duplication preceding the
-evolution of vertebrates \citep{Dehal2005} suggested that many of the
-ancient duplication events contained within Ensembl gene trees
-occurred before the divergence of \mmls, making it possible to cleanly
-separate out taxonomically complete \mmln \subtr{}s in the majority of
-cases. This would not be possible if duplication events were common
-and spread evenly throughout the \mmln tree; if that were the case,
-many duplication events would have occurred after the divergence of
-some or all of the major \mmln groups, resulting in a larger
-proportion of \mmln genes with ``internal'' duplications and, thus,
-fewer singly orthologous trees with high taxonomic coverage. Second,
-the overall low rate of gene duplication and loss in mammals
-\citep{Demuth2006} (excluding, of course, the
-aforementioned whole-genome duplication events) predicts that few
-mammalian gene trees will be subject to one or more gene duplication
-or loss events. In other words, most mammalian gene trees should
-contain sequences from a majority of mammalian species, so the
-effectiveness of using taxonomic coverage to identify mammalian
-\subtr{}s should be largely unaffected by individual (i.e., post-2R)
-gene duplication or loss events. The potential utility of taxonomic
-coverage was further bolstered by the star-like shape of the mammalian
-tree: star-like trees contain more branch length within terminal
-lineages than ladder-like trees with an equivalent total branch
-length, making it less likely that a gene duplication or loss event
-(if such events occurred randomly throughout the mammalian tree) would
-result in a significant disruption to the taxonomic coverage of the
-gene tree.
+\section{Using taxonomic coverage to extract largely orthologous \subtr{}s}
 
-The taxonomic-based tree splitting scheme works as follows. For every
-internal node $N$ of each Compara gene tree, the \ac{tc} was calculated for several vertebrate clades. The \ac{tc} for node $N$
-and clade $C$ is given by $TC(N,C) = species(N) / species(C) $, where
-$species(N)$ is the number of unique species represented by the
-sequences beneath node $N$ and $species(C)$ is the number of species
-within the vertebrate clade $C$. The tree is traversed from root to
-tip, and if a given set of \ac{tc} constraints (referred to as the subtree
-constraints) are satisfied by both \subtr{}s below node $i$, then the
-tree is split into two \subtr{}s at node $i$ (with the new trees
-having root nodes placed at the two child nodes, $i_a$ and $i_b$). The
-traversal continues recursively until every node is tested. If only
-the original root node satisfies the subtree constraints, then the
-entire Compara tree is included in the resulting tree set; if the
-entire Compara tree fails to satisfy the subtree constraints, it is
-excluded altogether.
+Based on the observation that the clustering step of the \cmp pipeline
+did not use any taxonomic information, I hypothesized that a
+relatively simple set of rules based on \ac{tc} would be sufficient to
+identify most \mammln \acp{lot}. Two well-established observations in
+\mammln genomes supported the decision to use \ac{tc} in this
+context. First, the existence of two rounds of whole-genome
+duplication preceding the evolution of vertebrates \citep{Dehal2005}
+suggested that many of the ancient duplication events contained within
+Ensembl gene trees occurred before the divergence of \mamml{}s, making
+it possible to cleanly separate out taxonomically complete \mammln
+\subtr{}s in the majority of cases. This would not be possible if
+duplication events were common and spread evenly throughout the
+\mammln tree; if that were the case, many duplication events would
+have occurred after the divergence of some or all of the major \mammln
+groups, resulting in a larger proportion of \mammln genes with
+``internal'' duplications and, thus, fewer singly orthologous trees
+with high taxonomic coverage. Second, the overall low rate of gene
+duplication and loss in mammals \citep{Demuth2006} (excluding, of
+course, the aforementioned whole-genome duplication events which
+occurred in the ancestral vertebrate genome) predicts that few \mammln
+gene trees will be subject to one or more gene duplication or loss
+events. In other words, most \mammln gene trees should contain
+sequences from a majority of \mammln species, so the effectiveness of
+using \ac{tc} to identify \mammln \subtr{}s should be largely
+unaffected by continued (i.e., post whole-genome duplication) gene
+duplication or loss events. The potential utility of \ac{tc} was
+further bolstered by the star-like shape of the \mammln tree
+\citep{BinindaEmonds2007}: a star-like trees contains more branch
+length within terminal lineages than a ladder-like tree with an
+equivalent total branch length, making it less likely that a gene
+duplication or loss event (if such events occurred randomly throughout
+the \mammln tree) would result in a significant disruption to the
+\ac{tc} of the gene tree.
+
+The \ac{tc}-based tree splitting scheme was performed as
+follows. For every internal node $N$ of each Compara gene tree, the
+\ac{tc} was calculated for several vertebrate clades. The \ac{tc} for
+node $N$ and clade $C$ is given by $TC(N,C) = species(N) / species(C)
+$, where $species(N)$ is the number of unique species represented by
+the sequences beneath node $N$ and $species(C)$ is the number of
+species within the vertebrate clade $C$. The tree is traversed from
+root to tip, and if a given set of \ac{tc} constraints (referred to as
+the subtree constraints) are satisfied by both \subtr{}s below node
+$i$, then the tree is split into two \subtr{}s at node $i$ (with the
+new trees having root nodes placed at the two child nodes, $i_a$ and
+$i_b$). The traversal continues recursively until every node is
+tested. If only the original root node satisfies the subtree
+constraints, then the entire Compara tree is included in the resulting
+tree set; if the entire Compara tree fails to satisfy the subtree
+constraints, it is excluded altogether.
 
 I chose a variety of subtree constraints based on the structure of the
 vertebrate phylogeny, all of which were run against the 18,613 gene
@@ -564,7 +619,7 @@ Orthologs & Human Orthologs & \\
 Root Nodes & Ensembl Roots &  \\
 \bottomrule
 \end{tabular}
-\caption{Subtree constraints used for identifying Eutherian
+\caption{Subtree constraints used for identifying \euth
   orthologous subtrees. Ensembl gene trees were split into subtrees
   based on \acf{tc} requirements at internal
   nodes. Laur. - Laurasiatheria; Clupeo. - Clupeocephala; Marsup. -
@@ -580,10 +635,11 @@ this and the next section I will describe the resulting sets of trees
 and \subtr{}s, discuss what they reveal about the evolutionary history
 of vertebrates and the feasibility of using taxonomic coverage to
 isolate orthologous trees for sitewise analysis, and finally, explain
-my reasoning for deciding to use the subtrees based on the Eutherian
+my reasoning for deciding to use the subtrees based on the \euth
 taxonomic coverage for the subsequent sitewise analysis.
 
 \subsection{The set of root Compara gene trees}
+\label{section_root_compara_trees}
 
 Table \ref{ensembl_root_table} presents a summary of the set of root
 Compara gene trees and the subsets of trees with more or fewer than 15
@@ -780,7 +836,7 @@ underrepresented in low-coverage genomes. The former point was
 emphasized in a recent critical analysis of the effect of low-coverage
 genomes on gene duplication inference \citep{Milinkovitch2010}, but
 the latter point was largely ignored. Again, this signal is also
-stronger in the more stringent set of \mmln orthologous \subtr{}s and
+stronger in the more stringent set of \mammln orthologous \subtr{}s and
 will be revisited in the next subsection.
 
 The preceding analysis of the set of root Ensembl trees, in which I
