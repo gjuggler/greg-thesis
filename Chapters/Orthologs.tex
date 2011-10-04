@@ -5,61 +5,144 @@
 
 \section{Introduction}
 
-The first step in any evolutionary sequence analysis is the collection
-of homologous sequence data \citep{TODO}. 
+This chapter considers the identification of groups of orthologous
+genes in vertebrates and mammals. I begin with a discussion of the
+detection of orthologs within groups of vertebrate and other
+eukaryotic genomes, focusing on the tree-based approach to ortholog
+and paralog identification as used by the Optic, \cmp, and Treefam
+databases. In preparation for the sitewise analysis of mammalian
+orthologs to be presented in the subsequent two chapters, I construct
+a simple method for isolating \subtr{}s with largely orthologous
+characteristics from the set of \cmp gene trees and analyze the
+taxonomic distribution of gene duplication and loss within those
+\acp{lot}, demonstrating along the way how strongly the history of
+genome duplications has affected the structure of orthologous and
+paralogous relationships between and within vertebrate and
+invertebrate genomes.
 
-\draft{The evolutionary history of vertebrate and mammalian genomes is
-  diverse, full of genome duplications, and well-characterized relative to other species groups}
+\section{Methods for ortholog identification}
 
-\draft{Still, availability of orthologous coding alignments is limited, and orthology itself is often uncertain}
+Central to any evolutionary sequence analysis is the assumption that
+the sequences being analyzed, or some parts therein, share a common
+evolutionary origin. Thus, the first step in any such analysis is the
+collection of homologous sequence data. Starting with a source
+sequence, homologs are usually identified by searching a sequence
+database for sequences with a minimum overall similarity according to
+some evolutionary model. In some cases, such as when sequences are
+highly divergent or subject to domain shuffling or horizontal gene
+transfer, a more localized or more specialized measure of similarity
+may be desirable \citep{Koonin2001,Sjolander2011}, but within closely
+related groups of organisms such as vertebrates and mammals, the
+process of gene duplication and divergence dominates patterns of
+relatedness between protein sequences \citep{Ohno1970}, making overall
+sequence similarity a useful method by which to identify homologous
+sequences in the organisms of interest.
 
-\tocite{Jun2009}{They give good reasons for why orthology inference is still difficult}
+Heuristic algorithms have been developed for performing quick and
+sensitive sequence homology searches within databases of protein and
+nucleic acid sequences \citep{Altschul1997,Eddy2009}. The power of
+these methods is high enough that homology within vertebrates, even
+for fast-evolving genes, can be readily detected. However, the
+prevalence of historical and ongoing gene duplication and loss in
+vertebrates complicates the problem, as orthologous genes (e.g.,
+homologs between species, sharing a common ancestral population and
+related through a speciation event) and paralogous genes (e.g.,
+homologs within a single species, sharing a common ancestral genomic
+sequence and related through a duplication event) are important, yet
+difficult, to distinguish from one another \citep{Jun2009}. In other
+words, sets of genes that may be confidently identified as sharing
+homology may still contain paralogy and orthology relationships that
+are more difficult to resolve. Since the evolutionary trajectories of
+paralogous versus orthologous genes are expected to be quite distinct
+\citep{Lynch2000}, the correct identification of orthologous versus
+paralogous relationships in vertebrates is critical for any detailed
+molecular evolutionary analysis.
 
-\tocite{Ruan2008}{Provides a non-Compara example of tree-based
-  orthology pipelines, and show that their 17k gene trees only cover
-  ~84.5\% of genes}
+Methods for distinguishing orthologous from paralogous relationships
+within vertebrate genomes have been in development for over a decade
+\citep{Remm2001,Yuan1998}, but the amount of overlap between
+vertebrate orthologous groups identified by different methods has
+historically been disappointingly small \citep{Jun2009,Chen2007},
+suggesting that the problem of orthology inference is far from
+resolved. Still, one might expect the accuracy and power of orthology
+inference methods to improve with time, given the steady increase in
+available computing power and the sequencing of many complete
+vertebrate genomes over the past decade. Indeed, the growing number of
+available sequenced genomes, greater available computational power,
+and improved understanding of patterns of gene duplication and loss
+have led to the growing popularity of phylogeny-based approaches,
+which were once considered computationally impractical and too
+difficult to automate \citep{Remm2001}. In general, the phylogenetic
+approach involves estimating a phylogenetic tree from an entire
+cluster of homologous genes and inferring duplication events based on
+the discordance between the gene tree and the species tree. Several
+variants of this approach have been developed and applied to gene tree
+reconstruction in insects, fungi and vertebrates
+\citep{Muller2010a,Cepas2007,Datta2009,Vilella2009,Ruan2008,Hahn2007a},
+and validation against manually-curated gene trees has shown these
+phylogeny-based methods to be more sensitive and accurate than
+pairwise or graph-based methods \citep{Datta2009}.
 
-\draft{Genomic alignments would seem to be ideal for use as an input
-  source, except for the important issues of genome / segmental
-  duplications}
+One particular phylogeny-based approach, which uses a known species
+tree to guide the resolution of orthologs and paralogs within a gene
+tree in a Bayesian framework, has been implemented in a software
+package called TreeBeST and used extensively to infer genome-wide
+vertebrate and eukaryotic gene trees for the Optic, TreeFam and \cmp
+databases \citep{Heger2008,Ruan2008,Vilella2009}.
 
-\draft{As preparation for the mammalian analysis presented in chapters
-  3 and 4, I undertook a small project to identify the best set of
-  orthologs to use in an analysis of mammalian protein-coding
-  genes. Part of the goal was to understand what taxonomic constraints
-  best identify largely-orthologous groups of mammalian genes, and
-  part was to evaluate whether low-coverage genomes showed high enough
-  annotation quality to be included in the analysis.}
+I describe in this chapter an initial analysis of the gene trees
+within \cmp which I undertook in preparation for the sitewise
+evolutionary analysis presented in Chapters \ref{ch_mammals1} and
+\ref{ch_mammals2}. The major goals of this analysis were to better
+understand the distribution of orthologous genes within vertebrate
+genomes, identify which taxonomic constraints would best define
+largely-orthologous groups of mammalian genes, and evaluate whether
+low-coverage genomes, which are unique to the Compara database of
+orthologs, showed high enough annotation quality and consistency to be
+included in the mammalian evolutionary analysis. Throughout the
+chapter, attention will be paid to those aspects of the gene tree
+identification pipeline which may contribute to errors in the
+downstream evolutionary analysis.
 
 \section{Low-coverage genomes in the Ensembl database}
 
-The prevalence of missing sequence data and fragmented contigs in
-low-coverage genomes presents a unique set of problems for the
-generation of transcript annotations. In recognition of these
-differences, the procedure used by the Ensembl database to annotate
-genomes assembled from low-coverage data is distinct from the usual
-gene-building pipeline \citep{Hubbard2007}. Briefly, a whole-genome
-alignment is produced between the human genome and each low-coverage
-target, and gene models are projected from human to the target
-genome. Small frame-disrupting insertions or deletions within
-orthologous exons are corrected, and missing exons are padded with Ns
-in order to obtain the correct transcript length.
+A feature that distinguished \cmp from Treefam and Optic is its
+inclusion of several mammalian genomes which have been sequenced to
+low coverage as a part of the \ac{mgp}. The motivation and goals of
+the \ac{mgp} will be outlined in the next chapter, but the inclusion
+of these low-coverage genome sequences in \cmp represented a major
+advantage over otherwise similar orthology databases due to the
+greater species sampling density.
 
-The inclusion of these error-correcting features allows intact, if not
-complete, coding transcripts to be generated for low-coverage
-genomes. The Compara gene family pipeline uses the set of transcripts
-from each species as its input \citep{Vilella2009}, so the quality of
-the gene models from each species has a direct impact on the overall
-quality and accuracy of gene trees. Although the reliance on
-genome-wide alignments to, and gene annotations from, a reference
-genome could be criticised for potentially causing a bias towards the
-genomic properties of the reference, this approach is a reasonable
-workaround in the absence of higher-coverage sequence data or a
-painstakingly curated assembly. Furthermore, the gene model
-error-correcting features of the Ensembl pipeline are especially
-beneficial, making more complicated methods for correcting errors from
-low-coverage genomes such as those described by \citep{Hubisz2011}
-seem largely unnecessary.
+The prevalence of missing sequence data and fragmented contigs in
+low-coverage genomes presented a unique set of problems for the
+generation of transcript annotations. In recognition of these
+differences, the procedure used by \cmp to annotate genomes assembled
+from low-coverage data is distinct from the usual gene-building
+pipeline \citep{Hubbard2007}. Briefly, a whole-genome alignment is
+produced between the human genome and each low-coverage target, and
+gene models are projected from human to the target genome. Small
+frame-disrupting insertions or deletions within orthologous exons are
+corrected, and missing exons are padded with Ns in order to obtain the
+correct transcript length. The inclusion of these error-correcting
+features allows intact, if not complete, coding transcripts to be
+generated for low-coverage genomes. The Compara gene family pipeline
+uses the set of transcripts from each species as its input
+\citep{Vilella2009}, so the quality of the gene models from each
+species has a direct impact on the overall quality and accuracy of
+gene trees. Although the reliance on genome-wide alignments to, and
+gene annotations from, a reference genome could be criticised for
+potentially causing a bias towards the genomic properties of the
+reference, this approach is a reasonable workaround in the absence of
+higher-coverage sequence data or a painstakingly curated
+assembly. Furthermore, the gene model error-correcting features of the
+Ensembl pipeline are especially beneficial, making more complicated
+methods for correcting errors from low-coverage genomes such as those
+described by \citep{Hubisz2011} seem less necessary.
+
+However, certain aspects of the
+low-coverage genomes led to artifacts in the representation of their
+genes within the \cmp gene trees, as will be 
 
 \section{The Ensembl Compara gene tree pipeline}
 
@@ -67,63 +150,65 @@ All genomic data and gene trees used for this analysis were sourced
 from version 63 of the Ensembl Compara database
 \citep{Vilella2009,Flicek2011}. Although a complete description of the
 design, implementation, and validation of the pipeline behind the
-Ensembl database is beyond the scope of this thesis, I will briefly
-outline the major aspects of the approach, focusing on a few details
-which are relevant to the current sitewise analysis and the ensuing
-discussion.
+Ensembl database would be beyond the scope of this chapter, I will
+briefly outline the major aspects of the approach used by the Compara
+pipeline, focusing on a few details which are relevant to the current
+analysis and ensuing discussion.
 
 The Compara pipeline begins with a set of protein-coding transcripts
 collected from each individual species' annotation database. This step
-is not exactly straightforward, as the prevalence of alternative
-splicing in Eutherian mammals makes it common for a single gene to
-harbor many different transcript structures. In terms of biology and
-evolution, alternative splicing is a very interesting
-phenomenon. Tightly linked to the evolutionary innovation of
-regulatory control and tissue-specific gene expression, the existence
-of multiple transcripts per gene is one of the likely substrates of
-biological and developmental complexity within vertebrates and mammals
-as compared to single-celled eukaryotes, which show less developmental
-complexity but largely similar numbers of genes
-\citep{Csuros2011}. Further evidence of the unique evolutionary
+is not exactly straightforward, however, as the prevalence of
+alternative splicing in Eutherian mammals makes it common for a single
+gene to harbor many different transcript structures.
+
+In terms of biology and evolution, alternative splicing is a very
+interesting phenomenon. Tightly linked to the evolutionary innovation
+of regulatory control and tissue-specific gene expression, the
+existence of multiple transcripts per gene is one of the likely
+substrates of biological and developmental complexity within
+vertebrates and mammals as compared to single-celled eukaryotes, which
+show less developmental complexity but largely similar numbers of
+genes \citep{Csuros2011}. Further evidence of the unique evolutionary
 characteristics of alternatively-spliced exons comes from molecular
 evolutionary studies which have shown such exons to show, on average,
 higher levels of evolutionary constraint, possibly owing to the
 importance of exonic splice enhancers in modulating the inclusion or
 exclusion of their associated exons \citep{Parmley2006}.
 
-However, in terms of organizing biological data, pervasive alternative
-splicing---with 34\% of human genes containing at least two (and up
-to several dozen) transcripts per gene \citep{Mironov1999}, showing
-tissue-specific and species-specific expression patterns, different
-levels of overall transcription, and sometimes comprising mutually
-exclusive exons---is somewhat burdensome. The first problem is the
-fact that primary data on alternative transcript structures (e.g.,
-resulting from expressed sequence tags, RNA-seq, or proteomics
-experiments) are largely absent from most organisms with sequenced
-genomes. Even ignoring this lack of data, the task of incorporating
-multiple transcripts per gene into an evolutionary analysis is
-non-trivial, and leaves many unresolved questions open to debate:
-should all transcripts be treated as independent evolutionary
+In terms of organizing biological data, however, pervasive alternative
+splicing is somewhat burdensome. Roughly 34\% of human genes contain
+at least two, and up to several dozen, transcripts per gene
+\citep{Mironov1999}, showing tissue-specific and species-specific
+expression patterns, different levels of overall transcription, and
+sometimes comprising mutually exclusive exons. Within the context of
+the Compara database, the first problem in maintaining consistency
+across many source genome sequences is the fact that primary data on
+alternative transcript structures (e.g., data from expressed sequence
+tags, RNA-seq, or proteomics experiments) are largely absent from most
+organisms with sequenced genomes. Furthermore, the task of
+incorporating multiple transcripts per gene into an evolutionary
+framework is non-trivial, and leaves many unresolved questions open to
+debate: should all transcripts be treated as independent evolutionary
 entities, or should some form of meta-transcript be produced,
 comprising all possible transcripts for a given gene? Should
 expression levels and tissue-specificity be taken into account (as
 both factors have been correlated with evolutionary rate,
-e.g. \citep{Koonin2006a,Zhu2008})? And what is the expected evolutionary impact
-of the loss, gain, or modulation of the prevalence or
-tissue-specificity of a given exon or transcript in one lineage? Even
-a fairly shallow consideration of the topic quickly reveals layers of
-complexity that would quickly hinder many large-scale evolutionary
-analyses such as the current one, whose main goals are to understand
-the levels of evolutionary constraint of some subset of genes (or
-protein-coding sites) within some subset of species.
+e.g. \citep{Koonin2006a,Zhu2008})? And what is the expected
+evolutionary impact of the loss, gain, or modulation of the prevalence
+or tissue-specificity of a given exon or transcript in one lineage?
+Even a fairly shallow consideration of the topic quickly reveals
+layers of complexity that would quickly hinder many large-scale
+evolutionary analyses, such as the definition of orthologous groups,
+whose main goals are to understand the evolutionary relationships of
+gene families within some set of species' genomes.
 
 As a result of these difficulties, the current design of the Compara
 pipeline only incorporates one 'canonical' transcript per gene into
 the evolutionary analysis and the resulting inferred gene trees. This
 reflects a conscious decision to sacrifice some biological fidelity
-for reduced design complexity and computational load (as the inclusion
+for reduced design complexity and computational load, as the inclusion
 of multiple transcripts would inevitably require some amount of
-additional processing and/or calculation). Unfortunately, this only
+additional processing and/or calculation. Unfortunately, this only
 somewhat alleviates the problem, shifting the burden from ``how to
 deal with multiple transcripts in a comparative setting'' to ``how to
 choose the best representative transcript for each gene.'' In the case
@@ -156,7 +241,10 @@ largely from synteny and orthology to human and mouse annotated genes,
 but two classes of genomes---those resulting from low-coverage
 sequencing and those from more distant species whose annotations are
 derived from largely independent data sources---will still suffer from
-some amount error in the form of poor transcript choice.
+some amount error in the form of poor transcript choice. The OPTIC
+database, which contains orthologous groups identified within a wide
+range of animal and fungal clades, uses the transcript with the
+maximum length as the canonical transcript \citep{Heger2008}.
 
 Once the set of canonical transcripts is chosen, the Compara pipeline
 performs an all-against-all protein BLAST search (using the Washington
@@ -184,30 +272,31 @@ protein clustering method and some changes in the exact aligners used,
 the pipeline has changed little from its original published form
 \citep{Vilella2009}. In part, this lack of change reflects the ease
 with which sets of vertebrate orthologs can be identified using the
-existing methodology, lying in stark contrast to the equivalent task
-in sets of insect or fungal genomes where divergence levels between
-extant sequences are much larger \citep{Siepel2005} and the shape of
-the underlying species tree may be uncertain and/or unknown
-\citep{MacKenzie2008a}, making the development of specialized methods
-or extensive manual annotation necessary
+existing methodology, lying in contrast to the equivalent task in sets
+of insect or fungal genomes where divergence levels between extant
+species with sequenced genomes are much larger \citep{Siepel2005} and
+the shape of the underlying species tree may be uncertain and/or
+unknown \citep{MacKenzie2008a}, making the development of specialized
+methods or extensive manual annotation necessary
 \citep{Kellis2004,Rasmussen2007}. This is equivalent to saying that
 Ensembl's pipeline, while not perfect in its orthology predictions or
 tree inferences (as indicated in a series of back-and-forth papers
 between Milinkovitch et al. \citeyearpar{Milinkovitch2010} and Villela
 et al. \citeyearpar{Vilella2011}), has proved sufficiently accurate
 enough that an extensive reworking of the system has not yet been
-deemed necessary. Additional validation of this approach comes in the
-form of Treefam \citep{Ruan2008}, a database of animal gene trees which
-applies a similar set of tools to infer gene trees from a more diverse
-set of genomes, with largely similar results.
+deemed necessary. However, it is worth noting that the recent
+development of a new Bayesian method for gene tree reconciliation,
+based on a generative model of gene family evolution as a birth-death
+process and incorporating species-specific and gene-specific rate
+variation, showed good performance in resolving fungal and
+invertebrate gene trees, and could easily be adapted to the vertebrate
+genomes in the Compara database . Additional validation of the overall
+approach taken by Compara comes in the form of Treefam and Optic
+\citep{Ruan2008}, databases of animal and fungal gene trees which
+applied a similar set of tools to infer gene trees from a more diverse
+set of genomes, producing qualitatively similar results
+\citep{Vilella2009}.
 
-\textcolor{red}{[Something about Ensembl being directed at inferreing
-    gene tree topologies, and not being vetted for use in estimates of
-    selective constraint]}
-
-\textcolor{red}{[Introduce the structure of the next few subsections:
-    ways of massaging / filtering the Ensembl data to fit with the
-    needs of the current project]}
 
 \section{Identifying orthologous subtrees within large mammalian gene families}
 
