@@ -1,5 +1,5 @@
 %************************************************
-\chapter{Curating a set of genome-wide orthologous mammalian gene alignments}
+\chapter{Curating a set of genome-wide orthologous gene trees in mammals}
 \label{ch_orthologs}
 %************************************************
 
@@ -320,6 +320,7 @@ set of genomes, producing qualitatively similar results
 \citep{Vilella2009}.
 
 \section{Quantifying paralogous relationships within Ensembl gene trees}
+\label{section_quantifying_paralogous}
 
 The first task in preparing the \cmp data for subsequent sitewise
 analysis was to identify and extract a set of gene trees or gene
@@ -459,18 +460,17 @@ trees (represented by the green node in Figure \ref{nbeal2}), the
 connection between these eight genes would have been even more
 immediately apparent.
 
-For the purposes of my current project, however, it was important to
-isolate individual \mammln gene trees for further processing and
-sitewise analysis. To this end, I designed a simple scheme for
-splitting gene trees into non-overlapping subtrees based on flexible
-\ac{tc} criteria; the remainder of this chapter presentes
-design and results of this process when applied to the \cmp gene
-trees.
+For the purposes of this project, however, it was important to isolate
+individual \mammln gene trees for further processing and sitewise
+analysis. To this end, I designed a simple scheme for splitting gene
+trees into non-overlapping subtrees based on flexible \ac{tc}
+criteria; the remainder of this chapter presentes design and results
+of this process when applied to the \cmp gene trees.
 
-\section{Using taxonomic coverage to extract largely orthologous \subtr{}s}
+\section{Using taxonomic coverage to extract largely orthologous \mammln \subtr{}s}
 
 Based on the observation that the clustering step of the \cmp pipeline
-did not use any taxonomic information, I hypothesized that a
+did not make use of any taxonomic information, I hypothesized that a
 relatively simple set of rules based on \ac{tc} would be sufficient to
 identify most \mammln \acp{lot}. Two well-established observations in
 \mammln genomes supported the decision to use \ac{tc} in this
@@ -503,85 +503,94 @@ duplication or loss event (if such events occurred randomly throughout
 the \mammln tree) would result in a significant disruption to the
 \ac{tc} of the gene tree.
 
-The \ac{tc}-based tree splitting scheme was performed as
-follows. For every internal node $N$ of each Compara gene tree, the
-\ac{tc} was calculated for several vertebrate clades. The \ac{tc} for
-node $N$ and clade $C$ is given by $TC(N,C) = species(N) / species(C)
-$, where $species(N)$ is the number of unique species represented by
-the sequences beneath node $N$ and $species(C)$ is the number of
-species within the vertebrate clade $C$. The tree is traversed from
-root to tip, and if a given set of \ac{tc} constraints (referred to as
-the subtree constraints) are satisfied by both \subtr{}s below node
-$i$, then the tree is split into two \subtr{}s at node $i$ (with the
-new trees having root nodes placed at the two child nodes, $i_a$ and
-$i_b$). The traversal continues recursively until every node is
-tested. If only the original root node satisfies the subtree
-constraints, then the entire Compara tree is included in the resulting
-tree set; if the entire Compara tree fails to satisfy the subtree
-constraints, it is excluded altogether.
+The \ac{tc}-based tree splitting process worked as follows. For every
+internal node $N$ of each \cmp gene tree, the \ac{tc} was calculated
+for several vertebrate clades. The \ac{tc} for node $N$ and clade $C$
+was calculated as $TC(N,C) = species(N) / species(C) $, where
+$species(N)$ is the number of unique species represented by the
+sequences beneath node $N$ and $species(C)$ is the number of species
+within the vertebrate clade $C$. The tree was then traversed from root
+to tip, and if a given set of \acp{tcc} were satisfied by both
+\subtr{}s below node $i$, then the tree was split into two \subtr{}s
+at node $i$, with the new trees having root nodes placed at the two
+child nodes, $i_a$ and $i_b$. The traversal continued recursively
+until every node was tested against the \acp{tcc}. The smallest
+\subtr{}s which satisfied the \acp{tcc} were included in the resulting
+\subtr{} set. If only the entire gene tree satisfied the \acp{tcc}
+then the entire tree was included; if the entire gene tree failed to
+satisfy the \acp{tcc}, it was excluded altogether from the resulting
+\subtr{} set.
 
-I chose a variety of subtree constraints based on the structure of the
-vertebrate phylogeny, all of which were run against the 18,613 gene
-trees within the Compara database to generate several genome-wide sets
-of subtrees. Table \ref{subtree_constraints} shows the details of the
-various subtree constraints I used; the clade names (e.g.,
-$TC(Primates)$) are used to refer to sets of species contained within
-the Ensembl database, as defined by the NCBI taxonomy. The NCBI
-taxonomy of species contained in Ensembl is shown in Figure
-\ref{ncbi_tree}.
+I chose a variety of \acp{tcc} to apply to the set of \cmp trees, all
+of which were run against the 18,607 gene trees within the Compara
+database to generate several genome-wide \subtr sets. Table
+\ref{subtree_constraints} shows the details of the various \acp{tcc}
+used. The clade names (e.g., $TC(Primates)$) refer to the set of
+species in the \ens database that are contained within the given
+\subtr of the NCBI taxonomy; the NCBI classification of species
+contained within \ens is shown in Figure \ref{ncbi_tree}, including
+labels on internal nodes corresponding to the clade names given in
+Table \ref{subtree_constraints}.
 
-For the Ingroup and Outgroup categories of subtree constraints, a \ac{tc}
-value of greater than 0.6 was required for a single taxonomic
-clade. If the required \ac{tc} value for a clade were set to 1, then all
-subtrees containing deletions in any species within the clade of
-interest would be rejected. On the other hand, requiring a \ac{tc} value of
-less than 0.5 would allow for a truly singly-orthologous tree to be
-split into two \subtr{}s, with one tree having a \ac{tc} below 0.5, and the
-other tree (containing the other half of the species) also having a \ac{tc}
-below 0.5. Thus, 0.6 seemed to be a reasonable \ac{tc} requirement for
-isolating \subtr{}s with reasonable taxonomic coverage while allowing
-for some amount of gene deletion.
+For the Ingroup and Outgroup categories of \acp{tcc}, a \ac{tc} value
+of greater than 0.6 was required for a single taxonomic clade. This
+value was not arbitrarily chosen; rather, it was important to use a
+\ac{tc} value slightly above 0.5 to achieve the desired result of
+identifying orthologous \subtr{}s. A value much higher would be too
+restrictive: if, for example, the required \ac{tc} value were set to
+1, then all subtrees containing a deletion in any species within the
+clade of interest would not satisfy the \ac{tcc}. On the other hand, a
+required \ac{tc} value of less than 0.5 would allow a single \ac{lot}
+to be split into two \subtr{}s, with one \subtr having \ac{tc}$<0.5$,
+and the other \subtr, containing the other half of the species within
+the clade of interest, also having \ac{tc}$<0.5$. Thus, 0.6 was deemed
+a sufficient \ac{tc} requirement for isolating \subtr{}s with
+reasonably high \ac{tc} while allowing for some amount of gene
+deletion.
 
-Two additional types of constraints were designed for use in the
+Two additional types of \acp{tcc} were designed for use in the
 MammalSubgroups and MammalSubgroupsPlusOutgoup methods. Inspired by
-the alignment filtering method from Pollard et al. \citeyearpar{Pollard2010},
-which required sequence data from all three major mammalian clades
-(Primates, Glires, and Laurasiatheria) to be present for a column to
-pass through the filter, the $TC_{all}$ constraint requires that the
-\ac{tc} for all of the included clades is above a given threshold. To
-complement the $TC_{all}$ constraint, the $TC_{any}$ constraint
-requires that the \ac{tc} for any of the included clades is above a given
-threshold. These more complicated methods were included in the
-analysis in case the simpler \ac{tc} constraints within the Ingroup and
-Outgroup categories did not perform satisfactorily.
+the alignment filtering method from Pollard et
+al. \citeyearpar{Pollard2010}, which required at least one sequence to
+be present from each of the three major mammalian superorders
+(Primates, Glires, and Laurasiatheria) for a column to pass through
+the filter, the $TC_{all}$ \ac{tcc} required that the \ac{tc} for all
+of the included clades was above a given minimum value. To complement
+the $TC_{all}$ constraint, the $TC_{any}$ constraint was designed to
+require that the \ac{tc} for any of the included clades was above a
+given value. These more complicated \acp{tcc} were included in the
+analysis in order to determine whether combinations of more
+specialized constraints would perform as well or better than the
+simplest approach at isolating \acp{lot} from the \cmp gene trees.
 
-The methods within the Orthologs category of subtree constraints were
-implemented separately from the rest. Instead of splitting Compara
-trees based on taxonomic criteria, the subtrees in the Orthologs
-category were defined from the sets of genes annotated by Ensembl as
-orthologs to each gene from a given source species. Thus, for each
-gene from the source species, the Compara \subtr{} containing all of
-the Ensembl-annoated orthologs was extracted and stored; this was
-guaranteed to yield exactly one \subtr{} for every gene in the source
-species. I chose to include human, mouse, zebrafish, and drosophila
-were chosen as source species for testing. This approach differs from
-the tree-splitting strategy in two ways: first, it makes use of the
-orthology annotations resulting from Ensembl's orthology pipeline, and
-second, it does not guarantee that each \subtr{} contains a completely
-unique set of genes. For example, a gene which was recently duplicated
-in humans would yield two \subtr{}s, one for each human paralog, with
-identical sets of non-human genes in each tree. Although the
-orthology-based method might be useful when an evolutionary study is
-focused on a specific target or reference species, as is often done
-with human and mouse due to their finished genome sequence and
-high-quality annotation, I considered it to be less applicable to the
-current study due to the potential for introducing reference
-genome-specific biases, such as over-representation of genes with gene
-family expansions in the reference species or non-representation of
-genes which have been deleted in the reference species. Still, I
-expected that the sets of \subtr{}s resulting from the Ensembl
-ortholog annotations would serve as a useful reference with which to
-compare the other \ac{tc}-based methods.
+The methods within the Orthologs category of \subtr{} sets were
+implemented separately from the rest. Instead of splitting \cmp trees
+based on \acp{tcc}, \subtr{}s in the Orthologs category were defined
+from the set of genes annotated by \ens as orthologs to each gene from
+a given source species. Thus, for each gene from the source species,
+the \cmp \subtr containing all \ens{}-annoated orthologs was extracted
+and stored; this was guaranteed to yield exactly one \subtr{} for
+every gene in the source species. Human, mouse, zebrafish, and
+drosophila were chosen as source species for testing. This approach
+differed from the tree-splitting strategy in two ways: first, it made
+use of the orthology annotations resulting from \ens{}'s orthology
+pipeline, which uses the \cmp gene trees as its source. Second, this
+approach did not guarantee that each \subtr{} would contain a
+completely unique set of genes. For example, a gene which was recently
+duplicated in the human terminal lineage would yield two \subtr{}s,
+one for each human paralog, with identical sets of non-human genes in
+each tree. Although the orthology-based method might be useful when an
+evolutionary study is focused on a specific target or reference
+species, as is often done with human and mouse due to their finished
+genome sequence and high-quality annotation, I considered it to be
+less applicable to the current study due to the potential for
+introducing reference genome-specific biases such as
+over-representation of genes with gene family expansions in the
+reference species or non-representation of genes which have been
+deleted in the reference species. Still, I expected that the sets of
+\subtr{}s resulting from the \ens ortholog annotations would serve as
+a useful reference against which to compare the methods based purely
+on \acp{tcc}.
 
 \begin{figure}
 \centering
@@ -627,23 +636,20 @@ Root Nodes & Ensembl Roots &  \\
 \label{subtree_constraints}
 \end{table}
 
-\section{Analysis of genome-wide sets of orthologous mammalian trees}
+The \subtr{} splitting scheme was applied to the 18,607 gene trees
+from the \cmp database, producing a set of \subtr{}s for each of the
+\acp{tcc} shown in Table \ref{subtree_constraints}. In the next two
+sections I will describe the resulting sets of trees and \subtr{}s and
+discuss what they reveal about the evolutionary history of vertebrates
+and the feasibility of using \acp{tcc} to isolate \mammln \acp{lot} for
+sitewise analysis.
 
-The \subtr splitting schemes described in the previous subsection were
-applied to the 18,607 root gene trees from the Ensembl database. In
-this and the next section I will describe the resulting sets of trees
-and \subtr{}s, discuss what they reveal about the evolutionary history
-of vertebrates and the feasibility of using taxonomic coverage to
-isolate orthologous trees for sitewise analysis, and finally, explain
-my reasoning for deciding to use the subtrees based on the \euth
-taxonomic coverage for the subsequent sitewise analysis.
-
-\subsection{The set of root Compara gene trees}
+\section{Analysis of the set of root Compara gene trees}
 \label{section_root_compara_trees}
 
 Table \ref{ensembl_root_table} presents a summary of the set of root
-Compara gene trees and the subsets of trees with more or fewer than 15
-sequences.
+Compara gene trees and the subsets of trees with greater or fewer than
+15 sequences.
 
 \begin{table} \footnotesize
 \centering
@@ -664,39 +670,43 @@ Set & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Species \\
 \label{ensembl_root_table}
 \end{table}
 
-It is somewhat surprising that nearly half of all Compara gene trees
-contain few sequences: 9,378 out of 18,607 root trees constitute fewer
-than 15 sequences. Given the protein-based clustering performed by the
-Compara pipeline, one might expect many of these small trees to
-represent portions of larger fast-evolving gene trees whose high
-sequence divergences made the BLAST search step inaccurate or caused
-clustering via the \hclust algorithm to be ineffective. Alternatively,
-these small clusters might have resulted from exceptional
-lineage-specific gene duplications or pseudogenes mis-annotated as
-genes, creating tight clusters of very closely-related transcripts
-that were identified by \hclust as independent gene trees. Some
-evidence for the latter scenario comes from the median species counts
-and mean path lengths of the smaller versus larger trees. The subset
-of small root trees has a median species count of 2 compared to 47 for
-the large subset, indicating that the smaller trees encompass
-sequences from a very small taxonomic range. Furthermore, the median
-MPL for small trees is 0.04 compared to 1.04 for the large subset,
-revealing a much smaller level of sequence divergence within each
-tree. Together, these summary statistics indicate that the smallest
-trees in the Compara database consist of highly species-specific,
-closely-related proteins that are likely artifactual gene
-annotations.
+A first observation was that, somewhat surprisingly, nearly half of
+all \cmp gene trees contained few sequences: 9,378 out of 18,607 root
+trees constituted fewer than 15 sequences. Given the protein-based
+clustering performed by the Compara pipeline, one might expect many of
+these small trees to represent portions of larger fast-evolving gene
+trees whose high sequence divergences made the BLAST search step
+inaccurate or caused clustering via the \hclust algorithm to be
+ineffective. Alternatively, these small gene trees might have resulted
+from extensive lineage-specific gene duplications or from pseudogenes
+being mis-annotated as genes, in either case causing tight clusters of
+very closely-related transcripts that would have been identified by
+\hclust as independent clusters of homologs. Some evidence for the
+latter scenario could be found in the median species counts and mean
+path lengths of the smaller (fewer than 15 sequences) versus larger
+(greater than 15 sequences) trees, shown in the second and third rows
+of Table \ref{ensembl_root_table}. The set of small root trees had a
+median species count of 2, compared to 47 for the large trees,
+indicating that the smaller trees encompassed sequences from a very
+small taxonomic range. Furthermore, the median \ac{mpl} for small
+trees was 0.04 compared to 1.04 for the large subset, revealing a much
+smaller level of sequence divergence within each tree. These two
+summary statistics together provided evidence that the smallest gene
+trees in the \cmp database consist of highly species-specific,
+closely-related proteins; it was likely that many of these small trees
+represented artifactual gene annotations and would be most
+appropriately removed prior to any downstream analysis.
 
-Despite the existence of many small trees in the Compara database,
-they comprise only a small fraction of all protein-coding
-sequences. Only 4\% of the human gene set---which we expect to be
-well-annotated and to contain few false positive genes due to the high
-level of manual curation and the large amount of continued
-scrutiny---is contained within the subset of small trees. This
-indicates that whatever process is causing the Compara pipeline to
-yield such a high number of small gene trees has not had too much of
-an impact on the placement of the most confident set of protein-coding
-genes within the database of root gene trees.
+Despite the existence of many small gene trees in the \cmp database,
+they comprised only a small fraction of all protein-coding
+sequences. Only 809 human genes, or 4\% of the total human gene
+set---a gene set which I expected be well-annotated and to contain few
+false positive genes due to the high level of manual curation and the
+large amount of continued scrutiny---was contained within the subset
+of small trees. This indicated that whatever process was causing the
+\cmp pipeline to yield a high number of small gene trees did not have
+much of an impact on the overall placement of human protein-coding
+genes within the database of root \cmp gene trees.
 
 \begin{figure}
 \centering
@@ -711,147 +721,163 @@ genes within the database of root gene trees.
 \label{ensembl_roots_hist}
 \end{figure}
 
-A closer examination of the distribution of tree sizes in the set of
-root Compara trees presents a clear view of the over-clustering of
-mammalian orthologous trees. The black bars in Figure
-\ref{ensembl_roots_hist} show the distribution of sequence counts for
-all trees with more than 15 sequences, with vertical dashed lines
-overlaid at multiples of 48 (the number of vertebrate species in
-Ensembl release 63). The highest peak
-of the histogram is at or slightly above 48 sequences, with the tree
+As mentioned in Section \ref{section_quantifying_paralogous}, a closer
+examination of the distribution of tree sizes in the set of root \cmp
+trees presented a clear view of the over-clustering of \mammln
+\acp{lot}. The black bars in Figure \ref{ensembl_roots_hist} show the
+distribution of sequence counts for all trees with more than 15
+sequences, with vertical dashed lines overlaid at multiples of 48, the
+number of vertebrate species in \ens release 63. The highest peak of
+the histogram is at or slightly above 48 sequences, with the tree
 counts quickly diminishing at larger sizes. Weaker, but still
-discernable, peaks appear at larger tree sizes, with the location of
-these echo-like peaks corresponding closely to the second, third and
-fourth multiples of 48. The pattern of recurring peaks becomes
+discernable, peaks exist at larger tree sizes, with the location of
+these wave-shaped peaks corresponding closely to the second, third and
+fourth multiples of 48. The pattern of recurring peaks is
 indistinguishable at sizes above 200, but there is still a long tail
 of large trees extending out to a maximum size of 400
-sequences. Overall, the distribution of tree sizes provides good
-support for the situation described above, with the Compara pipeline
-often clustering together two or more largely-orthologous gene trees
-sharing ancient homology.
+sequences. Overall, the distribution of tree sizes provided good
+support for the situation described in Section
+\ref{section_quantifying_paralogous}, with the \cmp pipeline often
+clustering together two or more \mammln \acp{lot} related by a more
+distant duplication event.
 
-It is also interesting to characterize the set of Ensembl trees by the
-proportion of all sequences which are covered by trees of a given size
-or smaller. This value is plotted in Figure \ref{ensembl_roots_hist}
-as a gray line. First, one can see that trees with fewer than 15
-sequences (which were excluded from the plot but inlcuded in the
-calculation of the cumulative fraction of sequences) represent a
-trifling fraction of the sequences within Compara; this is similar,
-but not identical, to the above-mentioned calculation that 4\% of
-human genes are contained within these smaller trees. Second, the
-steady slope of the cumulative curve contrasts with the declining
-height of the histogram. This results from the increasing number of
-sequences encompassed by each of the larger trees: although there are
-relatively few trees with more than 300 sequences, together they
-contain around 10\% of all protein-coding genes in Ensembl. Two points
-along this cumulative plot are of particular interest. First, one can
-identify the fraction of vertebrate proteins which exist as
-identifiable paralogs. Looking at the value along the x-axis where the
-largest bump in the histogram ends, at around 75 sequences, one can
-see that in total around 30\% of proteins are covered by trees of 75
-sequences or fewer. Since the pattern of bumps in the histogram
-correlate well with the number of Ensembl vertebrate species, it would
-be reasonable to state that 70\% of vertebrate proteins are contained
-within large gene trees containing sequence-based evidence of ancient
-paralogy. Second, a look-up in the reverse direction can identify the
-tree size at which 50\% of sequences are clustered. This value
+I found it interesting to characterize the set of root \cmp gene trees
+by the proportion of all protein sequences which are covered by trees
+of a given size or smaller. This value is plotted in Figure
+\ref{ensembl_roots_hist} as a gray line. First, this plot showed that
+trees with fewer than 15 sequences (which were excluded from the plot
+but inlcuded in the calculation of the cumulative distribution shown)
+represented a trifling fraction of the sequences within the \cmp
+database; this observation was similar, but not identical, to the
+statistic noted above, that only 4\% of human genes were contained
+within small trees. Second, the steady upward slope of the cumulative
+curve contrasted with the declining height of the histogram bars at
+higher sequence counts. This was a result of the increasing number of
+sequences encompassed by each of the larger trees: although relatively
+few trees contained more than 300 sequences, together they comprised
+around 10\% of all protein-coding genes in \cmp. Two points along this
+cumulative plot were of particular interest. First, one could use the
+height of the cumulative line at the beginning of the second hump in
+the histogram (at around 75 sequences) to identify the fraction of
+vertebrate proteins which exist in the \cmp database as members of a
+duplicated \mammln \ac{lot}. The line showed that around 30\% of
+proteins are covered by trees of 75 sequences or fewer, meaning that
+70\% of vertebrate proteins are contained within large gene trees
+containing sequence-based evidence of ancient paralogy. Second, using
+the cumulative line in the reverse direction could identify the tree
+size above which 50\% of all sequences were clustered. This value
 represents the size of tree that an ``average'' protein might be
 clustered in, and in some ways is a more accurate characterization of
-the set of gene trees than the median tree size. A similar calculation
-is often performed to characterize the size distribution of contigs
-(contiguous sequence blocks) within a genome assembly. This statistic,
+a set of gene trees than the median tree size. A similar calculation
+is often performed to characterize the size distribution of contiguous
+sequence blocks (contigs) within a genome assembly. This statistic,
 referred to as the N50 length, is the contig length for which 50\% of
 bases are contained in contigs of that size or larger
-\citep{Miller2010}. For the Ensembl root trees, the N50 tree size is 139,
-slightly less than three times the number of vertebrate species. The
-N50 tree size is shown for the root trees in Table
-\ref{ensembl_roots_hist} and in the table for taxonomically-defined
-tree sets below.
+\citep{Miller2010}. For the \cmp gene trees, the N50 tree size was
+139, slightly less than three times the number of vertebrate species
+(Table \ref{ensembl_roots_hist}). Thus, the average protein in the set
+of \cmp gene trees belonged to a tree with 139 sequences,
+corresponding roughly to three \mammln \acp{lot} related by ancient
+duplication events, likely resulting from the two rounds of vertebrate
+genome duplication.
 
-Another way to characterize the distribution of gene trees is across
-the taxonomic space. A question of particular interest to the
-identification and analysis of mammalian orthologs is whether levels
-of gene presence and absence are consistent across different species
-and different levels of assembly quality. To investigate this question
-in the context of the root Ensembl trees, data were collected by
-counting the number of sequences from each species contained within
-each gene tree. Results were tabulated for each species and are
-presented in Figure \ref{ortholog_root_dups}, showing the number of
-trees containing 0, 1, 2, or more than 3 genes from each of the 53
-species in Ensembl. Comparing the range of values in the panels for
-each copy count (labeled 0, 1, 2 and 3+), one finds that most trees
-(8,000-11,000 within vertebrates) contain zero copies from a given
-species, fewer trees contain one copy (4,000-6,000) and several
-thousand contain two, three or more copies (ca. 1,000-1,500 for 2
-copies and 1,500-2,000 for 3+). The plethora of trees with zero copies
-from a given species is again a result of the existance of many small,
-species-specific trees within the root Ensembl set. Similarly, the
-high number of trees with many copies from each species reflects the
-clustering of multiple orthologous sub-trees together.
+Another way to characterize the distribution of \cmp gene trees was
+across the taxonomic space. Given the wide range of quality in genome
+assemblies and annotation sets contained within \ens, a question of
+particular interest was whether levels of gene presence and absence
+were consistent across different species groups and different levels
+of assembly quality. To investigate this question in the context of
+the root \cmp gene trees, data were collected by counting the number
+of sequences from each species contained within each gene
+tree. Results of this analysis are presented in Figure
+\ref{ortholog_root_dups}, showing the number of trees containing 0, 1,
+2, or more than 3 genes from each of the 53 species within
+\ens. Comparing the ranges of values for each copy count (labeled 0,
+1, 2 and 3+), I found that the largest number of trees contained zero
+copies from any one species (between 8,000--11,000 within vertebrate
+species), a smaller but large number of trees contained one copy from
+a species (between 4,000-6,000) and several thousand trees contained
+two, three or more copies (between 1,000-1,500 for 2 copies and
+1,500-2,000 for 3+). Note that these numbers were tabulated
+independently between species; for example, the 10,000 \zcop trees in
+human were counted independently of the 10,000 \zcop trees in
+chimpanzee, so nothing could be said about how many trees contained
+zero copies in both human \emph{and} chimpanzee. As noted in the
+analysis of tree sizes, the large number of \zcop trees reflected the
+large number of small, species-specific trees within the set of \cmp
+gene trees. Similarly, the large number of trees with many copies from
+each species reflected the trees with multiple \mammln \acp{lot}
+clustered together.
 
-A comparison of values across the range of species in Figure
-\ref{ortholog_root_dups} reveals that the zero-copy count tends to
-increase along with evolutionary distance from human, while the 1, 2
-and 3+ copy counts tend to decrease as the distance from human
-increases. Both trends are most striking at the distant end of the
-tree where the five non-vertebrate species begin. For the increase in
-zero-copy trees and the decrease in single-copy trees, the strength of
-the trend at the highest level of divergence can be partly explained
-by the very long branch lengths connecting those species to each other
-and to the more well-represented vertebrate clade: the distance-based
-clustering algorithm might reasonably be expected to produce more
-false negatives in longer branches for a number of reasons including
-the behavior of the \hclust algorithm, inaccurate BLAST E-values at
-larger distances, and heterogeneity in evolutionary rates across
-lineages \citep{Whelan2008}. However, the dearth of 2 and 3+ copy counts in
-non-vertebrates is most likely a signal resulting from the 2R event at
-the basal vertebrate lineage, with the non-vertebrate species strongly
-depleted of multi-copy duplicates compared to their vertebrate
-relatives.
+Comparing numbers horizontally across the range of species in Figure
+\ref{ortholog_root_dups} revealed that the zero-copy count tended to
+increase with increased evolutionary distance from human, while the 1,
+2 and 3+ copy counts tended to decrease as the distance from human
+increased. Both trends were most striking at the distant end of the
+tree, where the five non-vertebrate species are shown. For the
+increase in \zcop trees and the decrease in single-copy trees, the
+strength of the trend at the highest level of divergence can be partly
+explained by the long branch lengths connecting those species to each
+other and to the more densely sampled vertebrate clade: the
+distance-based clustering algorithm might reasonably be expected to
+produce more false negatives in longer branches for a number of
+reasons, including the behavior of the \hclust algorithm, inaccurate
+BLAST E-values at large distances, and heterogeneity in evolutionary
+rates across lineages \citep{Whelan2008}. However, the reduced numbers
+of 2 and 3+ copy count trees in non-vertebrate species were most
+likely due to the whole-genome duplications at the basal vertebrate
+lineage, resulting in the non-vertebrate species, which underwent no
+such genome duplications, being strongly depleted of multi-copy
+duplicates compared to their vertebrate relatives.
 
-It is slightly concerning that human and its close primate relatives
-contain fewer zero-copy genes and more one-copy and two-copy genes
-than any other group of vertebrates in the set of Ensembl trees. There
-is no \emph{ab initio} biological reason to expect this to be the
-case, and I suspect that the existence of such a pattern, which is
-fairly small in effect, is due to the widespread reliance on human
-annotation and protein experimental data in the annotation of
-non-human genomes. There is one region where this trend does not
-appear to be the case: in the 3+ copy count for the fish species,
-which is instead a result of gene duplicates retained after the third
-round of genome duplication which occurred in the teleost ancestor
-\citep{Jaillon2004}. The signal resulting from the teleost genome duplication
-event is clearer in the sets of taxonomically-defined \subtr{}s, so I
-will defer its discussion to the next subsection where those sets of trees are described.
+Knowing that many of the \lcv genomes were annotated using projections
+based on the human set of transcripts, it was slightly concerning that
+human and its close primate relatives contained fewer zero-copy genes
+and more one-copy and two-copy genes than any other group of
+vertebrates in the \cmp set of trees. There was no \emph{ab initio}
+biological reason to expect this to be the case, so I suspect that
+this pattern, which was fairly small in effect, was due to the
+widespread reliance on human annotation and protein experimental data
+in the annotation of non-human genomes. There was, however, one region
+of Figure \ref{ortholog_root_dups} where human and primates did not
+contain the largest number of one-copy or 2-copy trees: the 3+ copy
+count for the fish species was greater than that for human or any
+primates, which was most likely a result of gene duplicates retained
+after the third round of genome duplication in the teleost ancestor
+\citep{Jaillon2004}. The signal resulting from the teleost genome
+duplication event was clearer in the Fish set of \ac{tc}-defined
+\subtr{}s, so I will defer further discussion of this effect to
+Section \ref{section_analysis_sets_subtrees} where that set of trees
+is described.
 
 Finally, the differences in copy counts between species with low- and
-high-coverage genome sequences show the tendency of low-coverage
-genome sequences to yield false negatives in the gene annotation, as
-low-coverage species contain more zero-copy, roughly the same number
-of one-copy, and noticeably fewer multi-copy genes than high-coverage
-species. These clear effects of low sequencing coverage show that gene
-absence in low-coverage genomes should not be taken as evidence for
-actual gene loss and that gene duplications are systematically
-underrepresented in low-coverage genomes. The former point was
-emphasized in a recent critical analysis of the effect of low-coverage
-genomes on gene duplication inference \citep{Milinkovitch2010}, but
-the latter point was largely ignored. Again, this signal is also
-stronger in the more stringent set of \mammln orthologous \subtr{}s and
-will be revisited in the next subsection.
+high-coverage genome sequences showed the tendency of \lcv genome
+sequences to be absent from gene trees or to show reduced copy
+counts. Low-coverage species contain more \zcop, roughly the same
+number of one-copy, and noticeably fewer multi-copy genes than
+closely-related high-coverage species. These clear differences showed
+that gene absence in \lcv genomes should not be taken as evidence for
+actual gene loss, and that gene duplications are systematically
+underrepresented in \lcv genomes. The former point was emphasized in a
+recent critical analysis of the impact of \lcv genomes on gene
+duplication inference in the \cmp database \citep{Milinkovitch2010},
+but the latter point was largely ignored. Again, this signal was also
+stronger in the sets of \ac{tc}-defined \mammln \subtr{}s and will be
+revisited in the next section.
 
-The preceding analysis of the set of root Ensembl trees, in which I
-characterised the distribution of trees with respect to size
-(i.e. sequence count) and across the taxonomic space, showed that
-despite the over-representation of small, species-specific trees, most
-sequences are contained in trees with biologically plausible sizes
-given the history of vertebrate genome duplications. The tree-based
+The preceding analysis of the set of root \cmp gene trees, in which I
+characterized the distribution of trees with respect to size and
+across the taxonomic space, showed that despite the
+over-representation of small, species-specific trees, most sequences
+were contained in trees with biologically plausible sizes given the
+history of vertebrate whole-genome duplications. A gene tree-based
 equivalent of the N50 statistic was developed for summarizing the
-distribution of differently-sized trees, and two main views of this
-distribution were introduced (in Figures \ref{ortholog_root_dups} and
-\ref{ensembl_roots_hist}), providing evidence for the clustering of
-paralogous mammalian sub-trees and for species-based and genome
-coverage-based trends in the breakdown of gene copy counts within
-these trees.
+distribution of protein sequences within differently-sized gene trees,
+and two visual summaries of this distribution were introduced (in
+Figures \ref{ortholog_root_dups} and \ref{ensembl_roots_hist}),
+providing evidence for the clustering of paralogous mammalian
+sub-trees and for species-based and genome quality-based trends in the
+breakdown of gene copy counts within the root \cmp gene trees.
 
 \begin{landscape}
 \begin{figure}
@@ -866,135 +892,150 @@ these trees.
 \end{figure}
 \end{landscape}
 
-\subsection{Sets of \subtr{}s defined by taxonomic coverage and orthology annotation}
+\section{Analysis of sets of \subtr{}s defined by taxonomic coverage and orthology annotation}
+\label{section_analysis_sets_subtrees}
 
-The sets of trees resulting from applying the various \subtr
-extraction methods to the root Ensembl gene trees are summarised in
-Table \ref{ensembl_subtree_table}, with the original Ensembl trees
-included at the bottom for comparison.
+The sets of trees resulting from applying the \subtr splitting scheme
+with various \acp{tcc} to the \cmp gene trees are summarised in Table
+\ref{ensembl_subtree_table}, with a summary of the root \cmp gene
+trees and a summary of the set of seven-species amniote gene trees
+from the Optic database \citep{Heger2008} included at the bottom for
+comparison.
 
-The Ensembl Roots and Drosophila Orthologs sets are two clear
-outliers, with much higher N50 values than any other set (139 and 125
+The Ensembl Roots and Drosophila Orthologs sets were two clear
+outliers among the \subtr sets shown in Table
+\ref{ensembl_subtree_table}, with much higher N50 values (139 and 125
 vs. the next highest value of 56) and more trees with multiple human
-copies (0.20 and 0.43 vs. the next highest value of 0.14). In fact,
-the major differences between these sets are all attributable to the
-excess of small species-limited trees in the Ensembl Roots group: the
-Drosophila Orthologs set contains fewer trees than the Ensembl Roots
-(9,210 vs. 18,607) and a larger average tree size (60 vs. 15), closely
-resembling the set of Ensembl Roots with small trees removed as
-summarised in the third row of Table \ref{ensembl_root_table}.
+copies (0.20 and 0.43 vs. the next highest value of 0.14) than any
+other \subtr set. In fact, these two \subtr sets were very similar
+except for the excess of small species-limited trees in the Ensembl
+Roots set: the Drosophila Orthologs set contained fewer trees than the
+Ensembl Roots (9,210 vs. 18,607) and a larger average tree size (60
+vs. 15), and the summary values closely resembled the set of Ensembl
+Roots with small trees removed (Table \ref{ensembl_root_table}).
 
-Within the Ingroup category of methods, the methods based on
-mammalian \ac{tc} values (Primates, Glires and Laurasiatheria) produced
-largely similar sets of trees, with the Primate set containing around
-2,000 more trees and covering around 1,000 more human genes than the
-other two sets. A reason for the higher number and human coverage of
-Primate trees is not immediately apparent, although it may
-speculatively be due to an excess of primate-specific gene trees that
-are not captured by non-primate \ac{tc}-based criteria. Further
-investigation of the trees unique to this set might reveal the root
-cause of this slight discrepancy.
+Within the Ingroups category, methods based on mammalian \acp{tcc}
+(Primates, Glires and Laurasiatheria) produced largely similar sets of
+trees, with the Primates set containing around 2,000 more trees and
+covering around 1,000 more human genes than the Glires and
+Laurasiatheria sets. There was no readily apparent reason for the
+higher number and human gene coverage of Primate trees, although it
+may speculatively be due to an excess of primate-specific gene trees
+that were not captured by non-primate \acp{tcc}. Further investigation
+of the trees unique to this set would be required to reveal the root
+cause of this minor discrepancy.
 
-The Sauria and Fish tree sets stood in strong contrast to the
-mammal-based methods from the Ingroup category. The Sauria clade is
-represented by only four Ensembl species and diverged from the
-mammalian ancestor at an early point in the evolution of amniotes. The
-moderately lower number of trees (13,046 vs. 15,764 for
+The Sauria set of \subtr{}s was noticeably different from the
+mammal-based \acp{tcc} sets from the Ingroups category. The Sauria
+clade was represented by only four species in Ensembl and diverged
+from the \mammln ancestral population at an early point in the
+evolution of amniotes; it is plausible that the lower clade size and
+long branch length separating Sauria from the other vertebrate clades
+caused the moderately lower number of trees (13,046 vs. 15,764 for
 Laurasiatheria) and the increased proportion of trees containing
-multiple human genes (0.14 vs. 0.09 for Laurasiatheria) are presumably
-consequences of the lower clade size, which could affect the \ac{tc}
-calculation, and the long branch separating Sauria from the other
-vertebrate clades. The fish-based subtree constraint produced a
-strikingly different set of trees resulting from the impact of the
-teleost-specific whole genome duplication on the structure of fish
-gene trees. Although the Fish tree set contains a N50 value of 49
-which is no different from the N50 of the other Ingroup sets, Table
-\ref{ensembl_subtree_table} highlights three major differences in the
-Fish set: it contains many more trees, a higher proportion of trees
-with zero human copies, and a lower total human gene count than the
-other Ingroup sets.
+multiple human genes (0.14 vs. 0.09 for Laurasiatheria).
 
-The reason for the drastically different Fish tree set is that the
-tree splitting procedure identifies largest non-overlapping \subtr{}s
-that satisfy the given \ac{tc} criteria. Genes that were duplicated in the
-teleost lineage and retained in duplicate form (as opposed to one or
-both copies being lost in either of the descendant duplicate
-chromosomes) would result in a gene tree with two teleost-specific
-\subtr{}s, each containing a high \ac{tc} value for the Clupeocephala
-clade. In this case, the splitting procedure would result in two small
-Fish subtrees, ``missing'' the single subtree of mammalain orthologs
-because two non-overlapping trees already exceeded the \ac{tc} threshold of
-0.6. If, however, one of the duplicate gene copies were lost, then the
-tree would resemble a typical singly-orthologous vertebrate gene tree,
-and the splitting procedure would select a \subtr encompassing the
-entire vertebrate clade. It follows that the presence of small,
-teleost-specific gene trees in the Fish set is a signal of retained
-duplicate copies, and the size distribution of trees from the Fish
-set, shown in Figure \ref{ensembl_fish_hist}, shows that several
-thousand trees fit the expected model. If we assume that all trees
-from the Fish subset which contain zero human copies, span 5 or fewer
-species, and contain 40 or fewer sequences are likely retained
-duplicate genes, a total of 6,980 retained duplicates are identified,
-yielding a retention rate of 17.5\%, which is very much in line with a
-previously published estimate of 15\% based on a comparison of
-tetraodon, fugu and zebrafish genes \citep{Brunet2006}.
+The Fish clade \ac{tcc} produced a strikingly different set of trees,
+resulting from the impact of the teleost-specific whole-genome
+duplication on the structure of gene trees in fish. Although the Fish
+\subtr set yielded a N50 value of 49, which was no different from the
+N50 of the other Ingroups sets, Table \ref{ensembl_subtree_table}
+highlights three major differences in the Fish set: it contained many
+more trees, a higher proportion of trees with zero human copies, and a
+lower total human gene count than the other Ingroups sets.
+
+The reason for the drastically different Fish tree set was that the
+tree splitting procedure was designed to identify the largest
+non-overlapping set of \subtr{}s that satisfied the given
+\acp{tcc}. Genes where one or both of the duplicate copies from the
+teleost-specific whole-genome duplication were lost would appear as
+one-to-one orthologs or deletions with respect to the other vertebrate
+lineages. Genes that were retained in duplicate form, however, would
+result in a gene tree with two teleost-specific \subtr{}s, each
+containing a high \ac{tc} value (i.e., near or equal to 1.0) for the
+Clupeocephala clade that contains the fish species within \ens. In
+this case, the splitting procedure would produce two small
+fish-specific \subtr{}s, ``ignoring'' the surrounding set of mammalain
+orthologs because two smaller non-overlapping trees already exceeded
+the \ac{tc} threshold of 0.6. If, however, one of the duplicate gene
+copies were lost, then the tree would resemble a typical
+singly-orthologous vertebrate gene tree, and the splitting procedure
+would select a \subtr encompassing the entire vertebrate clade. It
+follows that the presence of small, teleost-specific gene trees in the
+Fish set is a signal of retained duplicate copies, and the size
+distribution of trees from the Fish set, shown in Figure
+\ref{ensembl_fish_hist}, shows that several thousand trees fit the
+expected model. If we assume that all trees from the Fish subset which
+contain zero human copies, span 5 or fewer species, and contain 40 or
+fewer sequences are likely retained duplicate genes, a total of 6,980
+retained duplicates are identified, yielding a retention rate of
+17.5\%, which is very much in line with a previously published
+estimate of 15\% based on a comparison of tetraodon, fugu and
+zebrafish genes \citep{Brunet2006}.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.9]{Figs/ensembl_fish_hist.pdf}
 \caption{Sequence counts for the set of \subtr{}s identified using the
   Fish clade taxonomic coverage constraint, showing an excess of small
- \subtr{}s resulting from the teleost genome duplication. Black bars show a
-  histogram of sequence counts in bins of width 2, a gray line shows
-  the cumulative fraction of sequences contained within trees of that
-  size or smaller, and dashed blue lines are drawn at integral
+  \subtr{}s resulting from the teleost genome duplication. Black bars
+  show a histogram of sequence counts in bins of width 2, a gray line
+  shows the cumulative fraction of sequences contained within trees of
+  that size or smaller, and dashed blue lines are drawn at integral
   multiples of 48, the number of vertebrate species within
-  Ensembl. The 255 trees with more than 100 sequences are not shown.}
+  Ensembl. Trees with more than 100 sequences are included in the
+  topmost bin.}
 \label{ensembl_fish_hist}
 \end{figure}
 
 The sets of \subtr{}s resulting from the Outgroup methods were of
-special interest, as the clades used to define these \ac{tc} constraints
-contained all or nearly all of the mammalian species whose orthologous
+special interest, as the clades used to define these \acp{tcc}
+contained all or nearly all of the \mammln species whose orthologous
 genes I wished to study. The resulting sets of \subtr{}s showed little
 variation, owing perhaps to the large sizes of the clades and their
-similar composition. Each set contained between 15 to 17 thousand
-trees, N50 values of around 49, and greater than 90\% of trees
-containing exactly one human sequence. These measures provided good
-evidence that the tree-splitting method was effectively isolating
-singly orthologous mammalian trees.  Some slight trends were apparent,
-however, with the tree count decreasing, the proportion of trees with
-human duplications increasing, and the overall human gene coverage
-decreasing as the clade size used for the \ac{tc} calculation
-increased. These trends could understandably be the result of the
-minimum required tree size increasing along with the clade size,
-ranging from 21 for Eutheria to 32 for Fungi/Metazoa.
+similar species composition. Each \subtr set contained between 15 to
+17 thousand trees, N50 values of around 49, and greater than 90\% of
+trees containing exactly one human sequence. These measures provided
+strong evidence that the tree-splitting method was accurately
+isolating \mammln \acp{lot}.  Some slight differences between \subtr
+sets were apparent, however, with the tree count decreasing, the
+proportion of trees with human duplications increasing, and the
+overall human gene coverage decreasing as the clade size used for the
+\ac{tc} calculation increased. These trends could potentially be
+explained by the minimum required tree size increasing along with the
+clade size, as a result of the increased number of species required to
+produce a \ac{tc} value of 0.6. The minimum \subtr size ranged from 21
+for Eutheria to 32 for Fungi/Metazoa.
 
 The Subgroups methods did not appear to produce \subtr{}s of any
-higher quality or more biological interest than the Outgroup
-methods. The MammalsSubgroups set was more numerous than the Outgoups
-sets, but the N50 was slightly lower (46 vs. 49) and the proportion of
-zero-humany trees was higher (0.18 vs. 0.01), suggesting that the
-additional trees were spurious results containing fragmented species
-coverage. The addition of an outgroup requirement to the
-MammalSubgroupsPlusOutgroup method produced a tree set more closely
-resembling the Outgroup methods, but the human gene coverage was
-lower than that for any Outgroup method despite the overall higher
-tree count.
+higher quality or more biological interest than the Outgroups
+methods. The MammalsSubgroups set produced more trees than the
+Outgoups sets, but the N50 was slightly lower (46 vs. 49) and the
+proportion of \zcop human trees was higher (0.18 vs. 0.01), suggesting
+that the additional trees in the MammalsSubgroups set were spurious
+\subtr{}s containing limited species coverage. The addition of an
+outgroup requirement to the MammalSubgroupsPlusOutgroup method
+produced a tree set more closely resembling the Outgroup methods, but
+the human gene coverage was lower than that for any Outgroup method
+despite the overall higher tree count.
 
 Finally, the ortholog annotation-derived \subtr{}s provided for an
-interesting comparison between three different ortholog sources and
-between the overlapping and non-overlapping sets of \subtr{}s. As I
-mentioned at the beginning of this section, the \species{Drosophila}
-ortholog set was highly contrasted with the vertebrate sets due to the
-two rounds of whole genome duplication. There was minimal variation
-among the other ortholog sets, although it is interesting to note that
-Ensembl contained 21,873 mouse protein-coding genes while human
-contained only 19,991. Zebrafish, on the other hand, contained 24,540
-genes, in line with the 17.5\% rate of duplicate gene retension I
-estimated earlier. Overall, 76\% and 81\% of mouse and zebrafish genes
-have an apparent one-to-one ortholog in human, which is slightly lower
-than the 92\% of Eutheria \subtr{}s containing one human sequence.
+interesting comparison between the three different ortholog sources
+and between the overlapping and non-overlapping sets of \subtr{}s. The
+\species{Drosophila} ortholog set was highly contrasted with the
+vertebrate sets due to the two rounds of whole genome duplication,
+while there was minimal variation among the other ortholog sets. It is
+interesting to note that the protein-coding transcripts used by the
+\cmp pipeline included 21,873 mouse protein-coding genes and only
+19,991 human genes, indicating either a larger number of true
+protein-coding genes in mouse or a higher tolerance for false positive
+gene predictions in the mouse genome compared to the human
+genome. Zebrafish, on the other hand, contained 24,540 genes; this
+number agreed well with the 17.5\% proportion of retained duplicate
+genes that I estimated earlier in this section. Overall, 76\% and 81\%
+of mouse and zebrafish genes contained an apparent orthologous
+relationship with one human gene, which was only slightly lower than
+the 92\% of Eutheria \subtr{}s containing one human sequence.
 
 \begin{landscape}
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
@@ -1003,65 +1044,48 @@ than the 92\% of Eutheria \subtr{}s containing one human sequence.
 \centering
 \begin{tabular}{llrb{2.5cm}rrrrrrr}
 \toprule
-\multicolumn{2}{c}{Method} & &  Med. Size &  & \multicolumn{3}{c}{Human Content} & Human & Med. & Med. \\ \cmidrule(r){6-8} \cmidrule(r){1-2}
+\multicolumn{2}{c}{Subtree Method} & &  Med. Size &  & \multicolumn{3}{c}{Human Content} & Human & Med. & Med. \\ \cmidrule(r){6-8} \cmidrule(r){1-2}
 Category & Name & Count  & (Min / Max) & N50 & 0 & 1 & 2+ & Total & MPL & Species \\ 
   \midrule
 \input{Tables/ortholog_summary.txt}
 \bottomrule
 \end{tabular}
 \caption{Summary of Ensembl \subtr{}s identified using taxonomic
-  criteria or Ensembl ortholog annotations. The set of Ensembl root
-  trees (``Ensembl Roots'') from Table \ref{ensembl_root_table} is
-  included for comparison. Cells in numeric columns are shaded
-  according to their value relative to other rows, with low values in
-  white and high values in blue. The 'Human Content' columns represent
-  the fraction of trees which contain the indicated number of human
+  criteria or Ensembl ortholog annotations. The set of \cmp gene trees
+  from Table \ref{ensembl_root_table} and the set of trees from the
+  Optic database \citep{Heger2008} are included at the bottom for
+  comparison. Cells in numeric columns are shaded according to their
+  value relative to other rows, with low values in white and high
+  values in blue. The 'Human Content' columns represent the fraction
+  of trees which contain the indicated number of human
   genes. 'Med. Species' is the median species count across all
   trees. Med. -- median, MPL -- mean path length}
 \label{ensembl_subtree_table}
 \end{table}
 \end{landscape}
 
-Figure \ref{ortholog_stacked_bar} shows the taxonomic distribution of
-gene copy counts for the trees resulting from each of the \subtr
-methods tested. By way of reference, the values shown in the separate
-panels of Figure \ref{ortholog_root_dups} appear in Figure
-\ref{ortholog_stacked_bar} as different-colored bars in the bottom
-panel. Although the various characteristics of each of the \subtr
-methods have already been discussed at length, the taxonomic view
-reveals some salient features of the patterns of gene deletion and
-duplication within the tree sets and shows the pervasive impact of
-genome-wide duplications on the evolution of vertebrate genes. The
-large fraction of species with multiple copies in Drosophila Orthologs
-\subtr{}s is a result of the two rounds of vertebrate genome
-evolution, while the elevated fraction of multi-copy fish trees in the
-Outgroup \subtr{}s shows the impact of the teleost-specific
-duplication event.
-
-Furthermore, the relative prevalence of zero-copy and multi-copy trees
-can provide some indication of whether gene deletion or gene
-duplication is a more common process in vertebrate genomes. Focusing
-on the four Outgroup \subtr methods, the observation of a greater
-number of multi-copy trees than zero-copy genes, valid across all four
-\subtr methods and throughout all mammalian species except platypus,
-can be interpreted as tentative evidence for a greater number of gene
-duplications than gene deletions in the evolution of mammalian
-genomes. This pattern does not hold for vertebrates more distantly
-related to human, however: vertebrates beyond opossum show a distinct
-and consistent increase in zero-copy trees, and birds appear to
-exhibit a slight clade-specific drop in the proportion of multi-copy
-trees. Of course, both of these trends could be methodological
-artifacts related to the \hclust algorithm or to the methods used to
-assemble and annotate more distantly-related genomes.
-
-The distributions in Figure \ref{ortholog_stacked_bar} also reveal the
-pig to harbor a very high number of apparent gene deletions, unmatched
-by other mammalian species and nearing the proportion of zero-copy
-trees seen in platypus and more distant vertebrates. Given the
-consistently low proportion of zero-copy trees for other
-closely-related species, I would expect this number to change once a
-finished-quality pig genome sequence is included in the Ensembl
-pipeline \citep{Archibald2010}.
+In order to easily compare patterns between \subtr sets and across the
+taxnomic space, I tabulated gene copy counts within each \ens species
+for each generated \subtr set; the results of this analysis are shown
+in Figure \ref{ortholog_stacked_bar}. By way of reference, the values
+shown in each of the separate panels of Figure
+\ref{ortholog_root_dups} appear in the bottom panel of Figure
+\ref{ortholog_stacked_bar} as stacked bars of different
+colors. Although the various summary characteristics of each of the
+\subtr methods have already been discussed at length, this more
+taxonomic-oriented view revealed some salient features of the patterns
+of gene deletion and duplication within the tree sets and showed the
+pervasive impact of genome-wide duplications on the evolution of
+vertebrate genes. The large fraction of species with multiple copies
+in the Drosophila Orthologs \subtr set (Figure
+\ref{ortholog_stacked_bar}, blue and purple bars) showed the effect of
+two rounds of vertebrate genome evolution, producing a large number of
+trees with multiple Drosophila orthologs in vertebrate species;
+similarly, the elevated fraction of multi-copy fish trees in the
+Outgroups \subtr sets (e.g., the blue bars in the Eutheria panel of
+Figure \ref{ortholog_stacked_bar}) showed the impact of the
+teleost-specific duplication event on the number of \mammln{}
+\acp{lot} with multiple fish copies.
 
 \begin{figure}
 \centering
@@ -1075,40 +1099,255 @@ pipeline \citep{Archibald2010}.
 \label{ortholog_stacked_bar}
 \end{figure}
 
-In the end, the set of Eutheria \subtr{}s was chosen as the final set
-for use in the downstream evolutionary analysis, due to the slightly
-larger number of trees and better coverage of human genes in the
-Eutheria set compared to the other Outgroup methods. The distribution
-of tree sizes for the Eutheria set of \subtr{}s is shown in Figure
-\ref{ensembl_euth_hist} and the full taxonomic distribution of copy
-counts is included in Figure \ref{ortholog_euth_dups}.
+\section{Gene duplication and loss in the set of Eutherian largely orthologous trees}
+
+The \subtr{}s defined by the Eutheria \ac{tcc} were chosen as the
+final set of gene trees for use in the downstream sitewise
+analysis. This set was chosen due to its slightly larger number of
+trees and better coverage of human genes compared to the other \subtr
+sets from the Outgroups category (Table \ref{ensembl_subtree_table}).
+
+The distribution of tree sizes for the set of Eutherian \subtr{}s is
+shown in Figure \ref{ensembl_euth_hist}. The histogram of tree sizes
+showed a single peak at exactly the number of vertebrate species in
+\ens, with no trees containing fewer than 20 sequences and a few
+hundred trees with more than 100 sequences. The distribution of tree
+sizes was consistent with the set of 16,477 gene trees representing an
+accurate set of genome-wide \mammln \acp{lot}, with variations in
+sequence counts resulting from sporadic gene duplication or loss
+events or unannotated genes in \lcv genomes.
+
+I also analyzed the detailed taxonomic distribution of gene
+duplications and losses implied by the set of Eutherian \subtr{}s, as
+the relative prevalence of zero-copy and multi-copy trees in this set
+of \acp{lot} might provide some indication of whether gene deletion or
+gene duplication has been more prevalent in the evolution of
+vertebrate genomes. Figure \ref{ensembl_euth_dups} shows the gene copy
+counts for the set of Eutherian \subtr{}s across all \ens species,
+similar to what Figure \ref{ensembl_root_dups} showed for the set of
+root \cmp gene trees. The excess of \zcop trees and deficit of
+duplications in \lcv genomes was immediately apparent from Figure
+\ref{ensembl_euth_dups}, confirming the trend observed in the set of
+root \cmp trees. Similarly, the trend of increased \zcop trees in
+non-mammalian and non-vertebrate species was stronger than in Figure
+\ref{ensembl_root_dups}, as was the excess of trees with multiple
+copies in fish genomes.
+
+A quantitative comparison of the number of multi-copy versus zero-copy
+trees in each species showed that gene duplication has had a greater
+apparent impact on gene copy counts than gene deletion, at least
+within primates and most mammals with high-coverage genomes. For
+example, human contained 200 zero-copy trees and 1,140 combined two-
+or three-copy trees within the set of Eutherian \subtr{}s, showing
+evidence for a greater prevalence of gene duplication than gene
+deletion in \acp{lot} since the common Eutherian ancestor. On the
+other end of the spectrum in primates was gibbon, which had the most
+\zcop trees (878) and the fewest multi-copy trees (846) of all the
+primates, showing roughly equal tendencies towards gene deletion and
+duplication across the set of Eutherian \acp{lot}. This pattern was
+consistent across the mammalian tree, save for a few exceptions:n
+guinea pig showed roughly the same number of zero-copy and multi-copy
+trees (1012 vs. 1197, respectively), rabbit showed slightly more
+zero-copy trees (1569 vs. 1394), and pig showed a much higher number
+of zero-copy trees (3412 vs. 1953). Beginning with opossum,
+vertebrates more distantly related to the Eutherian common ancestor
+showed greater numbers of \zcop trees, leveling off at ca. 4,000
+zero-copy trees, and higher variation in the number of multi-copy
+genes; at the low end were chicken and turkey with 876 and 972
+multi-copy genes, respectively, and at the high end (excluding the
+fish species) were zebrafinch and platypus with 1904 and 2307
+multi-copy genes, respectively.
+
+In the analysis of vertebrate genomes, one must be vigilantly aware of
+potential biases arising from the frequent reliance on homology with
+the well-annotated human and mouse genomes in the annotation of newly
+sequenced genomes. Such a bias could have plausibly led to anomalous
+results in the present analysis of gene copy counts, for example by
+reducing the chance of correctly identifying gene trees containing
+deletions in human or mouse, thus over-inflating the prevalence of
+duplications versus deletions. The level of consistency seen in the
+relative numbers of \zcop and multi-copy trees across the range of
+mammals provided some evidence against such a bias, although it did
+not entirely rule out the possibility, as all mammalian genomes may
+have been similarly affected by the use of human or mouse proteins in
+the \ens gene annotation pipeline.
+
+An unexpected result of the compraison between mammalian species was
+the identification of certain genomes with uncharacteristically high
+numbers of \zcop or multi-copy trees. The most striking example was
+pig, which contained nearly double the number of \zcop trees of any
+other high-coverage \mammln genome and a noticeably elevated number of
+multi-copy trees, but rabbit and guinea pig also deviated from the
+normal patterns. Given the otherwise consistently low number of \zcop
+trees throughout the range of Eutherian mammals, I would expect the
+number of \zcop trees in these species to decrease as finished-quality
+genome sequences ad produced and the gene annotation pipelines are
+further optimized to work with each species. In particular the
+anomalous nature of the pig gene trees may be related to the draft
+quality of the genome sequence and assembly; I would expect the number
+of \zcop trees to be substantially reduced once a finished-quality
+genome sequence and annotation set is made available
+\citep{Archibald2010}.
 
 \begin{landscape}
 \begin{figure}
 \centering
 \includegraphics[scale=0.9]{Figs/ortholog_euth_dups.pdf}
 \caption{Taxonomic distribution of gene copy counts for the Eutheria
-  \subtr{}s defined by \ac{tc}. The number of trees containing 0, 1, 2 or more than 3
-  sequences from each species is shown. Bars are colored blue and gray
+  \subtr{}s defined by taxonomic coverage constraints. Each panel from
+  top to bottom shows the number of trees containing 0, 1, 2 or more
+  than 3 sequences from each species. Bars are colored blue and gray
   for species with high- and low-coverage genomes, respectively. Note
   that the y-axis scale is not the same for each panel.}
 \label{ortholog_euth_dups}
 \end{figure}
 \end{landscape}
 
+\section{Comparison to gene trees from the Optic database of amniote orthologs}
+
+Given the tendency of the root \cmp gene trees to contain multiple
+\mammln \acp{lot}, I wished to evalute whether a different
+phylogenetic tree-based orthology pipeline produced a similar
+distribution of gene tree sizes. The Optic database, a project from
+the Ponting group which used an independently designed gene-building
+and comparative genomics pipeline combined with the TreeBeST software
+to infer duplication-resolved gene trees within a variety of
+vertebrate and invertebrate clades, was ideal for such a comparison
+\citep{Heger2008}. I downloaded the set of Optic gene trees inferred
+from a group of eight vertebrate genomes (human, mouse, dog, opossum,
+platypus, chicken, zebrafinch, and tetraodon), characterized the set
+of gene trees using a variety of summary statistics, which are
+included in the bottom row of Table \ref{ensembpl_subtree_table}, and
+plotted the distribution of gene tree sizes in Figure
+\ref{optic_roots_hist}.
+
+After accounting for differences in the number of sampled species, the
+set of Optic gene trees more closely resembled the set of Eutherian
+\subtr{}s than the root \cmp gene trees. Nearly 80\% of the Optic
+gene trees contained exactly one human sequence and only 9\% contained
+two or more human sequences; the large proportion of single-copy trees
+suggested that the Optic trees did not contain many ``over-clustered''
+\mammln \acp{lot}, and the 9\% of trees with multiple human genes was
+close to the 7\% seen in the set of Eutherian \subtr{}s. Figures
+\ref{ensembl_euth_hist} and \ref{optic_roots_hist} clearly show the
+similar sequence count distributions between the Optic and Eutherian
+trees; each histogram has a distinct peak at a sequence count
+corresponding to the number of species included in the database, with
+no sign of the long tail of large gene trees seen for the distribution
+of root \cmp gene trees in Figure \ref{ensembl_root_hist}.
+
 \begin{figure}
 \centering
-\includegraphics[scale=0.9]{Figs/ensembl_euth_hist.pdf}
+\includegraphics[scale=0.8]{Figs/ensembl_euth_hist.pdf}
 \caption{Sequence counts for the set of \subtr{}s identified using the
   Eutheria clade taxonomic coverage constraint. Black bars show a
   histogram of sequence counts in bins of width 2, a gray line shows
   the cumulative fraction of sequences contained within trees of that
   size or smaller, and dashed blue lines are drawn at integral
   multiples of 48, the number of vertebrate species within
-  Ensembl. The 230 trees with more than 100 sequences are not shown.}
+  Ensembl. Trees with more than 100 sequences are included in the
+  topmost bin.}
 \label{ensembl_euth_hist}
+
+\hspace{.2in}
+
+\includegraphics[scale=0.8]{Figs/optic_roots_hist.pdf}
+\caption{Sequence counts for gene trees in eight amniote species from
+  the Optic orthology database \citep{Heger2008}. Black bars show a
+  histogram of sequence counts, a gray line shows the cumulative
+  fraction of sequences contained within trees of that size or
+  smaller, and dashed blue lines are drawn at integral multiples of 8,
+  the number of amniote species analyzed by Optic. Trees with more
+  than 20 sequences are included in the topmost bin.}
+\label{optic_roots_hist}
 \end{figure}
 
 \section{Conclusions}
 
-\draft{Restate the goals: figure out which \ac{tc} criteria could be used to isolate largely-orthologous mammalian gene trees}
+This chapter was concerned with identifying a set of gene trees for
+subsequent sitewise evolutionary analysis. Three characteristics were
+desired in the ideal set of trees: maximal coverage of available
+mammalian genomes, minimal inclusion of paralogous relationships, and
+consistent taxonomic representation throughout the set of trees. I
+chose the \ens \cmp database as a source of root gene trees due to its
+well-established methodology \citep{Heger2008,Vilella2009} and its
+increased species sampling compared to equivalent vertebrate databases
+such as Treefam and Optic.
+
+Using the set of root \cmp gene trees as a basis for further analysis,
+I characterized the distribution of gene trees in a varity of ways,
+including a tree-based analogue of the N50 statistic commonly used in
+evaluating genome assemblies. This analysis showed that the
+``over-clustering'' of multiple Eutherian \acp{lot} within single \cmp
+gene trees had a major impact on the composition of the gene tree
+set. I then developed a simple scheme for isolating \acp{lot} from
+within larger gene trees using flexible \acp{tcc} and applied the
+system to the set of \cmp trees to generate several sets of
+genome-wide \ac{tc}-defined \subtr{}s.
+
+These sets of \ac{tc}-defined \subtr{}s provided a number of insights
+into the orthology and paralogy relationships within and between
+mammalian and vertebrate genomes, including a quantification of the
+proportion of duplicate genes that were retained after the teleost
+whole-genome duplication that matched the prediction resulting from a
+detailed analysis of fish genomes \citep{Brunet2006}. The comparison
+between \subtr{} sets resulting from different \acp{tcc} showed that a
+simple threshold based on \ac{tc} in the Eutheria clade produced a set
+of \subtr{}s that contained a high percentage of human genes and
+satisfied the three desired characteristics for subsequent sitewise
+analysis.
+
+An analysis of the number of trees with zero, one, two or more
+sequences for a given species revealed patterns of variation in gene
+copy counts across vertebrate genomes. Importantly, \lcv genomes
+showed a large increase in zero-copy trees (e.g. trees with no
+sequences from the low-coverage genome) and a notable decrease in
+multi-copy trees. Other, more subtle trends were identified, including
+individual genomes, such as pig, with apparently anomalous numbers of
+zero- or multi-copy trees, and more widespread trends, such as the
+relatively few multi-copy trees in avian genomes and the higher
+prevalence of multi-copy trees versus zero-copy trees within mammals.
+
+The set of Eutherian \acp{lot} identified in this chapter represented,
+to my knowledge, the largest and most accurate set of mammalian
+orthologous trees identified to date. Although the set of Eutherian
+\subtr{}s were isolated from the \cmp root trees and not independently
+derived, the separation of the ``over-clustered'' \cmp trees into
+biologically realistic sets of Eutherian genes sharing mostly
+orthologous relationships was an important and fundamental part of
+preparing these gene trees for subsequent evolutionary
+analysis.
+
+One might argue that a gene tree with fully-resolved duplication and
+speciation events, as provided by the \cmp database, should be enough
+to allow for identification of orthologous versus paralogous
+\subtr{}s. In theory this is true, but such an approach to identifying
+\acp{lot} would have failed on two grounds: first, it would not
+distinguish between ancient paralogs resulting from the two rounds of
+whole-genome duplication in vertebrates and more recent paralogs
+resulting from the gradual accrual of gene duplications over time,
+causing recent duplication events to be handled in the same way as
+ancient duplications absent the incorporation of taxonomic
+information. Second, in practice the resolution of gene deletions
+within the \cmp gene trees was far from perfect, a point raised by
+Milinkovitch et al. \citeyearpar{Milinkovitch2010} in their criticism
+of the inclusion of \lcv genomes in the \ens \cmp orthology
+pipeline. A lack of data, caused either by missing genes from \lcv
+genomes or by the limited amount of sequence data available for
+phylogenetic reconstruction, may often contribute to errors in the
+accurate identification of duplication and speciation nodes within the
+\cmp gene trees; the use of \ac{tc} information sidestepped this
+source of uncertainty by not relying on accurate resolution of
+duplication nodes.
+
+The performance of the \ac{tc}-based scheme described in this chapter
+showed that simple taxonomic criteria could be used to identify
+largely orthologous subtrees. The utility of a taxonomic-based
+approach to identifying meaningful gene tree \subtr{}s was indirectly
+validated by comparison to gene trees from the Optic orthology
+database, which showed many similar characteristics to the set of
+Eutherian \subtr{}s; the pipeline used to create the Optic database
+includes an explicit step for splitting trees based on taxonomic
+criteria \citep{Heger2008}, suggesting that a similar technique was
+found to be important in identifying \acp{lot} within the context of
+an independently designed orthology pipeline.
