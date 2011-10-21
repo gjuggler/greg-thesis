@@ -221,7 +221,7 @@
 \vspace*{2ex}
     {\@degreedate}}
   \end{center}
-  \null\vfill
+%  \null\vfill
 \end{alwayssingle}}
 
 % DEDICATION

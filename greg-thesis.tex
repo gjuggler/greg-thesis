@@ -58,10 +58,12 @@
 \usepackage[table]{xcolor}
 \usepackage[colorinlistoftodos, textwidth=4cm, shadow]{todonotes}
 \usepackage{a4wide}
-\usepackage{acronym}
+\usepackage[printonlyused]{acronym}
 
 % Comment out the next line to get single spacing
 \onehalfspacing
+
+%\renewcommand{\baselinestretch}{1.8}
 
 \renewcommand\floatpagefraction{.9}
 \renewcommand\topfraction{.95}
@@ -89,35 +91,32 @@
 % and to remove DRAFT COPY ONLY appearing on the top of all pages comment out below line
 %\watermark{DRAFT COPY ONLY}
 
-\maketitle
+%\maketitle
 
 %set the number of sectioning levels that get number and appear in the contents
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
-\pagenumbering{arabic}
 \frontmatter % book mode only
 %\include{Chapters/dedication}
 %\include{Chapters/acknowledgement}
 %\include{Chapters/abstract}
 
-\pagenumbering{arabic}
 \tableofcontents
 
 \mainmatter % book mode only
 
-\listoftodos
-
 \include{macros}
-\include{Chapters/Intro}
-\include{Chapters/Indels1}
-\include{Chapters/Indels2}
-\include{Chapters/Orthologs}
+%\include{Chapters/Intro}
+%\include{Chapters/Indels1}
+%\include{Chapters/Indels2}
+%\include{Chapters/Orthologs}
 \include{Chapters/Mammals1}
-\include{Chapters/Mammals2}
-\include{Chapters/Gorilla1}
-\include{Chapters/Gorilla2}
-\include{Chapters/Conclusions}
+%\include{Chapters/Mammals2}
+%\include{Chapters/Gorilla1}
+%\include{Chapters/Gorilla2}
+%\include{Chapters/Conclusions}
+
 
 \backmatter % book mode only
 %\appendix

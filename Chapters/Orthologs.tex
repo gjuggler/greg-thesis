@@ -1,6 +1,7 @@
 %************************************************
 \chapter{Curating a set of genome-wide orthologous gene trees in mammals}
 \label{ch_orthologs}
+\acresetall
 %************************************************
 
 \section{Introduction}
@@ -15,10 +16,12 @@ orthologs to be presented in the subsequent two chapters, I construct
 a simple method for isolating \subtr{}s with largely orthologous
 characteristics from the set of \cmp gene trees and analyze the
 taxonomic distribution of gene duplication and loss within those
-\acp{lot}, demonstrating along the way how strongly the history of
-genome duplications has affected the structure of orthologous and
-paralogous relationships between and within vertebrate and
-invertebrate genomes.
+\acp{lot}, demonstrating how strongly the history of genome
+duplications has affected the structure of orthologous and paralogous
+relationships between and within vertebrate and invertebrate
+genomes. The set of gene trees resulting from a simple tree-splitting
+process based on taxonomic coverage is selected for use in the
+subsequent sitewise analysis.
 
 \section{Methods for ortholog identification}
 
@@ -1122,15 +1125,15 @@ duplications and losses implied by the set of Eutherian \subtr{}s, as
 the relative prevalence of zero-copy and multi-copy trees in this set
 of \acp{lot} might provide some indication of whether gene deletion or
 gene duplication has been more prevalent in the evolution of
-vertebrate genomes. Figure \ref{ensembl_euth_dups} shows the gene copy
+vertebrate genomes. Figure \ref{ortholog_euth_dups} shows the gene copy
 counts for the set of Eutherian \subtr{}s across all \ens species,
-similar to what Figure \ref{ensembl_root_dups} showed for the set of
+similar to what Figure \ref{ortholog_root_dups} showed for the set of
 root \cmp gene trees. The excess of \zcop trees and deficit of
 duplications in \lcv genomes was immediately apparent from Figure
-\ref{ensembl_euth_dups}, confirming the trend observed in the set of
+\ref{ortholog_euth_dups}, confirming the trend observed in the set of
 root \cmp trees. Similarly, the trend of increased \zcop trees in
 non-mammalian and non-vertebrate species was stronger than in Figure
-\ref{ensembl_root_dups}, as was the excess of trees with multiple
+\ref{ortholog_root_dups}, as was the excess of trees with multiple
 copies in fish genomes.
 
 A quantitative comparison of the number of multi-copy versus zero-copy
@@ -1217,7 +1220,7 @@ vertebrate and invertebrate clades, was ideal for such a comparison
 from a group of eight vertebrate genomes (human, mouse, dog, opossum,
 platypus, chicken, zebrafinch, and tetraodon), characterized the set
 of gene trees using a variety of summary statistics, which are
-included in the bottom row of Table \ref{ensembpl_subtree_table}, and
+included in the bottom row of Table \ref{ensembl_subtree_table}, and
 plotted the distribution of gene tree sizes in Figure
 \ref{optic_roots_hist}.
 
@@ -1234,7 +1237,7 @@ similar sequence count distributions between the Optic and Eutherian
 trees; each histogram has a distinct peak at a sequence count
 corresponding to the number of species included in the database, with
 no sign of the long tail of large gene trees seen for the distribution
-of root \cmp gene trees in Figure \ref{ensembl_root_hist}.
+of root \cmp gene trees in Figure \ref{ensembl_roots_hist}.
 
 \begin{figure}
 \centering
