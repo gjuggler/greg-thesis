@@ -9,10 +9,10 @@
 This chapter describes the use of sitewise evolutionary estimates to
 characterize the global distribution of selective constraint across 38
 mammalian genomes and within the major mammalian superorders. I will
-apply the Sitewise Likelihood Ratio Test, evaluated in Chapter
-\ref{ch_indels1}, to the set of mammalian orthologous gene trees from
-Chapter \ref{ch_orthologs} to generate genome-wide sets of sitewise
-statistics measuring selective constraint in several groups of \mammln
+apply the \ac{slr} test, evaluated in Chapter \ref{ch_indels1}, to the
+set of mammalian orthologous gene trees from Chapter
+\ref{ch_orthologs} to generate genome-wide sets of sitewise statistics
+measuring selective constraint in several groups of \mammln
 species. Both this chapter and the following one are concerned with
 the analysis of these data: here I will consider the overall
 distribution of constraint observed in each set of genomes, while
@@ -24,19 +24,19 @@ project---namely, the sequencing and analysis of several mammalian
 genomes for the \ac{mgp}---and outline the main questions motivating
 the analysis I performed.
 
-The next section will describe the preparation and alignment of the
+The next section describes the preparation and alignment of the
 mammalian gene tree from Chapter \ref{ch_orthologs} and introduce a
 protocol for filtering genome-wide sitewise estimates. Although the
-simulation study I performed in Chapter \ref{ch_indels1} showed that
-sequences with divergence levels above that of most mammalian proteins
-can be aligned without introducing many false positives due to
-misaligning biological insertions and deletions, the analysis of
-empirical sequence data involves many potential non-evolutionary
-sources of alignment error. A sequenced and annotated genome is not a
-piece of observed data; rather, it is the result of a succession of
-inferences (based ultimately on the observation of a pool of genomic
-DNA by some sequencing technology), each step along the way involving
-potential errors and biases. Chapter \ref{ch_orthologs} looked at the
+simulations from Chapter \ref{ch_indels1} showed that sequences with
+divergence levels above that of most mammalian proteins can be aligned
+without introducing many false positives due to misaligning biological
+insertions and deletions, the analysis of empirical sequence data
+involves many potential non-evolutionary sources of alignment error. A
+sequenced and annotated genome is not a piece of observed data;
+rather, it is the result of a succession of inferences (based
+ultimately on the observation of a pool of genomic DNA by some
+sequencing technology), each step along the way involving potential
+errors and biases. Chapter \ref{ch_orthologs} looked at the
 identification of mammalian orthologs, showing that the inference of
 correct gene tree structures is fraught with difficulty and that \lcv
 genomes are under-represented in gene duplications. Other sources of
@@ -56,7 +56,7 @@ distribution of selective pressures; and third, evaluating the impact
 of genomic variation in GC content and recombination rate on the
 distribution of sitewise estimates.
 
-\subsection{The Mammalian Genome Project}
+\section{The Mammalian Genome Project}
 
 A major goal of mammalian comparative genomics has been to quantify,
 identify and understand the fraction of the human genome that is under
@@ -109,7 +109,10 @@ presented below includes some improvements to the filtering and
 alignment methodology and incorporates sequence data from a number of
 genomes which were restricted from use in the \mgp analysis.
 
-\section{Data quality concerns: Sequencing and assembly error in evolutionary analysis}
+\section{Data quality concerns: sequencing, assembly and annotation error}
+
+\subsection{The impact of sequencing errors on error rates in detecting positive selection}
+\label{section_error_impact}
 
 The possibility that erroneously-aligned sequences might cause false
 positives in the detection of sitewise positive selection was a major
@@ -272,8 +275,6 @@ substitution rate. In other cases, however (e.g., when teh branch
 length is small, and/or many low-quality genomes are included), it may
 significantly bias results towards excess false positives.
 
-\subsection{Empirical studies of the influence of sequencing and annotation errors on detecting positive selection}
-
 Simulation studies similar to those I performed in Chapters
 \ref{ch_indels1} and \ref{ch_indels2} could improve our understanding
 of the relative potential of different types of sequencing errors to
@@ -282,9 +283,9 @@ frequency and pattern of such errors would still difficult to predict
 without a reliable model for their generation. This is especially true
 for larger-scale errors from misassembly or misannotation, which are
 less easily modeled than base calling errors and could have
-potentially more significant negative effects. Thus, for estimates of
-false positives resulting from these types of sequence errors, an
-empirical approach seems more appropriate. In particular, two
+potentially more significant negative effects. Instead, an empirical
+approach seems more appropriate for quantifying the false positives
+resulting from these types of sequence errors. In particular, two
 empirical studies in mammals have provided convincing evidence that
 sequence, alignment and annotation errors can drastically increase the
 number of false positive \psg{}s in the branch-site test for positive
@@ -359,9 +360,10 @@ analysis. With this work in mind, I implemented three filtering steps
 to help identify and remove sequences and alignment regions
 potentially subject to the errors noted above: filtering out
 low-quality sequence, removing gene fragments and recent paralogs, and
-identifying alignment regions with excess clustered substitutions.
+identifying alignment regions with extremely high numbers of clustered
+substitutions.
 
-\subsection{Filtering out low-quality genome sequence}
+\subsection{Filtering out low-quality sequence}
 
 Due to the presence of several low-coverage genome assemblies in the
 set of available mammalian genomes and the elevated sequencing error
@@ -383,15 +385,14 @@ and $P$ is the probability of an incorrect base call \citep{Cock2010}.
 Although \ens was used as the source for gene sequences in this
 analysis, it does not store quality scores from its source genome
 assemblies, so Phred quality scores were manually downloaded for all
-genomes with readily available Phred-like quality scores (see Table
-\ref{table_phred} for the assembly versions and URLs from which
-quality score files were downloaded). Most quality scores were
-provided as a single file in FASTA format with one string of numerical
-scores per assembled contig. Since the process of filtering a single
-mammalian coding alignment required collecting scores from many
-different quality score files for many disjoint genomic locations, a
-custom script was written to process each quality score file to allow
-for faster score retrieval and better memory performance. In total,
+genomes with Phred-like quality scores made publicly available
+alongside the genomic sequence. Most quality scores were provided as a
+single file in FASTA format with one string of numerical scores per
+assembled contig. Since the process of filtering a single mammalian
+coding alignment required collecting scores from many different
+quality score files for many disjoint genomic locations, a custom
+script was written to process each quality score file to allow for
+faster score retrieval and better memory performance. In total,
 quality score files for XYZ genomes were indexed and used for quality
 filtering.
 
@@ -454,112 +455,176 @@ The above filtering scheme was applied to all coding sequences from
 each species for which quality scores were available, which included
 all of the species with \lcv genomes as well as five with
 high-coverage genomes: chimpanzee, guinea pig, dog, horse, cow, and
-elephant. The overall percentage of nucleotides filtered from each
-genome is shown in Figure \ref{filtered_qual_bars}. As expected,
-genomes with high-coverage sequences contained fewer bases with low
-Phred scores, resulting in 1-2\% of nucleotides being filtered. The
-bulk of low-coverage genomes resulted in 4-8\% of nucleotides being
-filtered, while five genomes (bushbaby, squirrel, tree shrew,
-armadillo and tenrec) showed a noticeably higher proportion of
-low-quality bases, with 9-11\% nucleotides being filtered out. The
-distribution of filtered nucleotide proportions confirmed the
-expectation that 5-15\% of nucleotides would be filtered using a Phred
-score threshold of 25, and the variation in filtered nucleotide
-proportions between different species showed that despite the uniform
-2x coverage of the \lcv mammalian genomes, different assemblies varied
-widely in their distributions of sequence quality scores within coding
-regions. 
+elephant. (Note that guinea pig and elephant genomes were originally
+sequenced at low 2x coverage for the \ac{mgp}, but they have since
+undergone additional sequencing to produce high-coverage 7x
+assemblies. These assemblies were used in \ens version 63 and thus in
+the analysis described below.) The overall percentage of nucleotides
+filtered from each genome is shown in Figure
+\ref{filtered_qual_bars}. As expected, genomes with high-coverage
+sequences contained fewer bases with low Phred scores, resulting in
+1-2\% of nucleotides being filtered. The bulk of low-coverage genomes
+resulted in 4-8\% of nucleotides being filtered, while five genomes
+(bushbaby, squirrel, tree shrew, armadillo and tenrec) showed a
+noticeably higher proportion of low-quality bases, with 9-11\%
+nucleotides being filtered out. The distribution of filtered
+nucleotide proportions confirmed the expectation that 5-15\% of
+nucleotides would be filtered using a Phred score threshold of 25, and
+the variation in filtered nucleotide proportions between different
+species showed that despite the uniform 2x coverage of the \lcv
+mammalian genomes, different assemblies varied widely in their
+distributions of sequence quality scores within coding regions.
 
 \subsection{Removing recent paralogs}
 \label{section_removing_paralogs}
 
-To complement the \subtr{} splitting process, which split apart
-ancient duplications to avoid paralogous comparisons in the sitewise
-analysis, a second paralog filtering step was implemented to result in
-no more than one sequence per mammalian species existing in each gene
-tree. Some of these apparent paralogs likely resulted from gene
-duplications that occurred subsequent to the two rounds of
-whole-genome duplication in the vertebrate ancestor, but it was also
-expected that a sizeable proportion of apparent paralogs in the
-Ensembl gene trees were the result of errors in gene annotation or in
-the inference of gene trees by the \cmp pipeline.
+As discussed in Section \ref{section_quantifying_paralogous}, the
+inclusion of paralogous gene relationships in a large-scale analysis
+of orthologous gene evolution may produce misleading signals of
+adaptive evolution \citep{Lynch2000}, artifacts resulting from gene
+conversion \citep{TODO}, and produce biases due to lineage-specific
+family expansion, a process which is relatively common in mammalian
+gene families \citep{TODO}. As a result, it has traditionally been
+considered important to filter out recently-duplicated genes (e.g.,
+genes duplicated after the whole-genome duplication event in the
+vertebrate ancestor) in large-scale evolutionary analyses. Previous
+genome-wide scans for positive selection involving six or fewer
+mammalian genomes have either required strict one-to-one orthology
+\citep{Clark2003,Nielsen2005} or allowed very limited numbers of
+recent duplications in specific lineages \citep{Kosiol2008}. With
+larger mammalian trees, however, the requirement of strict one-to-one
+orthology becomes increasingly untenable: if gene duplications and
+deletions occur randomly in time, then the probability of observing at
+least one such event in a given gene family should increase linearly
+with the amount of branch length covered by the tree. The requirement
+of one-to-one orthology would result in fewer genes being available
+for analysis as more species are incorporated into the analysis, which
+is clearly an undesirable trend. As an alternative to ignoring genes
+which do not satisfy the requirement of strict orthology, I developed
+an approach, described below, for handling recently duplicated genes
+by removing the more-divergent paralogous copy from the the gene tree.
 
-A particular cause for concern in the current analysis was the
-possibility that stretches of missing or unassembled sequence in \lcv
-genomes might have produced gaps of missing data or assembly
-breakpoints between exons of a single gene, causing it to become
-annotated as two separate genes. These shortened genes would be
+Before describing the method for  duplications, it is worth making a
+point about gene deletions. Specifically, I note that gene deletions
+can cause problems in the branch-specific detection of positive
+selection, but they should not have a detrimental effect on tests for
+selection across the entire tree. The branch-specific effect of a gene
+deletion results from the merging of multiple ancestral branches into
+one. Take for example the inference of mutations along the
+evolutionary tree of human, chimpanzee and gorilla, which contains two
+internal nodes: $HC$, the human-chimpanzee ancestor, and $HCG$, the
+human-chimpanzee-gorilla ancestor. When sequences from all species are
+present, mutations can be separately identified as occurring along the
+branch from $HCG$ to $HC$ and along the branch from $HC$ to the human
+sequence, allowing for a test to differentiate between a signal of
+adaptive evolution in one branch or the other. For a gene which was
+deleted in chimpanzee those two branches become effectively merged
+into one, and mutations can only be inferred to have occurred between
+$HCG$ and the human sequence. The time resolution of any estimate of
+evolutionary rates is thus reduced, and when the identity of the
+branch along which \syn and \nsyn mutations have occurred is important
+to a test for positive selection, this difference can complicate the
+interpretation of results. Acknowledging this effect, Kosiol et
+al. \citeyearpar{Kosiol2008} identified a different set of orthology
+requirements for each branch-specific test for positive selection
+performed. When the test for positive selection does not depend on the
+identity of specific branches in the tree, however, a gene deletion
+would only serve to reduce the total amount of branch length available
+for inference. As long as the branch leading to the deleted species
+did not comprise a large portion of the total branch length, the
+effect of gene deletion on the results of tree-wide tests for
+selection should be minimal.
+
+Turning back to handling gene duplications, an additional complicating
+factor in the current analysis was the concern that many of the
+apparent gene duplications were actually artifacts of the annotation
+of \lcv genomes. Each \lcv genome assembly is highly fragmented,
+meaning that it contains many short sequence segments that were unable
+to be assembled into chromosome-sized sequences due to missing
+sequence data. Sometimes the exons of a gene spanned the boundaries of
+these sequence segments, causing different parts of a gene to exist on
+different segments. The \ens annotation pipeline was not designed to
+merge gene annotations across different sequence segments, so each
+part of a gene residing on multiple sequence segments would be
+annotated as a separate shortened gene. These shortened genes would be
 treated as independent proteins by the \cmp pipeline, likely being
-placed at very similar positions in the gene tree due to each having
-been derived from the same single source gene. While this result might
-not be detrimental to sitewise analysis in itself (as each shortened
-gene might be correctly aligned and provide useful information to the
-alignment), a number of factors, including the low quality of genomic
-sequence and assembly within these shortened genes, problems with
-aligning small fractions of a gene against complete sequences, and the
-potential for incorrect placement of fragmented sequences within the
-gene tree, made it desirable to remove these shortened genes.
+placed at very similar positions in the gene tree due to each sequence
+having been derived from a gene with a single correct evolutionary
+position. While this result might not be detrimental to sitewise
+analysis in itself (as each shortened gene might be correctly aligned
+and provide useful information to the alignment), a number of factors,
+including the low quality of genomic sequence and assembly within
+these shortened genes, problems with aligning small fractions of a
+gene against complete sequences, and the potential for incorrect
+placement of fragmented sequences within the gene tree, made it
+desirable to remove these shortened genes before estimating
+evolutionary rates. These split genes could be effectively identified
+by their shortened length.
 
-It was also desirable to avoid the inclusion of true recent paralogs
-from the sitewise analysis, as their inclusion might have skewed the
-results towards increased levels of relaxed constraint or adaptive
-evolution, as has been hypothesized and observed to occur in
-recently-duplicated genes \citep{Lynch2000}. Most models of evolution
-after gene duplication predict that one of the duplicate copies will
-retain the ancestral function and diverge less from the common
-ancestor than the other \citep{Han2009}, so it would seem natural to
-retain the least-diverged copy in order to avoid including paralogous
-copies which have been released from selective constraint or undergone
-functional shifts.
+Sequence divergence was the other criterion by which I selected which
+paralogous copy of recently-duplicated genes to retain for
+evolutionary analysis. A well-established theoretical model of
+evolution after gene duplication predicts that one of the duplicate
+copies retains the ancestral function (and its associated pattern of
+evolutionary constraint) while the other duplicate experiences relaxed
+constraint followed by either degradation or functional
+diversification \citep{Han2009}. Thus, the least-diverged copy of a
+recently duplicated gene should be the one most likely to have
+retained the pattern of evolutionary constraint shared among the
+mammalian species being examined in this study.
 
-Both gene length and sequence divergence were used to identify which
-gene among a set of recent paralogs was most suitable to retain for
-sitewise analysis, with gene length helping to discriminate spuriously
-shortened genes from true genes, and sequence divergence being used to
-distinguish between more- and less-diverged paralogs. The mean
-pairwise sequence divergence, estimated using the JC69 nucleotide
-model and the stock Compara gene tree alignments, was calculated
-between each putative paralog and the rest of the gene tree, and the
-ratio of the length of each putative paralog to the mean sequence
-length (referred to as the length ratio) was also calculated. Within
-each group of putative paralogs, the single kept gene was chosen by
-the following rules applied in order: (1) if only one sequence had a
-length ratio above 0.5 and all others had a length ratio below 0.5,
-the longest sequence was kept; (2) if at least one sequence yielded a
-meaningful (i.e., well-defined and non-zero) mean distance estimate,
-the sequence with the lowest distance was kept; (3) if no sequence
-yielded a meaningful distance estimate (or if all estimated distances
-were identical), the longest sequence was kept. The inclusion of
-additional logic for dealing with zero and infinite distances was
-necessary because some sequence pairs contained very little or zero
-overlapping aligned sequence, resulting in extremely large or
-undefined estimated sequence distances.
+The protocol I implemented for filtering apparent paralogs used both
+gene length and sequence divergence to identify which gene among a set
+of apparent paralogous copies was most suitable to retain for sitewise
+analysis. Gene length was used primarily to discriminate spuriously
+shortened genes from true genes, and sequence divergence was used to
+distinguish between more- and less-diverged paralogs. First, the mean
+pairwise sequence distance was calculated for each putative paralog
+(hereafter referred to as the sequence distance) as the mean
+nucleotide distance between that sequence and every other sequence in
+the gene tree, using the stock \cmp sequence alignments and the JC69
+nucleotide model to estimate distances. Second, the ratio of the
+sequence length of each putative paralog to the mean sequence length
+across the tree (hereafter referred to as the length ratio) was also
+calculated.
+
+Within each gene tree, all genes with two or more copies per species
+were grouped into sets of putative paralogs. Within each group of
+putative paralogs, a single gene was chosen to be retained for
+evolutionary analysis based on the following three rules, applied
+sequentially: (1) if only one sequence had a length ratio above 0.5
+and all others had a length ratio below 0.5, the longest sequence was
+kept; (2) if at least one sequence yielded a sequence distance below
+the others, that sequence was kept; (3) if no sequence yielded a
+meaningful distance estimate (or if all estimated distances were
+identical), the longest sequence was kept.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.7]{Figs/filtered_paralogs_hist.pdf}
-\caption{Gene lengths of all putative paralogs, normalized to the mean
-  length all sequences in the enclosing tree of each
-  paralog. Putatively paralogous genes (top panel) were either
-  discarded (middle panel) or kept (bottom panel) according to rules
-  based on their length and mean sequence divergence from other
-  aligned sequences.}
+\caption{Length ratios of putative paralogs. The length ratio was
+  calculated as the length of a putative paralogous copy divided by
+  the mean length all sequences its corresponding gene
+  tree. Putatively paralogous genes (top panel) were either discarded
+  (middle panel) or kept (bottom panel) according to rules based on
+  their length and mean sequence divergence from other aligned
+  sequences, as described in the text.}
 \label{filtered_paralogs_hist}
 \end{figure}
 
-Figure \ref{filtered_paralogs_hist} shows the distribution of gene
-lengths (relative to the mean across the alignment) for all putative
-paralogs, kept paralogs, and removed paralogs. The overall
-distribution of relative lengths shows that most putative paralogs had
-lengths similar to the mean length across the gene tree (with a peak
-at or slightly above 1), but the shape of the distribution was highly
-asymmetric with a strong bias towards shorter lengths. The length
-distribution of the retained paralogs showed that the bulk of
-highly-shortened genes were successfully removed. If anything, the
-distribution of retained genes was slightly biased towards lengths
-greater than 1; this was likely due to step \#3 of the above process,
-where the longest gene was kept if any two putative paralogs yielded
-identical distance estimates.
+These rules were applied to each of the 29,756 putative paralogs
+contained within the 16,XYZ largely orthologous gene trees from the
+previous chapter. Figure \ref{filtered_paralogs_hist} shows the
+distributions of length ratios separately for the set of all putative
+paralogs, those discarded from the alignments, and those kept for
+subsequent analysis. The overall distribution of length ratios shows
+that most putative paralogs had lengths similar to the mean length
+across the gene tree (with a peak at or slightly above 1), but the
+shape of the distribution was asymmetric, with a strong bias towards
+shorter lengths. The filtering protocol effectively removed these
+shortened genes, as evidenced by the strong enrichment of lower length
+ratios in the distribution of discarded genes and the less skewed
+distribution of length ratios in the set of XYZ kept paralogs.
 
 \begin{figure}
 \centering
@@ -580,98 +645,219 @@ identical distance estimates.
 \label{filtered_paralogs_scatter}
 \end{figure}
 
-An alternate view of the results of the paralog filtering process is
-shown in Figure \ref{filtered_paralogs_scatter}, with the mean
-divergence of each discarded paralog compared that of the kept
-paralog, separated into panels according to the reason for which the
-discarded gene was removed. The spread of points above the diagonal in
-the first panel shows the difference in mean sequence divergence
-between the kept and discarded putative paralogs where divergence was
-used to choose between copies, and the middle panel represents
-paralogs whose mean divergences were identical, where length was used
-as the deciding factor. These two panels together show that although
-most recent paralogs within this set of gene trees contained
-indistinguishable levels of sequence divergence, around 40\% showed a
-moderate difference in divergences that could be used for selecting
-the less-diverged copy. The rightmost panel shows the subset of
-apparent paralogs which were discarded due to their short gene length;
-a point worth noting here is that there was no bias towards higher or
-lower divergence levels in this set of discarded genes (many of the
-points lie directly on the diagonal, and the coefficient of the
-best-fit linear model for all non-negative values was $0.983 \pm
-0.005$), which was consistent with the prediction that many of the
-discarded short genes were in fact derived from a single orthologous
-gene.
+An alternative view of the results of the paralog filter is presented
+in Figure \ref{filtered_paralogs_scatter}, showing the mean divergence
+of each discarded paralog compared that of the kept paralog. Figure
+\ref{filtered_paralogs_scatter} is separated into panels according to
+the rule used to discard the paralogous copy. The first panel
+corresponds to rule (1), where genes with a length ratio below 0.5
+were discarded; the second panel corresponds to rule (2), where genes
+with higher sequence distances were removed; the third panel
+corresponds to rule (3), where all genes had equal mean distances and
+the longest gene was kept. The first panel shows that genes discarded
+on the basis of having a very short length contained sequence
+distances similar to the kept copies (i.e., the highest density is
+along the diagonal and there is no bias above or below the diagonal),
+supporting the notion that these discarded genes were smaller
+fragments of split genes in \lcv genomes. The second panel shows that
+when paralogous copies could be differentiated by sequence distance,
+they tended to have low average distances ($<$0.5 substitutions per
+nucleotide site) and only a small difference between the kept and
+discarded copy (e.g., most of the distribution is just above the
+diagonal, and few points are above the dashed line corresponding to
+twice the distance in the discarded copy). Finally, the distribution
+of lengths and distances in the set of genes where length was the
+discriminating factor shows that most of these genes were mostly
+identical whether measured by sequence distance or sequence length.
 
-\subsection{Realigning coding sequences}
+These results provided evidence that many recently duplicated genes
+are identical or very similar to each other: for roughly 30\% of
+putative paralogs, not enough time has elapsed since the duplication
+event for a significant amount of sequence change to have occurred,
+and the choice between retaining one copy or the other was essentially
+arbitrary. For the roughly 40\% of putative paralogs where differences
+in distance to other sequences in the tree could be identified, these
+differences tended to be small, suggesting that massive functional
+divergence of recent gene duplicates has not been a common phenomenon
+in mammalian evolution. Still, I hypothesized that the retention of
+the least-divergent gene copy would minimize the potential influence
+of recent gene duplications on the sitewise analysis. To evaluate
+whether the genes containing recent duplications had an effect on the
+analyses performed in this chapter and the next, I identified the XYZ
+genes which contained the 10,821 paralogous copies discarded based on
+sequence distance and excluded these genes from the high-quality
+``stringent'' dataset described in Section
+\ref{section_stringent_sites}.
 
-After filtering out codons with low quality scores and removing
-paralogs, sequences were aligned with \prank \citep{Loytynoja2008}
-using its codon alignment model based on the empirical codon model
-\citep{Kosiol2007}. The simulation experiments described in Chapters
-\ref{ch_indels1} and \ref{ch_indels2} as well as numerous
-previously-reported empirical and simulation-based studies have shown
-\prank{}'s codon-based alignments to be superior for avoiding false
-positives in the detection of sitewise positive selection, strongly
-supporting the choice of \prank for this analysis.
+\subsection{Identifying clusters of \nsyn substitutions}
 
-\subsection{Filtering out clusters of \nsyn substitutions}
+After filtering for sequence quality and removing paralogous genes and
+shortened gene fragments, PRANK was used to align the codon sequences
+of each of the 16XYZ mammalian gene trees. Manual analysis of a number
+of these alignments revealed that many alignments contained short
+stretches of clearly nonhomologous sequence in one species, often
+flanked by stretches of perfect homology and often lying on the
+borders of exon junctions. An example of one such region is shown in
+Figure \ref{figure_TODO}. In this otherwise highly conserved region of
+the XYZ gene, a short 20-codon stretch of the XYZ sequence appears to
+contain little homology to the sequences from other species.
 
-Manual analysis of a number of genes showed that even after 
+These obviously erroneous stretches were likely due to mis-assembly of
+a genomic region or mis-identification of exon boundaries within the
+gene of one species. These errors were particularly concerning with
+respect to the detection of positive selection, as the incorporation
+of a stretch of apparently nonhomologous material into a sequence
+alignment would produce many alignment columns with multiple
+nucleotide differences per codon. As discussed in Section
+\ref{section_error_impact}, this type of error is particuarly prone to
+cause false positives in the detection of positive selection.
 
-A final filtering step was applied in order to ensure that stretches
-of aligned but nonhomologous sequence, resulting either from
-misalignment or from exon mis-annotation artifacts, were not causing
-elevated rates of \nsyn substitutions within specific regions of
-genes. This filtering step motivated by an observation that errors
-resulting from either misalignment or exon mis-annotation would in
-both cases lead to clustered regions of nonhomologous aligned
-nucleotides and, correspondingly, clustered regions of elevated \nsyn
-substitution rates. This clustering was expected because for both
-misalignment and mis-annotation, the existence of one misaligned
-column is not independent of nearby columns: for mis-annotation the
-misalignment would span the entire length of the erroneously-annotated
-exon, while the global nature of the progressive pairwise alignments
-created by \prank{} (along with most other progressive alignment
-programs) would cause any misalignment error to be tightly associated
-with misalignment errors in nearby alignment columns.
+I hypothesized that these stretches of \nhom sequence could be
+identified by their impact on the pattern of substitutions within each
+alignment. A stretch of \nhom aligned sequence would be expected to
+produce a localized cluster of apparent synonymous and nonsynonymous
+substitutions between the sequence containing the erroneous stretch
+and its ancestor. Because these substitutions would be restricted to
+one terminal branch in the gene tree and a region of the alignment
+limited to the length of the \nhom stretch, a scan for clustered
+substitutions within the terminal lineages of genes might be an
+effective way of identifying these erroneous sequences.
 
-These arguments suggested the possibility that clustered \nsyn
-substitutions might be used as a signal to detect misaligned and
-mis-annotated regions, but the utility of such a signal for filtering
-alignments would also depend on the strength of error-caused \nsyn
-clusters relative to the frequency of true \nsyn substitutions along a
-given branch in the gene tree and to the tendency of those
-substitutions to cluster together along the length of the protein
-sequence. Clearly, sequences sequences separated by longer branch
-lengths will show higher numbers of non-erroneous \nsyn substitutions,
-possibly exceeding the number typically produced by alignment or
-assembly errors, thus and reducing the ability to use substitution
-clusters as a discriminating factor. Furthermore, \nsyn substitutions
-have been shown to be significantly more clustered than expected by
-chance in a number of genomic analyses of mammals and insects
-\citep{Callahan2011,Bazykin2004,Wang2007}, causing some concern that a
-filter based on detecting clusters of \nsyn substitutions might
-attenuate the signal of true adaptive substitution that was one target
-of the present study.
+Two factors may confound the ability to use \ac{wsc}s for identifying
+regions of aligned \nhom sequence in mammalian alignments. First, the
+length of the terminal branch leading to each species determines how
+many lineage-specific substitutions would be expected to occur within
+a given stretch of homologous aligned sequence. The terminal human
+branch, for example, is very short (as it shares a recent common
+ancestor with chimpanzee), while the platypus branch is very long
+(sharing a most recent common ancestor only with the entire eutherian
+clade). Thus, one would expect to observe many more lineage-specific
+substitutions in platypus than in human for a given window of an
+alignment. In contrast, a stretch of aligned \nhom sequence should
+introduce, on average, a constant number of \nsyn and \syn
+substitutions to the terminal lineage. This should make it more
+difficult to distinguish homologous from \nhom stretches in species
+with long terminal lineages; on the other hand, this trend should also
+serve to limit the potential impact of \nhom stretches in those
+species on the detection of positive selection, as the resulting
+elevation in \nsyn or \syn substitutions rates would be less.
 
+The second confounding factor is that \nsyn substitutions have been
+shown to be significantly more clustered than expected by chance in a
+number of genomic analyses of mammalian and insect genomes
+\citep{Callahan2011,Bazykin2004,Wang2007}. Thus, a filter based on
+clustered \nsyn substitutions may have a tendency to remove true
+clusters of \nsyn substitutions from the dataset. The influence of
+this factor may be evaluated by comparing clusters of substitutions in
+terminal branches to those in internal branches: while both internal
+and terminal branches of the mammalian tree should harbor similar
+levels of truly clustered \nsyn and \syn substitutions, only the
+terminal lineages should contain large clusters resulting from
+stretches of aligned \nhom sequence.
 
+I investigated the distributions of \nsyn and \syn substitutions
+within windows of mammalian alignments by using \emph{codeml}
+\citep{Yang2007} under the M0 model (e.g., assuming one \omg for all
+sites and all branches in the tree) to perform the marginal
+reconstruction of ancestral sequences at internal nodes
+\citep{Yang1995} and storing the substitution events implied by the
+reconstructed ancestral sequences of each gene alignemnt. Only
+substitution events occurring between codons with high posterior
+probabilities in the marginal ancestral reconstruction ($>0.9$) were
+included, and the location of each substitution along the alignment
+and within the gene tree was stored. This analysis was performed on
+all gene trees, yielding a large database of substitution events along
+internal and terminal branches of the phylogenetic tree confidently
+inferred from the PRANK alignments of mammalian coding regions.
 
-\draft{Write up the empirical investigation of \nsyn substitution clustering.}
+Using this set of inferred substitutions, counts of \syn and \nsyn
+substitutions within non-overlapping 15-codon alignment windows for a
+selection of species and internal nodes were collected; the results of
+this analysis are shown in Figure \ref{fig_wcs}, which plots the
+number of 15-codon windows containing a given number of \nsyn and \syn
+substitutions for a selection of terminal and internal nodes. The mean
+length of the branch ancestral to the given node, indicated in
+parentheses after each node name, was calculated from the set of
+branch lengths estimated by \emph{codeml}.
+
+Figure \ref{fig_wcs} shows that the vast majority of 15-codon windows
+in these alignments contained few substitutions, but a long tail of
+\nsyn and \syn substitutions were observed for some nodes. Comparing
+the counts of \nsyn vs. \syn substitutions within the terminal nodes
+(Figure \ref{fig_wcs}, top panel), a pattern is seen where the \nsyn
+counts (red bars) are higher at 0 substitutions, lower in the middle
+range of substitutions (1--5 substitutiosn), and higher again in the
+higher range of substitutions ($>$5 substitutions). The pattern in the
+lower range is consistent with the action of purifying selection on
+protein-coding regions, causing a reduced number of windows with
+multiple \nsyn substitutions. The excess of windows with large numbers
+of \nsyn substitutions runs against the pattern of purifying
+selection; instead, it shows that unexpectedly long clusters of \nsyn
+substitutions were a widespread feature of the mammalian
+alignments. The red and blue triangles drawn in each plot mark the
+number of substitutions below which 99.9\% of windows are contained;
+the shift of the \nsyn markers to the right clearly shows the excess
+of highly clustered \nsyn substitutions. Interestingly, human---which
+has the highest quality and best annotated genome---does not show a
+noticeable excess of clustered \nsyn substitutions.
+
+Comparing the pattern seen for terminal nodes to those from internal
+nodes provided further evidence for the presence of many stretches of
+\nhom sequence within the mammalian alignments. For example, the
+terminal gorilla node is roughly equivalent in average branch length
+to the internal primates node ($0.023$ vs. $0.028$), but gorilla
+contains windows with up to 14 \nsyn substitutions while primates
+contain a maximum of 8. Looking at the \nsyn and \syn 99.9\%
+quantiles, three of the four internal nodes had equal quantile
+positions for \nsyn and \syn substitutions, but the rodent ancestral
+node did not. This was an interesting difference, as the gene
+annotations for most rodent genomes were likely derived from
+alignments to mouse rather than human. In the case of discordant gene
+annotations, the entire rodent clade would share an aligned \nhom
+stretch, causing clustered substitutions to be inferred along the
+internal rodent branch. This raises the interesting possibility that
+the entire rodent clade suffers from misaligned \nhom stretches due to
+differences in gene annotations between rodent and non-rodent
+species. This appeared to be the case for at least one gene: Figure
+\ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
+window with 11 apparent rodent \nsyn substitutions, likely the result
+of a difference in exon annotations between rodent and non-rodent
+genomes.
+
+The end result of this analysis was the identification, for each
+terminal and internal node of the mammalian tree, windows with \nsyn
+substitution counts above the top 0.1\% of 15-codon windows
+genome-wide. The location of these windows was stored for later use in
+defining the most stringently-filtered sitewise dataset, described in
+Section \ref{section_stringent_filter}.
+
+\begin{figure}
+\centering \includegraphics[scale=0.8]{Figs/wcs_15.pdf}
+\caption{Counts of inferred \nsyn (red bars) and \syn (blue bars)
+  substitutions in 15-codon windows along terminal and internal
+  branches of the mammalian tree. The leftmost two bars correspond to
+  windows with 0 substitutions, the next two bars correspond to
+  windows with 1 substitution, and so on. Red and blue arrows indicate
+  the number of \nsyn and \syn substitutions, respectively,
+  corresponding to the 99.9\% percentile across all windows in that
+  node.}
+\label{fig_wcs}
+\end{figure}
+
 
 \section{Genome-wide analysis of sitewise selective pressures in mammals}
 
 \subsection{Mammalian species subsets for sitewise analysis}
 
-The SLR method was applied sequentially to several species subsets of
-each alignment of mammalian orthologs. For each subset, sequences
-corresponding to species within the subset were extracted from the
-alignment along with the corresponding \subtr and input to SLR. If
-fewer than two sequences were available for a given subset, that
-subset was skipped and its absence from the dataset was
-recorded. Eight subsets in total were selected for analysis; the
-species included in each subset and some phylogenetic measures of each
-subset are listed in Table \ref{species_set_summary}.
+SLR was run sequentially on several species subsets of each alignment
+of mammalian orthologs. For each subset, sequences corresponding to
+species within the subset were extracted from the alignment along with
+the corresponding \subtr and input to SLR. If fewer than two sequences
+were available for a given subset, that subset was skipped and its
+absence from the dataset was recorded. Eight subsets in total were
+selected for analysis; the species included in each subset and some
+phylogenetic measures of each subset are listed in Table
+\ref{species_set_summary}.
 
 Three subsets (Glires, Primates, and Laurasiatheria) were chosen
 because they represent the three mammalian superorders with the
@@ -1540,96 +1726,7 @@ distribution yielded the lowest AIC (-2.11e7), followed by gamma
 
 %\subsection{Analysis of sitewise estimates from the mammalian superorders}
 
-\subsection{Simulations to evaluate the fit of empirical data to a simulated poisson process at varying branch lengths and \omg ratios}
-\label{poisson_sims}
-
-The large difference in branch lengths covered by the species sets
-under investigation letd to some uncertainty in whether differences in
-the observed summary statistics, such as the mean \omgml or the
-proportion of sites with \omgml$<1$, were due to biological
-differences between species groups (i.e., differences in the efficacy
-of purifying selection resulting from population size differences) or
-to branch length effects. For example, two 
-
-I performed a small simulation
-study to further investigate the interactions between branch length,
-effective population size, and the summary statistics presented in
-Table \ref{sitewise_summary_table_1},
-
-
 \subsection{Simulations to evaluate the power to detect positive selection and estimate selective pressures}
-
-% Table: https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5HhSYGuKPKpN2M0YzA5ZDQtN2FiNC00N2FhLWI0MzMtYjkwZTJmMjg2YmE5&hl=en
-
-% Text from: https://docs.google.com/document/d/1H0hBD75a2fGmJL8l0BPQQPkcmpc6jmyT3Qr8g2zUV4A/edit?authkey=CKPKivsO&hl=en_US&authkey=CKPKivsO
-
-Previous simulations on the power and accuracy of maximum-likelihood
-methods for detecting sitewise positive selection have provided strong
-evidence for increased power with increased branch length and number
-of taxa [Anisimova and Yang 2002 PMID:12032251, Massingham and Goldman
-  2005 PMID:15654091]. Other major effects observed have been a
-reduction in power when branch lengths are very short, due to the
-scarcity of data in the form of observed substitutions, and a
-reduction in accuracy when branches are very long and the ancestral
-reconstruction procedure becomes inaccurate due to saturation of
-substitutions at synonymous sites [Anisimova and Yang 2002
-  PMID:12032251]. These results have provided general guidance to
-empirical analyses, but the potential effects of tree shape,
-divergence level, distribution of dN/dS levels, and misalignment error
-make it difficult to extrapolate expected power levels or error rates
-from generic simulations to specific empirical analyses and real-world
-datasets. In order to estimate the power of the SLR method when
-applied to the present set of species and to quantify the power gained
-from the additional 20 mammalian genomes, we ran a series of
-simulation experiments with parameters tuned specifically to the
-analysis of mammalian gene families. Based on the prevoius studies
-described above we hypothesized that the addition of 20 mammalian
-genomes to the available dataset would significantly improve SLR’s
-sensitivity for detecting positive selection at a reasonable error
-rate, with some portion of that improvement coming from a reduction in
-alignment error due to the shorter average length of branches in the
-phylogenetic tree being aligned.
-
-We used the Indelible program [Fletcher and Yang 2010 PMID:19423664]
-to simulate 100 replicate codon alignments with a root sequence length
-of 500 codons for each of three trees: all 29 Eutherian mammals, the 9
-mammals with high-coverage genomes, and the four-species
-Human-Mouse-Rat-Dog quartet used in a number of previous comparative
-analyses. The dN/dS value at each simulated site was drawn from a
-discretized lognormal distribution with log(mean)=-1.864 and
-log(sd)=1.201 with the maximum dN/dS capped at 3. This distribution
-yielded a mean dN/dS of 0.277 and 6\% of sites with dN/dS > 1, which
-is consistent with our estimates from the global mammalian
-distribution. We ran each set of simulations twice: once with an
-insertion and deletion (indel) rate of zero, and once with an indel
-rate of 0.05 indel events per substitution event. The length of each
-indel event was drawn from a discretized power-law distribution with a
-parameter of 1.8, a maximum insertion or deletion length of 40 codons,
-and equal insertion and deletion lengths and probabilities. Each
-simulated alignment was aligned using PRANK’s codon model of evolution
-and analyzed with SLR. The resulting SLR score at each human sequence
-position was compared to the true dN/dS at the equivalent site in the
-true alignment and used to calculate the power and accuracy of the
-detection of positive selection for each set of simulated
-alignments. A summary of the results is provided in Supplementary
-Table S17.12.
-
-The simulation results without indels show a dramatic increase in the
-ability to detect sitewise selective pressures and sitewise positive
-selection in larger mammalian trees. We used ROC curves based on the
-true and inferred dN/dS values to calculate a number of statistics
-summarizing the performance of sitewise inference under each tree
-tested. The Spearman’s rank correlation coefficient between inferred
-and true dN/dS was 0.749, 0.849, and 0.942 in the 4-taxon, 9-taxon,
-and 29-taxon trees, respectively, representing a 10\% increase in the
-accuracy of inferred maximum-likelihood dN/dS values as a result of
-the added 20 mammalian species. The number of true positives recovered
-when controlling for a false discovery rate (FDR) below 0.1 was 50,
-782, and 3760 for the three trees; for FDR < 0.05, the numbers of true
-positives were 10, 429, and 2990. This represents a 4.8-fold increase
-for FDR<0.1 and a 6.9-fold increase for FDR<0.05 resulting from the
-additional 20 species in the tree. It should be noted that the two
-previous power estimates re
 
 \subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise \dnds estimates and the detection of positive selection}
 
