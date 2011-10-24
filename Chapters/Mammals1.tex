@@ -504,7 +504,7 @@ which do not satisfy the requirement of strict orthology, I developed
 an approach, described below, for handling recently duplicated genes
 by removing the more-divergent paralogous copy from the the gene tree.
 
-Before describing the method for  duplications, it is worth making a
+Before describing the method for duplications, it is worth making a
 point about gene deletions. Specifically, I note that gene deletions
 can cause problems in the branch-specific detection of positive
 selection, but they should not have a detrimental effect on tests for
@@ -520,12 +520,12 @@ sequence, allowing for a test to differentiate between a signal of
 adaptive evolution in one branch or the other. For a gene which was
 deleted in chimpanzee those two branches become effectively merged
 into one, and mutations can only be inferred to have occurred between
-$HCG$ and the human sequence. The time resolution of any estimate of
+$HCG$ and the human sequence. The time-specificity of estimated
 evolutionary rates is thus reduced, and when the identity of the
 branch along which \syn and \nsyn mutations have occurred is important
 to a test for positive selection, this difference can complicate the
 interpretation of results. Acknowledging this effect, Kosiol et
-al. \citeyearpar{Kosiol2008} identified a different set of orthology
+al. \citeyearpar{Kosiol2008} used a different set of orthology
 requirements for each branch-specific test for positive selection
 performed. When the test for positive selection does not depend on the
 identity of specific branches in the tree, however, a gene deletion
@@ -535,14 +535,14 @@ did not comprise a large portion of the total branch length, the
 effect of gene deletion on the results of tree-wide tests for
 selection should be minimal.
 
-Turning back to handling gene duplications, an additional complicating
-factor in the current analysis was the concern that many of the
-apparent gene duplications were actually artifacts of the annotation
-of \lcv genomes. Each \lcv genome assembly is highly fragmented,
-meaning that it contains many short sequence segments that were unable
-to be assembled into chromosome-sized sequences due to missing
-sequence data. Sometimes the exons of a gene spanned the boundaries of
-these sequence segments, causing different parts of a gene to exist on
+Turning back to gene duplications, an additional complicating factor
+in the current analysis was the concern that many of the apparent gene
+duplications were actually artifacts of the annotation of \lcv
+genomes. Each \lcv genome assembly is highly fragmented, meaning that
+it contains many short sequence segments that were unable to be
+assembled into chromosome-sized sequences due to missing sequence
+data. Sometimes the exons of a gene spanned the boundaries of these
+sequence segments, causing different parts of a gene to exist on
 different segments. The \ens annotation pipeline was not designed to
 merge gene annotations across different sequence segments, so each
 part of a gene residing on multiple sequence segments would be
@@ -579,25 +579,25 @@ of apparent paralogous copies was most suitable to retain for sitewise
 analysis. Gene length was used primarily to discriminate spuriously
 shortened genes from true genes, and sequence divergence was used to
 distinguish between more- and less-diverged paralogs. First, the mean
-pairwise sequence distance was calculated for each putative paralog
-(hereafter referred to as the sequence distance) as the mean
-nucleotide distance between that sequence and every other sequence in
-the gene tree, using the stock \cmp sequence alignments and the JC69
-nucleotide model to estimate distances. Second, the ratio of the
-sequence length of each putative paralog to the mean sequence length
-across the tree (hereafter referred to as the length ratio) was also
-calculated.
+pairwise sequence distance was calculated between each putative
+paralog and all other sequences in the gene tree, resulting in one
+mean pairwise distance estimate per putative paralog (hereafter
+referred to as the mean distance). For these distance calculations,
+the stock \cmp codon alignments and the JC69 nucleotide model to
+estimate distances. Second, the ratio of the sequence length of each
+putative paralog to the mean sequence length across the tree
+(hereafter referred to as the length ratio) was also calculated.
 
-Within each gene tree, all genes with two or more copies per species
-were grouped into sets of putative paralogs. Within each group of
-putative paralogs, a single gene was chosen to be retained for
-evolutionary analysis based on the following three rules, applied
-sequentially: (1) if only one sequence had a length ratio above 0.5
+Genes were grouped by species within each gene tree, and any group of
+2 or more genes was considered to be a set of putative paralogs
+.Within each set of putative paralogs, a single gene was chosen to be
+retained for evolutionary analysis based on three rules applied in the
+following order: (1) if only one sequence had a length ratio above 0.5
 and all others had a length ratio below 0.5, the longest sequence was
-kept; (2) if at least one sequence yielded a sequence distance below
-the others, that sequence was kept; (3) if no sequence yielded a
-meaningful distance estimate (or if all estimated distances were
-identical), the longest sequence was kept.
+kept; (2) if at least one sequence yielded a mean distance below the
+others, that sequence was kept; (3) if all mean distances were
+identical then the longest sequence was kept, or if all mean distances
+and length ratios were equal, an arbitrary choice was made.
 
 \begin{figure}
 \centering
@@ -645,62 +645,85 @@ distribution of length ratios in the set of XYZ kept paralogs.
 \label{filtered_paralogs_scatter}
 \end{figure}
 
-An alternative view of the results of the paralog filter is presented
-in Figure \ref{filtered_paralogs_scatter}, showing the mean divergence
-of each discarded paralog compared that of the kept paralog. Figure
+To better compare the characteristics of the discarded and kept genes,
+a dmore detailed view of the results of the paralog filter is
+presented in Figure \ref{filtered_paralogs_scatter}, showing a scatter
+plot of the mean distance and length ratio of each discarded paralog
+compared to that of the corresponding kept paralog. Figure
 \ref{filtered_paralogs_scatter} is separated into panels according to
-the rule used to discard the paralogous copy. The first panel
+the rule used to discard the paralogous copy: the first panel
 corresponds to rule (1), where genes with a length ratio below 0.5
 were discarded; the second panel corresponds to rule (2), where genes
-with higher sequence distances were removed; the third panel
-corresponds to rule (3), where all genes had equal mean distances and
-the longest gene was kept. The first panel shows that genes discarded
-on the basis of having a very short length contained sequence
-distances similar to the kept copies (i.e., the highest density is
-along the diagonal and there is no bias above or below the diagonal),
-supporting the notion that these discarded genes were smaller
-fragments of split genes in \lcv genomes. The second panel shows that
-when paralogous copies could be differentiated by sequence distance,
-they tended to have low average distances ($<$0.5 substitutions per
-nucleotide site) and only a small difference between the kept and
-discarded copy (e.g., most of the distribution is just above the
-diagonal, and few points are above the dashed line corresponding to
-twice the distance in the discarded copy). Finally, the distribution
-of lengths and distances in the set of genes where length was the
-discriminating factor shows that most of these genes were mostly
-identical whether measured by sequence distance or sequence length.
+with higher mean distances were removed; the third panel corresponds
+to rule (3), where all genes had equal mean distances and the longest
+gene was kept (or, if all lengths were equal, an arbitrary choice was
+made).
 
-These results provided evidence that many recently duplicated genes
-are identical or very similar to each other: for roughly 30\% of
-putative paralogs, not enough time has elapsed since the duplication
-event for a significant amount of sequence change to have occurred,
-and the choice between retaining one copy or the other was essentially
-arbitrary. For the roughly 40\% of putative paralogs where differences
-in distance to other sequences in the tree could be identified, these
-differences tended to be small, suggesting that massive functional
-divergence of recent gene duplicates has not been a common phenomenon
-in mammalian evolution. Still, I hypothesized that the retention of
-the least-divergent gene copy would minimize the potential influence
-of recent gene duplications on the sitewise analysis. To evaluate
-whether the genes containing recent duplications had an effect on the
-analyses performed in this chapter and the next, I identified the XYZ
-genes which contained the 10,821 paralogous copies discarded based on
-sequence distance and excluded these genes from the high-quality
-``stringent'' dataset described in Section
-\ref{section_stringent_sites}.
+The first panel of Figure \ref{filtered_paralogs_scatter} shows that
+genes discarded on the basis of having a very short length contained
+sequence distances similar to the kept copies, as the highest density
+is along the diagonal and there is no apparent bias for genes to lie
+above or below the diagonal. This is in line with the expectationq
+that these discarded genes were not truly paralogous copies, but
+rather fragments of split genes resulting from unassembled sequence
+segments. The second panel shows that when paralogous copies could be
+differentiated by their mean distances, they tended to have low
+average distances ($<$0.5 substitutions per nucleotide site) and only
+a small difference between the kept and discarded copy (e.g., most of
+the distribution is just above the diagonal, and few points are above
+the dashed line with a slope of 2). Finally, the distribution of
+length ratios and mean distances in the set of genes where length was
+the discriminating factor (or where an arbitrary decision was made)
+shows that most of these genes were mostly identical whether measured
+by sequence distance or sequence length.
+
+These results provided evidence that a sizeable fraction of recently
+duplicated mammalian genes are identical or very similar to each
+other: for roughly 30\% of putative paralogs, not enough time has
+elapsed since the duplication event for a detectable amount of
+sequence change to have occurred, and the choice between retaining one
+copy or the other was essentially arbitrary. For the roughly 40\% of
+putative paralogs where differences in mean distance could be
+identified, these differences tended to be small, suggesting that
+massive functional divergence of recent gene duplicates has not been a
+common phenomenon in mammalian evolution. Nonetheless, this protocol
+was designed to identify the least-diverged copy of a recently
+duplicated gene, and for 40\% of putative paralogs the mean distance
+to other sequences in the gene family allowed a sensible decision to
+be made.
+
+This was obviously not the most conservative approach to dealing with
+recent duplications---one could remove all copies from a set of
+putative paralogs, creating an apparent gene deletion, or one could
+simply ignore all gene families with any recent duplications (e.g.,
+require one-to-one orthology allowing for gene deletions). The latter
+option is almost certainly too conservative, but the former option may
+be appropriate for a more conservative approach. As the main concern
+over the handling duplicated genes has been that they may introduce a
+bias towards elevated evolutionary rates, I marked the XYZ genes
+containing at least XYZ sets of putative paralogs for further
+evaluation. Sitewise estimates from these genes were excluded from the
+most conservatively-filtered sitewise dataset and examined separately
+for excess signal of positive selection (see Section
+\ref{section_sitewise_filtering}), and in the next chapter I examine
+whether using the more conservative approach of removing all
+paralogous copies from genes removed the signal of positive selection
+from a subset of genes (see Section
+\ref{section_genes_paralog_subset}).
 
 \subsection{Identifying clusters of \nsyn substitutions}
+\label{section_windows_clustered_subs}
 
 After filtering for sequence quality and removing paralogous genes and
 shortened gene fragments, PRANK was used to align the codon sequences
 of each of the 16XYZ mammalian gene trees. Manual analysis of a number
-of these alignments revealed that many alignments contained short
-stretches of clearly nonhomologous sequence in one species, often
-flanked by stretches of perfect homology and often lying on the
-borders of exon junctions. An example of one such region is shown in
-Figure \ref{figure_TODO}. In this otherwise highly conserved region of
-the XYZ gene, a short 20-codon stretch of the XYZ sequence appears to
-contain little homology to the sequences from other species.
+of these alignments revealed many short stretches of clearly
+nonhomologous sequence in one species, often flanked by stretches of
+perfect homology and often lying on the borders of exon junctions. An
+example of one such region is shown in Figure \ref{figure_TODO}. In
+this otherwise highly conserved region of the XYZ gene, a short
+20-codon stretch of the XYZ sequence appears to contain little
+homology to the sequences from other species.
 
 These obviously erroneous stretches were likely due to mis-assembly of
 a genomic region or mis-identification of exon boundaries within the
@@ -716,31 +739,35 @@ I hypothesized that these stretches of \nhom sequence could be
 identified by their impact on the pattern of substitutions within each
 alignment. A stretch of \nhom aligned sequence would be expected to
 produce a localized cluster of apparent synonymous and nonsynonymous
-substitutions between the sequence containing the erroneous stretch
-and its ancestor. Because these substitutions would be restricted to
-one terminal branch in the gene tree and a region of the alignment
-limited to the length of the \nhom stretch, a scan for clustered
-substitutions within the terminal lineages of genes might be an
-effective way of identifying these erroneous sequences.
+substitutions occurring along the branch between the sequence
+containing the erroneous stretch and its ancestor. Because these
+substitutions would be restricted to one terminal branch in the gene
+tree and a region of the alignment limited to the length of the \nhom
+stretch, a scan for clustered substitutions within the terminal
+lineages of genes might be an effective way of identifying these
+erroneous sequences.
 
-Two factors may confound the ability to use \ac{wsc}s for identifying
-regions of aligned \nhom sequence in mammalian alignments. First, the
-length of the terminal branch leading to each species determines how
-many lineage-specific substitutions would be expected to occur within
-a given stretch of homologous aligned sequence. The terminal human
-branch, for example, is very short (as it shares a recent common
-ancestor with chimpanzee), while the platypus branch is very long
-(sharing a most recent common ancestor only with the entire eutherian
+Two factors could confound the effectiveness of using clustered
+substitutions to identify regions of \nhom aligned sequence. First,
+the length of the terminal branch leading to each species determines
+how many lineage-specific substitutions would be expected to occur
+within a window of a certain size. The terminal human branch, for
+example, is very short (as it shares a very recent common ancestor
+with chimpanzee), while the platypus branch is very long (sharing a
+most recent common ancestor only with the entire eutherian
 clade). Thus, one would expect to observe many more lineage-specific
-substitutions in platypus than in human for a given window of an
-alignment. In contrast, a stretch of aligned \nhom sequence should
+substitutions in platypus than in human for a given alignment
+window. In contrast, a stretch of \nhom aligned sequence should
 introduce, on average, a constant number of \nsyn and \syn
-substitutions to the terminal lineage. This should make it more
-difficult to distinguish homologous from \nhom stretches in species
-with long terminal lineages; on the other hand, this trend should also
-serve to limit the potential impact of \nhom stretches in those
-species on the detection of positive selection, as the resulting
-elevation in \nsyn or \syn substitutions rates would be less.
+substitutions into the branch ancestral to the sequence in which it
+exists. The end result is that it should be more difficult to
+distinguish homologous from \nhom stretches in species with long
+terminal lineages, as species with long terminal lineages will have
+higher numbers of substitutions in truly homologous regions. On the
+other hand, this trend should also serve to limit the negative impact
+of \nhom stretches in those species on the detection of positive
+selection, because the resulting elevation in \nsyn or \syn
+substitutions rates would be less severe.
 
 The second confounding factor is that \nsyn substitutions have been
 shown to be significantly more clustered than expected by chance in a
@@ -760,46 +787,62 @@ within windows of mammalian alignments by using \emph{codeml}
 \citep{Yang2007} under the M0 model (e.g., assuming one \omg for all
 sites and all branches in the tree) to perform the marginal
 reconstruction of ancestral sequences at internal nodes
-\citep{Yang1995} and storing the substitution events implied by the
-reconstructed ancestral sequences of each gene alignemnt. Only
+\citep{Yang1995} and to identify the substitution events implied by
+the reconstructed ancestral sequences of each gene alignemnt. Only
 substitution events occurring between codons with high posterior
 probabilities in the marginal ancestral reconstruction ($>0.9$) were
-included, and the location of each substitution along the alignment
-and within the gene tree was stored. This analysis was performed on
-all gene trees, yielding a large database of substitution events along
-internal and terminal branches of the phylogenetic tree confidently
-inferred from the PRANK alignments of mammalian coding regions.
+analyzed, and the location of each substitution event along the
+alignment and within the gene tree was stored. This analysis was
+performed on all gene trees, yielding a large database of substitution
+events along internal and terminal branches of the phylogenetic tree
+confidently inferred from the codon-based PRANK alignments of
+mammalian gene trees.
 
 Using this set of inferred substitutions, counts of \syn and \nsyn
-substitutions within non-overlapping 15-codon alignment windows for a
-selection of species and internal nodes were collected; the results of
-this analysis are shown in Figure \ref{fig_wcs}, which plots the
-number of 15-codon windows containing a given number of \nsyn and \syn
-substitutions for a selection of terminal and internal nodes. The mean
-length of the branch ancestral to the given node, indicated in
-parentheses after each node name, was calculated from the set of
-branch lengths estimated by \emph{codeml}.
+substitutions within non-overlapping 15-codon alignment windows for
+all terminal and internal nodes were collected; the results for a
+selection of species and internal nodes are shown in Figure
+\ref{fig_wcs}, which plots the number of 15-codon windows containing a
+given number of \nsyn and \syn substitutions for a selection of
+terminal and internal nodes. The mean length of the branch ancestral
+to the given node, indicated in parentheses after each node name, was
+calculated from the set of branch lengths estimated by \emph{codeml}.
+
+\begin{figure}
+\centering \includegraphics[scale=0.75]{Figs/wcs_15.pdf}
+\caption{Counts of inferred \nsyn (red bars) and \syn (blue bars)
+  substitutions in 15-codon windows along terminal and internal
+  branches of the mammalian tree. The leftmost two bars correspond to
+  windows with 0 substitutions, the next two bars correspond to
+  windows with 1 substitution, and so on. Red and blue arrows indicate
+  the number of \nsyn and \syn substitutions, respectively,
+  corresponding to the 99.9\% percentile across all windows in that
+  node.}
+\label{fig_wcs}
+\end{figure}
 
 Figure \ref{fig_wcs} shows that the vast majority of 15-codon windows
-in these alignments contained few substitutions, but a long tail of
-\nsyn and \syn substitutions were observed for some nodes. Comparing
-the counts of \nsyn vs. \syn substitutions within the terminal nodes
-(Figure \ref{fig_wcs}, top panel), a pattern is seen where the \nsyn
-counts (red bars) are higher at 0 substitutions, lower in the middle
-range of substitutions (1--5 substitutiosn), and higher again in the
-higher range of substitutions ($>$5 substitutions). The pattern in the
-lower range is consistent with the action of purifying selection on
-protein-coding regions, causing a reduced number of windows with
-multiple \nsyn substitutions. The excess of windows with large numbers
-of \nsyn substitutions runs against the pattern of purifying
-selection; instead, it shows that unexpectedly long clusters of \nsyn
-substitutions were a widespread feature of the mammalian
+in these alignments contained few substitutions (note that the y-axis
+uses a logarithmic scale), but a long tail of \nsyn and \syn
+substitutions were observed for some nodes. Comparing the counts of
+\nsyn vs. \syn substitutions within the terminal nodes (Figure
+\ref{fig_wcs}, top panel), a pattern is seen where the \nsyn counts
+(red bars) are higher than \syn counts at 0 substitutions, lower than
+\syn counts in the middle range of substitutions (1--5 substitutiosn),
+and higher again in the higher range of substitutions ($>$5
+substitutions). The pattern in the lower range is consistent with the
+action of purifying selection on protein-coding regions, causing a
+reduced number of windows with multiple \nsyn substitutions compared
+to \syn substitutions. The excess of windows with large numbers of
+\nsyn substitutions, on the other hand, runs against the pattern of
+purifying selection; instead, it shows unexpectedly long clusters of
+\nsyn substitutions to be a widespread feature of these mammalian
 alignments. The red and blue triangles drawn in each plot mark the
 number of substitutions below which 99.9\% of windows are contained;
-the shift of the \nsyn markers to the right clearly shows the excess
-of highly clustered \nsyn substitutions. Interestingly, human---which
-has the highest quality and best annotated genome---does not show a
-noticeable excess of clustered \nsyn substitutions.
+the shift of the \nsyn markers to the right emphasizes the excess of
+highly clustered \nsyn substitutions. Interestingly, human---which has
+the highest quality and best annotated genome---does not show the same
+level of excess seen in the other genomes analyzed.
 
 Comparing the pattern seen for terminal nodes to those from internal
 nodes provided further evidence for the presence of many stretches of
@@ -815,8 +858,8 @@ annotations for most rodent genomes were likely derived from
 alignments to mouse rather than human. In the case of discordant gene
 annotations, the entire rodent clade would share an aligned \nhom
 stretch, causing clustered substitutions to be inferred along the
-internal rodent branch. This raises the interesting possibility that
-the entire rodent clade suffers from misaligned \nhom stretches due to
+internal rodent branch. This raises the possibility that the entire
+rodent clade contains many misaligned \nhom stretches due to
 differences in gene annotations between rodent and non-rodent
 species. This appeared to be the case for at least one gene: Figure
 \ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
@@ -825,218 +868,204 @@ of a difference in exon annotations between rodent and non-rodent
 genomes.
 
 The end result of this analysis was the identification, for each
-terminal and internal node of the mammalian tree, windows with \nsyn
-substitution counts above the top 0.1\% of 15-codon windows
-genome-wide. The location of these windows was stored for later use in
-defining the most stringently-filtered sitewise dataset, described in
-Section \ref{section_stringent_filter}.
+terminal node of the mammalian tree, windows with \nsyn substitution
+counts above the top 0.1\% of 15-codon windows genome-wide; these
+windows were considered potential stretches of \nhom aligned
+sequence. Despite evidence that some internal nodes might also suffer
+from this type of alignment artifact, most internal nodes were free
+from an obvious excess of clustered \nsyn substitutions, so internal
+nodes were excluded from this list. And although there is no way to
+show that the 0.1\% threshold is the most appropriate one for
+discriminating true from erroneous windows of clustered substitutions,
+manual analysis of regions containing windows at a variety of
+thresholds showed it to perform well.
 
-\begin{figure}
-\centering \includegraphics[scale=0.8]{Figs/wcs_15.pdf}
-\caption{Counts of inferred \nsyn (red bars) and \syn (blue bars)
-  substitutions in 15-codon windows along terminal and internal
-  branches of the mammalian tree. The leftmost two bars correspond to
-  windows with 0 substitutions, the next two bars correspond to
-  windows with 1 substitution, and so on. Red and blue arrows indicate
-  the number of \nsyn and \syn substitutions, respectively,
-  corresponding to the 99.9\% percentile across all windows in that
-  node.}
-\label{fig_wcs}
-\end{figure}
-
+In total, XYZ windows containing potential stretches of \nhom aligned
+sequence were identified across XYZ genes, with XYZ genes containing
+at least 1 such window and XYZ genes containing greater than 10. The
+locations of these windows were stored for later use in defining the
+most conservatively-filtered sitewise dataset, and the impact of these
+potentially \nhom windows on sitewise levels of positive selection is
+described in Section \ref{section_stringent_filter}.
 
 \section{Genome-wide analysis of sitewise selective pressures in mammals}
 
-\subsection{Mammalian species subsets for sitewise analysis}
-
-SLR was run sequentially on several species subsets of each alignment
-of mammalian orthologs. For each subset, sequences corresponding to
-species within the subset were extracted from the alignment along with
-the corresponding \subtr and input to SLR. If fewer than two sequences
-were available for a given subset, that subset was skipped and its
-absence from the dataset was recorded. Eight subsets in total were
-selected for analysis; the species included in each subset and some
-phylogenetic measures of each subset are listed in Table
-\ref{species_set_summary}.
-
-Three subsets (Glires, Primates, and Laurasiatheria) were chosen
-because they represent the three mammalian superorders with the
-greatest taxonomic representation in Ensembl, providing an opportunity
-to compare the molecular evolutionary dynamics of three monophyletic
-mammalian groups containing varying levels of divergence, diverse
-biological characteristics, and a number of high-quality reference
-genomes. A fourth parallel mammalian subclade, named Atlantogenata and
-consisting of sloth, armadillo, tenrec, elephant and hyrax, was also
-included, but the monophyly of this group is still debated
-\citep{Murphy2007,Churakov2009} and it contains only one high-coverage
-genome. As such, it was not considered a primary target for the
-mammalian superorder analysis.
-
-Two larger species sets, Eutheria and Mammalia, were chosen for the
-purpose of measuring average sitewise selective pressures with high
-precision across a wider group of mammals. Using the Ensembl species
-tree as a guide, the estimated total synonymous branch lengths spanned
-by Ensembl species within Eutheria and Mammalia were 4.95 and 6.18,
-respectively. Simulations performed by Anisimova and Yang
-\citeyearpar{todo, Anisimova Yang 2002} and by myself in Chapter
-\ref{ch_indels1} predicted that the greater amount of branch length in the
-Eutherian and Mammalian trees---with two to three times the value of
-1.71 for Laurasiatheria, the superorder with the largest total branch
-length---would result in significantly higher levels of power and
-accuracy for estimating sitewise \omg and detecting sitewise positive
-selection. In this respect, Mammalia and Eutheria were more similar to
-each other than to any of the superorders.
-
-However, the Mammalia and Eutheria subsets differed markedly in a
-different (and largely orthogonal) phylogenetic factor, the
-evolutionary depths of their last common ancestors. Whereas the
-ancestor of all Eutherian mammals lived ca. \draft{125} mya, the
-Mammalian ancestor dates back to \draft{320} mya. This suggested that a
-comparison between the sitewise results for the two groups might
-provide useful insight into the general effect of adding longer,
-deeper branches to a sitewise evolutionary analysis as well as some
-indirect evidence on the molecular evolutionary dynamics of our most
-distant mammalian relatives (the Eutheria and Mammalia groups only
-differ by the inclusion of wallaby, opossum and platypus in the
-Mammalia group).
-
-Quantitatively, as measured by the \mpl from the Ensembl species tree,
-the Eutheria subset (\mpl=0.24) is far more similar to either of the
-three superorders (\mpl from 0.13 to 0.27) than to the Mammalia subset
-(\mpl=0.54). This is due to the striking adaptive radiation of
-Eutherian mammals \citep{Archibald1999,BinindaEmonds2007}, which
-caused a quick succession of speciation events around the K-T boundary
-and gives a largely star-like structure to the eutherian evolutionary
-tree. Interestingly, according to the time-resolved mammalian tree
-from Bininda-Edmonds et al. \citeyearpar{BinindaEmonds2007} the
-Diprodontia order (containing wallaby and opossum, two outgroups to
-the Eutheria clade) experienced a radiation similar to, but less
-prounced than, the Eutherian radiation; a comparison of the evolution
-of the deeply-rooted Diprodontia clade to its sister Eutherian clade
-would be very enlightening, but the species representation of
-Diprodontia (currently at one high-coverage and one low-coverage
-genome) is too limited to allow for a powerful analysis. Nevertheless,
-the inclusion of the three non-Eutherian species in the Mammalian
-species group was expected to provide an additional data point for
-aiding in an understanding of the complex relationship between branch
-length, power and biological variability in the analysis of sitewise
-selective pressures.
-
-Finally, to further investigate the combined impact of evolutionary
-depth, biological variability and branch length on the results of
-large-scale sitewise analyses, two ``sparse'' subsets were created to
-act as controls relative to two existing species subsets. The species
-in the Sparse Glires group were chosen to approximate the total branch
-length of the Primate clade with species from the Glires clade, while
-the Sparse Mammals subset was constructed by selecting one species
-(preferably with a high-coverage genome) from each major mammalian
-branch, greatly reducing the total branch length covered but
-maintaining a similar evolutionary depth and distribution of branches
-within the species tree. The branch lengths in Table
-\ref{species_set_summary} show that the Sparse Glires group was only
-somewhat successful in its goal of approximating the Primates branch
-length (with total branch lengths of 0.99 and 0.68, respectively)
-while the Sparse Mammals group achieved a threefold lower total branch
-length compared to the full Mammalia group while maintaining a nearly
-identical \mpl.
+\subsection{Species groups for sitewise analysis}
 
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
 % Thu Sep 15 11:19:59 2011
 \begin{table}
 \centering \footnotesize
-\begin{tabular}{lb{6cm}rrrrr}
+\begin{tabular}{lrb{8cm}rr}
 \toprule
- & &  & \multicolumn{2}{c}{Ensembl} & \multicolumn{2}{c}{Gene Median} \\
-\cmidrule(r){4-5} \cmidrule(r){6-7}
-Name & (Species Count) Species List & \Ne & MPL & Total & MPL & Total \\
+ & \multicolumn{2}{c}{Species} & \multicolumn{2}{c}{Median dS} \\
+\cmidrule(r){2-3} \cmidrule{4-5}
+Name & Count & List & MPL & Total \\
   \midrule
 \input{Tables/species_set_summary.txt}
 \bottomrule
 \end{tabular}
-\caption{Species subsets used for sitewise analysis. Values under the
-  ``Ensembl'' heading were calculated from subsets of the species tree
-  used for evolutionary analyses by the Ensembl Compara pipeline,
-  while values under the ``Gene Median'' heading were calculated as
-  median values across the \ngenes gene trees analyzed (with branch
-  lengths optimized by SLR). MPL -- mean path length, Total -- total
-  branch length.}
-\label{species_set_summary}
+\caption{Species groups used for sitewise analysis by \ac{slr}. The
+  median \acp{mpl} and the median total branch length are shown for
+  each species group, taken from the \ngenes branch lengths estimated
+  by \ac{slr} for each gene. MPL -- mean path length.}
+\label{table_species_set_summary}
 \end{table}
 
-\subsection{Evaluation of the bulk distributions and the design of a filtering appraoch}
+For each alignment of mammalin orthologs, SLR was run separately on 10
+different sets of mammalian species to obtain sitewise estimates in a
+variety of species groups. For each species group, sequences
+corresponding to species within the group were extracted from the
+whole mammalian alignment (along with the corresponding \subtr) and
+input to SLR, which was run with its default parameters. If fewer than
+two sequences were available for a given gene and species group, the
+sitewise analysis was skipped for that group. The species included in
+each group are listed in Table \ref{table_species_set_summary} alongside the
+\ac{mpl} and total branch length of their subtrees estimated as the
+median value across all 16xyz gene-wise dS branch length estimates
+from SLR.
 
-Sitewise data were collected from SLR and stored in a database for
-storage and further analysis. The Mammalia subset, containing the most
-branch length of all the datasets and representing the entire set of
-aligned sequences, and the Primate subset, containing the lowest
-overall branch length, were used to perform quality-control checks on
-the sitewise data. The point of these checks were to evaluate whether
-any additional filtering of the sitewise results was necessary before
-characterizing the global distribution of constraint in this and the
-other species subsets. Even if the sequence and alignment filters
-described above were successful at reducing the number of false
-positives due to incorrect input alignments, the behavior of SLR when
-applied to large datasets of heterogeneous alignments has not been
-well-studied, and a number of biases might have influenced the
-results. A particular point of concern was that columns with different
-patterns of gap and non-gap sequences, especially those with few
-non-gap sequences, might yield different performance
-characteristics. Although the SLR method was sensibly designed to
-account for uncertainty in the estimation of \omg and detection of
-positive selection, one might reasonably expect less-desirable
-statistical properties from sites with 2 non-gap sequences compared to
-sites with 20.
+Three species groups (Glires, Primates, and Laurasiatheria) were
+chosen because they represent the three mammalian superorders with the
+greatest taxonomic representation in Ensembl, providing an opportunity
+to compare the molecular evolutionary dynamics of three monophyletic
+mammalian groups containing varying levels of divergence, diverse
+biological characteristics, and a number of high-quality reference
+genomes. A fourth parallel mammalian subclade, Atlantogenata,
+consisting of sloth, armadillo, tenrec, elephant and hyrax, was also
+included, but the monophyly of this group is still under debate
+\citep{Murphy2007,Churakov2009} and it contains only one high-coverage
+genome. As such, it was not considered a primary target for the
+mammalian superorder analysis. The different mammalian superorders
+contained a wide range of total branch lengths, with 0.83 for
+Primates, 0.97 for Atlantogenata, 1.90 for Glires, and 2.16 for
+Laurasiatheria. A slightly different ordering was found when measuring
+the trees by \ac{mpl}, with Glires having a significantly higher
+\ac{mpl} (0.40) than the other groups despite having fewer species and
+a lower total branch length than Laurasiatheria. This reflected the
+higher neutral evolutionary rate in the Glires group, a
+well-documented feature of rodent evolution likely resulting from
+their long-term shorter generation time, which has been strongly
+correlated with higher neutral evolutionary rates
+\citep{Nikolaev2007a,Smith2008}.
+
+Two larger species groups, Eutheria and Mammalia, were chosen for the
+purpose of measuring average sitewise selective pressures across
+mammals as a whole. The Eutheria group consists of the union of the
+mammalian superorder groups plus armadillo, and the Mammalian group
+adds opossum, platypus, and wallaby for a total of 38 species. The
+median total branch lengths for Mammalia and Eutheria were 8.21 and
+6.43, respectively, and the \ac{mpl}s were 0.67 and 0.35.
+
+Finally, to evaluate the impact of species choice and branch length on
+the results of the \sw analysis, four additional ``sparse'' species
+groups were created for comparison to the main groups of interest. The
+species in the Sparse Glires group were chosen to create a group with
+species from the Glires group but having a lower overall branch
+length; the Sparse Mammals group was created with a similar aim,
+created by selecting one species (preferably with a high-coverage
+genome) from each major mammalian branch, greatly reducing the total
+branch length covered but maintaining a similar evolutionary depth and
+distribution of major branches within the species tree. The HQ Mammals
+group was similar to the Sparse Mammals group, but elephant and the
+deeper mammalian lineages were omitted (e.g., wallaby, platypus,
+armadillo) in favor of only the high-coverage Eutherian genomes (e.g.,
+chimpanzee, cow, horse, macaque, pig, rat). Finally, the HMRD group
+consisted of human, mouse, rat, dog, and represented the type of
+phylogenetic tree that was commonly analyzed early in the last decade
+when only a few mammalian genome sequences were available. The HMRD
+group was comparable to Primates and Atlantogenata in total branch
+length, while HQ Mammals and Sparse Glires were more similar to
+Glires.
+
 
 \begin{landscape}
 \begin{figure}
 \centering
-\includegraphics[scale=0.42]{Figs/qc_hist_mammals_primates.pdf}
-\caption{Distributions of sitewise values for Mammalia (A) and (B)
-  Primates, before (top row) and after (bottom row) removing sites
-  based on the filtering scheme (see text). Note: the y-axis scale
-  varies between rows, and the x-axis scale varies between (A) and (B)
-  for the Signed LRT, Nongap Codons and Nongap Branch Length values.}
-\label{qc_hist_mammals_primates}
+\includegraphics[scale=0.42]{Figs/qc_hist_primates.pdf}
+\caption{Distributions of sitewise values for the Primates species
+  group, showing the raw data (top row) and the result of applying the
+  relaxed (middle row) and conservative (bottom row) filters.}
+\label{fig_qc_hist_primates}
 \end{figure}
 \end{landscape}
+
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[scale=0.42]{Figs/qc_hist_mammals.pdf}
+\caption{Distributions of sitewise values for the Mammals species
+  group, showing the raw data (top row) and the result of applying the
+  relaxed (middle row) and conservative (bottom row) filters.}
+\label{fig_qc_hist_mammals}
+\end{figure}
+\end{landscape}
+
+\subsection{Evaluation of the bulk distributions and the design of a filtering approach}
+\label{section_sitewise_filtering}
+
+Sitewise data were collected from SLR and stored in a database for
+storage and further analysis. The Mammals group, containing the most
+branch length of all the datasets and representing the entire set of
+aligned sequences, and the Primates group, containing the lowest
+overall branch length, were used as representative species groups to
+perform quality-control checks on the \sw data and to guide the
+curation of filtered \sw datasets for each species group.
+
+Some amount of filtering is usually necessary in genomic analyses, and
+the situation is especially delicate in a scan for positive selection,
+since non-biological artifacts often appear to represent elevated
+evolutionary rates
+\citep{MarkovaRaina2011,Schneider2009,Mallick2009}. To balance the
+desire to maintain as much real data as possible with the concern that
+a methodological bias may influence the results, two datastes were
+generated by processing \sw data separately with two filters: a
+relaxed filter, designed to retain much of the data while filtering
+out the most obviously low-quality sites, and a conservative filter,
+designed to remove a wider set of sites and genes that showed evidence
+for potential errors or biases.
  
-Figure \ref{qc_hist_mammals_primates} shows the distributions of six
-sitewise values: two continuous values output by SLR (Omega and Signed
-LRT), two categorical values from SLR (Site Pattern and Random), and
-two values calculated from the codon alignment (Nongap Codons and
-Nongap Branch Length). The Nongap Codons value measures the number of
-non-gap codons in the given alignment columnn, while the Nongap
-Branch Length represents the total branch length connecting all non-gap
-sequences (using the gene tree with branch lengths optimized by SLR).
+I first examined the overall distributions of \omg estimates and \sw
+LRT statistics from SLR. Figures \ref{fig_qc_hist_primates} and
+\ref{fig_qc_hist_mammals} show the distributions of six sitewise values
+for each group of species: two continuous values and two categorical
+values output by \ac{slr} (Omega, Signed LRT, Site Pattern and Random)
+and two values calculated from the codon alignment (\Ngap Codons and
+\Ngap Branch Length). \Ngap Codons is a count of the number of \ngap
+codons in each alignment columnn, and the \Ngap Branch Length value
+represents the total branch length connecting all non-gap sequences
+(using the gene-wide branch lengths optimized by SLR).
 
 A prominent feature of the distribution of \omg values for the
-unfiltered Mammalian data, shown in the top panel of Figure
-\ref{qc_hist_mammals_primates}A, was the large number of sites with a
-maximum-likelihood estimated \omg of zero. Further inspection of the
-data revealed that all zero-\omg sites contained either \syn or
-constant site patterns, and all sites with constant patterns (and
-nearly all sites with \syn patterns) yielded a \ml \omg estimate of
-zero. An estimate of zero for \syn sites is intuitively appropriate,
-as the lack of any \nsyn substitutions throughout the tree would seem
-to provide no evidence for a \nsyn substitution rate of greater than
-zero. For constant sites the case is less clear, because no data
-regarding the rate of either \syn or \nsyn substitutions
-exists. However, given SLR's assumption of a constant \syn
-substitution rate throughout each gene \citep{Massingham2005},
-the \omg value which maximizes the likelihood of observing zero
-substitutions is zero, since that value minimizes the \nsyn (and
-total) substitution rate.
+unfiltered Mammals data, shown in the top row of Figure
+\ref{fig_qc_hist_mammals}, was the large number of sites with a
+zero value for \omgml, the \ac{ml} point estimate of \omg. Further
+inspection of the data revealed that all \omgml$=0$ sites contained
+either \syn or constant site patterns. Furthermore, all sites with
+constant patterns (and nearly all sites with \syn patterns) yielded a
+\omgml estimate of zero. Intuitively, an estimate of zero for \syn
+sites is appropriate, as the lack of any \nsyn substitutions
+throughout the tree would provide no evidence for a \nsyn substitution
+rate of greater than zero. For constant sites the case is less clear,
+because no data regarding the rate of either \syn or \nsyn
+substitutions exists in the alignment column. However, given SLR's
+assumption of a constant \syn substitution rate throughout each gene
+\citep{Massingham2005}, the \omg value which maximizes the likelihood
+of observing zero substitutions is zero, since that value minimizes
+both the \nsyn and the total substitution rate.
 
-It is interesting to note that a small proportion (ca. 0.2\%) of \syn
-sites resulted in \ml estimates greater than zero. Manual
-investigation of a number of these sites \draft{Use the sites data and
-  'seq' table to do a more quantitative analysis here?}  showed them
-all to include synonymous codons with multiple nucleotide differences
-(such as those coding for serine and arginine), for which SLR's
-mechanistic codon model---which does not allow for multiple
-simultaneous nucleotide changes--required the inference of multiple
-\nsyn substitutions and, thus, a \nsyn substitution rate of greater
-than zero. The existence of multiply-substituted codons in alignments
+It is not evident from Figure \ref{fig_qc_hist_mammals}, but a small
+proportion (ca. 0.2\%) of sites containing \syn site patterns resulted
+in \ml estimates greater than zero. Analysis of the alignment columns
+corresponding to these sites showed them all to include synonymous
+codons coding for serine or arginine which are separated by multiple
+nucleotide differences. Under the mechanistic codon model implemented
+by \ac{slr}, which does not allow for multiple simultaneous nucleotide
+changes, inferring an evolutionary path between these
+multiply-substituted codons required the inference of multiple \nsyn
+substitutions to reach one codon from the other. This produced a \nsyn
+substitution rate of greater than zero for a site with a \syn site
+pattern. The existence of multiply-substituted codons in alignments
 has been previously reported \citep{Averof2000,Whelan2004}, and
 empirical results have supported the notion that codon models that
 allow for multiple simultaneous nucleotide changes better describe
@@ -1045,64 +1074,29 @@ low proportion of synonymous sites requiring nonzero \nsyn
 substitution rates suggested that the impact of these effects on the
 current dataset was minimal; this is likely due to the relatively
 short branch lengths separating the nodes of the mammalian tree,
-making it less likely that codons with multiple substitutions (whether
-the result of simultaneous multiple nucleotide changes or successive
-single changes) would be observed \citep{Kosiol2007}.
+making it less probable that codons with multiple substitutions
+(whether the result of simultaneous multiple nucleotide changes or
+successive single changes) would be observed \citep{Kosiol2007}.
 
-The distributions of Nongap Codons and Nongap Branch Length values in
-the top row of Figure \ref{qc_hist_mammals_primates}A showed that many
-alignment columns contained only a few non-gap sequences. Both
-distributions were bimodal with a larger peak at the upper end of the
-range and a smaller peak at the lower end of the range. If the sites
-with low non-gap codon counts represented accurate evolutionary
-histories, the observed excess of mostly gapped sites might be taken
-as an indication that insertion events in terminal lineages or recent
-ancestral lineages were prominent enough in mammalian evolution to
-leave a noticeable signature of sites with low non-gap codon
-counts. This would be a very interesting observation, but
-unfortunately it is not likely a correct one. Given the many possible
-sources of error in the creation of Ensembl gene trees, however, a
-more likely scenario was that sites with low codon counts and low
-branch lengths came from stretches of sequence which only exist in a
-few species as a result of annotation or alignment error, with a
-higher probability of being nonhomologous and showing spurious signals
-of positive selection. This would make such sites prime candidates for
-filtering out prior to a large-scale analysis.
-
-To test the hypothesis that sites with few non-gap sequences are less
-reliable than other sites, the Mammals and Primates data were split
-into deciles by nongap branch length and sites within each decile were
-summarized by the proportion of sites showing evidence for purifying
-and positive selection; the results of this analysis are presented in
-Table \ref{bl_pos_sel_breakdown}. The lowest decile appeared to be a
-clear outlier in the Mammalia dataset, with nearly 17\% of sites
-having an estimated \omg of greater than 1 and 2\% of sites showing
-significant evidence for positive selection at a nominal 5\% error
-rate. Deciles with greater nongap branch lengths showed lower
-proportions of sites with \omg $> 1$ and less evidence for positive
-selection, with a gradual increase in both values at progressively
-higher deciles. The gradual increase in evidence for positive
-selection with increasing nongap branch length could be explained by
-genes with higher overall \dnds ratios (and perhaps more positive
-selection) producing, on average, higher estimated branch lengths due
-to the increased \nsyn substitution rate. Overall, these patterns were
-consistent with the expectation that sites with few non-gap sequences
-were not consistent with the bulk of the dataset, and Table
-\ref{bl_pos_sel_breakdown} showed that removing sites with the lowest
-10\% of nongap branch length would remove most of the apparently
-anomalous sites.
-
-The breakdown of Primates data in Table \ref{bl_pos_sel_breakdown}
-showed a trend similar the Mammalia dataset, although the distinction
-between the lowest decile and the rest of the dataset was less
-clear. The \fpos in the lowest decile was only slightly higher than in
-the next-highest decile, and \fblw was lower than in all other
-bins. The gradual increase of \fabv and \fpos in higher branch length
-deciles was similar to that seen in the Mammalia dataset,
-however. Despite weaker evidence in the Primates data for the
-erroneous nature of sites with few non-gap sequences, it still
-appeared that filtering sites in the bottom decile would improve the
-overall quality and consistency of the data.
+The distributions of the \Ngap Codons and \Ngap Branch Length values
+in the unfiltered row of Figure \ref{fig_qc_hist_mammals} showed that
+most alignment columns contained sequence data from many species (with
+\Ngap Codons peaking at 36 and \Ngap Branch Length peaking at around 8
+substitutions per site), but a noticeable portion contained only a few
+non-gap sequences. If the alignment columns with low \ngap codon
+counts represented accurate evolutionary histories, then the observed
+excess of highly-gapped sites might be taken as an indication that
+insertion events in terminal lineages or recent ancestral lineages
+were prominent enough throughout mammalian evolution to leave a
+noticeable signature of sites with very low non-gap codon
+counts. Given the many possible sources of error in the annotation and
+alignment of these sequences, however, a more likely scenario was that
+sites with low codon counts and low branch lengths came from stretches
+of sequence which only exist in a few species as a result of
+annotation or alignment error. As a result, these sites might be
+expected to show a higher probability of being nonhomologous and
+showing spurious signals of positive selection. This would make such
+sites prime candidates for filtering out prior to analysis.
 
 \begin{table}
 \centering \footnotesize
@@ -1110,84 +1104,144 @@ overall quality and consistency of the data.
 \toprule
  & BL & \multicolumn{3}{c}{Nongap BL} & \multicolumn{3}{c}{Nongap Codons} & \multicolumn{2}{c}{\omgml, \%} &  \\
 \cmidrule(r){3-5} \cmidrule(r){6-8} \cmidrule(r){9-10}
- & Quantile & 25\% & 50\% & 75\% & 25ff\% & 50\% & 75\% & $< 1$ & $> 1$ & \psfive, \% \\
+ & Quantile & 25\% & 50\% & 75\% & 25\% & 50\% & 75\% & $< 1$ & $> 1$ & \psfive, \% \\
   \midrule
 \input{Tables/bl_pos_sel_breakdown.txt}
 \bottomrule
 \end{tabular}
 \caption{Proportions of sites with evidence for purifying and positive
-  selection in the Mammalia and Primates datasets broken down by
-  nongap branch length. Sites were separated into 10 equally-sized
-  bins of nongap branch length and summarized by the $25^{th}$,
-  $50^{th}$ and $75^{th}$ percentiles of nongap branch length and
-  nongap codons, the percentage of sites with \omg estimated below or
-  above 1, and the percentage of sites with significant evidence of
-  positive selection at a nominal 5\% FPR.}
-\label{bl_pos_sel_breakdown}
+  selection in the Mammalia and Primates datasets broken down by \ngap
+  branch length. Sites were separated into 10 equally-sized bins of
+  \ngap branch length and the sites within each bin were summarized by
+  the $25^{th}$, $50^{th}$ and $75^{th}$ percentiles of \ngap branch
+  length (BL) and \ngap codons, the percentage of sites with \omg
+  estimated below or above 1, and the percentage of sites classified
+  as positively-selected codons (PSCs) at a nominal 5\%
+  FPR. BL--branch length; PSC--positively selected codons.}
+\label{table_bl_pos_sel_breakdown}
 \end{table}
 
+To test the hypothesis that sites with few \ngap sequences would be
+less reliable for analysis than other sites, I split the \sw estimates
+from the Mammals and Primates groups into ten equally-sized bins of
+\ngap branch length. Sites within each bin were summarized by
+calculating the percentage of sites with \omgml less than or greater
+than 1, as well as the percentage of sites showing evidence for
+positive selection at a nominal 5\% \ac{fpr}, hereafter referred to as
+\acp{psc}. The results of this analysis are presented in Table
+\ref{table_bl_pos_sel_breakdown}. The lowest bin was a clear outlier
+in the Mammals data, with nearly 17\% of sites having \omgml$>1$ and
+2\% of sites being \acp{psc}. The other 9 bins with greater \ngap
+branch lengths showed fewer sites with \omg~$>1$ and less evidence for
+positive selection; within those 9 bins, a pattern of gradual increase
+in the proportion of sites with {{\omgml$>1$}} and \acp{psc} was observed
+at progressively higher \ngap branch lengths. The increase in evidence
+for positive selection with increasing \ngap branch length could be
+explained by genes with higher overall \dnds ratios (and presumably
+more \acp{psc}) having higher branch lengths due to the increased rate
+of \nsyn substitution. Overall, the pattern observed for the Mammals
+data was consistent with the prediction that sites with few \ngap
+sequences were not consistent with the general pattern of \sw data. In
+terms of choosing an appropriate threshold on which to filter, Table
+\ref{table_bl_pos_sel_breakdown} indicated that removing sites with
+the lowest 10\% of \ngap branch length would remove most of the
+apparently anomalous sites.
+
+Table \ref{table_bl_pos_sel_breakdown} showed a similar trend for the
+Primates dataset, although the distinction between the lowest bin and
+the rest of the dataset was less obvious. The percentage of \acp{psc}
+in the lowest decile was only slightly higher than in the next-highest
+decile, and the proportion of sites with \omgml$>1$ was lower than in
+all other bins. Thus, despite weaker evidence in the Primates data for
+the anomalous nature of sites with few \ngap sequences, it still
+appeared that filtering sites in the bottom 10\% bin would improve the
+overall quality and consistency of the data.
+
 Turning back to the bulk distributions in Figure
-\ref{qc_hist_mammals_primates}, the rightmost panel depicts the small
-set of sites designated as ``random'' by SLR. These sites were flagged
-by SLR as having a site pattern not significantly different from
-random \citep{Massingham2005}, and they were also targeted for
-removal before analysis of the global distribution.
+\ref{qc_hist_mammals_primates}, two other criteria were used to target
+sites for removal before analysis. First, the rightmost panels of
+Figures \ref{fig_qc_hist_mammals} and \ref{fig_qc_hist_primates}
+depict a small set of sites designated as ``random''. These sites were
+flagged by SLR as having a site pattern not significantly different
+from random \citep{Massingham2005}, and they were also targeted for
+removal before analysis of the global distribution. Second, all sites
+with fewer than four \ngap sequences were removed. This was done to
+avoid analyzing sites with very few sequences which were not within
+the bottom 10\% of sites by \ngap branchlength.
 
-The final filtering protocol applied to each sitewise dataset included
-three steps. First, all sites within the bottom 10\% of nongap branch
-length values were removed; second, sites flagged by SLR as ``random''
-were removed; third, all sites with fewer than four non-gap sequences
-were removed.
+At this point, all of the criteria used to define the relaxed filter
+have been described: \ngap branch lengths, random flags, and the
+number of \ngap sequences at each site.
+%Table
+%\ref{table_filtering_summary} summarizes the filtering criteria used,
+%and 
+The middle rows of Figures \ref{fig_qc_hist_primates} and
+\ref{fig_qc_hist_mammals} show the summary distributions resulting
+from applying the relaxed filter to the Mammals and Primates sitewise
+data.
 
-The most prominent effect of the filter on the bulk distributions in
-Figures \ref{qc_hist_mammals_primates}A and
-\ref{qc_hist_mammals_primates}B was, as expected, the removal of the
-excess of sites with low non-gap branch lengths and non-gap codon
-counts. The distribution of \omg estimates and Signed LRT statistics
-were largely unchanged, indicating that the overall characteristics of
-each dataset were not significantly altered by the filter. The lack of
-large-scale change was a somewhat reassuring result, given that the
-filter only removed roughly 10\% of sites from each dataset.
+Three additional criteria were added to create the more conservative
+filtered dataset. First, the threshold on \ngap sequence counts was
+increased: all sites with a \ngap codon count below 75\% of the
+maximum \ngap count for that species group were removed. Second, sites
+and genes containing windows of clsutered \nsyn substitutions (as
+identified in Section \ref{section_windows_clustered_subs}) were
+removed: all sites overlapping the 23,116 15-codon windows with excess
+\nsyn substitutions (using the 99.9\% quantile based definition of
+excess substitutions from Section
+\ref{section_windows_clustered_subs}) were masked out, and 819 genes
+with greater than 10\% of sites covered by windows with excess \nsyn
+substitutions were removed. Finally, the 3,333 genes which contained
+more than 2 sets of putative paralogs were excluded.
 
-A more detailed comparison of various summary statistics for the
-filtered and unfiltered datasets showed that filtering had a
-noticeable impact on three quantities of interest: it reduced the
-proportion of constant sites, lowered the mean \omg, and slightly
-decreased the percentage of positively-selected sites. Tables
-\ref{sitewise_summary_table_1} and \ref{sitewise_summary_table_2}
-contain summary statistics and calculations performed on the filtered
-and unfiltered Mammalia and Primates data. Most of the data contained
-in these tables will be more fully described in the next subsection,
-but a comparison of the filtered and unfiltered rows for Primates and
-Mammalia provided a means by which to quantitatively assess the effect
-of filtering on particular aspects of the dataset. First, the
-percentage of constant sites was reduced in the post-filtering data,
-moving from 60.04\% to 57.62\% in Primates and from 12.62\% to 8.17\%
-in Mammalia. This was expected, as the sites removed by filtering were
-enriched in constant site patterns due to their lower non-gap branch
-lengths. Second, the mean \omg value was slightly reduced in Primates
-(from 0.32 to 0.27) and greatly reduced in Mammalia (from 0.49 to
-0.20), likely due to the removal of sites containing a small number of
-nonhomologous codons which might have produced abnormally high
-sitewise \ml \omg estimates. Third, the proportion of
-positively-selected sites (shown for a range of significance
-thresholds in Table \ref{sitewise_summary_table_2}) was moderately
-reduced in both Primates (from 0.56\% to 0.53\% at \chisqlt{0.05}) and
-Mammalia (from 0.72\% to 0.56\%). These three effects of filtering,
-each showing a shift indicating more useful data (e.g., a lower
-percentage of constant sites) or less evidence for positive selection
-(e.g., lower mean \omg and proportion of positively-selected sites) in
-the post-filtering datasets, together provided evidence supporting the
-inclusion of such a filtering step prior to the analysis and
-comparison of sitewise estimates in different species sets. Although
-most quantities of interest were not noticeably changed, those that
-were affected by filtering shifted to more conservative values, which
-was taken to be a positive sign given the persistent concern regarding
-the presence of false positives in detecting positive selection.
+As with the relaxed filter
+%, the parameters of the conservative filter
+%are listed in Table \ref{table_filtering_summary} and 
+the result of
+applying the conservative filter to the Primates and Mammals datasets is shown in
+the bottom rows of Figures \ref{fig_qc_hist_primates} and
+\ref{fig_qc_hist_mammals}. Comparing between the distributions in the three rows of Figure
+\ref{fig_qc_hist_mammals}, the most prominent effect of the two
+filters on the bulk distributions in was the removal of the excess of
+sites with low non-gap branch lengths and non-gap codon counts. The
+distributions of \omgml estimates and LRT statistics were
+qualitatively unchanged unchanged, indicating that the overall
+characteristics of the dataset were not significantly altered by this
+filter.
+
+Tables \ref{table_filter_summaries_1} and
+\ref{table_filter_summaries_2} provide a quantitative summary of the
+Mammals and Primates datasets before and after applying the two
+filters. Also shown is the subset of sites overlapping with Pfam
+domain annotations collected from \ens; as most Pfam domains represent
+well-folded protein modules \citep{Finn2010}, the set of
+Pfam-annotated sites were expected to exhibit stronger purifying
+selection and be less prone to insertions or deletions and alignment
+error. The rows labeled in parentheses summarize the set of sites
+which were removed during the creation of the conservatively-filtered
+dataset, either due to overlap with a window of clustered
+substitutions (Clusters) or from being within a gene that contained
+more than 2 recent duplications (Paralogs).
+
+The impact of extensive filtering on the genome-wide levels of
+positive and purifying selection becomes clear in this view. The
+unfiltered data from the Primates group contained 9.07\% of sites with
+\omgml~$>1$, and 0.59\% of sites were \acp{psc} at a nominal 5\%
+\ac{fpr}; the evidence for positive selection was reduced in the
+conservatively-filtered data, showing 7.87\% sites with \omgml~$>1$
+and 0.41\% \acp{psc}. An even stronger effect of filtering was seen
+for the Mammals data, with \omgml~$>1.5$ being reduced from 5.71 to
+2.73 between the unfiltered and conservatively-filtered datasets, and
+the percentage of \acp{psc} reduced from 0.72\% to 0.35\%. The rows
+representing two sets of sites which were removed during the
+conservative filtering process showed higher signals of positive
+selection than the unfiltered data, suggesting that these two
+filtering steps were at least somewhat effective in removing
+potentially anomalous or untrustworthy sites from the dataset.
 
 \begin{landscape}
 \begin{table}
-\footnotesize{
+\scriptsize{
 \centering
 \begin{tabular}{lllrrrrrrrrrrrrr}
 \toprule
@@ -1201,14 +1255,13 @@ $< 0.5$ & $< 1$ & $> 1$ & $> 1.5$ \\
 \input{Tables/filter_summaries_1.txt}
 \bottomrule
 \end{tabular}
-\caption{Summary statistics and \ml \omg estimates for sitewise data
-  in eight species groups. Rows labeled ``Primates (raw)'' and
-  ``Mammalia (raw)'' were computed based on unfiltered data and are
-  included for reference. Columns under the ``\omgml Above / Below,
-  \%'' heading measure the cumulative percentage of sites with \omgml
-  below or above the indicated value. Med.---median,
-  Const.---constant, Syn.---\syn, Nsyn.---\nsyn, ML---\ml.
-\label{filter_summaries_1}
+\caption{\scriptsize Summary statistics of \sw estimates for Mammals and Primates
+  data with various filters applied. Rows labeled (Clusters) and
+  (Paralogs) contain sites excluded by the Conservative
+  filter. Columns under the ``\omgml Below / Above'' heading measure
+  the percentage of sites with \omgml below or above the indicated
+  value. Med.---median, Const.---constant, Syn.---\syn, Nsyn.---\nsyn,
+  BL---branch length. \label{table_filter_summaries_1}
 }
 
 \hspace{.2in}
@@ -1229,24 +1282,228 @@ Name & Filter &
 \input{Tables/filter_summaries_2.txt}
 \bottomrule
 \end{tabular}
-\caption{Proportions of sites subject to positive, purifying and
-  neutral selection at various \slrt thresholds. The
-  Benjamini-Hochberg method \citep{Benjamini1995} was used to identify the
-  \slrt threshold at which FDR$<$0.05. For columns under the headings
+\caption{\scriptsize Proportions of sites subject to positive, purifying and
+  neutral selection at various \slrt thresholds for Mammals and
+  Primates data with varous filters applied. The Benjamini-Hochberg
+  method \citep{Benjamini1995} was used to identify the \slrt
+  threshold at which FDR$<$0.05. For columns under the headings
   ``\chisqlt{0.1}, \%'' and ``\chisqlt{0.05}, \%'', Pos. and Neg. are
   the percentage of sites with significant evidence for positive and
   negative selection, respectively, and Neut. is the percentage of
   ``neutral'' sites not showing significant evidence for non-neutral
   selection.}
-\label{sitewise_summary_table_2}
+\label{table_filter_summaries_2}
 }
 \end{table}
 \end{landscape}
 
+\subsection{The global distribution of sitewise selective pressures in mammals}
+
+\begin{figure}
+\centering \includegraphics[scale=0.42]{Figs/global_distributions.pdf}
+\caption{\scriptsize Global distributions of site patterns and \omg
+  estimates for ten species groups. Left panels: bars represent the
+  number of sites showing constant, synonymous, and non-synonymous
+  patterns. Note, the y-axis is held constant between rows. Right
+  panels: bars represent histograms of \omgml estimates for sites
+  where \omgml$>0$. Sites with \omgml$>3$ are counted in the bin at
+  \omgml$=3$. A solid line is drawn showing the cumulative
+  distribution of \omgml, and dashed lines are drawn above and below
+  the solid line showing the cumulative distributions of the lower and
+  upper bounds, respectively, of the 95\% confidence interval
+  associated with each \sw estimate.}
+\label{fig_global_distributions}
+\end{figure}
+
+The sitewise data from each of the ten species groups were processed
+with the conservative filter as described above. The resulting global
+distributions of site patterns, sitewise \omgml estimates, and 95\%
+confidence intervals are shown in Figure
+\ref{fig_global_distributions}. The left panel in each row plots the
+number of sites with constant, \syn, and \nsyn patterns; all sites
+with \omgml$=0$ had constant or \syn patterns, and all sites with
+\omgml$>0$ had \nsyn patterns. The right panel in each row shows the
+distributions of \omgml for sites which contained a \nsyn site
+pattern.
+
+\subsubsection{Site patterns and \omgml values reveal the prevalence of purifying selection in mammalian proteins}
+
+The site pattern counts in Figure \ref{fig_global_distributions}
+showed that the branch length of each species group had a strong
+effect on the overall composition of the sitewise data. Species groups
+covering little branch length, such as Primates and Atlantogenata,
+contained mostly constant sites, while groups covering a large amount
+of branch length, such as Eutheria and Mammals, contained few constant
+sites and roughly equal proportions of sites with \syn and \nsyn site
+patterns. Comparing the Glires and Mammals data with their
+corresponding ``sparse'' datasets confirmed that this trend was
+largely due to branch length as opposed to biological factors: the
+Sparse Glires data, for example, yielded a smaller proportion of \nsyn
+sites and a greater proportion of constant sites than the Glires data
+(17.41\% versus 24.08\% for \nsyn sites, 44.21\% versus 33.98\% for
+constant sites).
+
+The distributions of \omgml estimates are shown in Figure
+\ref{global_distributions} as a series of histograms showing the
+\omgml density (for \nz values of \omgml only) and a series of solid
+lines showing the cumulative \omgml density (representing all values);
+the lower and upper dashed lines show the cumulative density of the
+lower and upper 95\% confidence interval resulting from each \sw
+estimate. From these distributions, it is clear that the majority of
+protein-coding sites have evolved under purifying selection in
+mammals, a fact which is most easily seen in the larger species
+groups. The Mammalia group, which contained only a small proportion of
+uninformative constant sites (8.17\%), showed a maximum density of \nz
+\omgml estimates at $\omega\approx0.1$, and the vast majority of sites
+showed some evidence of purifying selection with \omgml estimates
+below 1. The height of the \omgml cumulative distribution at
+$\omega=1$ corresponds to the proportion of sites with some evidence
+for purifying selection. The \nz \omgml values were more evenly spread
+in the other species groups: Glires contained a maximum \nz \omgml
+density at around $\omega\approx0.25$ and Primates at
+$\omega\approx0.7$. This upwards shift in \nz \omgml estimates
+relative to Mammalia was likely due to the greater proportion of
+constant and \syn sites in datasets with lower overall branch lengths:
+sites which were truly evolving with $0<\omega<1$, but where no \nsyn
+or \syn substitutions were observed, would have their \omgml estimate
+``pushed'' towards zero, presumably causing a concomitant upwards
+shift in the distribution of the remaining \nz \omgml values.
+
+\subsubsection{Sitewise confidence intervals and LRT statistics identify sites with significant evidence for purifying and positive selection}
+
+An important component of SLR's output is the set of statistics
+providing information about the confidence with which purifying or
+positive selection was detected. These values include the lower and
+upper bounds of \ci, the 95\% confidence interval for each \omgml
+estimate, and the LRT statistic, which corresponds to the strength of
+evidence for purifying or positive selection. Following Massingham
+\citeyearpar{Massingham2005}, I used a signed version of the LRT
+statistic (hereafter \slrt), formed by negating the LRT statistic for
+sites where \omgml$<1$, as a way to sort sites according to their
+evidence for purifying and positive selection. Thus, sites with
+\slrt$<0$ showed at least some evidence for purifying selection, and
+sites with \slrt$>0$ showed at least some evidence for positive
+selection. It should be noted that the \slrt is a measure of the
+strength of evidence for purifying or positive selection, but not
+necessarily the actual strength of that selection. For example, an
+alignment covering a very large branch length might yield a strongly
+negative \slrt for a site with \omgml only moderately below 1, because
+the evidence for purifying selection at that site was highly
+statistically significant; on the other hand, a strongly-purifying
+site in an alignment covering less branch length might produce a much
+less-negative \slrt, even with an estimated  \omgml near zero.
+
+To further explore this point, Figure \ref{fig_sites_scatters}A shows
+the relationship between \slrt, \omgml and the \ci width for sites
+from the Mammals group. The left panel, comparing the \slrt to \nz
+\omgml estimates, shows that the two values are highly correlated,
+with the greatest number of low \omgml estimates occurring at sites
+with strongly negative \slrt{}s. Correspondingly, the middle panel
+shows an even stronger relationship between the \slrt magnitude and
+the \ci width, with the tightest confidence intervals at sites with
+very strong evidence for purifying selection. The rightmost panel
+compares the \omgml of each site with the width of its \ci, revealing
+a more linear and diffuse positive relationship between \omgml and the
+size of the \ci. The equivalent plots for Primates, shown in Figure
+\ref{fig_sites_scatters}B, reveal similar patterns, but with generally
+less-negative \slrt values, higher \omgml, and larger \ci. These
+differences highlight the impact of branch length on the amount of
+confidence with which \omg can be estimated on a per-site basis. The
+low branch length of the Primates clade rarely yields \omgml estimates
+with \ci intervals smaller than 1, while the bulk of sites from the
+Mammalia dataset have relatively small \ci{}s. Thus, the distribution
+of \omgml estimates from datasets with low branch lengths (e.g., the
+histogram densities seen in Figure \ref{fig_global_distributions})
+should be interpreted with caution, as any comparison between \omgml
+from different sites or datasets may be more sensitive to the amount
+of statistical confidence placed on each estimate than to any
+meaningful biological difference between the two sets of data.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.65]{Figs/sites_scatters.pdf}
+\caption{The relationship between \slrt, \omgml, and \ci width in (A)
+  Mammalia and (B) Primates datasets. Each point represents the binned
+  density of sites; no points are drawn where no density exists, while
+  blue and red points are drawn at areas of low and high density,
+  respectively. The left panel shows sites where \omgml$<0$, the
+  middle panel shows all sites, and the right panel shows sites where
+  $0<$\xspace\omgml$<1$. Note the change in x-axis scales between plots
+  in (A) and (B), reflecting the paucity of sites in Primates with
+  strong evidence (\slrt$<$-12) for purifying selection.}
+\label{fig_sites_scatters}
+\end{figure}
+
+Instead, the statistical information at each site could be used to
+identify sites evolving under purifying or positive selection with
+confidence. Sites with \ciup, the upper bound of the \ci interval,
+below \omg$=1$ can be interpreted as having evidence of purifying
+selection with an expected 5\% \fpr; likewise, sites with \cidown
+above \omg$=1$ contain evidence of positive selection with an expected
+5\% \fpr. In both cases, the 5\% \fpr is the level expected under
+SLR's null model of neutral evolution. There was a strong relationship
+between \ciup and the \chisq approximation to the \slrt distribution,
+whereby the set of sites with \ciup$<1$ was exactly equivalent to the
+set of sites with \slrt below the negative \chisq 95\% critical
+value. Similarly, the sites with \cidown$>1$ were those with \slrt
+above the \chisq 95\% critical value. Because of this equality, I will
+generally refer to \slrt values instead of \ci intervals when
+discussing sites with significant evidence for purifying or positive
+selection.
+
+Table \ref{table_pset_summaries_2}, which shows the same values
+included in Table \ref{table_filter_summaries_2} for different
+filtering groups, summarizes the results from using the \chisq
+approximation to the \slrt distribution to identify sites subject to
+purifying selection and positive selection at various \fpr
+thresholds. The left group of columns show the number and proportion
+of sites with evidence for positive selection at nominal 10\%, 5\%,
+and 1\% \fpr thresholds, respectively, as well as an expected 5\% FDR
+calculated using the Benjamini Hochberg method for FDR control
+\citep{Benjamini1995}. The two groups of columns on the right show the
+result of breaking sites into three groups (positive, negative, and
+neutral) based on the result of a \chisq test at a given \fpr
+threshold.
+
+The positive selection results demonstrated that anywhere between
+0.01\% to 0.73\% of sites could be confidently identified as under
+positive selection in mammals at nominal \ac{fpr} thresholds between
+1\% and 10\%, but different species groups yielded strikingly
+different estimates of the proportion of \acp{psc}. At a 5\% FPR
+threshold, the Primates, HQ Mammals, Laurasiatheria, Eutheria, and
+Mammals groups produced broadly comparable proportions of
+positively-selected sites, ranging from 0.33\% to 0.42\%. The
+proportions of \acp{psc} in these groups were higher using a 10\% FPR
+threshold (ranging from 0.46\% to 0.73\% of sites) and lower using a
+1\% FPR threshold (ranging from 0.07\% to 0.19\%). When the FDR was
+controlled using the Benjamini-Hochberg method, however, far fewer
+\acp{psc} were identified. Only the Eutheria and Mammalia groups
+yielded a substantial number of positively-selected sites at this
+level of control; the Primates and Laurasiatheria data yielded a small
+number of \acp{psc}, but these species groups were likely limited in
+their power to yield positively-selected sites after FDR control due
+to their lower total branch lengths. Interestingly, the Atlantogenata,
+HMRD, Sparse Glires, Glires and Sparse Mammalia datasets all produced
+much lower proportions of positively-selected sites across all \fpr
+thresholds. At FDR$<$0.05, all four groups yielded zero significant
+\psc{}s, and at a 1\% \ac{fpr} they all contained lower than 0.01\%
+\acp{psc}.
+
+In Mammalia, the breakdown of sites into positive, negative and
+neutral categories at 10\% and 5\% significance thresholds produced a
+pattern similar to that seen in the \omgml distribution, with a large
+amount of purifying constraint (83.87\% of sites at 5\% FPR), a small
+proportion of neutrally-evolving sites (15.57\%), and a diminishing
+number of positively-selected sites (0.55\%). As expected given the
+use of a fixed \slrt threshold to identify purifying sites, the
+fraction of sites confidently identified as under purifying selection
+showed a strong dependency on the branch length of the species set,
+with a much higher power in Mammalia than in Primates to confidently
+detect purifying selection (83.87\% vs. 15.97\%).
 
 \begin{landscape}
 \begin{table}
-\footnotesize{
+\scriptsize{
 \centering
 \begin{tabular}{lllrrrrrrrrrrrrr}
 \toprule
@@ -1257,17 +1514,15 @@ Name & Filter &
 Name & Filter & Sites & Const. & Syn. & Nsyn. & Codons & Med. & Mean & SD & Mean & SD &
 $< 0.5$ & $< 1$ & $> 1$ & $> 1.5$ \\
   \midrule
-\input{Tables/pset_summaries_1.txt}
+\input{Tables/pset_summaries_stringent_1.txt}
 \bottomrule
 \end{tabular}
-\caption{Summary statistics and \ml \omg estimates for sitewise data
-  in eight species groups. Rows labeled ``Primates (raw)'' and
-  ``Mammalia (raw)'' were computed based on unfiltered data and are
-  included for reference. Columns under the ``\omgml Above / Below,
-  \%'' heading measure the cumulative percentage of sites with \omgml
-  below or above the indicated value. Med.---median,
-  Const.---constant, Syn.---\syn, Nsyn.---\nsyn, ML---\ml.
-\label{filter_summaries_1}
+\caption{\scriptsize Summary statistics of \sw estimates for all
+  species groups with the conservative filter applied. Columns under
+  the ``\omgml Below / Above'' heading measure the percentage of sites
+  with \omgml below or above the indicated value. Med.---median,
+  Const.---constant, Syn.---\syn, Nsyn.---\nsyn, BL---branch length.
+\label{table_pset_summaries_1}
 }
 
 \hspace{.2in}
@@ -1285,10 +1540,10 @@ Name & Filter &
   Neg. & Neut. & Pos. & Neg. & Neut. & Pos. \\
 %\cmidrule(r){2-3} \cmidrule(r){4-5} \cmidrule(r){6-7} \cmidrule(r){8-9}
 \midrule
-\input{Tables/pset_summaries_2.txt}
+\input{Tables/pset_summaries_stringent_2.txt}
 \bottomrule
 \end{tabular}
-\caption{Proportions of sites subject to positive, purifying and
+\caption{\scriptsize Proportions of sites subject to positive, purifying and
   neutral selection at various \slrt thresholds. The
   Benjamini-Hochberg method \citep{Benjamini1995} was used to identify the
   \slrt threshold at which FDR$<$0.05. For columns under the headings
@@ -1297,315 +1552,13 @@ Name & Filter &
   negative selection, respectively, and Neut. is the percentage of
   ``neutral'' sites not showing significant evidence for non-neutral
   selection.}
-\label{sitewise_summary_table_2}
+\label{table_pset_summaries_2}
 }
 \end{table}
-
 \end{landscape}
-
-
-\subsection{The global distribution of sitewise selective pressures in mammals}
-
-\begin{figure}
-\centering \includegraphics[scale=0.55]{Figs/global_distributions.pdf}
-\caption{\scriptsize Global distributions of site patterns and \omg estimates for
-  eight species groups. Left, bars represent the number of sites
-  showing constant, synonymous, and non-synonymous patterns. Note, the
-  y-axis is held constant between rows. Right, bars represent a
-  histogram of \ml \omg estimates where $\omega>0$. Sites where
-  $\omega>3$ are counted in the bin at $\omega=3$. A solid line is
-  drawn showing the cumulative proportion of sites with \omg below the
-  current value, and dashed lines are drawn above and below the solid
-  line, showing the cumulative proportion of sites with the lower or
-  upper range, respectively, of their 95\% confidence interval below
-  the current value.}
-\label{global_distributions}
-\end{figure}
-
-Each set of sitewise data was filtered as described above. The
-resulting global distributions of site patterns, sitewise \omg
-estimates, and 95\% confidence intervals are shown in Figure
-\ref{global_distributions}; the left panel in each row plots the
-number of sites with constant, \syn, and \nsyn patterns. All sites
-with \omgml$=0$ had constant or \syn patterns, and all sites with
-\omgml$>0$ had \nsyn patterns; the distributions of \omgml for these
-\nsyn sites are shown as histograms on the right panel in each row.
-
-\subsubsection{Site patterns and \omgml values reveal the prevalence of purifying selection in mammalian proteins}
-
-The site pattern counts in Figure \ref{global_distributions} showed
-that the branch length of each species group had a strong effect on
-the overall composition of the sitewise data. Species groups covering
-little branch length, such as Primates and Atlantogenata, contained a
-majority of constant sites, while groups comprising lots of branch
-length, such as Eutheria and Mammalia, contained few constant sites
-and roughly equal proportions of \syn and \nsyn sites. Comparing the
-Glires and Mammalia data with their corresponding ``sparse'' datasets
-confirmed that this trend was largely due to branch length as opposed
-to biological factors: the Sparse Glires data yielded a smaller
-proportion of \nsyn sites and a greater proportion of constant sites
-than the Glires data (17.41\% versus 24.08\% for \nsyn sites, 44.21\%
-versus 33.98\% for constant sites; numbers from Table
-\ref{sitewise_summary_table_1}), and the pattern for Sparse Mammalia
-and Mammalia was qualitatively the same.
-
-%I will cover the topic of branch length effects more thoroughly in the
-%simulation study presented in Section \ref{poisson_sims}, but it
-%should suffice to note here that the branch length covered by a given
-%species group had a strong impact on the distribution of site patterns
-%and the proportion of sites with \nsyn substitutions from which \nz
-%\omg estimates could be made.
-
-Turning to the distribution of these \omgml estimates, shown in Figure
-\ref{global_distributions} as a series of histograms representing the
-\omgml density (for \nz values only) and a series of solid lines
-representing the cumulative density (for all values), it is clear
-that the vast majority of protein-coding sites have evolved under
-purifying selection in mammals. The Mammalia group, which contained a
-very small proportion of potentially uninformative constant sites
-(8.17\%), showed a maximum density of \nz \omgml estimates at
-$\omega\approx0.1$, and the vast majority of sites showed some
-evidence of purifying selection, with \omgml estimates below 1. The
-height of the \omgml cumulative distribution at $\omega=1$ corresponds
-to the proportion of such sites; the exact value, included in Table
-\ref{sitewise_summary_table_1} under the ``$< 1$'' column, is
-95.74\%. The \nz \omgml values were more evenly spread in the other
-species groups, with Glires showing a maximum \nz \omgml density at
-around $\omega\approx0.25$ and Primates at $\omega\approx0.7$. This
-upwards shift in \nz \omgml estimates relative to Mammalia was likely
-due to the greater proportion of constant and \syn sites in
-lower-branch length datasets: sites which were truly evolving with
-$\omega>0$, but where no \nsyn or \syn substitutions were observed,
-would have their \omgml estimate ``pushed'' towards zero, causing an
-increase in constant sites and a concomitant upwards shift in the
-distribution of the remaining \nz \omgml values.
-
-\subsubsection{Sitewise confidence intervals and LRT statistics identify sites with significant evidence for purifying and positive selection}
-
-An important component of SLR's output is the set of statistics
-providing information about the confidence with which purifying or
-positive selection was detected. These values include the lower and
-upper bounds of \ci, the 95\% confidence interval for each \omgml
-estimate, and the LRT statistic, which corresponds to the strength of
-evidence for purifying or positive selection. Following Massingham
-\citeyearpar{Massingham2005}, I used a signed version of the
-LRT statistic (hereafter \slrt), formed by negating the LRT statistic
-for sites where \omgml$<1$, as a way to sort sites according to their
-evidence, or lack thereof, for purifying and positive selection. Thus,
-sites with \slrt$<0$ showed at least some evidence for purifying
-selection and sites with \slrt$>0$ showed at least some evidence for
-positive selection. It should be noted that the \slrt is a measure of
-the strength of evidence for purifying or positive selection, but not
-necessarily the actual strength of that selection. For example, an
-alignment covering a very large branch length might yield a strongly
-negative \slrt for a site with \omgml only moderately below 1, because
-the difference between dN and dS was highly statistically significant;
-on the other hand, a strongly-purifying site in an alignment covering
-less branch length might produce a much less-negative \slrt, even with
-\omgml near zero.
-
-Figure \ref{sites_scatters}A shows the empirical relationship between
-\slrt, \omgml and the \ci width for sites from the Mammali
-dataset. The left panel, comparing the \slrt to \nz \omgml estimates,
-shows that the two values are highly correlated, with the greatest
-number of low \omgml estimates occurring at sites with strongly
-negative \slrt{}s. Correspondingly, the middle panel shows an even
-stronger relationship between the \slrt magnitude and the \ci width,
-with the tighest windows at sites with very strong evidence for
-purifying selection. The rightmost panel compares the \omgml of each
-site with the width of its \ci, revealing a more linear and diffuse
-positive relationship between \omgml and the size of the \ci. The
-equivalent plots for Primates, shown in Figure \ref{sites_scatters}B,
-reveal similar patterns, but with more weight towards less-negative
-\slrt values, higher \omgml, and larger \ci. These differences
-highlight the impact of branch length on the amount of confidence with
-which \omg can be estimated, showing that the low branch length of the
-Primates clade rarely yields \omgml estimates with \ci intervals
-smaller than 1, while the bulk of sites from the Mammalia dataset have
-a relatively small \ci. Thus, the \omgml distribution from datasets
-with low branch lengths (e.g., Figure \ref{global_distributions})
-should be interpreted with caution, and any comparison between
-different sites or datasets must be sensitive to the amount of
-statistical confidence placed on each estimate.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.6]{Figs/sites_scatters.pdf}
-\caption{The relationship between \slrt, \omgml, and \ci width in (a)
-  Mammalia and (b) Primates datasets. Each point represents the binned
-  density of sites; no points are drawn where no density exists, while
-  blue and red points are drawn at areas of low and high density,
-  respectively. The left panel shows sites where \omgml$<0$, the
-  middle panel shows all sites, and the right panel shows sites where
-  $0<$\xspace\omgml$<1$. Note the change in x-axis scale between plots
-  in (a) and (b), reflecting the paucity of sites in Primates with
-  strong evidence (\slrt$<$-12) for purifying selection.}
-\label{sites_scatters}
-\end{figure}
-
-The statistical information at each site could be used to identify
-sites evolving under purifying or positive selection with statistical
-confidence. Sites with a \ciup, the upper bound of the \ci interval,
-below \omg$=1$ showed evidence of purifying selection with an expected
-5\% \fpr, and sites with a \cidown above \omg$=1$ showed evidence of
-positive selection with an expected 5\% \fpr. In both cases, the 5\%
-\fpr was expected under SLR's null model of neutral evolution. There
-was a strong relationship between \ciup and the \chisq approximation
-to the \slrt distribution, whereby the set of sites with \ciup$<1$ was
-exactly equivalent to the set of sites with \slrt below the negative
-\chisq 95\% critical value. Similarly, the sites with \cidown$>1$ were
-those with \slrt above the \chisq 95\% critical value. Because of this
-equality, I will refer to \slrt values instead of \ci intervals when
-discussing sites with significant evidence for purifying or positive
-selection. In some cases, however, use of the full \ci will be
-preferable, as the \slrt critical values only correspond to one end of
-the \ci, depending on whether the site shows greater evidence for
-purifying or positive selection.
-
-Table \ref{sitewise_summary_table_2} summarizes the results from using
-the \chisq approximation to the \slrt distribution to identify sites
-subject to purifying selection and positive selection at various \fpr
-thresholds. The left group of columns show the number and proportion
-of sites with evidence for positive selection at nominal 10\%, 5\%,
-and 1\% \fpr thresholds, respectively, as well as an expected 5\% FDR
-calculated using the Benjamini Hochberg method for FDR control
-\citep{Benjamini1995}. The two groups of columns on the right show
-the result of breaking sites into three groups (positive, negative,
-and neutral) based on the result of a \chisq test at a given \fpr
-threshold.
-
-The positive selection results demonstrated that between 0.2\% to 1\%
-of sites could be identified as under positive selection in mammals at
-nominal FPR thresholds, but different species groups yielded
-strikingly different estimates of the proportion of
-positively-selected sites. At a 5\% FPR threshold, Primates,
-Laurasiatheria, Eutheria, and Mammalia produced roughly comparable
-proportions of positively-selected sites, ranging from 0.43\% to
-0.72\%. The proportions of positively-selected sites in these groups
-were higher using a 10\% FPR threshold (ranging from 0.70\% to 0.97\%
-of sites) and lower using a 1\% FPR threshold (ranging from 0.14\% to
-0.28\%). When the FDR was controlled using the Benjamini-Hochberg
-method, however, only the Eutheria and Mammalia groups yielded a
-substantial number of positively-selected sites; the Primates and
-Laurasiatheria data were likely limited in their power to yield
-positively-selected sites after FDR control due to their lower total
-branch lengths. Interestingly, the Glires, Atlantogenata, Sparse
-Glires and Sparse Mammalia datasets produced much lower proportions of
-positively-selected sites across all \fpr thresholds. At FDR$<$0.05,
-all four groups yielded zero significant \psc{}s.
-
-In Mammalia, the breakdown of sites into positive, negative and
-neutral categories at both \fpr thresholds produced a pattern similar
-to the \omgml distribution, with overwhelming purifying constraint
-(83.87\% of sites at 5\% FPR), a small proportion of
-neutrally-evolving sites (15.57\%), and a small fraction of
-positively-selected sites (0.55\%). As expected given the use of a
-fixed \slrt threshold to identify purifying sites, the fraction of
-sites confidently identified as under purifying selection showed a
-strong dependency on the branch length of the species set, with a much
-higher power in Mammalia than in Primates (83.87\% vs. 15.97\%).
-
-Even for the Mammalia dataset, which encapsulated roughly 7.5
-synonymous substitutions per site on average, one might reasonably
-expect that the power to confidently identify sites under purifying
-selection, though higher than in Primates, was still less than
-100\%. If this is the case, then the proportion of confidently
-identified purifying sites must be an underestimate of the true
-proportion of negatively-selected sites (and by symmetry, absent any
-methodological bias, the same should be true for positively-selected
-sites). As a result, the fractions of positively- and
-negatively-selected sites in Table \ref{sitewise_summary_table_2}
-should not be taken as best estimates of the actual proportions of
-such sites, but more appropriately as lower bounds on those
-proportions. In fact, In the next two sub-sections, I will separately consider
-the issue of using the sets of sitewise estimates in different species
-groups to estimate the proportion of sites subject to purifying and
-positive selection in mammals.
-
-\subsubsection{Estimating the proportion of negatively-selected sites}
-
-For sites under purifying selection, 
-
-In , the value of $\approx$95\% based on \omgml$<1$ (Table
-\ref{sitewise_summary_table_1}) is likely closer to the true number;
-despite the caveats involved in ignoring the uncertainty involved in
-\omgml estimates, the 95\% number was surprisingly consistent across
-different species groups and branch lengths, ranging from
-$\approx$91\% in Primates to $\approx$97\% in Sparse Mammalia.
-
-\subsubsection{Estimating the proportion of positively-selected sites}
-
-The pattern of the prevalence of positive selection across species
-groups was surprising. First, 
-
-, showing no sign of the expected correlation with
-branch length. Theory predicts, and many studies have confirmed
-\citep{Anisimova2001,Anisimova2002,Massingham2005}, that the power of LRT-based tests
-for non-neutral selection should increase with branch length, as the
-discrimination between \nsyn and \syn substitution rates becomes more
-confident with more fixed substitutions. This was certainly the case
-for identifying purifying selection, but there was no obvious
-correlation between higher branch lengths and higher numbers of
-confidently identified \psc{}s.
-
-\subsubsection{Correlations between branch length, effective population size and sitewise summary statistics}
-
-% Gotta look at these guys for Ne approximations: 
-% http://www.pnas.org/content/104/51/20443.full
-
-To quantify this observation, Spearman's rank correlation coefficients
-between the median branch length of each species set and each of
-several summary statistics were calculated (Table
-\ref{summary_correlations}). Although the number of samples was small
-with only eight species groups, these correlations should be able to
-provide some indication as to which aspects of the sitewise data might
-be easily attributed to the effects of branch length and which aspects
-suggested an alternative (e.g., biological or artefactual) cause for
-the differences between species groups. The results were quite
-striking: the site classifications (constant, \syn and \nsyn) and the
-proportion of negatively-selected sites at \chisqlt{0.05} were
-strongly correlated with branch length, while the other factors,
-including mean \omgml, the proportion of sites with \omgml$<1$ and
-\omgml$<0.5$, and the proportion of positively-selected sites, were
-weakly correlated or largely uncorrelated with branch length.
-
-The results in Table \ref{summary_correlations} can be interpreted
-in a number of ways. First, they emphasized the unambiguous
-correlation between the branch length in a tree and the power to
-detect sitewise purifying selection. However, they also showed that
-various measures based on sitewise estimates contained variation
-between species groups that was not well-explained by branch length. 
-
-\begin{table}
-\centering \footnotesize
-\begin{tabular}{lrrrr}
-\toprule
- & \multicolumn{2}{c}{Branch Length} & \multicolumn{2}{c}{\Ne} \\
-\cmidrule(r){2-3} \cmidrule(r){4-5}
-Value & Rho & P-value & Rho & P-value \\
-\midrule
-\input{Tables/summary_correlations_touchedup.txt}
-\bottomrule
-\end{tabular}
-\caption{Correlations between median non-gap branch length, \Ne, and
-  various summary statistics of the sitewise data across eight species
-  sets. The magnitude (Rho) and significance (P-value) of Spearman's
-  rank correlations between variables were calculated using \Ne values
-  from Table \ref{species_set_summary} and branch lengths and summary
-  statistics from Tables \ref{sitewise_summary_table_1} and
-  \ref{sitewise_summary_table_2}. All summary statistics except for
-  mean \omgml were measured as a fraction of total sites. More highly
-  significant correlations are shaded in darker blue. \Ne{} -- estimated
-  effective population size, BL -- non-gap branch length, \psfive
-  -- positively-selected codons at \chisqlt{0.95}.}
-\label{summary_correlations}
-\end{table}
-
-
 
 \subsection{Modeling the global distribution of sitewise selective pressures}
 \label{modeling_distr}
-
 
 \begin{landscape}
 \begin{table}

@@ -1,6 +1,6 @@
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
 % Sun Sep 25 20:58:10 2011
- Mammalia & 0.10 & 0.31 & 0.74 & 1.46 &   2 &   3 &   6 & \cellcolor[HTML]{FFFFFF} 81.87 & \cellcolor[HTML]{8E8EFF} 18.13 & \cellcolor[HTML]{8E8EFF} 2.09 \\ 
+ Mammals & 0.10 & 0.31 & 0.74 & 1.46 &   2 &   3 &   6 & \cellcolor[HTML]{FFFFFF} 81.87 & \cellcolor[HTML]{8E8EFF} 18.13 & \cellcolor[HTML]{8E8EFF} 2.09 \\ 
    & 0.20 & 3.28 & 3.78 & 4.17 &  19 &  30 &  35 & \cellcolor[HTML]{A0A0FF} 95.01 & \cellcolor[HTML]{E6E6FF} 4.99 & \cellcolor[HTML]{EBEBFF} 0.52 \\ 
    & 0.30 & 4.77 & 5.02 & 5.24 &  27 &  33 &  36 & \cellcolor[HTML]{8E8EFF} 96.90 & \cellcolor[HTML]{FEFEFF} 3.10 & \cellcolor[HTML]{FFFFFF} 0.35 \\ 
    & 0.40 & 5.67 & 5.86 & 6.04 &  28 &  33 &  36 & \cellcolor[HTML]{8E8EFF} 96.94 & \cellcolor[HTML]{FFFFFF} 3.06 & \cellcolor[HTML]{FFFFFF} 0.35 \\ 
