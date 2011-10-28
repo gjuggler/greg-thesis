@@ -15,14 +15,15 @@ set of mammalian orthologous gene trees from Chapter
 measuring selective constraint in several groups of \mammln
 species. Both this chapter and the following one are concerned with
 the analysis of these data: here I will consider the overall
-distribution of constraint observed in each set of genomes, while
-Chapter \ref{ch_mammals2} will look at the application of \sw data to
-identify gene- and domain-centric evolutionary trends.
+distribution of constraint observed in several groups of mammalian
+genomes, while Chapter \ref{ch_mammals2} will look at the use of these
+\sw data to identify trends in the evolution of genes and protein
+domains.
 
-I will first introduce the scientific context of this
-project---namely, the sequencing and analysis of several mammalian
-genomes for the \ac{mgp}---and outline the main questions motivating
-the analysis I performed.
+The first section of this chapter introduces the context in which this
+project was performed---namely, the sequencing and analysis of several
+mammalian genomes for the \ac{mgp}---and outlines the main biological
+questions underpinning the \sw analysis I performed.
 
 The next section describes the preparation and alignment of the
 mammalian gene tree from Chapter \ref{ch_orthologs} and introduce a
@@ -47,14 +48,15 @@ important in the large-scale analysis of genomic data. As such, care
 was taken to design and evaluate a variety of filters to reduce the
 probability of yielding misleading results.
 
-The third part of this chapter characterizes the global distribution
-of mammalian selective constraint in three ways: first, using the \slr
-statistic to identify sites evolving under purifying and positive
+The third section looks at the global distribution of mammalian
+selective constraint in three ways: first, using \sw estimates from
+\ac{slr} to identify sites evolving under purifying and positive
 selection at various confidence levels; second, fitting parametric
 distributions to the set of sitewise estimates to infer the
 distribution of selective pressures; and third, evaluating the impact
 of genomic variation in GC content and recombination rate on the
-distribution of sitewise estimates.
+distribution of sitewise estimates. The consistency of these results
+with previous work will be explored.
 
 \section{The Mammalian Genome Project}
 
@@ -64,7 +66,7 @@ evolutionary constraint. The first non-human mammalian genomes showed
 at least 5\% of the human genome to be under purifying selection
 \citep{Mouse2002Initial,Rat2004Genome,LindbladToh2005Genome}, but the
 small number of genomes available limited the extent to which regions
-of evolutionary constraint could be identified. The \mgp, a
+of evolutionary constraint could be identified. The \ac{mgp}, a
 coordinated set of genome sequencing projects initiated in 2005 and
 organised by the Broad Institute of MIT and Harvard, was designed with
 the primary purpose of increasing the accuracy and confidence with
@@ -82,7 +84,7 @@ coverage was a deliberate choice, designed to maximize the average
 amount of branch length available for the identification of
 constrained sequence \citep{Margulies2007}.
 
-As the \mgp proceeded from its sequencing to analysis phase in late
+As the \ac{mgp} proceeded from its sequencing to analysis phase in late
 2008, it was clear that the additional branch length afforded by the
 29-species phylogeny would enable a number of evolutionary analyses
 beyond the identification of constrained non-coding regions. These
@@ -95,19 +97,109 @@ the ENCODE comparative sequencing data
 \citep{Margulies2007,ENCODE_Project_Consortium2007a} and Tim
 Massingham's development of the SLR software for sitewise evolutionary
 analysis \citep{Massingham2005}, the group was recruited to perform
-the protein-coding evolutionary analysis for the \mgp, and the project
+the protein-coding evolutionary analysis for the \ac{mgp}, and the project
 turned into a portion of my PhD research. This chapter describes my
 work on the project, which began in late 2008; all of the work
 described below was performed by me, though I benefitted greatly from
 advice and discussion with members of the Goldman group (Nick Goldman
 and Tim Massingham), the EnsEMBL Compara team (Albert Vilella, Javier
-Herrero, Ewan Birney) and the organisers and members of the \mgp
+Herrero, Ewan Birney) and the organisers and members of the \ac{mgp}
 (especially Manolis Kellis, Kerstin Lindblad-Toh, Mike Lin, and, Katie
 Pollard). The major results from the initial version of this analysis
 have recently been published \citep{LindbladToh2011}; the work
 presented below includes some improvements to the filtering and
 alignment methodology and incorporates sequence data from a number of
-genomes which were restricted from use in the \mgp analysis.
+genomes which were restricted from use in the \ac{mgp} analysis.
+
+In parallel with the major goal of the \ac{mgp} to understand the
+amount of evolutionary constraint across the entire mammalian genome,
+the main purpose of my analysis was to better understand the
+distribution of evolutionary constraint within mammalian
+protein-coding regions---in other words, to understand what proportion
+of protein-coding material has been evolving under purifying, neutral,
+or positive selection. Proteins are well understood to evolve under
+strong purifying constraint due to their functional importance
+\citep{Fay2003}, but some regions of proteins, such as disordered
+regions between two well-folded domains, may evolve under relaxed
+constraints, and positive selection of beneficial substitutions can
+also play a role in shaping the evolutionary history of proteins
+\citep{Pal2006}.
+
+The first goal was a rather simplistic one: to place lower and upper
+boundaries on the estimated proportion of protein-coding sites that
+are subject to purifying and positive selection throughout mammals,
+and to quantify how many of those sites can be confidently
+identified. There has been great interest in understanding the role of
+adaptive evolution in shaping the genes and genomes of mammals and
+primates, but different studies have produced widely varying estimates
+of the number of genes subject to positive selection
+\citep{MarquesBonet2009a,ELLEGREN2008}. While most previous
+investigations of positive selection in mammals have focused on the
+gene as the unit of analysis, the current analysis used a primarily
+\sw approach. It was hypothesized that the focus on identifying
+\acp{psc} instead of the traditional identification of \acp{psg}, may
+allow for a more flexible quantification of levels of purifying and
+positive selection in mammals. One expected benefit of the \sw
+approach was that fine-grained filtering on a site-by-site basis could
+be performed both before and after the computationally expensive step
+of estimating evolutionary parameters, allowing for a more extensive
+and flexible set of filters to be used in estimating the potential
+impact of alignment or annotation error on the amounts of inferred
+positive selection.
+
+The second, more subtle goal of this analysis was to place the
+distribution of selective pressures implied by the \sw analysis within
+the context of previous population genetic and comparative
+studies. Many population genetic studies have analyzed the
+distribution of selective pressures resulting from mutations in
+protein-coding regions, known as the \ac{dfe}. Analyses of variation
+data from \emph{Drosophila} have found that relatively few amino acid
+substitutions in \emph{Drosophila} are effectively neutral, while up
+to 50\% have apparently been due to positive selection
+\citep{Loewe2006,EyreWalker2007}; similar studies based on variations
+in humans have indicated a much lower fraction of positively-selected
+substitutions in our recent evolutionary history
+\citep{EyreWalker2006a,Boyko2008}. This is in line with the
+expectation, based on population genetic theory, that species with
+higher effective population sizes experience more effective natural
+selection \citep{EyreWalker2007}. As \emph{Drosophila} has
+historically had a much larger effective population size than humans
+and most mammals (e.g., on the order of 10$^{6}$ for \emph{Drosophila}
+vs. 10$^{3}$ for humans), one would expect to see more neutral
+evolution, and less purifying and positive selection, in human
+protein-coding regions.
+
+Although there is a strong theoretical connection between the \ac{dfe}
+commonly from population genetics and the \dnds ratios more commonly
+estimated in comparative analyses, only one study, performed by
+Nielsen and Yang \citeyearpar{Nielsen2003}, has explicitly estimated
+the \ac{dfe} using data from fixed differences between species. Using
+data from primate mitochondrial genomes, Nielsen and Yang found that a
+variety of two-parameter distributions for the \ac{dfe} fit the
+dataset equally well and that none of the best-fit distributions
+contained a large amount of probability mass within the range of
+purely neutral or beneficial selection coefficients; most of the
+distribution was contained within the range of moderately deleterious
+selection coefficients (e.g., $-3<S<-1$, corresponding roughly to
+\dnds values between 0.2 and 0.6). Unfortunately, no attempt has since
+been made to use comparative data to estimate the \ac{dfe}; as a
+result, one goal of this analysis was to determine whether \sw
+estimates could successfully be used to infer the \ac{dfe}. Though the
+methods I employed for this analysis differed strongly from the
+approach of Nielsen and Yang, a comparison to their results could
+validate the use of \ac{slr} for estimating the \ac{dfe}. Furthermore,
+it would be interesting to understand whether the differences in
+historical effective population sizes between mammalian subgroups,
+which have been shown repeatedly to affect overall \dnds levels in
+primates versus rodents \citep{Kosiol2008,Ellegren2009}, has a
+detectable impact on the \ac{dfe} inferred from comparative
+data. Although the effective population size differences between
+mammalian subgroups are far smaller than the difference between
+mammals and species like \emph{Drosophila}, a comparison of the
+\ac{dfe} from different mammalian groups could be used to evaluate how
+strong of an impact the effective population size has on the
+proportion of protein-coding sites subject to varying levels of
+natural selection.
 
 \section{Data quality concerns: sequencing, assembly and annotation error}
 
@@ -275,21 +367,19 @@ substitution rate. In other cases, however (e.g., when teh branch
 length is small, and/or many low-quality genomes are included), it may
 significantly bias results towards excess false positives.
 
-Simulation studies similar to those I performed in Chapters
-\ref{ch_indels1} and \ref{ch_indels2} could improve our understanding
-of the relative potential of different types of sequencing errors to
-introduce false positives in downstream analyses, but the absolute
-frequency and pattern of such errors would still difficult to predict
-without a reliable model for their generation. This is especially true
-for larger-scale errors from misassembly or misannotation, which are
-less easily modeled than base calling errors and could have
-potentially more significant negative effects. Instead, an empirical
-approach seems more appropriate for quantifying the false positives
-resulting from these types of sequence errors. In particular, two
-empirical studies in mammals have provided convincing evidence that
-sequence, alignment and annotation errors can drastically increase the
-number of false positive \psg{}s in the branch-site test for positive
-selection.
+Simulation studies could improve our understanding of the relative
+potential of different types of sequencing errors to introduce false
+positives in downstream analyses, but the absolute frequency and
+pattern of such errors would still difficult to predict without a
+reliable model for their generation. This is especially true for
+larger-scale errors from misassembly or misannotation, which are less
+easily modeled than base calling errors and could have potentially
+more significant negative effects. Instead, an empirical approach
+seems more appropriate for quantifying the false positives resulting
+from these types of sequence errors. In particular, two empirical
+studies in mammals have provided convincing evidence that sequence,
+alignment and annotation errors can drastically increase the number of
+false positive \psg{}s in the branch-site test for positive selection.
 
 Schneider et al. \citeyearpar{Schneider2009} performed a genome-wide
 scan for positive selection in the terminal branches of 7 mammalian
@@ -482,9 +572,9 @@ As discussed in Section \ref{section_quantifying_paralogous}, the
 inclusion of paralogous gene relationships in a large-scale analysis
 of orthologous gene evolution may produce misleading signals of
 adaptive evolution \citep{Lynch2000}, artifacts resulting from gene
-conversion \citep{TODO}, and produce biases due to lineage-specific
+conversion \citep{Casola2009}, and produce biases due to lineage-specific
 family expansion, a process which is relatively common in mammalian
-gene families \citep{TODO}. As a result, it has traditionally been
+gene families \citep{Gu2002}. As a result, it has traditionally been
 considered important to filter out recently-duplicated genes (e.g.,
 genes duplicated after the whole-genome duplication event in the
 vertebrate ancestor) in large-scale evolutionary analyses. Previous
@@ -719,12 +809,12 @@ shortened gene fragments, PRANK was used to align the codon sequences
 of each of the 16XYZ mammalian gene trees. Manual analysis of a number
 of these alignments revealed many short stretches of clearly
 nonhomologous sequence in one species, often flanked by stretches of
-perfect homology and often lying on the borders of exon junctions. An
-example of one such region is shown in Figure \ref{figure_TODO}. In
-this otherwise highly conserved region of the XYZ gene, a short
-20-codon stretch of the XYZ sequence appears to contain little
-homology to the sequences from other species.
-
+perfect homology and often lying on the borders of exon junctions.
+%An
+%example of one such region is shown in Figure \ref{figure_TODO}. In
+%this otherwise highly conserved region of the XYZ gene, a short
+%20-codon stretch of the XYZ sequence appears to contain little
+%homology to the sequences from other species.
 These obviously erroneous stretches were likely due to mis-assembly of
 a genomic region or mis-identification of exon boundaries within the
 gene of one species. These errors were particularly concerning with
@@ -861,11 +951,12 @@ stretch, causing clustered substitutions to be inferred along the
 internal rodent branch. This raises the possibility that the entire
 rodent clade contains many misaligned \nhom stretches due to
 differences in gene annotations between rodent and non-rodent
-species. This appeared to be the case for at least one gene: Figure
-\ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
-window with 11 apparent rodent \nsyn substitutions, likely the result
-of a difference in exon annotations between rodent and non-rodent
-genomes.
+species.
+%This appeared to be the case for at least one gene: Figure
+%\ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
+%window with 11 apparent rodent \nsyn substitutions, likely the result
+%of a difference in exon annotations between rodent and non-rodent
+%genomes.
 
 The end result of this analysis was the identification, for each
 terminal node of the mammalian tree, windows with \nsyn substitution
@@ -880,11 +971,12 @@ discriminating true from erroneous windows of clustered substitutions,
 manual analysis of regions containing windows at a variety of
 thresholds showed it to perform well.
 
-In total, XYZ windows containing potential stretches of \nhom aligned
-sequence were identified across XYZ genes, with XYZ genes containing
-at least 1 such window and XYZ genes containing greater than 10. The
-locations of these windows were stored for later use in defining the
-most conservatively-filtered sitewise dataset, and the impact of these
+In total, 30,XYZ \draft{numers are approximate, will fill in later}
+windows containing potential stretches of \nhom aligned sequence were
+identified across 3,XYZ genes, with XYZ genes containing at least 1
+such window and XYZ genes containing greater than 10. The locations of
+these windows were stored for later use in defining the most
+conservatively-filtered sitewise dataset, and the impact of these
 potentially \nhom windows on sitewise levels of positive selection is
 described in Section \ref{section_stringent_filter}.
 
@@ -1223,21 +1315,45 @@ dataset, either due to overlap with a window of clustered
 substitutions (Clusters) or from being within a gene that contained
 more than 2 recent duplications (Paralogs).
 
-The impact of extensive filtering on the genome-wide levels of
-positive and purifying selection becomes clear in this view. The
-unfiltered data from the Primates group contained 9.07\% of sites with
-\omgml~$>1$, and 0.59\% of sites were \acp{psc} at a nominal 5\%
-\ac{fpr}; the evidence for positive selection was reduced in the
-conservatively-filtered data, showing 7.87\% sites with \omgml~$>1$
-and 0.41\% \acp{psc}. An even stronger effect of filtering was seen
-for the Mammals data, with \omgml~$>1.5$ being reduced from 5.71 to
-2.73 between the unfiltered and conservatively-filtered datasets, and
-the percentage of \acp{psc} reduced from 0.72\% to 0.35\%. The rows
-representing two sets of sites which were removed during the
-conservative filtering process showed higher signals of positive
-selection than the unfiltered data, suggesting that these two
+The columns in Table \ref{table_filter_summaries_1} show various
+summary statistics of each \sw dataset including the number of sites,
+the proportions of different site patterns, and the proportions of
+purifying and positive selection based on \omgml estimates from
+\ac{slr}. Table \ref{table_filter_summaries_2} provides the number and
+proportion of identified \acp{psc} (columns under the heading
+``Positively Selected Sites'') as well as the breakdown of sites into
+purifying, neutral, and positively-selected at two different \ac{fpr}
+thresholds (columns under the headings ``\chisqlt{0.1}'' and
+``\chisqlt{0.05}'').
+
+These views make clear the impact of extensive filtering on the
+genome-wide levels of positive and purifying selection observed in the
+data. The unfiltered data from the Primates group contained 9.07\% of
+sites with \omgml~$>1$, and 0.59\% of sites were \acp{psc} at a
+nominal 5\% \ac{fpr}; the evidence for positive selection was reduced
+in the conservatively-filtered data, showing 7.87\% sites with
+\omgml~$>1$ and 0.41\% \acp{psc}. An even stronger effect of filtering
+was seen for the Mammals data, with \omgml~$>1.5$ being reduced from
+5.71 to 2.73 between the unfiltered and conservatively-filtered
+datasets, and the percentage of \acp{psc} reduced from 0.72\% to
+0.35\%. The rows representing two sets of sites which were removed
+during the conservative filtering process showed higher signals of
+positive selection than the unfiltered data, suggesting that these two
 filtering steps were at least somewhat effective in removing
-potentially anomalous or untrustworthy sites from the dataset.
+potentially anomalous or untrustworthy sites from the dataset. For
+sites removed from being within clusters of \nsyn substitutions, the
+enrichment for signals of positive selection was clear: in Primates,
+18.28\% of sites yielded \omgml~$>1$, and 1.47\% of sites were
+\acp{psc} at a 5\% \ac{fpr} threshold, more than three times the
+proportion of \acp{psc} seen in the conservatively-filtered
+dataset. Sites removed as a result of being within genes containing
+recent duplications showed less of a signal for positive selection,
+but the proportions of \acp{psc} and sites with \omgml~$>1$ were still
+above those seen in either the relaxed or conservatively filtered
+datasets for both Mammals and Primates. Thus, genes that have
+experienced many recent duplications in mammals contained higher
+levels of positive selection even after the most-divergent paralogous
+copies were removed.
 
 \begin{landscape}
 \begin{table}
@@ -1315,8 +1431,9 @@ Name & Filter &
 \label{fig_global_distributions}
 \end{figure}
 
-The sitewise data from each of the ten species groups were processed
-with the conservative filter as described above. The resulting global
+To produce high-confidence \sw estimates across the ten chosen species
+groups, sitewise data from each species group were processed with the
+conservative filter as described above. The resulting global
 distributions of site patterns, sitewise \omgml estimates, and 95\%
 confidence intervals are shown in Figure
 \ref{fig_global_distributions}. The left panel in each row plots the
@@ -1330,7 +1447,7 @@ pattern.
 
 The site pattern counts in Figure \ref{fig_global_distributions}
 showed that the branch length of each species group had a strong
-effect on the overall composition of the sitewise data. Species groups
+effect on the overall composition of the sitewise data. Groups
 covering little branch length, such as Primates and Atlantogenata,
 contained mostly constant sites, while groups covering a large amount
 of branch length, such as Eutheria and Mammals, contained few constant
@@ -1434,77 +1551,10 @@ meaningful biological difference between the two sets of data.
 \label{fig_sites_scatters}
 \end{figure}
 
-Instead, the statistical information at each site could be used to
-identify sites evolving under purifying or positive selection with
-confidence. Sites with \ciup, the upper bound of the \ci interval,
-below \omg$=1$ can be interpreted as having evidence of purifying
-selection with an expected 5\% \fpr; likewise, sites with \cidown
-above \omg$=1$ contain evidence of positive selection with an expected
-5\% \fpr. In both cases, the 5\% \fpr is the level expected under
-SLR's null model of neutral evolution. There was a strong relationship
-between \ciup and the \chisq approximation to the \slrt distribution,
-whereby the set of sites with \ciup$<1$ was exactly equivalent to the
-set of sites with \slrt below the negative \chisq 95\% critical
-value. Similarly, the sites with \cidown$>1$ were those with \slrt
-above the \chisq 95\% critical value. Because of this equality, I will
-generally refer to \slrt values instead of \ci intervals when
-discussing sites with significant evidence for purifying or positive
-selection.
-
-Table \ref{table_pset_summaries_2}, which shows the same values
-included in Table \ref{table_filter_summaries_2} for different
-filtering groups, summarizes the results from using the \chisq
-approximation to the \slrt distribution to identify sites subject to
-purifying selection and positive selection at various \fpr
-thresholds. The left group of columns show the number and proportion
-of sites with evidence for positive selection at nominal 10\%, 5\%,
-and 1\% \fpr thresholds, respectively, as well as an expected 5\% FDR
-calculated using the Benjamini Hochberg method for FDR control
-\citep{Benjamini1995}. The two groups of columns on the right show the
-result of breaking sites into three groups (positive, negative, and
-neutral) based on the result of a \chisq test at a given \fpr
-threshold.
-
-The positive selection results demonstrated that anywhere between
-0.01\% to 0.73\% of sites could be confidently identified as under
-positive selection in mammals at nominal \ac{fpr} thresholds between
-1\% and 10\%, but different species groups yielded strikingly
-different estimates of the proportion of \acp{psc}. At a 5\% FPR
-threshold, the Primates, HQ Mammals, Laurasiatheria, Eutheria, and
-Mammals groups produced broadly comparable proportions of
-positively-selected sites, ranging from 0.33\% to 0.42\%. The
-proportions of \acp{psc} in these groups were higher using a 10\% FPR
-threshold (ranging from 0.46\% to 0.73\% of sites) and lower using a
-1\% FPR threshold (ranging from 0.07\% to 0.19\%). When the FDR was
-controlled using the Benjamini-Hochberg method, however, far fewer
-\acp{psc} were identified. Only the Eutheria and Mammalia groups
-yielded a substantial number of positively-selected sites at this
-level of control; the Primates and Laurasiatheria data yielded a small
-number of \acp{psc}, but these species groups were likely limited in
-their power to yield positively-selected sites after FDR control due
-to their lower total branch lengths. Interestingly, the Atlantogenata,
-HMRD, Sparse Glires, Glires and Sparse Mammalia datasets all produced
-much lower proportions of positively-selected sites across all \fpr
-thresholds. At FDR$<$0.05, all four groups yielded zero significant
-\psc{}s, and at a 1\% \ac{fpr} they all contained lower than 0.01\%
-\acp{psc}.
-
-In Mammalia, the breakdown of sites into positive, negative and
-neutral categories at 10\% and 5\% significance thresholds produced a
-pattern similar to that seen in the \omgml distribution, with a large
-amount of purifying constraint (83.87\% of sites at 5\% FPR), a small
-proportion of neutrally-evolving sites (15.57\%), and a diminishing
-number of positively-selected sites (0.55\%). As expected given the
-use of a fixed \slrt threshold to identify purifying sites, the
-fraction of sites confidently identified as under purifying selection
-showed a strong dependency on the branch length of the species set,
-with a much higher power in Mammalia than in Primates to confidently
-detect purifying selection (83.87\% vs. 15.97\%).
 
 \begin{landscape}
 \begin{table}
-\scriptsize{
-\centering
+\scriptsize{ \centering
 \begin{tabular}{lllrrrrrrrrrrrrr}
 \toprule
  &  & &  \multicolumn{3}{c}{Site Pattern, \%} & Med. & 
@@ -1557,311 +1607,223 @@ Name & Filter &
 \end{table}
 \end{landscape}
 
-\subsection{Modeling the global distribution of sitewise selective pressures}
-\label{modeling_distr}
+Instead, the confidence intervals and \ac{lrt} statistics calculated
+by \ac{slr} for each site could be used to identify sites evolving
+under purifying or positive selection with confidence. Sites with
+\ciup, the upper bound of the \ci interval, below \omg$=1$ could be
+interpreted as having evidence of purifying selection with an expected
+5\% \fpr; likewise, sites with \cidown above \omg$=1$ contained
+evidence of positive selection with an expected 5\% \fpr. In both
+cases, \ac{slr} was controlling for an expected 5\% \fpr under the
+null model of neutral evolution. As expected, there was a direct
+relationship between \ciup and the \chisq approximation to the \slrt
+distribution, whereby the set of sites with \ciup$<1$ was exactly
+equivalent to the set of sites with \slrt below the negative \chisq
+95\% critical value. Similarly, the sites with \cidown$>1$ were those
+with \slrt above the \chisq 95\% critical value. Because of this
+equality, I will refer to \slrt values at various \chisq threshold
+values instead of the 95\% \ci intervals when discussing sites with
+significant evidence for purifying or positive selection.
 
-\begin{landscape}
-\begin{table}
-\centering \footnotesize
-\begin{tabular}{llrrrrrrrrrrrrrrr}
-\toprule
- &  
- & \multicolumn{2}{c}{Log-normal} 
- & \multicolumn{2}{c}{Gamma} 
- & \multicolumn{2}{c}{Exponential} 
- & \multicolumn{2}{c}{Beta} 
- & \multicolumn{2}{c}{Weibull} \\
-\cmidrule(r){3-4}
-\cmidrule(r){5-6}
-\cmidrule(r){7-8}
-\cmidrule(r){9-10}
-\cmidrule(r){11-12}
+Tables \ref{table_pset_summaries_1} and \ref{table_pset_summaries_2}
+provide summaries of the sitewise estimates obtained for each of the
+10 mammalian species groups, showing the same values provided earlier
+in Tables \ref{table_filter_summaries_1} and
+\ref{table_filter_summaries_2} for the different filters.
 
-Species Set & Data Type
- & \omgmean & \% $>1$
- & \omgmean & \% $>1$
- & \omgmean & \% $>1$
- & \omgmean & \% $>1$
- & \omgmean & \% $>1$
-\\
-  \midrule
-\input{Tables/distribution_fits.txt}
-\bottomrule
-\end{tabular}
-\caption{Mean \omg and the percentage of sites with \omg$>1$ based on
-  maximum-likelihood fits of parametric distributions to sitewise
-  estimates. For each species set and each one of five distribution
-  types (log-normal, gamma, exponential, beta, and weibull) 100
-  replicate datsets of 1 million sites were sampled with replacement
-  from the genome-wide dataset and the maximum likelihood distribution
-  parameters were numerically optimized (see text for
-  details). Columns show, for each distribution, the median value
-  across 100 replicates of mean \omg (\omgmean) and the probability
-  mass with \omg$>1$, expressed as a percentage (\%$>1$). The top
-  eight rows show the results based on fitting parameters to sitewise
-  \omgml estimates, and the bottom eight rows show the results based
-  on fitting parameters to sitewise \ci estimates. Note the greater
-  consistency of \omgmean and \%$>1$ across distribution types for the
-  \ci{}-based fits.}
-\label{distribution_fits}
-\end{table}
-\end{landscape}
+Table \ref{table_pset_summaries_2} presents the proportions of
+\acp{psc} identified at a variety of \slrt thresholds, demonstrating
+that anywhere between 0.01\% to 0.73\% of sites could be confidently
+identified as under positive selection in mammals at nominal \ac{fpr}
+thresholds between 1\% and 10\%. Interestingly, however, different
+species groups yielded strikingly different estimates of the
+proportion of \acp{psc}. At a 5\% FPR threshold, the Primates, HQ
+Mammals, Laurasiatheria, Eutheria, and Mammals groups produced broadly
+comparable proportions of positively-selected sites, ranging from
+0.33\% to 0.42\%. The proportions of \acp{psc} in these groups were
+higher using a 10\% FPR threshold (ranging from 0.46\% to 0.73\%) and
+lower using a 1\% FPR threshold (ranging from 0.07\% to 0.19\%). When
+the FDR was controlled using the Benjamini-Hochberg method, however,
+far fewer \acp{psc} were identified. Only the Eutheria and Mammalia
+groups yielded a substantial number of positively-selected sites at
+this level of control; the Primates and Laurasiatheria data yielded
+non-zero numbers of \acp{psc} as well, but these species groups were
+likely limited in their power to yield positively-selected sites after
+FDR control due to their lower total branch lengths.
 
+The Atlantogenata, HMRD, Sparse Glires, Glires and Sparse Mammalia
+groups all produced very low proportions of positively-selected sites
+identified across all \fpr thresholds. At FDR$<$0.05, all four groups
+yielded zero significant \psc{}s, and at a 1\% \ac{fpr} they all
+contained lower than 0.01\% \acp{psc}. These \ac{psc}-depleted species
+groups were widely distributed in the amount of total branch length
+they covered (ranging in median \ngap branch length from 0.94 for
+Atlantogenata to 2.55 for Sparse Mammals), suggesting that the lower
+number of \acp{psc} was not strongly influenced by branch length; a
+similar point could be made of the species groups with higher
+proportions of \acp{psc}, which comprised the groups with the lowest
+(Primates) and highest (Mammals) total branch length.
 
-\begin{table}
-\centering \footnotesize
-\begin{tabular}{llrrrr}
-\toprule
-Species Set & Distribution & AIC & $d$AIC & Parameter A & Parameter B
-\\
-  \midrule
-\input{Tables/distribution_params.txt}
-\bottomrule
-\end{tabular}
-\caption{ \scriptsize AIC values and parameters for maximum-likelihood fits of
-  parametric distributions to sitewise \ci estimates. Distributions
-  were fit to 100 replicate datasets for each species set as in Table
-  \ref{distribution_fits}. For each species set and distribution type,
-  the median Akaike information criterion (AIC) and parameter
-  estimates are shown. Distributions are sorted according to their
-  median AIC value (where a lower AIC corresponds to a better fit to
-  the data), and the difference in AIC to the next-best fitting
-  distribution is displayed ($d$AIC). The lognormal and beta
-  distributions are ranked first or second in the mammalian superorder
-  subgroups, while lognormal, weibull and gamma distributions fit the
-  Eutheria and Mammalia datasets best. The named parameters
-  corresponding to parameters A and B for each distribution are as
-  follows: lognormal (A=meanlog, B=sdlog), weibull (A=shape, B=scale),
-  gamma (A=shape, B=rate [where rate=$1/$scale]), beta (A=shape1
-  [$\alpha$], B=shape2 [$\beta$]), exponential (A=rate [$\lambda$]).}
-\label{distribution_params}
-\end{table}
+In Mammalia, the breakdown of sites into positive, negative and
+neutral categories at 10\% and 5\% significance thresholds produced a
+pattern similar to that seen in the \omgml distributions from Figure
+\ref{fig_global_distributions}, with a large amount of purifying
+constraint (83.87\% of sites at 5\% FPR), a small proportion of
+neutrally-evolving sites (15.57\%), and a diminishing number of
+positively-selected sites (0.55\%). As expected given the use of a
+fixed \slrt threshold to identify purifying sites, the fraction of
+sites confidently identified as under purifying selection showed a
+strong dependency on the branch length of the species set, with a much
+higher power in Mammalia than in Primates to confidently detect
+purifying selection (83.87\% vs. 15.97\%).
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.85]{Figs/distribution_fit_plots.pdf}
-\caption{The mean value (A, Mean Omega) and the percentage of probability
-  density with \omg$>1$ (B, Omega$>1$) from \ml fits of parametric distributions to
-  sitewise \ci estimates. Each point represents the \ml fit of one
-  distribution to 1 million points sampled from the genome-wide
-  dataset with replacement; 100 such fits were generated for each
-  distribution and species set. Note that the beta distribution is
-  only defined on the interval (0,1), so the percentage of sites with
-  \omg$>1$ was always zero.}
-\label{distribution_fit_plots}
-\end{figure}
+Overall, the conservatively-filtered \sw data showed that, when using
+\omgml estimates, between 1\% to 5\% of protein-coding sites are
+evolving under positive selection. This number varied strongly between
+different species groups, however. Comparing between the four
+phylogenetically independent mammalian superorders (Primates, Glires,
+Laurasiatheria, and Atlantogenata), I found that Primates showed by
+far the most \acp{psc} and sites with \omgml$>1$. Laurasiatheria
+showed similar proportions of sites with \omgml$>1$, but Atlantogenata
+showed fewer \acp{psc} than Laurasiatheria; this difference may
+reflect their different branch lengths, as the Laurasiatheria group
+covers twice as much branch length as Atlantogenata and thus would be
+expected to have more power to confidently detect positive
+selection. Finally, the Glires group showed strikingly lower levels of
+positive selection compared to the other mammalian
+superorders. Despite the relatively high branch length contained
+within Glires (median total length of 1.77 versus 2.03 for
+Laurasiatheria), only 0.10\% of sites were identified as \acp{psc} in
+Glires at a 5\% \ac{fpr}, compared to 0.33\% in Laurasiatheria and
+0.41\% in Primates.
 
+These results may be evaluated in terms of the impact of effective
+population size on the efficacy of natural selection in mammals
+\citep{Popadin2007,Nikolaev2007a,Ellegren2009}. Rodents are known to
+have an effective population size well above that of primates
+\citep{Kosiol2008}, and given the strong correlation between body
+size, generation time and effective population size
+\citep{Nikolaev2007a}, one can infer that species within the
+Laurasiatheria group, with generally longer generation times and
+larger body sizes than rodents \citep{Hou2009}, have effective
+population sizes more similar to those seen in primates. The
+Afrotheria group, containing species ranging from small moles to
+elephants and manatees, is more diverse, making it difficult to
+estimate an expected historical effective population
+size. Nevertheless, Ohta's nearly neutral theory \citep{Ohta1992}
+predicts that species with lower effective population sizes will
+evolve with less efficient natural selection. A comparison of the
+Primates and Glires data clearly revealed this effect: the proportion
+of sites with \omgml~$<0.5$ was 87.27\% for Primates and 90.54\% for
+Glires. Thus, the difference in the proportion of sites likely to be
+under purifying selection was well-explained by the difference in
+effective population size between primates and rodents. If the
+existence of \acp{psc} in the \sw data is interpreted as true evidence
+for positive selection, then the nearly neutral theory predicts that
+Glires should show \emph{more} \acp{psc} than Primates, as the
+efficacy of positive selection would be greater in the species with a
+larger effective population size. The opposite effect is seen,
+however, with Primates showing much greater levels of apparent
+positive selection as measured by both the proportion of sites with
+\omgml$>1$ and by \acp{psc} identified at various \ac{fpr} thresholds.
 
-% From 2xmammals supp. materials.
-% https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US
-We used the ‘fitdistr’ function of the MASS package for R to fit five
-distributions (gamma, lognormal, beta, Weibull, and exponential) to
-the vertebrate dN/dS values and subsequently calculated Akaike’s
-Information Criterion(AIC) for each fit. For all optimizations, a
-constant value of 0.001 was added to sites where dN/dS = 0 in order to
-satisfy the optimizer’s requirement that the probability functions
-have a defined value for all input data. Similarly, sites with dN/dS ≥
-1 were excluded from the analysis for the beta optimization. All
-distributions were also separately fit to the subset of sites with
-dN/dS ≥ 1; the AIC values from these optimizations were used to
-compare the fit of the beta distribution to the others.
+This suggestes an alternative interpretation: that perhaps the
+different levels of positive selection could be due mainly to the
+relaxation of selective constraint in Primates and other species with
+low effective population sizes. A difference in effective population
+sizes should have its main effect on slightly deleterious mutations,
+with a greater proportion of slightly deleterious mutations (e.g.,
+mutations with fitness effects corresponding to \dnds values slightly
+below 1) becoming effectively neutral in a species with a low
+effective population size. In comparing the Primates and Glires
+groups, the expected result is that a subset of mutations which were
+under purifying selection in Glires would be effectively neutral in
+Primates, bringing the expected \omg from $<1$ to 1. If this class of
+sites were large enough, it might significantly interfere with the
+resulting \ac{fpr} for detecting \acp{psc}, as sites with \omg$=1$ are
+the most prone to produce false positives.
 
-The fitdistr produced the following optimized parameters for each
-function: gamma (shape=0.271, rate=1.203), lognormal (meanlog=-4.079,
-sdlog=2.863), beta (shape1=0.257, shape2=1.431), Weibull
-(shape=0.3882, scale=0.07151) exponential (rate=4.441). The beta
-distribution yielded the lowest AIC when compared to the fit of other
-distributions to the subset of sites where dN/dS ≤ 1 (-2.33e7 versus
-the next best equivalent AIC of -2.11e7 for the lognormal). Of the
-distributions which were fit to the whole dataset, the lognormal
-distribution yielded the lowest AIC (-2.11e7), followed by gamma
-(-2.03e7) and exponential (-6.45e6).
-
-%\subsection{Analysis of sitewise estimates from the mammalian superorders}
-
-\subsection{Simulations to evaluate the power to detect positive selection and estimate selective pressures}
-
-\subsection{Evaluation of the effect of GC content, recombination rate, and codon usage on sitewise \dnds estimates and the detection of positive selection}
-
-\begin{landscape}
-\begin{table}
-\footnotesize{
-\centering
-\begin{tabular}{rrrrrrrrrrrrrrrrrrrr}
-\toprule
- & Species &  & & Med. &
- & \omgml &  & \omgml & \multicolumn{2}{c}{Recomb., cM} & & \multicolumn{3}{c}{Substitutions \%} \\
-Variable & Group & Quantile & Sites & BL & \nsten
- & $<0.5$ & \psten & $>1.5$ & Male & Female & GC & Total & CpG & W-S & S-W & Nsyn \\
-  \midrule
-\input{Tables/recomb_quantiles_6.txt}
-\bottomrule
-\end{tabular}
-\caption{}
-\label{recomb_quantiles_mammalia}
-}
-\end{table}
-\end{landscape}
-
-\begin{landscape}
-\begin{table}
-\footnotesize{
-\centering
-\begin{tabular}{rrrrrrrrrrrrrrrrrrrr}
-\toprule
- & Species &  & Sites & Med. & \chisqlt{0.1}
- & \omgml & \chisqlt{0.1} & \omgml & \multicolumn{2}{c}{Recombination} & & & & & & \\
- Variable & Group & Quantile & Sites & BL & Neg.
- & $<0.5$ & Pos. & $>1.5$ & Male & Female & GC & WS & CpG & Nonsyn.& Syn. & \\
-  \midrule
-\input{Tables/recomb_quantiles_1.txt}
-\bottomrule
-\end{tabular}
-\caption{}
-\label{recomb_quantiles_mammalia}
-}
-\end{table}
-\end{landscape}
-
-
-
-Multiple lines of evidence have lent support to the hypothesis that
-GC-biased gene conversion (BGC) has been a major force in the
-evolution of mammalian genomes [Galtier et al 2001 PMID:11693127,
-  Galtier 2003 PMID:XYZ, Dreszer et al 2007 PMID:17785536]. Both
-empirical and theoretical results have shown that BGC can
-significantly affect patterns of observed substitutions in both
-selectively neutral and functionally constrained sites [Galtier et al
-  2009 PMID:19027980, Berglund et al 2009 PMID:19175294]. Recently,
-Ratnakumar et al. [2010, PMID:20643747] re-analyzed the dataset of
-positively-selected genes from Kosiol et al. [2008, PMID:18670650] for
-signatures of BGC and found that up to 20\% of cases of identified
-elevated dN/dS ratios could be due to BGC rather than adaptive
-evolution. However, the strongest signals of BGC were found only in
-genes showing signals of positive selection along short branches in
-the phylogenetic tree using so-called branch-site models of evolution;
-when the authors looked for similar BGC signatures in genes with
-evidence for positive selection at specific sites throughout the
-mammalian tree (e.g., genes with significant LRTs for PAML’s sites
-model) they found no evidence for a strong BGC influence [Ratnakumar
-  et al. 2010 PMID:20643747].
-
-The above evidence suggests that although BGC has the potential to
-produce misleading signals of branch-specific positive selection near
-recombination hotspots, the positively-selected sites we detected
-should not be strongly influenced by the non-adaptive effects of BGC
-since the dN/dS level detected by SLR is estimated from across the
-entire input phylogeny [Massingham 2005 PMID:15654091]. This is
-consistent with the observation that recombination hotspots (where
-most recombination in humans and other mammals occurs [Myers et
-  al. 2005 PMID:16224025]) tend not to be maintained over long
-evolutionary periods, although larger-scale recombination rates are
-likely more conserved [Winckler et al 2005 PMID:15705809]. Still, due
-to the potential confounding implications of BGC on the interpretation
-of signals of positive selection, we found it worthwhile to to
-empirically test for any BGC effect on our data.
-
-The BGC model predicts a recombination-associated drive towards the
-fixation of GC alleles at heterozygous sites, resulting in an expected
-correlation between AT to GC (or weak-to-strong, W-S) mutational bias
-and recombination rate [Galtier and Duret 2007, PMID:17418442]. This
-bias can lead to elevated dN/dS estimates in coding regions,
-particularly in GC-rich regions where W-S mutations are more likely to
-result in nonsynonymous changes [Berglund et al 2009]. Ratnakumar and
-colleagues identified three ways of distinguishing potential BGC
-effects from true signals of positive selection in protein-coding
-regions: (a) positive selection is not expected on its own to result
-in a strong W-S bias, (b) a BGC-associated W-S biased mutation pattern
-should extend to noncoding sites flanking the affected coding region,
-and (c) BGC is associated with recombination hotspots and regions of
-high recombination rates (and most strongly with male-specific rates)
-while there is no empirical evidence linking positive selection with
-higher recombination rates in mammals, although natural selection
-should theoretically be more efficient in regions of high
-recombination [Ratnakumar et al. 2010, PMID:20643747]. We could not
-use (a) or (b) to detect possible BGC influence since we did not
-calculate inferred ancestral mutations for either the coding or
-flanking noncoding regions of the mammalian gene families studied
-here. Instead, we turned to point (c) and tested for a correlation
-between signals of positive selection and an increase in recombination
-rates, especially the male-specific rate and in regions of high GC
-content. The predictions of the BGC hypothesis suggest that if our
-sitewise data do contain a strong BGC influence, then the
-positively-selected sites we detected would be expected to be
-associated with regions of high male-specific recombination.
-
-We combined the sitewise codon data with male, female, and
-sex-averaged recombination rates derived from the deCODE map (using
-rates averaged over genomic bins of 1Mb downloaded from the UCSC human
-genome browser hg19 release) and human GC content calcualted in 10-kb
-windows and analyzed sites within various quantiles of GC content,
-mean recombination rate, and sitewise statistics. Supplementary Table
-S17.13 contains summaries for each subset. The ‘LRT statistic’ section
-shows that sites with higher LRT statistics (which corresponds to
-weaker purifying selection when the value is below zero and stronger
-positive selection when the value is above zero) show decreasing
-recombination rates; this trend holds true even for the highest
-quantile (mean signed\_lrt between 3.648 and 108.850), which is
-composed entirely of sites with evidence for positive selection. In
-other words, the bulk of positively-selected sites are in regions of
-lower than average male recombination rates -- exactly opposite what
-would be expected in the face of strong BGC effects. The ‘Male
-Recombination’ quantiles show a similar trend, with the mean dN/dS,
-mean signed LRT and the proportion of sites identified as
-positively-selected (pos\_f) all consistently decreasing as the
-recombination rate increases. The ‘GC content’ quantiles showed a
-slightly different pattern. Although the mean LRT decreased and male
-recombination increased monotonically with increasing GC content, the
-mean dN/dS and fraction of positive sites started low, increased to a
-maximum in the middle range of GC content, and decreased again in
-regions of high GC content. Thus, although the GC content quantiles
-were similar to the male recombination quantiles in their higher range
-(with similar mean dN/dS, mean LRT, and pos\_f values), they differed
-slightly in their lower range (with lower dN/dS and pos\_f for low GC
-quantiles). Although the exact reason for such a pattern is unclear,
-it is consistent with the existence of altered or constrained
-selective or mutational dynamics at the extreme ends of the genomic
-distribution of GC content. As GC content has been shown to correlate
-with myriad structural and evolutionary features of mammalian genomes
-[Xia et al. 2009 PMID:19521505], the existence of other (possibly
-unrelated) confounding influences such as CpG mutability or isochore
-structure is likely.
-
-Theoretical and empirical evidence pointed towards an increased
-sensitivity of dN/dS estimates to BGC influence in regions of high GC
-content, so we separated out the top 10\% of sites by GC content and
-analyzed them according to quantiles of male recombination rate
-(Supplementary Table S17.13, ‘High GC, Male Recombination’. The middle
-four recombination quantiles showed a similar pattern to that observed
-for all GC contents, with mean LRT decreasing with increased male
-recombination and mean dN/dS and pos\_f decreasing or hovering around
-values slightly lower than those observed across all GC contents
-(e.g., mean dN/dS in the 1-25\% bin is 0.207 for the top 10\% GC
-sites, but 0.249 for the same recombination bin across all sites). The
-highest recombination bin of the top 10\% GC sites showed a strikingly
-different pattern, however, with mean dN/dS=0.348, mean LRT=-11.262,
-and pos\_f=0.0338. These values suggest a strong shift towards higher
-dN/dS values and more positively-selected sites. This jump in values
-in the highest recombination bin is not seen in the highest male
-recombination bin across all GC contents (mean dN/dS=0.207, mean
-LRT=-16.616, pos\_f=0.00932) or for the highest female recombination
-bin for the top 10\% of GC sites (mean dN/dS=0.164, mean LRT=-18.475,
-pos\_f=0.00449). Although the small number of sites in the bin of
-interest compared to other bins suggests possible stochastic
-artifacts, the shift is dramatic, directly opposite to the trends
-observed for the female recombination rates and for male recombination
-rates in regions of lower GC content, and is in agreement with the BGC
-prediction of elevated dN/dS estimates in regions of high GC content
-and male-specific recombination rates. This evidence raises the
-interesting possibility that BGC may have a detectable, if rather
-minor, impact on sitewise dN/dS estimates across the mammalian
-phylogeny. It is highly unlikely, however, that any such effect --
-which in our analysis was only detectable in 0.05\% of sites with the
-most extreme GC content and recombination rates -- has contaminated
-our codon-specific estimates with more than a negligible amount of
-noise resulting from the neutral but biased process of BGC.
+Thus, the relaxed constraint argument tempers the interesting
+observation of strong differences in the numbers of \acp{psc} between
+different species groups. A lower historical effective population size
+for the Primates and Laurasiatheria species groups may explain some of
+the increase in the number of \acp{psc} detected, even in the absence
+of true variation in the prevalence of positive selection between the
+species groups investigated here. Still, the argument may be made that
+statistical methods for controlling error rates, such as the
+Benjamini-Hochberg method for FDR control used to identify \acp{psc}
+at an expected FDR$<0.05$ in Table \ref{table_pset_summaries_2}
+\citep{Benjamini1995}, should account for the potential confounding
+effects of relaxed constraint noted above. For this reason, the
+observation that Primates and Laurasiatheria both yielded non-zero
+numbers of \acp{psc} at FDR$<0.05$ may be taken as some indication of
+a true difference in the levels of positive selection between the
+species groups investigated here.
 
 \section{Conclusions}
+
+This chapter described the filtering, alignment, and analysis of a
+comprehensive set of mammalian orthologs across 38 species.
+
+In order to ensure that false signals of positive selection were
+avoided as much as possible, several levels of filtering were applied
+before and after the estimation of \sw selective pressures using
+\ac{slr}: low-quality genomic sequence was masked out, short or
+divergent apparent paralogous copies were removed, and alignment
+columns showing evidence of clustered \nsyn substitutions or low
+amounts of evolutionary information were excluded from the analysis. A
+comparison of the levels of purifying and positive selection contained
+within sites filtered at various thresholds showed the importance of
+thorough filtering prior to genome-wide analysis, highlighting
+especially the ability of stretches of mis-annotated or mis-assembled
+sequence to introduce strong (and incorrect) signals of localized
+positive selection into evolutionary analyses. I showed that a novel
+approach, based on the identification of lineage-specific clusters of
+excessive \nsyn substitutions within short alignment windows, could
+effectively target these erroneous regions for removal.
+
+I applied the conservative filter to sitewise estimates obtained from
+several groups of mammalian species. This allowed the impact of the
+total branch length of a species group on the estimation of \sw
+selective pressures to be clearly seen, with the Mammals group
+containing many more non-constant alignment sites and more realistic
+\omgml estimates than groups with little branch length, such as
+Primates. Relating my results back to the \ac{mgp}, which used the
+HMRD and HQ Mammals groups as reference points by which to estimate
+the increase in power to detect genome-wide constraint resulting from
+the additional mammals sequenced at low coverage, I found that the
+addition of \lcv genomes increased the ability to detect purifying
+constraint in protein-coding regions by 43.85\% and 136\% compared to
+the HQ Mammals and HMRD species groups, respectively, at a 5\%
+\ac{fpr}. Although I found the levels of positive selection between
+species groups to be highly dependent on the species sampling (and
+thus, a comparison of ``power'' to be less meaningful), the Mammals
+species group identified 21.5\% and 550\% more \acp{psc} than the HQ
+Mammals and HMRD species groups, respectively, at a 5\%
+\ac{fpr}. Thus, the additional branch length resulting from the
+sequencing of \lcv genomes greatly improved the power to detect
+purifying and positive selection in mammalian proteins.
+
+Finally, I analyzed the levels of purifying and positive selection
+within four phylogenetically independent mammalian species groups,
+identifying strong differences between different groups, likely
+resulting from differences in effective population size. Although the
+impact of effective population size is well known and has been
+previously studied in mammalian superorders, the work described in
+this chapter represented a careful and quantitative analysis of levels
+of purifying and positive selection in these species groups. The
+observation that the Glires group showed less positive selection than
+all other groups suggested a connection between high numbers of
+\acp{psc} and relaxed constraint, although Primates and Laurasiatheria
+both showed evidence for strong \acp{psc} even at a very stringent FDR
+threshold.
+
+Although more work needs to be done to evaluate what might be causing
+these differences between species and to correctly control for the
+possible effects of relaxed constraint, I have shown that the analysis
+of \sw estimates is an intuitive and informative approach to
+evaluating signals of purifying and positive selection in mammalian
+genomes.
 
 \tocite{Eory et al. 2010}{Showed, through constraint analysis of
   various sequence types, that there is higher selective constraint in

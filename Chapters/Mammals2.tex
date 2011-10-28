@@ -1,70 +1,223 @@
 %************************************************
-\chapter{The use of sitewise selective pressures to characterise the evolution of genes and domains in mammals}
+\chapter{Characterizing the evolution of genes and domains in mammals using \sw selective pressures}
 %************************************************
 \section{Introduction}
 
-% From mammals paper supp. methods...
-%https://docs.google.com/leaf?id=0B5HhSYGuKPKpYTY1YzVjNTgtODc2Yy00NzQ0LTgwZTQtMTQ3ZTA5ZWJjZGJm&hl=en_US
+This chapter describes the use of \sw data to identify trends in the
+evolution of protein-coding genes and domains. I will first develop a
+number of methods for quantifying signals of positive and purifying
+selection from \sw estimates within genes and domains and apply these
+methods to the \sw data generated in Chapter \ref{ch_mammals1}. To
+provide a higher-level interpretation of these results, in the next
+section I will use functional gene annotations to identify categories
+enriched for genes with evidence of positive selection or accelerated
+evolution. Lastly, I will quantitatively evaluate these results in the
+context of previously-published studies investigating the distribution
+of positive selection across mammalian genomes.
 
-A clear definition of what constitutes a positively selected gene
-(PSG) is elusive and depends heavily on the model the data. Neutral
-theory, however, does provide a precise definition: the dN/dS ratio
-gives a natural threshold for distinguishing purifying from positive
-selection at dN/dS = 1, above which point positive selection can be
-inferred. This leads logically to the most stringent definition of a
-PSG as a gene whose overall mean dN/dS ratio is greater than
-1. However, as noted by Yang [5], this definition of a PSG is
-extremely conservative and is likely to be met by very few genes. To
-examine this hypothesis in the context of mammalian proteins, we
-averaged the site-wise dN/dS estimates from each gene tree tested to
-obtain an average dN/dS value, mean-dN/dS. At a threshold of
-mean-dN/dS = 1, 126 out of 15,451 gene trees analyzed showed evidence
-for positive selection (0.82\%).  At a threshold of mean-dN/dS = 0.5,
-1,438 genes were PSGs (9.3\%).
+Since the first non-human mammalian genomes were sequenced, there has
+been great interest in using comparative data to identify genes
+showing signatures of positive selection in mammals. Much of this
+interest stems from the prospect that such genes may reflect the
+historical impact of natural selection acting to fix beneficial
+mutations within a population over time---a major driving force in the
+modern molecular interpretation of Darwin's theory of natural
+selection \citep{Endo1996,Hughes1999}. Previous scans for positive
+selection in primate genomes have revealed enrichments for \acp{psg}
+related to sensory perception and olfaction \citep{Clark2003},
+apoptosis and spermatogenesis \citep{Nielsen2005}, and iron ion
+binding and keratin formation \citep{Macaque2007}; analyses in other
+mammalian genomes have revealed largely similar patterns
+\citep{Kosiol2008,Li2009a}. To explain the increased \dnds values
+observed within \acp{psg}, three distinct evolutionary dynamics have
+commonly been invoked: an evolutionary arms race between host and
+parasite interacting genes \citep{Yang2005c}, sexual selection or
+genetic conflict between the sexes \citep{Wyckoff2000,Clark2000}, and
+functional adaptation following gene duplication \citep{Zhang2002}.
 
-More powerful scans for positive selection relax the requirement that
-the overall dN/dS of a gene is above 1 under the assumption that the
-force of positive selection is unlikely to act along an entire protein
-sequence and throughout the entire evolutionary history of a gene
-tree. This led to models that allow for variation in the dN/dS ratio
-along the sequence or along the phylogeny. If the data shows
-statistically significant evidence for positive selection under a
-given model, then it is considered a PSG – thus, the definition of a
-PSG is tightly linked to the evolutionary model being applied and the
-evolutionary clade or lineage being analyzed. In the case of the SLR
-method (which allows for variation of dN/dS along the sequence but not
-along the phylogeny), the most appropriate definition of a PSG is a
-gene where one or more sites show statistical evidence for positive
-selection after correcting for multiple tests.  With this definition,
-we find 2,865 positively selected gene trees in mammals (18.5\%). We
-may also formulate a more conservative definition in an attempt to
-minimize the number of false positives resulting from a background of
-reduced purifying constraint, considering genes with mean-dN/dS of
-less than 0.5 and at least 2 positively-selected codons to be
-PSGs. This definition yields 739 positively selected gene trees
-(4.8\%).
+As the power of phylogenetic analysis using codon models depends
+strongly on the amount of branch length encompassed by the species
+being compared \citep{Anisimova2001,Anisimova2002}, there was some
+reason to believe \emph{a priori} that the detection of \acp{psg}
+using mammalian alignments incorporating \lcv genomes would be more
+powerful than in previous whole-genome analyses, which typically
+included 12 or fewer species across mammals and lower total branch
+length \citep{ELLEGREN2008k}. However, differences in the specific
+models used to detect positive selection are expected to affect the
+sensitivities of one study compared to another \citep{Anisimova2009},
+so the set of genes identified using the current methodology would
+necessarily be expected to be a superset of those identified in
+previous studies. Most large-scale studies have used the branch-site
+test for positive selection \citep{Zhang2005}, while the results
+described in this chapter were generated using \ac{slr}. I showed in
+Chapter \ref{ch_indels1} that \ac{slr} has similar power to the
+site-based test implemented in PAML for detecting \sw positive
+selection, but no analysis has yet compared the differences in
+\acp{psg} identified by site-specific and branch-site methods on a
+large scale. For this reason, I hoped that a quantitative comparison
+between \acp{psg} identified using the current methodology and those
+found in previously-published studies may improve our understanding of
+how similar or different the \acp{psg} identified by different methods
+can be.
 
-Although the mean-dN/dS > 1 definition of a PSG is unreasonably
-conservative (and, upon manual inspection, picks out many proteins
-with especially severe alignment or gene annotation errors), the
-numbers of PSGs resulting from both codon-based definitions applied to
-the current data (4.8\% at the low end and 18.5\% at the high end) are
-similar to the range of other recently published comparative scans for
-positive selection, which identified between 3.3\% [6] and 16.6\% [7]
-of genes as PSGs in mammals or primates.
+\section{Methods for combining \sw estimates to identify positive selection}
+
+In Chapter \ref{ch_mammals2} I covered the curation and analysis of
+several highly filtered sets of genome-wide \sw selective pressures
+generated from different groups of mammalian species. These \sw
+estimates were used to characterize the global distribution of
+evolutionary constraint and to compare overall levels of purifying and
+positive selection between groups of mammalian species. The focus on
+individual codons as an evolutionary unit of investigation is
+relatively uncommon, but it allowed for large-scale differences in
+evolutionary trends between species groups to be identified and for
+the impact of different filtering schemes on overall signals of
+positive selection to be easily evaluated.
+
+The more traditional approach in comparative genomics has been to
+model the protein-coding gene, as opposed the protein-coding amino
+acid site, as the unit of analysis. For detecting positive selection,
+the grouping of alignment sites into genes---which results in
+identification of \acp{psg} instead of \acp{psc}---has three main
+advantages. First, the combined analysis of many alignment sites
+improves the accuracy of estimated evolutionary parameters and boosts
+the power \ac{lr}-based tests for detecting positive selection. This
+can be easily seen in the simulations of Anisimova and Yang
+\citeyearpar{Anisimova2001,Anisimova2001}, which showed large power
+differences for detecting positive selection in alignments simulated
+with 100, 200, and 500 codons. Second, detailed studies of \sw
+selective pressures in genes with strong signals of positive selection
+have usually observed clusters of positively-selected sites
+\citep{Sawyer2005a,Kosiol2008}, suggesting that the evolutionary
+dynamics creating detectable signals of positive selection tend to
+affect many functionally or structurally related amino acid sites
+within a gene as opposed to a single site. These studies represent
+empirical evidence that combining \sw estimates within genes is
+biologically sensible. The third argument in support a gene-centric
+analysis of positive selection is that in the absence of complete
+protein structure information, much more tends to be known about
+entire genes (through the results of high-throughput studies and
+experiments in model organisms) than is known about individual
+protein-coding sites. Thus, a gene-centric analysis allows a dataset
+to be more easily analyzed in connection with abundant external
+functional data, benefitting the biological interpretation of results.
+
+\subsection{One-sided and two-sided p-values}
+
+\draft{TODO...}
+
+\subsection{Combining multiple \sw tests within genes}
+
+A major issue in combining \sw estimates to identify \acp{psg} is that
+of correcting for performing multiple \sw tests per gene. The \ac{slr}
+method performs an independent statistical test at each site,
+producing a sitewise statistic which can be compared to a \chisq
+distribution to yield a p-value representing the strength of evidence
+against strict neutral evolution \citep{Massingham2005}. When
+combining these p-values to decide whether a gene contains significant
+evidence for positive seletcion, one must take into account the number
+of tests performed. For example, a 100-codon gene evolving under the
+null model ($\omega=1$) would be expected to produce 5 sites with
+p-values at a nominal \ac{fpr} of 0.05; correspondingly, there would
+be a 99.4\% chance that at least one site within the gene would have
+$p<0.05$. This comes from the complement of the probability that no
+sites out of $n$ have $p<x$, which is $(1-x)^{n}$. Thus, if the set of
+genes containing at least one site with nominal $p<0.05$ were called
+\acp{psg}, nearly all genes evolving under the true null model would
+be selected. In contrast, the \ac{lrt}s for positive selection
+implemented in PAML only perform one statistical test per gene and do
+not suffer from the same multiple testing problem. Clearly, some
+procedure for correcting or combining the results from multiple tests
+must be applied in order to correctly identify \acp{psg} using \sw
+data.
+
+I tested three different methods which are capable of correcting for
+multiple \sw tests within genes to identify \acp{psg}: first,
+adjusting significance thresholds to control the \ac{fwer}, second,
+combining p-values from multiple tests to produce a single p-value
+summarizing the overall evidence against the null hypothesis, and
+third, estimating empirical gene-wise p-values based on the
+genome-wide distribution of \sw estimates. Each approach makes
+different use of the \sw data from each gene to identify a set of
+significant \acp{psg} and may thus yield a unique set of
+\acp{psg}. The remainder of this section provides some background on
+each approach and describes how it was applied to the current dataset.
+
+\subsection{Controlling the \ac{fwer}}
+
+The \ac{fwer} is defined as the probability, for a given set of tests
+performed, of one or more tests producing a false positive result. In
+the example of a 100-codon gene evolving under the null model, the
+\ac{fwer} at a nominal p-value of 0.05 was 0.994. Assuming an
+appropriate uniform null distribution of p-values and independence
+between tests, the Sidak method of p-value adjustment (to which the
+popular Bonferroni correction is an approximation) identifies the
+maximum nominal p-value $x$ expected when the \ac{fwer} is equal to or
+below the desired level $\alpha$: if the \ac{fwer} expected for a
+family of $n$ tests thresholded at a nominal p-value of $x$ is
+$\alpha=1 - (1 - x)^{n}$, then the maximum p-value expected while
+controlling for a desired \ac{fwer} can be found by rearranging the
+equation: $x=1 - (1 - \alpha)^{1/n}$. A similar but more powerful
+approach is the step-up method from Hochberg; this method is
+implemented internally in \ac{slr}
+\citep{Hochberg1988,Massingham2005}. I used the Hochberg method, as
+implemented in the $p.adjust$ function from the R statistical project
+\citep{TODO}, to identify \acp{psg} at 1\%, 5\%, and 10\% \ac{fwer}
+thresholds. Genes identified using this approach will be referred to
+as \psghone, \psghfive, and \psghten.
+
+A drawback of using \ac{fwer} control to identify \acp{psg} is that it
+only identifies a \mbox{per-test} significance threshold at which the
+\ac{fwer} is expected to be below a certain value. Applying the
+significance threshold to \sw data results naturally in a binary
+classification of genes into \acp{psg} (which contain at least one
+site with a statistic more extreme than the threshold) and
+non-\acp{psg} (which contain no significant sites at the
+\ac{fwer}-controlling threshold). Information is lost regarding the
+number and distribution of significant sites within genes, however,
+and the set of \acp{psg} cannot be ranked in order of their overall
+evidence for positive selection. The identification of \acp{psg} at
+multiple \ac{fwer} thresholds can help by identifying genes
+significant at a variety of thresholds, but this approach is still
+inflexible when compared to the gene-wise p-values resulting from the
+site-based \acp{lrt} in PAML.
+
+\subsection{Combining p-values}
+
+The second approach to multiple testing directly addresses this
+problem by combining p-values from a series of independent tests,
+producing an overall p-value for the null hypothesis given the set of
+tests performed. The motivation behind such methods is that moderately
+significant results from independent tests of a common null hypothesis
+should be considered as good or better evidence than one strongly
+significant test. The two most popular methods for performing this
+type of combination are Fisher's combined probability test, based on
+the product of p-values from multiple tests, and Stouffer's method,
+based on a normal transformation of p-values (\citealp{Fisher1932};
+\citealp{Stouffer1949}; reviewed in \citealp{Whitlock2005}). The
+performance of these methods depends highly on the distribution of
+input p-values, however; it has been noted that a relatively small
+number of large p-values can limit the power of Fisher's test
+\citep{Zaykin2002}, and the Stouffer method is equally sensitive to
+small and large p-values. Since the majority of mammalian
+protein-coding sites showed moderately strong signals of purifying
+selection, the distribution of one-sided p-values for positive
+selection would be heavily weighted towards 1 for most genes. As a
+result, both the Fisher and Stouffer methods were expected to lack
+power, failing to yield significant p-values in the face of a dominant
+signal of purifying selection even when several sites showed strong
+evidence of positive selection.
+
+Myriad other protocols for combining p-values exist (see
+\citet{Cousins2007} for an extensive review of alternative methods),
+but given the...
+
+\subsection{Assigning empirical p-values based on the global \sw distribution}
 
 
-\section{Comparison of sitewise results to previously described sets of positively selected genes}
 
-\section{Using sitewise selective pressures to characterise the evolution of genes}
-\subsection{Identifying genes subject to positive selection}
-\subsection{Identifying genes subject to strong or weak purifying selection}
 
-\section{Using sitewise selective pressures to characterise the evolution of protein domains}
-
-\tocite{Moses2009}{They use residue probabilities to generate
-  ``preferred residue'' predictions, and look at human polymorphism to
-  assign whether a SNP is moving to or from a preferred residue.}
+\section{A comparison of sitewise results to previously described sets of positively selected genes}
 
 In order to evaluate the prevalence of positive selection in mammals
 for various domain structures, we used the Pfam domain mappings from
@@ -76,17 +229,6 @@ sites with greater than 4 columns and an inferred dN/dS value of less
 than 50. We then removed any domains with fewer than one thousand
 annotated sites, to avoid errors resulting from small sample sizes.
 
-The domain annotations were collated in a variety of ways: (1) taking
-the mean omega value across all annotated sites [omega column in the
-  table below], (2) counting the number of PSCs within all annotated
-sites [psc], and (3) counting the number of PSCs per annotated site
-[psc\_corr]. The len column represents the number of alignment sites
-containing the given Pfam annotation. When the list of domains is
-sorted by the total number of annotated PSCs we see the more familiar
-positively-selected domains at the top of the list (immunoglobulin,
-collagen), followed by more novel positively-selected domains such as
-the 7 transmembrane receptor, protein kinase domain, and ion transport
-protein.
 
 \subsection{Identifying protein domains subject to positive selection}
 \subsection{Identifying protein domains subject to strong or weak purifying selection}
@@ -97,3 +239,17 @@ protein.
 % interpret their results (higher dN/dS in primates / laur and higher
 % mutation rate in rodents) as somehow indicating correlated evolution
 % between primates and laurasiatheria
+
+
+\tocite{Rhesus2007}{The Rhesus genome paper does a pretty good
+  analysis of \dnds in primates versus rodents, showing that most
+  genes have higher \dnds in primates than rodents. They also do a GO
+  enrichment of genes with lower / higher dnds in primates and
+  rodents, saying that ``The genes showing statistically significant
+  Wp$>$Wr are enriched for functions in sensory perception of smell
+  and taste as well as for regulation of transcription.''}
+
+\tocite{Moses2009}{They use residue probabilities to generate
+  ``preferred residue'' predictions, and look at human polymorphism to
+  assign whether a SNP is moving to or from a preferred residue.}
+

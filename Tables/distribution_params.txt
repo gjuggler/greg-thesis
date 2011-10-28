@@ -1,43 +1,53 @@
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Sun Oct  2 13:02:18 2011
- Primates & Beta & 161168.45 & \cellcolor[HTML]{FFFFFF}0.00 & 1.78 & 2.50 \\ 
-   & Lognormal & 217743.70 & \cellcolor[HTML]{C3C3FF}56575.25 & -1.14 & 0.65 \\ 
-   & Gamma & 231082.15 & \cellcolor[HTML]{F2F2FF}13338.45 & 2.12 & 5.06 \\ 
-   & Weibull & 242149.95 & \cellcolor[HTML]{F5F5FF}11067.80 & 1.34 & 0.45 \\ 
-   & Exponential & 261904.40 & \cellcolor[HTML]{ECECFF}19754.45 & 2.68 &  \\ 
-  Glires & Lognormal & 312788.30 & \cellcolor[HTML]{FFFFFF}0.00 & -1.76 & 0.59 \\ 
-   & Beta & 332776.25 & \cellcolor[HTML]{ECECFF}19987.95 & 1.57 & 5.75 \\ 
-   & Gamma & 341872.95 & \cellcolor[HTML]{F6F6FF}9096.70 & 1.70 & 8.02 \\ 
-   & Weibull & 364256.80 & \cellcolor[HTML]{E9E9FF}22383.85 & 1.15 & 0.21 \\ 
-   & Exponential & 385083.15 & \cellcolor[HTML]{EBEBFF}20826.35 & 5.42 &  \\ 
-  Laurasiatheria & Lognormal & 514030.30 & \cellcolor[HTML]{FFFFFF}0.00 & -1.80 & 0.77 \\ 
-   & Beta & 528667.45 & \cellcolor[HTML]{F1F1FF}14637.15 & 1.25 & 4.27 \\ 
-   & Gamma & 558537.00 & \cellcolor[HTML]{E1E1FF}29869.55 & 1.49 & 6.52 \\ 
-   & Weibull & 570535.20 & \cellcolor[HTML]{F4F4FF}11998.20 & 1.12 & 0.23 \\ 
-   & Exponential & 575734.00 & \cellcolor[HTML]{FAFAFF}5198.80 & 4.56 &  \\ 
-  Atlantogenata & Beta & 109348.25 & \cellcolor[HTML]{FFFFFF}0.00 & 2.37 & 4.93 \\ 
-   & Lognormal & 119888.05 & \cellcolor[HTML]{F5F5FF}10539.80 & -1.34 & 0.53 \\ 
-   & Gamma & 126416.00 & \cellcolor[HTML]{F9F9FF}6527.95 & 2.75 & 8.72 \\ 
-   & Weibull & 143678.60 & \cellcolor[HTML]{EEEEFF}17262.60 & 1.33 & 0.33 \\ 
-   & Exponential & 175474.60 & \cellcolor[HTML]{DFDFFF}31796.00 & 3.84 &  \\ 
-  Eutheria & Lognormal & 1180885.50 & \cellcolor[HTML]{FFFFFF}0.00 & -2.40 & 1.20 \\ 
-   & Weibull & 1270446.50 & \cellcolor[HTML]{9393FF}89561.00 & 0.80 & 0.16 \\ 
-   & Gamma & 1295309.50 & \cellcolor[HTML]{E7E7FF}24863.00 & 0.80 & 4.35 \\ 
-   & Beta & 1307444.50 & \cellcolor[HTML]{F3F3FF}12135.00 & 0.69 & 3.16 \\ 
-   & Exponential & 1308964.50 & \cellcolor[HTML]{FEFEFF}1520.00 & 5.46 &  \\ 
-  Mammalia & Lognormal & 1310778.00 & \cellcolor[HTML]{FFFFFF}0.00 & -2.51 & 1.26 \\ 
-   & Weibull & 1403090.50 & \cellcolor[HTML]{8E8EFF}92312.50 & 0.78 & 0.15 \\ 
-   & Gamma & 1433878.50 & \cellcolor[HTML]{E0E0FF}30788.00 & 0.75 & 4.30 \\ 
-   & Beta & 1456833.00 & \cellcolor[HTML]{E9E9FF}22954.50 & 0.65 & 3.11 \\ 
-   & Exponential & 1459667.50 & \cellcolor[HTML]{FCFCFF}2834.50 & 5.77 &  \\ 
-  Sparse Glires & Beta & 161165.45 & \cellcolor[HTML]{FFFFFF}0.00 & 2.04 & 6.12 \\ 
-   & Lognormal & 161264.00 & \cellcolor[HTML]{FFFFFF}98.55 & -1.60 & 0.53 \\ 
-   & Gamma & 176568.30 & \cellcolor[HTML]{F0F0FF}15304.30 & 1.99 & 8.23 \\ 
-   & Weibull & 198910.90 & \cellcolor[HTML]{E9E9FF}22342.60 & 1.20 & 0.24 \\ 
-   & Exponential & 225609.40 & \cellcolor[HTML]{E5E5FF}26698.50 & 5.00 &  \\ 
-  Sparse Mammalia & Lognormal & 403243.50 & \cellcolor[HTML]{FFFFFF}0.00 & -2.09 & 0.68 \\ 
-   & Gamma & 447431.20 & \cellcolor[HTML]{D2D2FF}44187.70 & 1.31 & 7.74 \\ 
-   & Beta & 450936.70 & \cellcolor[HTML]{FCFCFF}3505.50 & 1.18 & 5.70 \\ 
-   & Weibull & 462813.80 & \cellcolor[HTML]{F4F4FF}11877.10 & 1.06 & 0.16 \\ 
-   & Exponential & 471324.15 & \cellcolor[HTML]{F7F7FF}8510.35 & 6.67 &  \\ 
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Mon Oct 24 17:58:41 2011
+ Primates & Beta & 315155.00 & \cellcolor[HTML]{FFFFFF}0.00 & 1.72 & 2.94 \\ 
+   & Lognormal & 421947.00 & \cellcolor[HTML]{ECECFF}106792.00 & -1.15 & 0.66 \\ 
+   & Gamma & 457790.00 & \cellcolor[HTML]{F9F9FF}35843.00 & 2.04 & 5.54 \\ 
+   & Weibull & 491804.95 & \cellcolor[HTML]{F9F9FF}34014.95 & 1.32 & 0.44 \\ 
+   & Exponential & 549642.50 & \cellcolor[HTML]{F5F5FF}57837.55 & 2.86 &  \\ 
+  Glires & Gamma & 262116.40 & \cellcolor[HTML]{FFFFFF}0.00 & 1.49 & 7.97 \\ 
+   & Lognormal & 626047.70 & \cellcolor[HTML]{B4B4FF}363931.30 & -1.78 & 0.60 \\ 
+   & Beta & 679071.20 & \cellcolor[HTML]{F6F6FF}53023.50 & 1.48 & 5.67 \\ 
+   & Weibull & 764102.00 & \cellcolor[HTML]{F0F0FF}85030.80 & 1.13 & 0.20 \\ 
+   & Exponential & 806049.70 & \cellcolor[HTML]{F8F8FF}41947.70 & 5.69 &  \\ 
+  Laurasiatheria & Lognormal & 945147.60 & \cellcolor[HTML]{FFFFFF}0.00 & -1.84 & 0.77 \\ 
+   & Beta & 988584.40 & \cellcolor[HTML]{F7F7FF}43436.80 & 1.27 & 4.94 \\ 
+   & Gamma & 1010637.00 & \cellcolor[HTML]{FBFBFF}22052.60 & 1.49 & 7.60 \\ 
+   & Weibull & 1066685.00 & \cellcolor[HTML]{F5F5FF}56048.00 & 1.12 & 0.22 \\ 
+   & Exponential & 1073468.00 & \cellcolor[HTML]{FEFEFF}6783.00 & 5.07 &  \\ 
+  Atlantogenata & Beta & 141543.65 & \cellcolor[HTML]{FFFFFF}0.00 & 2.29 & 5.52 \\ 
+   & Lognormal & 152497.25 & \cellcolor[HTML]{FDFDFF}10953.60 & -1.37 & 0.55 \\ 
+   & Gamma & 166633.90 & \cellcolor[HTML]{FDFDFF}14136.65 & 2.70 & 8.69 \\ 
+   & Weibull & 198595.35 & \cellcolor[HTML]{F9F9FF}31961.45 & 1.33 & 0.33 \\ 
+   & Exponential & 248427.65 & \cellcolor[HTML]{F6F6FF}49832.30 & 3.94 &  \\ 
+  Eutheria & Lognormal & 2367776.50 & \cellcolor[HTML]{FFFFFF}0.00 & -2.56 & 1.17 \\ 
+   & Weibull & 2579591.00 & \cellcolor[HTML]{D7D7FF}211814.50 & 0.81 & 0.13 \\ 
+   & Gamma & 2599556.00 & \cellcolor[HTML]{FCFCFF}19965.00 & 0.84 & 5.63 \\ 
+   & Exponential & 2644431.00 & \cellcolor[HTML]{F7F7FF}44875.00 & 6.57 &  \\ 
+   & Beta & 2682125.50 & \cellcolor[HTML]{F8F8FF}37694.50 & 0.73 & 4.17 \\ 
+  Mammals & Lognormal & 2670120.00 & \cellcolor[HTML]{FFFFFF}0.00 & -2.69 & 1.23 \\ 
+   & Weibull & 2883554.50 & \cellcolor[HTML]{D7D7FF}213434.50 & 0.79 & 0.12 \\ 
+   & Gamma & 2923269.00 & \cellcolor[HTML]{F8F8FF}39714.50 & 0.79 & 5.72 \\ 
+   & Exponential & 2984933.00 & \cellcolor[HTML]{F4F4FF}61664.00 & 5.76 &  \\ 
+   & Beta & 3027026.00 & \cellcolor[HTML]{F8F8FF}42093.00 & 0.69 & 4.17 \\ 
+  Sparse Glires & Lognormal & 273318.50 & \cellcolor[HTML]{FFFFFF}0.00 & -1.64 & 0.56 \\ 
+   & Beta & 287784.40 & \cellcolor[HTML]{FCFCFF}14465.90 & 1.89 & 5.77 \\ 
+   & Gamma & 315121.40 & \cellcolor[HTML]{FAFAFF}27337.00 & 1.96 & 8.20 \\ 
+   & Weibull & 372067.65 & \cellcolor[HTML]{F5F5FF}56946.25 & 1.19 & 0.24 \\ 
+   & Exponential & 424180.20 & \cellcolor[HTML]{F6F6FF}52112.55 & 5.15 &  \\ 
+  Sparse Mammals & Gamma & 367990.20 & \cellcolor[HTML]{FFFFFF}0.00 & 1.24 & 7.70 \\ 
+   & Lognormal & 854460.80 & \cellcolor[HTML]{9191FF}486470.60 & -2.10 & 0.68 \\ 
+   & Beta & 972544.30 & \cellcolor[HTML]{EAEAFF}118083.50 & 1.10 & 5.64 \\ 
+   & Weibull & 1007301.00 & \cellcolor[HTML]{F9F9FF}34756.70 & 1.05 & 0.16 \\ 
+   & Exponential & 1021420.00 & \cellcolor[HTML]{FDFDFF}14119.00 & 6.67 &  \\ 
+  HQ Mammals & Gamma & 348139.70 & \cellcolor[HTML]{FFFFFF}0.00 & 1.75 & 8.04 \\ 
+   & Lognormal & 843728.25 & \cellcolor[HTML]{8E8EFF}495588.55 & -1.65 & 0.68 \\ 
+   & Beta & 859639.05 & \cellcolor[HTML]{FCFCFF}15910.80 & 1.52 & 5.23 \\ 
+   & Weibull & 970878.40 & \cellcolor[HTML]{EBEBFF}111239.35 & 1.20 & 0.24 \\ 
+   & Exponential & 1014426.50 & \cellcolor[HTML]{F7F7FF}43548.10 & 4.71 &  \\ 
+  HMRD & Beta & 180721.70 & \cellcolor[HTML]{FFFFFF}0.00 & 2.31 & 6.24 \\ 
+   & Lognormal & 183474.30 & \cellcolor[HTML]{FFFFFF}2752.60 & -1.55 & 0.55 \\ 
+   & Gamma & 214451.00 & \cellcolor[HTML]{FAFAFF}30976.70 & 2.24 & 8.40 \\ 
+   & Weibull & 263983.65 & \cellcolor[HTML]{F6F6FF}49532.65 & 1.24 & 0.27 \\ 
+   & Exponential & 320179.50 & \cellcolor[HTML]{F5F5FF}56195.85 & 4.66 &  \\ 
   

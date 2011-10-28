@@ -1,0 +1,53 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Tue Oct 25 13:52:53 2011
+ Primates & Beta & 315155.00 & \cellcolor[HTML]{FFFFFF}0.00 & 1.72 & 2.94 \\ 
+   & Lognormal & 421947.00 & \cellcolor[HTML]{CFCFFF}106792.00 & -1.15 & 0.66 \\ 
+   & Gamma & 462774.80 & \cellcolor[HTML]{EEEEFF}40827.80 & 2.05 & 5.51 \\ 
+   & Weibull & 491804.95 & \cellcolor[HTML]{F3F3FF}29030.15 & 1.32 & 0.44 \\ 
+   & Exponential & 549642.50 & \cellcolor[HTML]{E7E7FF}57837.55 & 2.86 &  \\ 
+  Glires & Lognormal & 626047.70 & \cellcolor[HTML]{FFFFFF}0.00 & -1.78 & 0.60 \\ 
+   & Beta & 688613.00 & \cellcolor[HTML]{E4E4FF}62565.30 & 1.49 & 5.67 \\ 
+   & Gamma & 710117.30 & \cellcolor[HTML]{F6F6FF}21504.30 & 1.64 & 7.98 \\ 
+   & Weibull & 764102.00 & \cellcolor[HTML]{E8E8FF}53984.70 & 1.13 & 0.20 \\ 
+   & Exponential & 806049.70 & \cellcolor[HTML]{EEEEFF}41947.70 & 5.69 &  \\ 
+  Laurasiatheria & Lognormal & 945147.60 & \cellcolor[HTML]{FFFFFF}0.00 & -1.84 & 0.77 \\ 
+   & Beta & 996593.55 & \cellcolor[HTML]{E9E9FF}51445.95 & 1.26 & 4.92 \\ 
+   & Gamma & 1039499.00 & \cellcolor[HTML]{EDEDFF}42905.45 & 1.49 & 7.50 \\ 
+   & Weibull & 1066685.00 & \cellcolor[HTML]{F4F4FF}27186.00 & 1.12 & 0.22 \\ 
+   & Exponential & 1073468.00 & \cellcolor[HTML]{FCFCFF}6783.00 & 5.07 &  \\ 
+  Atlantogenata & Beta & 141543.65 & \cellcolor[HTML]{FFFFFF}0.00 & 2.29 & 5.52 \\ 
+   & Lognormal & 152497.25 & \cellcolor[HTML]{FBFBFF}10953.60 & -1.37 & 0.55 \\ 
+   & Gamma & 167719.15 & \cellcolor[HTML]{F9F9FF}15221.90 & 2.69 & 8.69 \\ 
+   & Weibull & 198595.35 & \cellcolor[HTML]{F2F2FF}30876.20 & 1.33 & 0.33 \\ 
+   & Exponential & 248427.65 & \cellcolor[HTML]{EAEAFF}49832.30 & 3.94 &  \\ 
+  Eutheria & Lognormal & 2367776.50 & \cellcolor[HTML]{FFFFFF}0.00 & -2.56 & 1.17 \\ 
+   & Weibull & 2579591.00 & \cellcolor[HTML]{8F8FFF}211814.50 & 0.81 & 0.13 \\ 
+   & Gamma & 2640295.50 & \cellcolor[HTML]{E5E5FF}60704.50 & 0.84 & 5.57 \\ 
+   & Exponential & 2644431.00 & \cellcolor[HTML]{FDFDFF}4135.50 & 6.57 &  \\ 
+   & Beta & 2716764.50 & \cellcolor[HTML]{E0E0FF}72333.50 & 0.73 & 4.12 \\ 
+  Mammals & Lognormal & 2670120.00 & \cellcolor[HTML]{FFFFFF}0.00 & -2.69 & 1.23 \\ 
+   & Weibull & 2883554.50 & \cellcolor[HTML]{8E8EFF}213434.50 & 0.79 & 0.12 \\ 
+   & Gamma & 2960822.50 & \cellcolor[HTML]{DEDEFF}77268.00 & 0.79 & 5.62 \\ 
+   & Exponential & 2984933.00 & \cellcolor[HTML]{F5F5FF}24110.50 & 5.76 &  \\ 
+   & Beta & 3054957.00 & \cellcolor[HTML]{E1E1FF}70024.00 & 0.68 & 4.13 \\ 
+  Sparse Glires & Lognormal & 273318.50 & \cellcolor[HTML]{FFFFFF}0.00 & -1.64 & 0.56 \\ 
+   & Beta & 290627.85 & \cellcolor[HTML]{F8F8FF}17309.35 & 1.89 & 5.77 \\ 
+   & Gamma & 322175.45 & \cellcolor[HTML]{F2F2FF}31547.60 & 1.96 & 8.21 \\ 
+   & Weibull & 372067.65 & \cellcolor[HTML]{EAEAFF}49892.20 & 1.19 & 0.24 \\ 
+   & Exponential & 424180.20 & \cellcolor[HTML]{E9E9FF}52112.55 & 5.15 &  \\ 
+  Sparse Mammals & Lognormal & 854460.80 & \cellcolor[HTML]{FFFFFF}0.00 & -2.10 & 0.68 \\ 
+   & Gamma & 973504.35 & \cellcolor[HTML]{C9C9FF}119043.55 & 1.27 & 7.73 \\ 
+   & Beta & 990194.30 & \cellcolor[HTML]{F8F8FF}16689.95 & 1.11 & 5.55 \\ 
+   & Weibull & 1007301.00 & \cellcolor[HTML]{F8F8FF}17106.70 & 1.05 & 0.16 \\ 
+   & Exponential & 1021420.00 & \cellcolor[HTML]{F9F9FF}14119.00 & 6.67 &  \\ 
+  HQ Mammals & Lognormal & 843728.25 & \cellcolor[HTML]{FFFFFF}0.00 & -1.65 & 0.68 \\ 
+   & Beta & 864452.00 & \cellcolor[HTML]{F7F7FF}20723.75 & 1.52 & 5.23 \\ 
+   & Gamma & 921145.35 & \cellcolor[HTML]{E7E7FF}56693.35 & 1.86 & 8.04 \\ 
+   & Weibull & 970878.40 & \cellcolor[HTML]{EAEAFF}49733.05 & 1.20 & 0.24 \\ 
+   & Exponential & 1014426.50 & \cellcolor[HTML]{EDEDFF}43548.10 & 4.71 &  \\ 
+  HMRD & Beta & 182664.10 & \cellcolor[HTML]{FFFFFF}0.00 & 2.31 & 6.23 \\ 
+   & Lognormal & 183474.30 & \cellcolor[HTML]{FFFFFF}810.20 & -1.55 & 0.55 \\ 
+   & Gamma & 217282.60 & \cellcolor[HTML]{F1F1FF}33808.30 & 2.24 & 8.40 \\ 
+   & Weibull & 263983.65 & \cellcolor[HTML]{EBEBFF}46701.05 & 1.24 & 0.27 \\ 
+   & Exponential & 320179.50 & \cellcolor[HTML]{E7E7FF}56195.85 & 4.66 &  \\ 
+  
