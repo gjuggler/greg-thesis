@@ -1,0 +1,13 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov  4 18:41:30 2011
+ GO:0006952 & defense response & \texttt{P~LMmHDi} & \texttt{~RK} & \bf{2.0e-15} & 1.5e-01 & 376 &  59 & 19.0 & \tiny{TFRC, SAMHD1, TLR1, ITGAL, TLR4} \\ 
+  GO:0006955 & immune response & \texttt{PgLMmHDi} & \texttt{~RK} & \bf{2.2e-12} & \bf{3.3e-03} & 415 &  57 & 21.0 & \tiny{SAMHD1, TLR1, ITGAL, TLR4, CD164} \\ 
+  GO:0009611 & response to wounding & \texttt{P~LMmHD~} & \texttt{~RK} & \bf{3.2e-07} & 5.8e-01 & 553 &  56 & 28.0 & \tiny{TFRC, TLR1, VCAN, ITGAL, TLR4} \\ 
+  GO:0050896 & response to stimulus & \texttt{P~LMmHD~} & \texttt{~RK} & \bf{4.0e-06} & 6.0e-01 & 2343 & 160 & 118.7 & \tiny{TERF2, TFRC, SAMHD1, GGH, TLR1} \\ 
+  GO:0009607 & response to biotic stimulus & \texttt{P~LMmHDi} & \texttt{~RK} & \bf{2.7e-05} & 1.0e+00 & 265 &  30 & 13.4 & \tiny{SAMHD1, TLR1, TLR4, LTF, CD4} \\ 
+  GO:0050909 & sensory perception of taste & \texttt{~~~~~~~~} & \texttt{~RK} & 5.7e-01 & 5.7e-01 &  16 &   1 & 0.8 & \tiny{RTP4} \\ 
+  GO:0007600 & sensory perception & \texttt{~~~~~~~~} & \texttt{C~K} & 7.4e-01 & 1.0e+00 & 274 &  12 & 13.9 & \tiny{TLR4, FAM161A, RP1, RTP4, COL4A3} \\ 
+  GO:0007606 & sensory perception of chemical stimulus & \texttt{~~~~~~~~} & \texttt{~RK} & 8.5e-01 & 1.0e+00 &  36 &   1 & 1.8 & \tiny{RTP4} \\ 
+  GO:0007166 & cell surface receptor linked signaling  & \texttt{~~~~~~~~} & \texttt{CR~} & 1.0e+00 & 8.2e-01 & 1107 &  37 & 56.1 & \tiny{ITGAL, TLR4, ITGAM, HRH4, COL16A1} \\ 
+  GO:0007608 & sensory perception of smell & \texttt{~~~~~~~~} & \texttt{C~K} & 1.0e+00 & 1.0e+00 &  17 &   0 & 0.9 & \tiny{} \\ 
+  

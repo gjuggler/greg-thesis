@@ -1,0 +1,18 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Sun Nov  6 10:20:38 2011
+ \scriptsize{ENSFM00600000921151} &   6 &   6 &   6 &   6 &  & \tiny{COL4A6, COL4A2, COL4A4, COL4A5} \\ 
+  \scriptsize{ENSFM00250000001219} &   5 &   5 &   5 &   5 &  & \tiny{CD1D, CD1C, CD1A, CD1E} \\ 
+  \scriptsize{ENSFM00250000000804} &   4 &   4 &   4 &   4 &  & \tiny{C6, C7, C8A, C8B} \\ 
+  \scriptsize{ENSFM00250000000852} &   4 &   4 &   4 &   4 &  & \tiny{GBP6, GBP4, GBP5, GBP3} \\ 
+  \scriptsize{ENSFM00500000269596} &  11 &  11 &   4 &   4 &  & \tiny{SERPINB3, SERPINB12, SERPINB13, SERPINB9} \\ 
+  \scriptsize{ENSFM00500000269665} &   4 &   4 &   4 &   4 &  & \tiny{CTSG, GZMB, GZMH, CMA1} \\ 
+  \scriptsize{ENSFM00250000000002} &  89 &  68 &   4 &   3 &  & \tiny{ZFP37, ZNF473, ZNF677} \\ 
+  \scriptsize{ENSFM00250000000948} &   4 &   3 &   4 &   3 &  & \tiny{ACOT6, ACOT4, ACOT2} \\ 
+  \scriptsize{ENSFM00350000105388} &   5 &   5 &   3 &   3 &  & \tiny{CES5A, CES2, CES1} \\ 
+  \scriptsize{ENSFM00400000131714} &   7 &   6 &   3 &   3 &  & \tiny{SLC22A25, SLC22A14, SLC22A8} \\ 
+  \scriptsize{ENSFM00400000131728} &   7 &   7 &   3 &   3 &  & \tiny{MMP3, MMP8, MMP1} \\ 
+  \scriptsize{ENSFM00470000251442} &   4 &   3 &   4 &   3 &  & \tiny{EMR2, EMR3, CD97} \\ 
+  \scriptsize{ENSFM00500000269709} &   5 &   4 &   4 &   3 &  & \tiny{ITGAL, ITGAX, ITGAM} \\ 
+  \scriptsize{ENSFM00500000269927} &   4 &   4 &   3 &   3 &  & \tiny{SLC17A3, SLC17A1, SLC17A4} \\ 
+  \scriptsize{ENSFM00570000851010} &   5 &   4 &   4 &   3 &  & \tiny{NLRP9, NLRP4, NLRP5} \\ 
+  

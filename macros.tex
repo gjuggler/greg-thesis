@@ -16,6 +16,13 @@
 \acrodef{lrt}[LRT]{likelihood ratio test}
 \acrodef{lr}[LR]{likelihood ratio}
 \acrodef{fwer}[FWER]{family-wise error rate}
+\acrodef{fdr}[FDR]{false discovery rate}
+\acrodef{tpm}[TPM]{truncated product method}
+\acrodef{go}[GO]{Gene Ontology}
+\acrodef{fet}[FET]{Fisher's Exact Test}
+\acrodef{slc}[SLC]{solute carrier}
+\acrodef{roc}[ROC]{receiver operator characteristic}
+\acrodef{npp}[NPP]{nearby paralog pair}
 
 %\newcommand{\tocite}[2]{\draft{To cite: \citet{#1} --- #2}}
 \newcommand{\tocite}[2]{}
@@ -62,7 +69,7 @@
 \newcommand{\prank}{PRANK\xspace}
 
 \newcommand{\ngenes}{15,XYZ\xspace}
-\newcommand{\dnds}{dN/dS\xspace}
+\newcommand{\dnds}{$d$N$/$$d$S\xspace}
 \newcommand{\kpa}{$\kappa$\xspace}
 \newcommand{\omg}{$\omega$\xspace}
 \newcommand{\omgml}{$\omega_{ML}$\xspace}
@@ -105,6 +112,26 @@
 
 % Mammals 2
 
-\newcommand{\psghone}{PSG$_{H_{1\%}}$\xspace}
-\newcommand{\psghfive}{PSG$_{H_{5\%}}$\xspace}
-\newcommand{\psghten}{PSG$_{H_{10\%}}$\xspace}
+\newcommand{\psghoch}{Hochberg\xspace}
+
+\newcommand{\psgtfive}{$TPM_{0.05}$\xspace}
+\newcommand{\psgtten}{$TPM_{0.1}$\xspace}
+\newcommand{\psgttwenty}{$TPM_{0.2}$\xspace}
+\newcommand{\psgtfifty}{$TPM_{0.5}$\xspace}
+
+\newcommand{\psgfisher}{$Fis.$\xspace}
+
+\newcommand{\psgeohfive}{$Emp_{0.005}$\xspace}
+\newcommand{\psgeone}{$Emp_{0.01}$\xspace}
+\newcommand{\psgefive}{$Emp_{0.05}$\xspace}
+\newcommand{\psgeten}{$Emp_{0.1}$\xspace}
+
+\newcommand{\wa}{$\bar{\omega}_{A}$\xspace}
+\newcommand{\wg}{$\bar{\omega}_{G}$\xspace}
+
+\newcommand{\topgo}{\texttt{topGO}\xspace}
+
+\newcommand{\bbtable}{\begin{landscape} \begin{table}}
+\newcommand{\eetable}{\end{table} \end{landscape}}
+%\newcommand{\bbtable}{\begin{sidewaystable}}
+%\newcommand{\eetable}{\end{sidewaystable}}

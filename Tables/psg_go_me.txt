@@ -1,0 +1,10 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov  4 18:41:30 2011
+ GO:0006302 & double-strand break repair & \texttt{~~~Mm~~i} & \texttt{~~~} & \bf{8.4e-03} & \bf{2.6e-02} &  58 &   8 & 2.9 & \tiny{\bf{SETX}, XRCC5, \bf{BRCA2}, UIMC1, APLF} \\ 
+  GO:0051301 & cell division & \texttt{~g~Mm~~~} & \texttt{~~~} & \bf{1.5e-02} & \bf{7.2e-03} & 264 &  22 & 13.4 & \tiny{\bf{HAUS6}, SPAG5, KIAA1009, DCLRE1A, SYCP1} \\ 
+  GO:0031295 & T cell costimulation & \texttt{~~LMm~D~} & \texttt{~~~} & \bf{2.1e-02} & \bf{2.1e-02} &  32 &   5 & 1.6 & \tiny{CD4, CD3G, DPP4, CD86, CD274} \\ 
+  GO:0007059 & chromosome segregation & \texttt{~~~Mm~~~} & \texttt{~~~} & \bf{2.4e-02} & \bf{1.6e-02} &  83 &   9 & 4.2 & \tiny{REC8, \bf{BRCA2}, DSN1, \bf{CENPH}, SETDB2} \\ 
+  GO:0015711 & organic anion transport & \texttt{~~~~mH~~} & \texttt{~~~} & 7.6e-02 & 9.1e-02 &  45 &   5 & 2.3 & \tiny{ABCC2, SLC26A8, SLC16A7, SLC4A1, SLC13A2} \\ 
+  GO:0071706 & TNF superfamily cytokine production & \texttt{~~L~mH~~} & \texttt{~~~} & 7.6e-02 & 9.8e-02 &  32 &   4 & 1.6 & \tiny{TLR1, TLR4, MAVS, CD86} \\ 
+  GO:0007283 & spermatogenesis & \texttt{P~L~~~Di} & \texttt{~~~} & 8.3e-02 & 5.4e-02 & 184 &  14 & 9.3 & \tiny{NLRP14, SLC9A10, CYLC1, REC8, SYCP1} \\ 
+  

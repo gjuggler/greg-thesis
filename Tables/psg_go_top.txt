@@ -1,0 +1,13 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov  4 18:41:30 2011
+ GO:0006954 & inflammatory response & \texttt{P~LMmHD~} & \texttt{~RK} & \bf{9.4e-11} & \bf{2.0e-06} & 202 &  35 & 10.2 & \tiny{TFRC, TLR1, ITGAL, TLR4, A2M} \\ 
+  GO:0045087 & innate immune response & \texttt{P~LMmHDi} & \texttt{~RK} & \bf{2.4e-09} & \bf{2.7e-04} & 144 &  27 & 7.3 & \tiny{SAMHD1, TLR1, TLR4, A2M, C8A} \\ 
+  GO:0051607 & defense response to virus & \texttt{P~LMmH~i} & \texttt{~~K} & \bf{4.2e-05} & \bf{5.4e-03} &  43 &  10 & 2.2 & \tiny{SAMHD1, CD4, ZC3HAV1, MAVS, DDX58} \\ 
+  GO:0042742 & defense response to bacterium & \texttt{PgLMmHDi} & \texttt{~~K} & \bf{8.8e-05} & \bf{1.2e-04} &  38 &   9 & 1.9 & \tiny{TLR1, TLR4, LTF, MAVS, MBL2} \\ 
+  GO:0000236 & mitotic prometaphase & \texttt{PgLMm~Di} & \texttt{~~~} & \bf{3.7e-04} & \bf{3.7e-04} &  55 &  10 & 2.8 & \tiny{\bf{CENPT}, \bf{CENPI}, \bf{CENPQ}, REC8, DSN1} \\ 
+  GO:0019221 & cytokine-mediated signaling  & \texttt{~~~Mm~~~} & \texttt{~~K} & \bf{1.3e-03} & \bf{4.1e-02} &  98 &  13 & 5.0 & \tiny{MAVS, IL1RL1, NLRC5, STAT2, IFNGR2} \\ 
+  GO:0050900 & leukocyte migration & \texttt{P~LMm~~~} & \texttt{~~~} & \bf{1.5e-03} & \bf{1.4e-03} & 112 &  14 & 5.7 & \tiny{ITGAL, ITGAM, CD84, COL1A2, CD34} \\ 
+  GO:0007067 & mitosis & \texttt{Pg~Mm~Di} & \texttt{~~~} & \bf{3.4e-03} & \bf{4.7e-02} & 218 &  21 & 11.0 & \tiny{\bf{HAUS6}, \bf{CENPT}, \bf{CENPI}, SPAG5, KIAA1009} \\ 
+  GO:0002576 & platelet degranulation & \texttt{~~~Mm~~~} & \texttt{~~~} & \bf{4.7e-03} & \bf{4.7e-03} &  42 &   7 & 2.1 & \tiny{A2M, KNG1, HRG, SELP, ITGA2B} \\ 
+  GO:0051297 & centrosome organization & \texttt{~gLMm~~~} & \texttt{~~~} & \bf{5.6e-03} & \bf{1.2e-02} &  33 &   6 & 1.7 & \tiny{\bf{HAUS6}, \bf{CEP152}, \bf{CEP250}, \bf{BRCA2}, HAUS5} \\ 
+  

@@ -1,0 +1,12 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Sun Nov  6 14:14:40 2011
+ COL4A6 & chrX & 107.4 & \texttt{PgLMmHDi} & \texttt{PgLMmHDi} & \texttt{~~~K} & + & 2.8e-04 \\ 
+  COL4A2 & chr13 & 111.0 & \texttt{P~LMmH~~} & \texttt{P~LMmH~~} & \texttt{~~~~} & + & 2.8e-04 \\ 
+  COL4A4 & chr2 & 227.9 & \texttt{PgLMmHDi} & \texttt{PgLMmHDi} & \texttt{~~~~} & + & 2.8e-04 \\ 
+  COL4A5 & chrX & 107.7 & \texttt{PgLMmH~i} & \texttt{PgLMmH~i} & \texttt{~~~~} & + & 2.8e-04 \\ 
+  COL4A1 & chr13 & 110.8 & \texttt{PgLMmH~i} & \texttt{PgLMmH~i} & \texttt{~~~~} & + & 2.8e-04 \\ 
+  COL4A3 & chr2 & 228.0 & \texttt{PgLMmHDi} & \texttt{PgLMmHDi} & \texttt{~~~K} & + & 2.8e-04 \\ 
+  MMP3 & chr11 & 102.7 & \texttt{~~~~~~~~} & \texttt{~~~Mm~~~} & \texttt{~~~~} & + & 8.3e-03 \\ 
+  MMP8 & chr11 & 102.6 & \texttt{~~~~~~~~} & \texttt{~~~MmH~~} & \texttt{~~~~} & + & 8.3e-03 \\ 
+  MMP1 & chr11 & 102.7 & \texttt{~~~~~~~~} & \texttt{~~~~m~~~} & \texttt{~~~~} & + & 3.2e-01 \\ 
+  

@@ -1,0 +1,8 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Sun Nov  6 10:31:51 2011
+ \scriptsize{Toll-like Receptors} &   8 &   4 &   5 &   3 & 0.50 & \tiny{TLR8, TLR6, TLR1} \\ 
+  \scriptsize{Collagen} &  30 &   7 &  22 &   7 & 0.08 & \tiny{COL4A6, COL4A2, COL4A4, COL4A5} \\ 
+  \scriptsize{ADAM Family} &  42 &  11 &   7 &   4 & 0.06 & \tiny{ADAM32, ADAM2, ADAM28, ADAM7} \\ 
+  \scriptsize{Solute Carrier Family} & 338 &  51 &  37 &  10 & 0.03 & \tiny{SLC26A3, SLC17A3, SLC17A1, SLC17A4} \\ 
+  \scriptsize{All Genes} & 15946 & 1150 & 1898 & 200 & 0.00 & \tiny{AC090098.1, CDKN2A, FAM26F, ACOT6} \\ 
+  
