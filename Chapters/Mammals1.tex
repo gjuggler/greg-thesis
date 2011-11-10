@@ -536,7 +536,7 @@ low-coverage genomes were expected to be filtered by this approach.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{Figs/filtered_qual_bars.pdf}
+\includegraphics[scale=0.9]{Figs/qual_filter_hist.pdf}
 \caption{}
 \label{filtered_qual_bars}
 \end{figure}
@@ -1070,29 +1070,6 @@ group was comparable to Primates and Atlantogenata in total branch
 length, while HQ Mammals and Sparse Glires were more similar to
 Glires.
 
-
-\begin{landscape}
-\begin{figure}
-\centering
-\includegraphics[scale=0.42]{Figs/qc_hist_primates.pdf}
-\caption{Distributions of sitewise values for the Primates species
-  group, showing the raw data (top row) and the result of applying the
-  relaxed (middle row) and conservative (bottom row) filters.}
-\label{fig_qc_hist_primates}
-\end{figure}
-\end{landscape}
-
-\begin{landscape}
-\begin{figure}
-\centering
-\includegraphics[scale=0.42]{Figs/qc_hist_mammals.pdf}
-\caption{Distributions of sitewise values for the Mammals species
-  group, showing the raw data (top row) and the result of applying the
-  relaxed (middle row) and conservative (bottom row) filters.}
-\label{fig_qc_hist_mammals}
-\end{figure}
-\end{landscape}
-
 \subsection{Evaluation of the bulk distributions and the design of a filtering approach}
 \label{section_sitewise_filtering}
 
@@ -1116,6 +1093,24 @@ relaxed filter, designed to retain much of the data while filtering
 out the most obviously low-quality sites, and a conservative filter,
 designed to remove a wider set of sites and genes that showed evidence
 for potential errors or biases.
+
+\bbfig
+\centering
+\includegraphics[scale=0.42]{Figs/qc_hist_primates.pdf}
+\caption{Distributions of sitewise values for the Primates species
+  group, showing the raw data (top row) and the result of applying the
+  relaxed (middle row) and conservative (bottom row) filters.}
+\label{fig_qc_hist_primates}
+\eefig
+
+\bbfig
+\centering
+\includegraphics[scale=0.42]{Figs/qc_hist_mammals.pdf}
+\caption{Distributions of sitewise values for the Mammals species
+  group, showing the raw data (top row) and the result of applying the
+  relaxed (middle row) and conservative (bottom row) filters.}
+\label{fig_qc_hist_mammals}
+\eefig
  
 I first examined the overall distributions of \omg estimates and \sw
 LRT statistics from SLR. Figures \ref{fig_qc_hist_primates} and
@@ -1510,6 +1505,21 @@ statistically significant; on the other hand, a strongly-purifying
 site in an alignment covering less branch length might produce a much
 less-negative \slrt, even with an estimated  \omgml near zero.
 
+\begin{figure}[b!]
+\centering
+\includegraphics[scale=0.5]{Figs/sites_scatters.pdf}
+\caption{The relationship between \slrt, \omgml, and \ci width in (A)
+  Mammalia and (B) Primates datasets. Each point represents the binned
+  density of sites; no points are drawn where no density exists, while
+  blue and red points are drawn at areas of low and high density,
+  respectively. The left panel shows sites where \omgml$<0$, the
+  middle panel shows all sites, and the right panel shows sites where
+  $0<$\xspace\omgml$<1$. Note the change in x-axis scales between plots
+  in (A) and (B), reflecting the paucity of sites in Primates with
+  strong evidence (\slrt$<$-12) for purifying selection.}
+\label{fig_sites_scatters}
+\end{figure}
+
 To further explore this point, Figure \ref{fig_sites_scatters}A shows
 the relationship between \slrt, \omgml and the \ci width for sites
 from the Mammals group. The left panel, comparing the \slrt to \nz
@@ -1536,24 +1546,8 @@ from different sites or datasets may be more sensitive to the amount
 of statistical confidence placed on each estimate than to any
 meaningful biological difference between the two sets of data.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.65]{Figs/sites_scatters.pdf}
-\caption{The relationship between \slrt, \omgml, and \ci width in (A)
-  Mammalia and (B) Primates datasets. Each point represents the binned
-  density of sites; no points are drawn where no density exists, while
-  blue and red points are drawn at areas of low and high density,
-  respectively. The left panel shows sites where \omgml$<0$, the
-  middle panel shows all sites, and the right panel shows sites where
-  $0<$\xspace\omgml$<1$. Note the change in x-axis scales between plots
-  in (A) and (B), reflecting the paucity of sites in Primates with
-  strong evidence (\slrt$<$-12) for purifying selection.}
-\label{fig_sites_scatters}
-\end{figure}
 
-
-\begin{landscape}
-\begin{table}
+\bbtable
 \scriptsize{ \centering
 \begin{tabular}{lllrrrrrrrrrrrrr}
 \toprule
@@ -1604,8 +1598,7 @@ Name & Filter &
   selection.}
 \label{table_pset_summaries_2}
 }
-\end{table}
-\end{landscape}
+\eetable
 
 Instead, the confidence intervals and \ac{lrt} statistics calculated
 by \ac{slr} for each site could be used to identify sites evolving

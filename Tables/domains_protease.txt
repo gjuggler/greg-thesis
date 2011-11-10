@@ -1,0 +1,8 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Wed Nov  9 11:32:30 2011
+ \tiny{PF00089} & Trypsin & \texttt{P~L~mH} & \texttt{P~LMmH} &  82 & 10426 & \cellcolor[HTML]{8E8EFF}44 & \cellcolor[HTML]{8E8EFF}184 & \tiny{CFI, C1S, PRSS44, PRSS48} \\ 
+  \tiny{PF00656} & Caspase domain & \texttt{~~~~~~} & \texttt{P~LMmH} &  12 & 1474 & \cellcolor[HTML]{F4F4FF}10 & \cellcolor[HTML]{F2F2FF}40 & \tiny{CASP8, CASP10, CASP5, CFLAR} \\ 
+  \tiny{PF00031} & Cystatin domain & \texttt{P~LMmH} & \texttt{P~LMmH} &  11 & 780 & \cellcolor[HTML]{FBFBFF}7 & \cellcolor[HTML]{F6F6FF}33 & \tiny{HRG, KNG1, FETUB, CST9LP1} \\ 
+  \tiny{PF00246} & Zinc carboxypeptidase & \texttt{~~~M~H} & \texttt{~~~MmH} &  22 & 4505 & \cellcolor[HTML]{F6F6FF}9 & \cellcolor[HTML]{FBFBFF}23 & \tiny{CPB1, CPB2, CPN1, CPM} \\ 
+  \tiny{PF07859} & alpha/beta hydrolase fold & \texttt{~~~Mm~} & \texttt{P~LMm~} &   6 & 804 & \cellcolor[HTML]{FFFFFF}5 & \cellcolor[HTML]{FFFFFF}16 & \tiny{AADAC, AADACL3, AADACL4, LIPE} \\ 
+  

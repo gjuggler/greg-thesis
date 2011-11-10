@@ -31,9 +31,10 @@ mammalian genomes have revealed largely similar patterns
 \citep{Kosiol2008,Li2009a}. To explain the increased \dnds values
 observed within \acp{psg}, three distinct evolutionary dynamics have
 commonly been invoked: an evolutionary arms race between host and
-parasite interacting genes \citep{Yang2005c}, sexual selection or
-genetic conflict between the sexes \citep{Wyckoff2000,Clark2000}, and
-functional adaptation following gene duplication \citep{Zhang2002}.
+parasite interacting genes \citep{Yang2005c,Meyerson2011}, sexual
+selection or genetic conflict between the sexes
+\citep{Wyckoff2000,Clark2000}, and functional adaptation following
+gene duplication \citep{Zhang2002}.
 
 As the power of phylogenetic analysis using codon models depends
 strongly on the amount of branch length encompassed by the species
@@ -839,10 +840,10 @@ centrosomal proteins \gene{CEP152} and \gene{CEP250}, and several
 centromere proteins including \gene{CENPT}, \gene{CENPI},
 \gene{CENPQ}, and \gene{CENPH}. There has been great interest
 surrounding the evolution of centromeric DNA and proteins ever since
-Henikoff, Ahmad and Malik first proposed the ``centromere paradox''
+Henikoff, Ahmad and Malik proposed the ``centromere paradox''
 \citeyearpar{Henikoff2001}. Based on the observation that both
 centromeric DNA and centromere-related proteins were rapidly evolving
-in animals, the authors proposed an ongoing genetic conflict between
+in animals, the authors postulated an ongoing genetic conflict between
 centromeric DNA and proteins resulting from the unequal transmission
 of chromosomes during female meiosis
 \citep{Henikoff2001,Malik2002,Malik2009}. Initial comparative analysis
@@ -850,7 +851,8 @@ of the major centromeric protein \gene{CENPA} gene showed it to be
 positively-selected in \emph{Drosophila} and \emph{Arabidopsis} but
 not in mammals, while a more recent study in primates identified
 positively-selected residues in \gene{CENPA} and three other
-centromeric proteins \citep{Schueler2010}. This study provided
+centromeric proteins \citep{Schueler2010}. The current identification
+of several positively-selected centromere proteins provided
 large-scale corroboration of the result from primates, showing that
 positive selection in centrosomal and centromeric proteins is a major
 component of the overall set of \acp{psg} throughout mammals. In all,
@@ -1163,7 +1165,7 @@ carboxylesterase (e.g., \gene{CES5A}), solute carrier family (e.g.,
 
 \multicolumn{3}{c}{Human Gene} & \multicolumn{3}{c}{Evidence for Positive Selection} & & \\
 \cmidrule(r){1-3} \cmidrule(r){4-6}
-Name & Chr. & Loc. & Relaxed & Conservative & Lit. & \ac{npp} & \psgeone $p$-value \\
+Name & Chr. & Loc. & Conservative & Relaxed & Lit. & \ac{npp} & \psgeone $p$-value \\
 
 \midrule
 
@@ -1213,18 +1215,165 @@ been identified in previous studies (e.g., \gene{COL4A6} and
 \gene{COL4A3} from Table \ref{table_psg_col_mmp} which were identified
 by Kosiol et al. \citeyearpar{2008}) should be treated with caution.
 
-\section{Positive and purifying selection within protein-coding domains}
+\section{Identifying positive selection within protein-coding domains}
 
-Using the same methodology developed for genes, \sw estimates could be
-grouped by other entities of interest to assess levels of purifying
-and positive selection within those groups. An interesting application
-of this approach was the use of \sw data to identify protein-coding
-domains showing the strongest genome-wide evidence for positive
-selection. Although the gene-wise results could be used to identify
-protein domains often shared by \acp{psg}, the direct assessment of
-levels of purifying and positive selection within domains had the
-potential to more sensitively and accurately identify positive
-selection...
+Using the same methodology developed for genes, the sets of \sw
+estimates could be grouped by other entities of interest to assess
+levels of purifying and positive selection within those groups. An
+interesting application of this approach was the use of \sw data to
+identify protein-coding domains showing the strongest genome-wide
+evidence for positive selection. Although the gene-wise results could
+be used to some extent for this by identifying protein domains which
+are commonly seen in \acp{psg}, the method would be noisy, as positive
+selection occurring within each \acp{psg} may not be localized to the
+same shared domains. Instead, directly aggregating \sw estimates from
+within the region covered by each domain had the potential to more
+sensitively and accurately detect positive selection within
+protein-coding domains.
+
+To identify protein domains with significant evidence for positive
+selection, I mapped Pfam domain annotations from human genes onto the
+genome-wide set of mammalian alignments, yielding 2.5 million aligned
+sites with \sw estimates and Pfam domain annotations, 5,805 of which
+contained evidence for positive selection at a nominal $p<0.01$
+threshold. For each Pfam domain, all sites were combined to produce
+domain-wise $p$-values using the previously described Hochberg,
+\psgefive and \psgeone methods. Domain-wise $p$-values were separately
+estimated for all species groups using the relaxed and conservative
+\sw filtered datasets, and multiple testing was controlled at
+FDR$<0.1$ using the Benjamini-Hochberg method. After correcting for
+multiple tests, Pfam domains of the ``family'' and ``repeat'' types
+were excluded from the analysis, so only entries of the ``domain''
+type remained.
+
+Table \ref{table_domains} summarizes the results of the Pfam domain
+analysis. Similar to Table \ref{table_go}, the presence or absence of
+significant evidence for positive selection is indicated by a string
+of characters; uppercase letters indicate a significant \psgeone
+result (e.g., \texttt{P}, \texttt{L}, \texttt{M} for Primates,
+Laurasiatheria, and Mammals), lowercase letters indicate a significant
+\psgefive result (e.g., \texttt{g}, \texttt{m} for Glires and
+Mammals), and \texttt{H} indicates a significant \psghoch
+result. Domains were categorized as primarily immune-related,
+protease, or protease inhibitor domains based on information from the
+Pfam database; domains with miscellaneous or uncharacterized functions
+are included in the ``Other Domains'' section of Table
+\ref{table_domains}.
+
+An initial observation was that the conservatively-filtered dataset
+did not yield as many significant results for most domains, indicating
+that a large portion of the signal for positive selection within these
+domains may reside in frequently duplicated genes or alignment regions
+with clusters of \nsyn substitutions (which constituted the major
+differences between the relaxed and conservative \sw datasets). I
+chose to focus on the results from the relaxed dataset for the domain
+analysis, as the results were biologically interesting and the
+conservative filter appeared to remove a large number of sites within
+evolutionarily conserved domains.
+
+As expected, immune-related functions dominated the list of
+significantly positively-selected Pfam domains. Together, the
+immunoglobulin and immunoglobulin V-set domains accounted for over 205
+$p<0.01$ \acp{psc} spread across 94 proteins, and both domains were
+significant at FDR$<0.1$ for multiple species groups and methods using
+the relaxed \sw filter. Interestingly, only a fraction of
+immunoglobulin-containing genes contributed to the significant
+evidence for positive selection, with only 51 out of 240 total
+immunoglobulin-annotated genes containing $p<0.01$ sites within the
+domain. This was not unexpected for immunoglobulins, which are known
+as a highly diverse protein domains in mammals, with representation in
+several hundred human genes comprising many immune and non-immune
+functions \citep{Lander2001}. However, the case of immunoglobulin
+suggests that for the study of less well-known domains or organisms,
+evidence for positive selection in a subset of domain instances could
+be taken as evidence of potential adaption of a domain for immune
+purposes.
+
+Other immune domains with significant positive selection included
+lectin, a carbohydrate binding domain involved in cell adhesion and
+apoptosis \citep{Cambi2009}, the IL-8 like cytokine domain involved in
+inflammation and chemotaxis in the immune response \citep{Stein2005},
+and the membrane attack complex (MAC) domain involved in the creation
+of membrane pores causing lysis of bacterial and virus-infected host
+cells \citep{Lovelace2011}. The presence of a number of protease and
+protease inhibitor domains was also consistent with the bulk of
+positive selection in mammals having resulted from the evolutionary
+``arms race'' with invading pathogens; the buildup and continued
+evolution of proteases and their inhibitors may represent a
+significant evolutionary medium through which this conflict is
+expressed. Domains in the 
+
+\begin{landscape}
+\scriptsize
+\begin{longtable}{llllrrrrl}
+\toprule
+
+\multicolumn{2}{c}{Pfam Domain} & \multicolumn{2}{c}{\ac{fdr} $<0.1$} &
+\multicolumn{2}{c}{All Sites} & \multicolumn{2}{c}{$p<0.01$ Sites} & \\
+\cmidrule(r){1-2} \cmidrule(r){3-4} \cmidrule(r){5-6} \cmidrule(r){7-8}
+Accession & Description & Cons. & Relaxed & Genes & Sites &
+Genes & Sites & Top 5 Genes with $p<0.01$ in Mammals \\
+
+\endhead
+
+\\
+\multicolumn{2}{l}{\normalsize{Table \ref{table_domains}} (\emph{continued on next page})} & & & & & & & \\
+\endfoot
+
+\\[-1.8ex] \hline \hline
+\endlastfoot
+
+\midrule
+\multicolumn{2}{l}{Immune Related Domains} & & & & & & & \\
+\midrule
+
+\input{Tables/domains_immune.txt}
+
+\midrule
+\multicolumn{2}{l}{Protease Domains} & & & & & & & \\
+\midrule
+
+\input{Tables/domains_protease.txt}
+
+\midrule
+\multicolumn{2}{l}{Protease Inhibitor Domains} & & & & & & & \\
+\midrule
+
+\input{Tables/domains_inhibitors.txt}
+
+\newpage
+
+\midrule
+\multicolumn{2}{l}{Other Domains} & & & & & & & \\
+\midrule
+
+\input{Tables/domains_other.txt}
+
+\bottomrule
+\caption{\footnotesize Pfam domains with significant evidence for
+  positive selection in mammals. Sitewise estimates from within each
+  domain were combined to identify significant evidence for positive
+  selection at FDR$<0.1$ in 4 species groups (Primates, Glires,
+  Laurasiatheria, and Mammals) using two \sw filtered datasets
+  (conservative and relaxed) and 3 methods to combine \sw estimates
+  (\psgefive, \psgeone, \psghoch). Characters used to indicate
+  positive selection in the ``Cons.'' and ``Relaxed'' columns are the
+  same as those used in Tables \ref{table_go} and
+  \ref{table_psg_col_mmp}. Columns under the ``All Sites'' heading
+  contain the number of unique genes and sites annotated with each
+  Pfam domain; columns under the ``$p<0.01$ Sites'' heading contain
+  the number of unique genes and sites with nominal $p<0.01$ for
+  positive selection. Only domains with 10 or more $p<0.01$ sites, 3
+  or more genes, and FDR$<0.1$ in Mammals using the \psgefive and
+  \psgeone methods are shown.}
+\label{table_domains}
+\end{longtable}
+\end{landscape}
+
+
+
+\tocite{12548285}{PMID: 12548285 Angiogenin immune function}
+
 
 \section{Conclusions}
 

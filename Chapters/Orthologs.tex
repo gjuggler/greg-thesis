@@ -595,14 +595,15 @@ deleted in the reference species. Still, I expected that the sets of
 a useful reference against which to compare the methods based purely
 on \acp{tcc}.
 
-\begin{figure}
+\begin{figure}[p!]
 \centering
-\includegraphics[scale=0.6]{Figs/compara_63_tree.pdf}
+\includegraphics[scale=0.7]{Figs/species_tree.pdf}
 \caption{The NCBI taxonomy of species within the Ensembl Compara
   database. Note that branch lengths are not drawn to
-  scale. Low-coverage genomes are labeled in red, high-coverage
-  genomes are in black. Selected internal nodes, used are labeled in
-  blue.}
+  scale. Low-coverage genomes (e.g., those with 2-6x mean sequence
+  coverage) are labeled in red, and high-coverage genomes are in
+  black. Clade names are included on the left and on the right side of
+  the tree.}
 \label{ncbi_tree}
 \end{figure}
 
@@ -1120,17 +1121,31 @@ accurate set of genome-wide \mammln \acp{lot}, with variations in
 sequence counts resulting from sporadic gene duplication or loss
 events or unannotated genes in \lcv genomes.
 
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[scale=0.9]{Figs/ortholog_euth_dups.pdf}
+\caption{Taxonomic distribution of gene copy counts for the Eutheria
+  \subtr{}s defined by taxonomic coverage constraints. Each panel from
+  top to bottom shows the number of trees containing 0, 1, 2 or more
+  than 3 sequences from each species. Bars are colored blue and gray
+  for species with high- and low-coverage genomes, respectively. Note
+  that the y-axis scale is not the same for each panel.}
+\label{fig_ortholog_euth_dups}
+\end{figure}
+\end{landscape}
+
 I also analyzed the detailed taxonomic distribution of gene
 duplications and losses implied by the set of Eutherian \subtr{}s, as
 the relative prevalence of zero-copy and multi-copy trees in this set
 of \acp{lot} might provide some indication of whether gene deletion or
 gene duplication has been more prevalent in the evolution of
-vertebrate genomes. Figure \ref{ortholog_euth_dups} shows the gene copy
+vertebrate genomes. Figure \ref{fig_ortholog_euth_dups} shows the gene copy
 counts for the set of Eutherian \subtr{}s across all \ens species,
 similar to what Figure \ref{ortholog_root_dups} showed for the set of
 root \cmp gene trees. The excess of \zcop trees and deficit of
 duplications in \lcv genomes was immediately apparent from Figure
-\ref{ortholog_euth_dups}, confirming the trend observed in the set of
+\ref{fig_ortholog_euth_dups}, confirming the trend observed in the set of
 root \cmp trees. Similarly, the trend of increased \zcop trees in
 non-mammalian and non-vertebrate species was stronger than in Figure
 \ref{ortholog_root_dups}, as was the excess of trees with multiple
@@ -1192,21 +1207,34 @@ of \zcop trees to be substantially reduced once a finished-quality
 genome sequence and annotation set is made available
 \citep{Archibald2010}.
 
-\begin{landscape}
-\begin{figure}
-\centering
-\includegraphics[scale=0.9]{Figs/ortholog_euth_dups.pdf}
-\caption{Taxonomic distribution of gene copy counts for the Eutheria
-  \subtr{}s defined by taxonomic coverage constraints. Each panel from
-  top to bottom shows the number of trees containing 0, 1, 2 or more
-  than 3 sequences from each species. Bars are colored blue and gray
-  for species with high- and low-coverage genomes, respectively. Note
-  that the y-axis scale is not the same for each panel.}
-\label{ortholog_euth_dups}
-\end{figure}
-\end{landscape}
 
 \section{Comparison to gene trees from the Optic database of amniote orthologs}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[scale=0.8]{Figs/ensembl_euth_hist.pdf}
+\caption{Sequence counts for the set of \subtr{}s identified using the
+  Eutheria clade taxonomic coverage constraint. Black bars show a
+  histogram of sequence counts in bins of width 2, a gray line shows
+  the cumulative fraction of sequences contained within trees of that
+  size or smaller, and dashed blue lines are drawn at integral
+  multiples of 48, the number of vertebrate species within
+  Ensembl. Trees with more than 100 sequences are included in the
+  topmost bin.}
+\label{ensembl_euth_hist}
+
+\hspace{.2in}
+
+\includegraphics[scale=0.8]{Figs/optic_roots_hist.pdf}
+\caption{Sequence counts for gene trees in eight amniote species from
+  the Optic orthology database \citep{Heger2008}. Black bars show a
+  histogram of sequence counts, a gray line shows the cumulative
+  fraction of sequences contained within trees of that size or
+  smaller, and dashed blue lines are drawn at integral multiples of 8,
+  the number of amniote species analyzed by Optic. Trees with more
+  than 20 sequences are included in the topmost bin.}
+\label{optic_roots_hist}
+\end{figure}
 
 Given the tendency of the root \cmp gene trees to contain multiple
 \mammln \acp{lot}, I wished to evalute whether a different
@@ -1238,32 +1266,6 @@ trees; each histogram has a distinct peak at a sequence count
 corresponding to the number of species included in the database, with
 no sign of the long tail of large gene trees seen for the distribution
 of root \cmp gene trees in Figure \ref{ensembl_roots_hist}.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.8]{Figs/ensembl_euth_hist.pdf}
-\caption{Sequence counts for the set of \subtr{}s identified using the
-  Eutheria clade taxonomic coverage constraint. Black bars show a
-  histogram of sequence counts in bins of width 2, a gray line shows
-  the cumulative fraction of sequences contained within trees of that
-  size or smaller, and dashed blue lines are drawn at integral
-  multiples of 48, the number of vertebrate species within
-  Ensembl. Trees with more than 100 sequences are included in the
-  topmost bin.}
-\label{ensembl_euth_hist}
-
-\hspace{.2in}
-
-\includegraphics[scale=0.8]{Figs/optic_roots_hist.pdf}
-\caption{Sequence counts for gene trees in eight amniote species from
-  the Optic orthology database \citep{Heger2008}. Black bars show a
-  histogram of sequence counts, a gray line shows the cumulative
-  fraction of sequences contained within trees of that size or
-  smaller, and dashed blue lines are drawn at integral multiples of 8,
-  the number of amniote species analyzed by Optic. Trees with more
-  than 20 sequences are included in the topmost bin.}
-\label{optic_roots_hist}
-\end{figure}
 
 \section{Conclusions}
 

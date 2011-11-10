@@ -1,0 +1,29 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Mon Nov  7 16:36:56 2011
+ \tiny{PF00047} & Immunoglobulin domain & \texttt{~~~~~H} & \texttt{P~~MmH} & X &  &  &  & 240 & 30486 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{8E8EFF}81 & \tiny{VCAM1, Pecam1, TMIGD1, MALT1, LAG3} \\ 
+  \tiny{PF00059} & Lectin C-type domain & \texttt{~g~Mm~} & \texttt{PgLMmH} & X &  &  &  &  51 & 4798 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{C0C0FF}53 & \tiny{CD72, CLEC2D, CD69, CLEC5A, KLRB1} \\ 
+  \tiny{PF00067} & Cytochrome P450 & \texttt{~~~~mH} & \texttt{~~LMmH} &  &  &  &  &  39 & 11918 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{DDDDFF}32 & \tiny{CYP20A1, CYP19A1, CYP11A1, CYP27B1, CYP27A1} \\ 
+  \tiny{PF00079} & Serpin (serine protease inhibitor) & \texttt{~~~~~~} & \texttt{P~~Mm~} &  &  & X &  &  33 & 7358 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{D7D7FF}37 & \tiny{SERPINI1, SERPINI2, SERPINE1, SERPINC1, SERP} \\ 
+  \tiny{PF00089} & Trypsin & \texttt{P~L~mH} & \texttt{P~LMmH} &  &  &  &  &  82 & 10426 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{ABABFF}66 & \tiny{OVCH1, PRSS55, PRSS54, CELA1, ACR} \\ 
+  \tiny{PF00092} & von Willebrand factor type A domain & \texttt{~~~~~H} & \texttt{~~LMmH} &  &  &  &  &  53 & 13254 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{BABAFF}57 & \tiny{ITIH1, ITIH4, ITIH5L, VWA5A, COL6A3} \\ 
+  \tiny{PF07686} & Immunoglobulin V-set domain & \texttt{~~~MmH} & \texttt{PgLMmH} &  &  &  &  & 220 & 10851 & \cellcolor[HTML]{8E8EFF}20 & \cellcolor[HTML]{A0A0FF}72 & \tiny{VCAM1, VSTM1, TMIGD1, CD96, CD226} \\ 
+  \tiny{PF00048} & Small cytokines (intecrine/chemokine), interleukin-8 like & \texttt{~~LMmH} & \texttt{PgLMmH} & X &  &  &  &  26 & 1231 & \cellcolor[HTML]{9898FF}19 & \cellcolor[HTML]{E0E0FF}30 & \tiny{CX3CL1, CCL22, XCL1, CCL20, CCL1} \\ 
+  \tiny{PF00084} & Sushi domain (SCR repeat) & \texttt{~~~~~~} & \texttt{P~LMmH} & X &  &  &  &  37 & 7957 & \cellcolor[HTML]{AAAAFF}17 & \cellcolor[HTML]{BABAFF}57 & \tiny{IL2RA, C6, C7, MASP2, C1S} \\ 
+  \tiny{PF00246} & Zinc carboxypeptidase & \texttt{~~~M~H} & \texttt{~~~MmH} &  & X &  &  &  22 & 4505 & \cellcolor[HTML]{C8C8FF}13 & \cellcolor[HTML]{F2F2FF}15 & \tiny{AGBL3, AGBL2, CPN1, CPXM2, CPD} \\ 
+  \tiny{PF00530} & Scavenger receptor cysteine-rich domain & \texttt{~~~~~H} & \texttt{P~~MmH} &  &  &  &  &  17 & 2865 & \cellcolor[HTML]{D6D6FF}11 & \cellcolor[HTML]{F4F4FF}14 & \tiny{CD5, DMBT1, SRCRB4D, CD5L, CFI} \\ 
+  \tiny{PF01471} & Putative peptidoglycan binding domain & \texttt{~~~~~~} & \texttt{~~LMm~} &  &  &  &  &  16 & 796 & \cellcolor[HTML]{DCDCFF}10 & \cellcolor[HTML]{F7F7FF}11 & \tiny{MMP28, MMP7, MMP19, MMP9, MMP13} \\ 
+  \tiny{PF01284} & Membrane-associating domain & \texttt{~~~M~H} & \texttt{~gLMmH} &  &  &  &  &  25 & 2499 & \cellcolor[HTML]{E3E3FF}9 & \cellcolor[HTML]{EEEEFF}19 & \tiny{CKLF, CMTM6, MYADM, PLP2, MAL} \\ 
+  \tiny{PF00021} & u-PAR/Ly-6 domain & \texttt{~~~~~~} & \texttt{P~LMmH} & X &  &  &  &  16 & 775 & \cellcolor[HTML]{E9E9FF}8 & \cellcolor[HTML]{F1F1FF}16 & \tiny{LY6D, GPIHBP1, PLAUR, CD59, SPACA4} \\ 
+  \tiny{PF07678} & A-macroglobulin complement component & \texttt{~~~~m~} & \texttt{~~~Mm~} &  &  & X &  &   8 & 1483 & \cellcolor[HTML]{E9E9FF}8 & \cellcolor[HTML]{FCFCFF}7 & \tiny{C5, C3, C4A, BC048546, PZP} \\ 
+  \tiny{PF00031} & Cystatin domain & \texttt{P~LMmH} & \texttt{P~LMmH} &  & X &  &  &  11 & 780 & \cellcolor[HTML]{EEEEFF}7 & \cellcolor[HTML]{EBEBFF}21 & \tiny{HRG, KNG1, CST9LP1, CST11, CST8} \\ 
+  \tiny{PF00340} & Interleukin-1 / 18 & \texttt{~~~~~~} & \texttt{PgLMm~} & X &  &  &  &   8 & 523 & \cellcolor[HTML]{EEEEFF}7 & \cellcolor[HTML]{F6F6FF}12 & \tiny{IL1B, IL1A, IL18, IL1RN, IL1F10} \\ 
+  \tiny{PF01823} & MAC/Perforin domain & \texttt{P~~MmH} & \texttt{P~LMmH} & X &  &  &  &   9 & 1176 & \cellcolor[HTML]{EEEEFF}7 & \cellcolor[HTML]{E5E5FF}26 & \tiny{PRF1, MPEG1, C6, C7, C9} \\ 
+  \tiny{PF01835} & MG2 domain & \texttt{~~~~~~} & \texttt{~~~Mm~} &  &  & X &  &   8 & 1615 & \cellcolor[HTML]{EEEEFF}7 & \cellcolor[HTML]{F8F8FF}10 & \tiny{C5, C3, C4A, PZP, A2M} \\ 
+  \tiny{PF02886} & LBP / BPI / CETP family, C-terminal domain & \texttt{~~~~~~} & \texttt{P~LMm~} &  &  &  &  &   8 & 1305 & \cellcolor[HTML]{EEEEFF}7 & \cellcolor[HTML]{FDFDFF}6 & \tiny{BPI, LBP, C20orf186, C20orf185, BPIL3} \\ 
+  \tiny{PF00062} & C-type lysozyme/alpha-lactalbumin family & \texttt{~~~~~~} & \texttt{~~~MmH} & X &  &  & X &   7 & 462 & \cellcolor[HTML]{F4F4FF}6 & \cellcolor[HTML]{FCFCFF}7 & \tiny{LALBA, SPACA5B, LYZL4, LYZL6, LYZL2} \\ 
+  \tiny{PF00656} & Caspase domain & \texttt{~~~~~~} & \texttt{P~LMmH} & X & X &  &  &  12 & 1474 & \cellcolor[HTML]{F4F4FF}6 & \cellcolor[HTML]{F0F0FF}17 & \tiny{CFLAR, CASP8, CASP10, CASP1, CASP5} \\ 
+  \tiny{PF00074} & Pancreatic ribonuclease & \texttt{~~~~~~} & \texttt{~~~Mm~} & X &  &  &  &   5 & 338 & \cellcolor[HTML]{FAFAFF}5 & \cellcolor[HTML]{FBFBFF}8 & \tiny{RNASE10, RNASE12, RNASE4, RNASE1, RNASE7} \\ 
+  \tiny{PF07859} & alpha/beta hydrolase fold & \texttt{~~~Mm~} & \texttt{P~LMm~} &  & X &  &  &   6 & 804 & \cellcolor[HTML]{FAFAFF}5 & \cellcolor[HTML]{FFFFFF}4 & \tiny{LIPE, AADACL2, AADAC, AADACL3, AADACL4} \\ 
+  \tiny{PF02841} & Guanylate-binding protein, C-terminal domain & \texttt{~~~~~~} & \texttt{PgLMm~} &  &  &  &  &   4 & 970 & \cellcolor[HTML]{FFFFFF}4 & \cellcolor[HTML]{E9E9FF}23 & \tiny{GBP6, GBP4, GBP5, GBP3} \\ 
+  \tiny{PF07677} & A-macroglobulin receptor & \texttt{~~~~~~} & \texttt{~~LMmH} &  &  & X &  &   6 & 372 & \cellcolor[HTML]{FFFFFF}4 & \cellcolor[HTML]{FDFDFF}6 & \tiny{C5, C4A, A2M, CD109} \\ 
+  
