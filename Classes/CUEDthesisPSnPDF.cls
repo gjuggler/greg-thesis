@@ -44,7 +44,7 @@
 \usepackage[english]{babel}
 \usepackage[usenames, dvipsnames]{color}
 \usepackage[perpage]{footmisc}
-\usepackage[square, sort, numbers, authoryear]{natbib}
+\usepackage[square, numbers, authoryear]{natbib}
 \usepackage{ifthen}
 \usepackage{ifpdf}
 
@@ -172,7 +172,7 @@
   \renewcommand{\headrulewidth}{0pt}
 }
 
-\newcommand{\submittedtext}{{A thesis submitted for the degree of}}
+\newcommand{\submittedtext}{{A dissertation submitted for the degree of}}
 %
 %
 % DECLARATIONS

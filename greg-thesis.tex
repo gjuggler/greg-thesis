@@ -1,6 +1,6 @@
 %input macros (i.e. write your own macros file called MacroFile1.tex)
 %\include{Macros/MacroFile1}
- \documentclass[oneside,11pt]{Classes/CUEDthesisPSnPDF}
+ \documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
 
 \ifpdf
     \pdfinfo { /Title  (Greg's Awesome Thesis)
@@ -23,7 +23,7 @@
   \collegeordept{\href{http://www.ebi.ac.uk}{European Bioinformatics Institute}}
   \university{\href{http://www.cam.ac.uk}{University of Cambridge}}
 % insert below the file name that contains the crest in-place of 'UnivShield'
-  \crest{\includegraphics[width=50mm]{cam_crest.pdf}}
+  \crest{\includegraphics[width=40mm]{cam_crest.pdf}}
 \else
   \author{Gregory Jordan}
   \collegeordept{European Bioinformatics Institute}
@@ -99,6 +99,7 @@
 \frontmatter % book mode only
 \include{Chapters/Dedication}
 \include{Chapters/Acknowledgements}
+\include{Chapters/Declaration}
 \include{Chapters/Abstract}
 
 \tableofcontents
