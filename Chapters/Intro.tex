@@ -1,5 +1,6 @@
 %************************************************
-\chapter{Introduction}\label{ch_intro}
+\chapter{Introduction}
+\label{ch_intro}
 %************************************************
 
 Over the past decade, the comparative analysis of genomic sequences
@@ -28,7 +29,7 @@ across many species, these evolutionary patterns can highlight genes
 and pathways involved in ongoing, universal mammalian genetic
 conflicts \citep{CastilloDavis2004}; when observed in one or a few
 lineages, they may indicate more specific adaptations related to those
-species' unique evolutionary hsitory \citep{Sawyer2005a,Nielsen2007}.
+species' unique evolutionary hsitory \citep{Messier1997,Sawyer2005a,Nielsen2007}.
 
 Furthermore, along with the increased use of high-throughput methods
 and datasets in biology has come a heightened awareness of the
@@ -48,6 +49,7 @@ analyses, and to further develop methods for appropriately predicting
 and handling such error.
 
 \section{The evolution of mammals and the mammalian genome}
+\label{section_mammal_evolution}
 
 A major motivating factor behind the sequencing and study of mammalian
 genomes has been the desire to shed light on the human genome sequence
@@ -237,7 +239,7 @@ within different groups of mammals, and in Chapter~\ref{ch_gorilla} I
 use genome-wide comparisons to estimate ancestral \ac{ne} in our
 closest primate relatives.
 
-Key features of the mammalian genome itself are also worth
+Some key features of the mammalian genome itself are also worth
 highlighting. Mammals contain relatively large genomes (roughly 3 Gb
 of DNA, ranging from 2.5 to 4.5 Gb) with between 20 to 80 chromosomes
 \citep{Bachmann1972}. The large range in chromosome count is likely a
@@ -296,83 +298,85 @@ in more detail in Chapter~\ref{ch_orthologs} when a set of mammalian
 orthologs suitable for evolutionary analysis is identified.
 
 \section{Models of sequence evolution}
-\label{codon_intro}
+\label{section_evolution_models}
 
-The above section described several important genomic and evolutionary
-features of the mammalian clade. Many of those well-established
-observations resulted from the application of mathematical models of
-sequence evolution to comparative genomics data, which is now a
-widespread analytical appraoch. This section briefly introduces a
-selection of important methods and models for evolutionary analysis
-which will be applied throughout the remaining chapters.
+The above section described the major genomic and evolutionary
+features of mammalian species. Many of those well-established
+observations were made by applying mathematical models of sequence
+evolution to comparative genomics data, which is now a widespread
+analytical appraoch. This section briefly introduces the methods and
+models of evolutionary analysis which will be applied throughout the
+remainding chapters.
 
 As the hereditary material of all free-living organisms, DNA
 represents a record of the history of life on earth. When an
 individual gives rise to offspring, some segments of DNA are
 replicated and passed on to all its descendants; importantly, the
 processes of DNA replication and repair are imperfect
-\citep{Arnheim2009}, and the resulting errors---called mutations---are
-passed on to successive generations. In addition to being a major
-source of the variation between individuals invoked in Darwin's theory
-of natural selection \citep{Darwin1859a}, mutations in DNA leave a
-molecular record of evolutionary relationships and of the passage of
-time. The gradual accumulation of mutations in DNA, commonly observed
-as differences in DNA sequences between species at the same homologous
-location, can be reasonably modeled using phylogenetic trees and
-Markov models of sequence change \citep{Yang2006}.
+\citep{Arnheim2009}, and the resulting errors, called mutations, can
+be passed on to successive generations if they occur in germline
+cells. In addition to being a major source of the variation between
+individuals invoked in Darwin's theory of natural selection
+\citep{Darwin1859a}, mutations in DNA leave a molecular record of
+evolutionary relationships and of the passage of time. The gradual
+accumulation of mutations in DNA, commonly observed as differences in
+DNA sequences between species at the same homologous location, can be
+reasonably modeled using phylogenetic trees and Markov models of
+sequence evolution \citep{Yang2006}.
 
 The earliest observations that biological sequences tend to randomly
-change over time were made from the sequences of proteins, which are
-cellular molecules comprised of amino acid units whose arrangement is
-encoded in the DNA sequences of exons within genes. Zuckerkandl and
-Pauling, who were analyzing the amino acid sequences of hemoglobin
-genes from various species, noted in 1962 that the number of changes
-between sequences from different species corresponded well with the
-evolutionary distance those species based on fossil evidence; this led
-them to hypothesize that evolution at a molecular level may occur at a
-largely constant rate \citep{Zuckerkandl1962,Morgan1998}. Zuckerkandl
-and Pauling continued to explore the implications and applications of
-their ``molecular evolutionary clock'' hypothesis, using hemoglobin
-and cytochrome C sequences, for example, to estimate the date of
-human-gorilla divergence (at 11 million years) and to infer the
-ancestral protein sequences of mammalian ancestors
-\citep{Zuckerkandl1965}. Since those pioneering studies in proteins, a
-variety of evolutionary models have been developed to describe
-observed patterns of amino acid and DNA substitution. As this thesis
-is concerned largely with the application of such methods, I will only
-briefly summarize the key features of the more popular evolutionary
-models; \citet{Yang2006} provides a comprehensive mathematical
-treatment.
+change over time were made from sequences of proteins, the main
+molecules of cellular machinery, comprised of amino acid units whose
+arrangement is encoded in the DNA sequences of exons within genes. In
+the early 1960s, Zuckerkandl and Pauling were analyzing the amino acid
+sequences of hemoglobin genes from various species and noted that the
+number of changes between sequences from different species
+corresponded well with the evolutionary distance those species based
+on fossil evidence; this led them to hypothesize that evolution at a
+molecular level may occur at a largely constant rate
+\citep{Zuckerkandl1962,Morgan1998}. Zuckerkandl and Pauling continued
+to explore the implications and applications of this ``molecular
+evolutionary clock'' hypothesis, using hemoglobin and cytochrome C
+sequences to estimate the date of human-gorilla divergence (at 11
+million years) and to infer the protein sequences of mammalian
+ancestors \citep{Zuckerkandl1965}. A wide variety of evolutionary
+models have subsequently been developed to describe observed patterns
+of amino acid and DNA substitutions. As this thesis is concerned
+largely with the application of such methods, I will only briefly
+summarize the key features of the more popular evolutionary models;
+\citet{Yang2006} provides a comprehensive mathematical treatment of
+the main models used in practice.
 
-The simplest model of DNA substitution, proposed by
+The simplest Markov model for DNA substitution, proposed by
 \citet{Jukes1969a}, assumes that every nucleotide has the same rate of
 changing into any other nucleotide. Although the assumption of equal
-rates may be reasonable for modeling a random process, the point
-mutation of a DNA base pair is a biochemical process (or rather, a set
-of potentially many unobserved biochemical processes which all produce
-the same class of observable result) which may contain biases towards
-or against certain types of mutations. This was quickly discovered to
-be the case: analysis of the ever-increasing number of available
-biological DNA sequences showed that in many datasets
-\emph{transitions}, defined as substitutions between two pyrimidine
-nucleotides (e.g., T$\to$C or C$\to$T) or between two purine
-nucleotides (e.g., A$\to$G or G$\to$A), are more common than
-\emph{transversions}, defined as substitutions from a purine to a
-pyrimidine or vice-versa. \citet{Kimura1980} thus proposed a more
-complex model, called K80 or Kimura's two-parameter model, which
-accounted for this bias. Specifically, Kimura's K80 model extends JC69
+rates is a reasonable starting point for modeling a random process,
+the point mutation of a DNA base pair is a biochemical process (or
+rather, a set of potentially many unobserved biochemical processes
+which all produce the same class of observable result), making the
+existence of biases towards or against certain types of mutations
+highly plausible. This was quickly discovered to be the case: analysis
+of the ever-increasing number of available biological DNA sequences
+showed that in most datasets \emph{transitions}, defined as
+substitutions between two pyrimidine nucleotides (e.g., T$\to$C or
+C$\to$T) or between two purine nucleotides (e.g., A$\to$G or G$\to$A),
+are more common than \emph{transversions}, defined as substitutions
+from a purine to a pyrimidine or vice-versa. \citet{Kimura1980} thus
+proposed a more complex model, called K80 or Kimura's two-parameter
+model, which accounted for this bias. Specifically, K80 extends JC69
 by incorporating an additional parameter, $\kappa$, referred to as the
-transition/transversion ratio, which represents the ratio of the rate
-of transition versus the rate of transversion substitutions. When
-$\kappa$ is greater than one, transitions occur at a higher rate than
-transversions, providing a better fit to most biological datasets. The
-$\kappa$ parameter of K80 a prototypical example of the parametric
-approach to building evolutionary models, where a parameter is
-introduced into the model which allows for a commonly-violated
-assumption of the simpler model to be relaxed. The value of the
-parameter is not specified in the model, however; it is usually
-estimated from the data on a case-by-case basis from the data using
-\ac{ml} \citep{Whelan2001}.
+transition/transversion ratio, representing the ratio of the rate of
+transition substitutions to the rate of transversion
+substitutions. When $\kappa$ is greater than one, transitions occur at
+a higher rate than transversions, providing a better fit to most
+biological datasets \citep{Brown1982}. The $\kappa$ parameter of K80 a
+prototypical example of the parametric approach to building
+evolutionary models, whereby a parameter is introduced into the model
+which allows for a commonly-violated assumption of the simpler model
+to be relaxed. Note that the value of the parameter is not specified
+in the model; rather, it must be provided or estimated from the data
+on a case-by-case basis, usually by \ac{ml} estimation
+\citep{Whelan2001}.
 
 Several nucleotide models were subsequently described which relax
 various assumptions of the JC69 and K80 models
@@ -389,44 +393,45 @@ selective or mutationsal biases), making it inappropriate to assume an
 equal base composition \citep{Yang2006}. Thus, models such as FEL
 \citep{Felsenstein1981a}, HKY \citep{Hasegawa1985} and TN93
 \citep{Tamura1993} were developed to allow for various combinations of
-unequal base frequencies and an unequal transition/transversion
-ratio. The most general reversible nucleotide model, REV
-\citep{Tavare1986}, includes four parameters describing the
-equilibrium nucleotide frequencies and six rate parameters, one for
-each possible pair of substitutions.
+unequal base frequencies and unequal transition/transversion
+ratios. The most general reversible nucleotide model REV includes four
+parameters describing the equilibrium nucleotide frequencies and six
+rate parameters, one for each possible pair of substitutions
+\citep{Tavare1986}.
 
-In contrast to the primarily parametric DNA models, evolution models
-for amino acid substitutions have generally been estimated empirically
-\citep{Whelan2001}. Developed during the early days of evolutionary
-sequence analysis, the JTT \citep{Jones1992} and Dayhoff
-\citep{Dayhoff1978} amino acid models were estimated using
+In contrast to the primarily parametric DNA models, evolutionary
+models for amino acids have generally been estimated empirically
+\citep{Whelan2001}. The JTT \citep{Jones1992} and Dayhoff
+\citep{Dayhoff1978} amino acid models, developed during the early days
+of evolutionary sequence analysis, were estimated using
 parsimony-based counting methods. The parsimony principle was first
 used to infer phylogenetic trees and ancestral protein sequences from
 each set of aligned proteins within a large database. Based on those
 phylogenetic trees and ancestral sequences, the entries of the 20x20
 amino acid substitution matrix were populated with counts of inferred
-amino acid substitutions, and these counts were used to estimate a
-Markov substitution model. More recently, empirical amino acid models
-were estimated using \ac{ml} methods, which improved upon a number of
-methodological issues with the parsimony approach
+amino acid substitutions, and these counts were used to estimate
+reversible Markov substitution models. More recently, empirical amino
+acid models were estimated using \ac{ml} methods, which improved upon
+a number of methodological deficiencies of the parsimony approach
 \citep{Adachi1996,Whelan2001b}.
 
-A few important assumptions are shared by all of the models already
-described, namely that all sites within an alignment are (a) evolving
-independently of one another, (b) evolving under the same evolutionary
-process and at the same evolutionary rate (c) related by the same
-underlying phylogenetic tree. I will briefly review the development of
-models which relax these assumptions, all of which are clearly
-violated in many real datasets.
+At this point it should be pointed out that a few important
+assumptions are shared by all of the models already described, namely
+that all sites within an alignment are (a) evolving independently of
+one another, (b) evolving under the same evolutionary process and at
+the same evolutionary rate, and (c) related by the same underlying
+phylogenetic tree. These assumptions are clearly violated in many real
+datasets, so I will briefly review the development of models which
+relax them to various degrees.
 
 Independence between sites is generally a difficult assumption to
-relax for computational reasons \citep{TODO}, but the hypermutability
-of CpG dinucleotides within mammalian genomes (where CpG denotes a C
-nucleotide followed by a G nucleotide, the ``p'' representing the
-phosphodiester bond separating nucleotides on the same strand of a DNA
-molecule) has provided strong impetus to incorporate at least a
-dinucleotide context into models for estimating nucleotide
-substitution rates from large mammalian alignments
+relax for computational reasons \citep{Kosiol2006c}, but the
+hypermutability of CpG dinucleotides within mammalian genomes (where
+CpG denotes a C nucleotide followed by a G nucleotide, the ``p''
+representing the phosphodiester bond separating nucleotides on the
+same strand of a DNA molecule) has provided strong impetus to
+incorporate at least a dinucleotide context into models for estimating
+nucleotide substitution rates from large mammalian alignments
 \citep{Blake1992,Hwang2004a,Siepel2004a}. CpG hypermutability results
 from the methylation and subsequent deamination of the cytosine
 nucleotide at CpG sites in most mammalian genomic DNA; although all
@@ -440,47 +445,283 @@ dominant form of mutation in mammalian genomes, and such models have
 also been essential for studying the evolution of GC content and
 mammalian isochores \citep{Duret2006,Duret2008}.
 
-The major violation of the assumption of the same evolutionary rate
-and model between sites is the observation that the
+The assumption of a homogeneous evolutionary process acting across all
+alignment sites is often violated in real datasets types
+\citep{Yang2006,Whelan2008}, and the development of methods allowing
+for this assumption to be relaxed in the analysis of various types of
+sequences has been an area of active research. Most studies have
+focused on across-site variation of a single parameter such as the
+evolutionary rate \citep{Uzzell1971,Yang1994c,Yang1996,Nielsen1998a},
+but more complex types of heterogeneity have also been explored
+\citep{Lartillot2004} . The approach generally taken for variation of
+a single parameter is to describe the rate (or any other parameter
+being modeled as varying across sites) for each site as a random draw
+from a statistical distribution. In this way, the mathematically
+convenient assumption of independence between sites is upheld while
+sites are allowed to vary according to the parameter of interest. The
+gamma distribution is commonly used here, as it contains only one
+parameter if the mean rate is normalized to 1. This parameter,
+$\alpha$, is typically estimated from the data and has a very clear
+interpretation: low values of $\alpha$ reflect a L-shaped gamma
+distribution with a large amount of rate variation, while high values
+of $\alpha$ reflect a bell-shaped distribution where most sites have
+the average rate.
 
-  \draft{Introduce the idea of modeling protein evolution as a markov
-    process acting on codon sequences: the incorporation of
-    mechanistic parameters for Ts:Tv bias (kappa), dN/dS ratio
-    (omega), or empirical models a la . Talk about heterogeneity
-    the idea that real data may strongly violate certain models.}
+The final assumption of a single phylogenetic tree relating all sites
+within a sequence has been less studied. Simulations have been used to
+evaluate the potential impact of recombination
+\citet{Anisimova2003,Shriner2003} and gene conversion
+\citet{Casola2009} on the use of evolutionary codon models (introduced
+in the next section) to detect positive selection, finding that
+moderate levels of false positive occur when the assumption of a
+single tree is violated. Simulations have also been used to estimate
+the impact of recombination on reconstruction of ancestral sequences
+\citep{Busto2010} and phylogeny inference \citep{Schierup2000}. In
+virus genetics where recombination is commonly encountered, methods
+have been developed to automate the identification and handling of
+recombination events in evolutionary analyses \citep{Pond2006}. In
+comparative genomic analyses of closely-related species, the tree
+relating the species' sequences may vary across the genome due to
+\ac{ils}. This is encountered in the analysis of great ape genes
+presented in Chapter \ref{ch_gorilla}, where a simple filtering scheme
+was used to remove sites potentially subject to \ac{ils}.
 
 \section{Detecting purifying and positive selection in proteins}
-\label{pos-sel_intro}
+\label{section_codon_models}
 
-  \draft{Briefly run through the history of detecting purifying /
-    positive selection in genes and sites. Mention history of PAML
-    models, alternative approaches, and fully describe SLR's
-    approach.}
+Proteins are functionally active as folded, structured amino acid
+molecules, but the genes which encode them replicate and mutate as DNA
+molecules. The connection between DNA and protein is mediated by the
+genetic code, which describes how non-overlapping codons, or triplets
+of nucleotides within the coding sequence of a protein-coding gene,
+are translated by the ribosome and tRNA molecules into polymers of the
+20 common amino acids. Since there are $4^3=64$ possible codons and
+only 20 amino acids, the genetic code is degenerate (i.e., multiple
+codons are translated into the same amino acid). This degeneracy is
+concentrated in the third codon position, with many codons differing
+by only their third nucleotide coding for the same amino acid, but
+some degeneracy also exists in the first position. No codons differing
+by their second nucleotide encode the same amino acid. Only two amino
+acids, methionine and tryptophan, are encoded by just one codon, and
+three codons are stop codons used to signal the end of the peptide
+chain.
 
-  \draft{SLR implements a method specifically designed for sitewise
-    estimates which has been shown in sim- ulations to perform as well
-    as or better than PAML’s sitewise random sites models (Massingham
-    and Goldman, 2005). SLR models codon evolution as a
-    continuous-time Markov process where substitutions at one site are
-    independent of substitutions at all other sites. No assumptions
-    are made regarding the distribution of ω ratios within the
-    alignment. The value of ω is considered to be an independent
-    parame- ter at each site: after first optimizing shared parameters
-    using the whole alignment, SLR uses the shared parameters and the
-    data at each alignment site to calculate a sitewise statistic for
-    non-neutral evolution.  This statistic is based on a
-    likelihood-ratio test where the null model is neutral evolution (ω
-    = 1) and the alternative model is either purifying or positive
-    selection (ω < 1 or ω > 1, respectively). The raw statistic
-    measures the strength of evidence for non-neutral evolution at
-    each site; following Massingham and Goldman (2005) we use a signed
-    version of the SLR statistic (created by negating the statistic
-    for sites with ω < 1) as the test statistic for positive
-    selection.}
+The degeneracy of the genetic code causes some changes on the DNA
+level to be \syn, meaning they result in no change to the encoded
+amino acid sequence, while others are \nsyn, meaning they result in an
+altered protein sequence. The decoupled nature of the process of DNA
+mutation, which is presumably ``unaware'' of the genetic code and
+affects all nucleotides equally, and the process of natural selection,
+which acts on phenotypes typically (but not exclusively) affected by
+protein structure, suggests that a comparison of rates of \nsyn and
+\syn substitution would allow the influence of natural selection
+acting on a protein to be detected while inherently correcting for the
+neutral mutation rate. Indeed, the potential of this approach was
+noted by various researchers as soon as large-scale DNA sequencing
+became practical \citep{Kimura1977,Jukes1979}, and the comparison of
+the rate of \nsyn substitution ($d$N) and the rate of \syn
+substitution ($d$S) has been a cornerstone of the evolutionary
+analysis of proteins ever since \citep{Yang2006}. Various techniques
+were historically used to estimate \dn and \ds \citep{Yang2000c}, but
+most modern software is based on one of the two parametric Markov
+models for coding sequence evolution independently proposed by
+\citet{Goldman1994a} and \citet{Muse1994} or, when an empirical codon
+model is desirable, a version of the model estimated by
+\citet{Kosiol2007}.
 
+Although the two parametric codon models differ in the details of how
+nucleotide and codon frequencies are handled
+\citep{Yang2000c,Bierne2003a}, they are similar in that each
+incorporates a selection parameter $\omega$, representing the ratio of
+\dn and \ds, into a Markov model of coding sequence evolution. The
+$\omega$ parameter has a clear and simple interpretation, namely that
+it measures the ``the net effect of selection at the protein level''
+\citep{Yang2000CodonSubstitution}. When $\omega=1$, natural selection
+acts neither for nor against protein change, and the sequence is said
+to be evolving neutrally; when $\omega<1$, selection acts to conserve
+the protein sequence, exerting a so-called \emph{purifying} selective
+pressure; when $\omega>1$, selection acts to change the protein
+sequence, exerting a so-called positive selection pressure. Within the
+context of population genetics, the $\omega$ parameter can be linked
+to $s$, the selective coefficient of an allele segregating in the
+population \citep{Nielsen2003,Nielsen2005b,Kryazhimskiy2008}, with
+$\omega>1$ corresponding to $s>0$ and $\omega<1$ corresponding to
+$s<0$, although this interpretation involves many assumptions and has
+found little practical use \citep{Nielsen2003,Nielsen2005b}.
+
+For either of these Markov codon models, parameters (including
+$\omega$, $\kappa$, and branch lengths for the model of
+\citet{Goldman1994a}) can be numerically optimized for a given
+alignment and phylogeny by \ac{ml} using Felsenstein's pruning
+algorithm \citep{Felsenstein1981a,Goldman1994a,Yang2000c}. In their
+initial description of the model, \citet{Goldman1994a} presented a
+modification of the model to account for heterogeneous substitution
+rates across sites using an approach similar to that described above
+for nucleotide models. Much subsequent work has been done to develop
+models allowing for variation of $\omega$ across sites in the
+alignment \citep{Nielsen1998a,Yang2000CodonSubstitution,Yang2002,
+  Wong2004,Yang2005Bayes,Massingham2005}, between branches in the tree
+\citep{Yang1998a}, or both \citep{Yang2002b,Zhang2005a}.
+\citet{Anisimova2009} provide a comprehensive review of the
+state-of-the-art in probabilistic codon models. A detailed account of
+these developments will not be presented here, but three codon-based
+models in particular are used extensively throughout this thesis to
+examine patterns of natural selection within mammalian proteins: the
+branch model and sites models implemented in the \ac{paml} program by
+Ziheng Yang \citep{Yang2007} and the \ac{slr} method implemented in
+the \ac{slr} program by Tim Massingham \citep{Massingham2005}. Each of
+these models is introduced in more detail below.
+
+\subsection{Branch and sites models in PAML}
+
+For a long time, the $\omega$ ratio was almost always calculated as an
+average value across an entire protein \citep{Sharp1997}. Functional
+and structural constraints within a protein sequence might dominate
+the average signal of evolutionary constraint, however, even if
+positive selection had acted on some portion of the protein. In some
+cases, such as when the amount of computational power or data
+available is limited, averaging $\omega$ across sites is a reasonable
+compromise, but as computer and sequencing technologies rapidly
+developed in the late 1990s, that compromise was becoming less
+necessary. Whole-gene $\omega$ estimates were shown to lack power
+\citep{Endo1996}, while ad-hoc analyses of particular protein regions
+were limited to cases where prior knowledge could be used
+\citep{Hughes1988}. Ziheng Yang and collaborators adopted a random
+sites approach to modeling variation of the $\omega$ ratio across
+sites for the PAML software, typically favoring the use of a gamma or
+beta distribution discretized into a predefined number of site classes
+for computational efficiency. To identify positive selection with
+statistical confidence, a variety of \acp{lrt} were developed. The
+\ac{lrt} is a widely-used technique which allows a specific hypothesis
+to be tested by comparing the probabilistic fit, known as the
+likelihood, of two nested models to a given dataset. (Two models are
+nested when one model is a special case of the other.) In the context
+of detecting positive selection, the most effective \ac{lrt} typically
+compare a model allowing for some variation of $\omega$, but not
+allowing $\omega>1$, to a more complex model allowing $\omega>1$, the
+former model being nested within the latter. \citet{Nielsen1998}
+initially proposed a few simple \acp{lrt} for detecting positive
+selection; this approach was further developed in
+\citet{Yang2000CodonSubstitution}, and \citet{Anisimova2001Accuracy}
+provided extensive simulations on the power and accuracy of these
+tests. The current release of PAML recommends two \acp{lrt}, M2a--M1a
+and M8--M7 (see \citet{Wong2004}, Table 1 for a complete description
+of each model), for detecting positive selection acting at a subset of
+sites within genes. PAML also implements a method for identifying
+which individual sites show strong evidence for positive
+selection. This method, termed the Bayes Empirical Bayes method by
+\citet{Yang2005Bayes}, provides an approximate posterior probability
+that each site has been subject to positive selection. I evaluate the
+power of this method for detecting \sw positive selection in Chapter
+\ref{ch_indels}.
+
+Codon models relaxing the assumption of a constant $\omega$ throughout
+the branches of the tree, but not across sites, were also developed
+and implemented in PAML \citep{Yang1998,Yang1998a}. Although these
+models have received less attention and use than the branch-site
+models which allow $\omega$ to vary across both sites and branches
+\citep{Zhang2005}, they may be useful when branch lengths are small,
+making parameter estimation under the complex branch-site models
+difficult, or when variation of $\omega$ across sites is not of
+interest. These models are used in Chapter \ref{ch_gorilla} to
+construct \acp{lrt} for detecting accelerated evolution along specific
+branches of the great ape tree.
+
+\subsection{The Sitewise Likelihood Ratio method}
+
+In contrast to PAML's approach to site-specific evolutionary analysis,
+where a \ac{lrt} for positive selection within a gene is first
+performed and, subject to a significant \ac{lrt} result, \sw posterior
+probabilities for positive selection are then inferred, the \ac{slr}
+method \citep{Massingham2005} was specifically designed for the
+sitewise estimation of purifying and positive selection. \ac{slr} is
+based on an explicit Markov model of codon evolution similar to that
+of \citet{Goldman1994}. No assumptions are made regarding the
+distribution of $\omega$ ratios within the alignment; instead, the
+value of $\omega$ is considered to be an independent parameter at each
+site. As the estimation of model parameters and calulation of
+likelihood values to perform an exact \ac{lrt} at each site would
+involve an expensive high-dimensional optimization, \ac{slr} uses two
+approximations which greatly reduce the computational complexity:
+first, common parameters are estimated under the M0 model
+\citep{Yang2000CodonSubstitution}, with one $\omega$ for all sites,
+instead of the true null model with one $\omega$ per site, and second,
+the \sw $\omega$ parameter is estimated independently at each site
+under the simplifying assumption that the contribution of each site to
+the common parameters is minimal \citep{Massingham2005}. In practical
+terms, \ac{slr} uses the common parameters and the alignment data at
+each alignment site to calculate a sitewise statistic for non-neutral
+evolution. This statistic is based on a likelihood-ratio test where
+the null model is neutral evolution ($\omega=1$) and the alternative
+model is either purifying or positive selection ($\omega<1$ or
+$\omega>1$, respectively). The raw statistic measures the strength of
+evidence for non-neutral evolution at each site, and the observed
+statistic can be compared to its theoretical distribution under the
+null model, \chisq, to identify sites with evidence for purifying or
+positive selection at a desired significance threshold. Simulations
+performed by \citet{Massingham2005} showed \ac{slr} to perform as well
+as or better than PAML’s random sites models; Chapter \ref{ch_indels}
+provides further assessment of the power of the \ac{slr} method to
+detect \sw positive selection under a wide range of conditions, and in
+Chapters \ref{ch_mammals1} and \ref{ch_mammals2} \ac{slr} is applied
+on a large scale to analyze genome-wide patterns of \sw positive
+selection in mammals.
 
 \section{Outline of the thesis}
 
-In this thesis, I describe... three studies concerning the use of
-phylogenetic codon models to identify
+This thesis describes three largely independent studies centered
+around the theme of using codon models to analyze patterns of
+selective constraint in mammalian genomes.
 
+Chapter \ref{ch_indels} describes a comprehensive simulation study I
+conducted to evaluate the impact of alignment error on detecting \sw
+positive selection. The widespread adoption of powerful methods for
+sequence analysis has been somewhat hampered by a lack of
+understanding of the limitations of, and sources of error inherent
+within, those methods. Without such knowledge, researchers could
+either avoid using such methods for fear of misleading results, or
+blindly apply such methods without regard for possible errors. Both
+paths have been taken with respect to the issue of alignment error in
+detecting positive selection. This study presented a thorough
+examination of the impact of alignment error by comparing different
+aligners, trees, and methods for detecting positive selection; it has
+been recently published \citep{Jordan2011} and is presented in Chapter
+\ref{ch_indels} largely unmodified from its published form.
+
+With whole-genome sequences quickly accruing in the databases at an
+ever-increasing pace, I devoted a large part of my efforts towards
+applying evolutionary codon models on a large scale to mammalian and
+primate genomes. The rest of the thesis reflects this focus, with two
+major empirical analyses presented. Chapters \ref{ch_orthologs},
+\ref{ch_mammals1} and \ref{ch_mammals2} describe in three sections a
+genome-wide analysis of \sw selective pressures in mammals that was
+performed in collaboration with the \ac{mgp}; a more detailed
+description of the \acp{mgp} and my involvement in the analysis will
+be provided as a preface to Chapter \ref{ch_orthologs}. A highly
+summarized version of the results of this analyses was recently
+published \citep{LindbladToh2011}, but the version presented here
+differs in that a more recent dataset was used and the analysis is
+described in considerably more detail. In particular, special
+attention was paid to identifying (and in some cases ameliorating)
+possible sources of error and to comparing the current results with
+those found in the literature.
+
+Chapter \ref{ch_gorilla} presents a more detailed survey of
+genome-wide evolutionary patterns within a much smaller group of
+mammals, the African great apes. This study was the result of a
+collaboration with Stephen Montgomery and Nick Mundy as part of the
+gorilla genome analysis group led by the Wellcome Trust Sanger
+Institute, and a manuscript including the major results from this
+analysis is currently under review. As a few aspects of the study
+design and interpretation of results were performed by collaborators
+as well as myself, those items which do not represent entirely my own
+work are carefully specified. As in the mammalian analysis, attention
+was paid to assessing the potential impact of known and unknown
+sources of error on the conclusions drawn. The short branches
+separating the great apes meant that even small amounts of sequencing
+error could yield incorrect results.
+
+Finally, Chapter \ref{ch_conclusions} ties together the themes
+developed within each of the prior chapters, summarizing the main
+contributions of my research towards the field and describing planned
+future areas of research.
