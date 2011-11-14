@@ -2,6 +2,9 @@
 %\include{Macros/MacroFile1}
  \documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
 
+\newcommand{\mytitle}{Sitewise error and constraint in mammalian comparative
+ genomics}
+
 \ifpdf
     \pdfinfo { /Title  (Greg's Awesome Thesis)
                /Creator (TeX)
@@ -15,8 +18,7 @@
                   /OpenAction (fitbh)  }
 \fi
 
-\title{Sitewise error and constraint in mammalian comparative
-  genomics}
+\title{\mytitle}
 
 \ifpdf
   \author{\href{mailto:gjuggler@gmail.com}{Gregory Jordan}}
@@ -44,7 +46,8 @@
 \hfuzz=50pt
 
 % Put all the style files you want in the directory StyleFiles and usepackage like this:
-\usepackage[square,numbers]{natbib}
+\usepackage{hyphenat}
+\usepackage{Styles/bibunits}
 \usepackage[small]{caption}
 \usepackage{xspace,bm,amsmath,amssymb}
 \usepackage{Styles/watermark}
@@ -56,7 +59,7 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 \usepackage[table]{xcolor}
-\usepackage[colorinlistoftodos, textwidth=4cm, shadow]{todonotes}
+%\usepackage[colorinlistoftodos, textwidth=4cm, shadow]{todonotes}
 \usepackage{a4wide}
 \usepackage[printonlyused]{acronym}
 
@@ -115,16 +118,10 @@
 %\include{Chapters/Mammals_aux}
 \include{Chapters/Gorilla1}
 \include{Chapters/Conclusions}
-
+\include{Chapters/AppendixA}
 
 \backmatter % book mode only
-%\appendix
-%\include{Chapters/appendix}
 
-%\bibliographystyle{plainnat}
-%\bibliographystyle{Classes/CUEDbiblio}
-\bibliographystyle{Classes/jmb}
-%\bibliographystyle{Classes/jmb} % bibliography style
-%\renewcommand{\bibname}{References} % changes default name Bibliography to References
+\bibliographystyle{Classes/greg-thesis.bst}
 \bibliography{references} % References file
 \end{document}

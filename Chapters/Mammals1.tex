@@ -20,35 +20,31 @@ genomes, while Chapter \ref{ch_mammals2} will look at the use of these
 \sw data to identify trends in the evolution of genes and protein
 domains.
 
-The first section of this chapter introduces the context in which this
-project was performed---namely, the sequencing and analysis of several
-mammalian genomes for the \ac{mgp}---and outlines the main biological
-questions underpinning the \sw analysis I performed.
+The first section of this chapter describes the preparation and
+alignment of the mammalian gene tree from Chapter \ref{ch_orthologs}
+and introduce a protocol for filtering genome-wide sitewise
+estimates. Although the simulations from Chapter \ref{ch_indels1}
+showed that sequences with divergence levels above that of most
+mammalian proteins can be aligned without introducing many false
+positives due to misaligning biological insertions and deletions, the
+analysis of empirical sequence data involves many potential
+non-evolutionary sources of alignment error. A sequenced and annotated
+genome is not a piece of observed data; rather, it is the result of a
+succession of inferences (based ultimately on the observation of a
+pool of genomic DNA by some sequencing technology), each step along
+the way involving potential errors and biases. Chapter
+\ref{ch_orthologs} looked at the identification of mammalian
+orthologs, showing that the inference of correct gene tree structures
+is fraught with difficulty and that \lcv genomes are under-represented
+in gene duplications. Other sources of error, including those
+occurring while reading DNA bases \citep{TODO}, assembling genomic
+fragments \citep{TODO}, and annotating gene-coding regions
+\citep{TODO} have all been previously highlighted as being important
+in the large-scale analysis of genomic data. As such, care was taken
+to design and evaluate a variety of filters to reduce the probability
+of yielding misleading results.
 
-The next section describes the preparation and alignment of the
-mammalian gene tree from Chapter \ref{ch_orthologs} and introduce a
-protocol for filtering genome-wide sitewise estimates. Although the
-simulations from Chapter \ref{ch_indels1} showed that sequences with
-divergence levels above that of most mammalian proteins can be aligned
-without introducing many false positives due to misaligning biological
-insertions and deletions, the analysis of empirical sequence data
-involves many potential non-evolutionary sources of alignment error. A
-sequenced and annotated genome is not a piece of observed data;
-rather, it is the result of a succession of inferences (based
-ultimately on the observation of a pool of genomic DNA by some
-sequencing technology), each step along the way involving potential
-errors and biases. Chapter \ref{ch_orthologs} looked at the
-identification of mammalian orthologs, showing that the inference of
-correct gene tree structures is fraught with difficulty and that \lcv
-genomes are under-represented in gene duplications. Other sources of
-error, including those occurring while reading DNA bases \citep{TODO},
-assembling genomic fragments \citep{TODO}, and annotating gene-coding
-regions \citep{TODO} have all been previously highlighted as being
-important in the large-scale analysis of genomic data. As such, care
-was taken to design and evaluate a variety of filters to reduce the
-probability of yielding misleading results.
-
-The third section looks at the global distribution of mammalian
+The second portion of this chapter looks at the global distribution of mammalian
 selective constraint in three ways: first, using \sw estimates from
 \ac{slr} to identify sites evolving under purifying and positive
 selection at various confidence levels; second, fitting parametric
@@ -57,59 +53,6 @@ distribution of selective pressures; and third, evaluating the impact
 of genomic variation in GC content and recombination rate on the
 distribution of sitewise estimates. The consistency of these results
 with previous work will be explored.
-
-\section{The Mammalian Genome Project}
-
-A major goal of mammalian comparative genomics has been to quantify,
-identify and understand the fraction of the human genome that is under
-evolutionary constraint. The first non-human mammalian genomes showed
-at least 5\% of the human genome to be under purifying selection
-\citep{Mouse2002Initial,Rat2004Genome,LindbladToh2005Genome}, but the
-small number of genomes available limited the extent to which regions
-of evolutionary constraint could be identified. The \ac{mgp}, a
-coordinated set of genome sequencing projects initiated in 2005 and
-organised by the Broad Institute of MIT and Harvard, was designed with
-the primary purpose of increasing the accuracy and confidence with
-which regions of the human genome that have evolved under evolutionary
-constraint in mammals could be identified \citep{Margulies2007}. In
-line with this goal, 20 mammalian species were chosen for sequencing
-in order to maximise the amount of evolutionary divergence available
-for comparative analysis when combined with the 9 already available
-sequenced genomes \citep{Margulies2005Initial}. Most of the 20
-additional species were only sequenced to a target twofold coverage,
-meaning each genomic base pair would be covered on average by two
-sequence reads and roughly 85\% of genomic sequence would be covered
-by at least one read. The decision to sequence many genomes at low
-coverage was a deliberate choice, designed to maximize the average
-amount of branch length available for the identification of
-constrained sequence \citep{Margulies2007}.
-
-As the \ac{mgp} proceeded from its sequencing to analysis phase in late
-2008, it was clear that the additional branch length afforded by the
-29-species phylogeny would enable a number of evolutionary analyses
-beyond the identification of constrained non-coding regions. These
-included the evolutionary characterisation of gene promoters,
-identification of exapted non-coding elements, detection of
-evolutionary acceleration and deceleration in non-coding regions, and
-detection of purifying and positive selection in protein-coding
-genes. Given the prior involvement of the Goldman group in analysing
-the ENCODE comparative sequencing data
-\citep{Margulies2007,ENCODE_Project_Consortium2007a} and Tim
-Massingham's development of the SLR software for sitewise evolutionary
-analysis \citep{Massingham2005}, the group was recruited to perform
-the protein-coding evolutionary analysis for the \ac{mgp}, and the project
-turned into a portion of my PhD research. This chapter describes my
-work on the project, which began in late 2008; all of the work
-described below was performed by me, though I benefitted greatly from
-advice and discussion with members of the Goldman group (Nick Goldman
-and Tim Massingham), the EnsEMBL Compara team (Albert Vilella, Javier
-Herrero, Ewan Birney) and the organisers and members of the \ac{mgp}
-(especially Manolis Kellis, Kerstin Lindblad-Toh, Mike Lin, and, Katie
-Pollard). The major results from the initial version of this analysis
-have recently been published \citep{LindbladToh2011}; the work
-presented below includes some improvements to the filtering and
-alignment methodology and incorporates sequence data from a number of
-genomes which were restricted from use in the \ac{mgp} analysis.
 
 In parallel with the major goal of the \ac{mgp} to understand the
 amount of evolutionary constraint across the entire mammalian genome,
@@ -874,7 +817,7 @@ stretches of aligned \nhom sequence.
 
 I investigated the distributions of \nsyn and \syn substitutions
 within windows of mammalian alignments by using \emph{codeml}
-\citep{Yang2007} under the M0 model (e.g., assuming one \omg for all
+\citep{Yang2007PAML} under the M0 model (e.g., assuming one \omg for all
 sites and all branches in the tree) to perform the marginal
 reconstruction of ancestral sequences at internal nodes
 \citep{Yang1995} and to identify the substitution events implied by
@@ -1039,7 +982,7 @@ higher neutral evolutionary rate in the Glires group, a
 well-documented feature of rodent evolution likely resulting from
 their long-term shorter generation time, which has been strongly
 correlated with higher neutral evolutionary rates
-\citep{Nikolaev2007a,Smith2008}.
+\citep{Nikolaev2007,Smith2008}.
 
 Two larger species groups, Eutheria and Mammalia, were chosen for the
 purpose of measuring average sitewise selective pressures across
@@ -1692,11 +1635,11 @@ Glires at a 5\% \ac{fpr}, compared to 0.33\% in Laurasiatheria and
 
 These results may be evaluated in terms of the impact of effective
 population size on the efficacy of natural selection in mammals
-\citep{Popadin2007,Nikolaev2007a,Ellegren2009}. Rodents are known to
+\citep{Popadin2007,Nikolaev2007,Ellegren2009}. Rodents are known to
 have an effective population size well above that of primates
 \citep{Kosiol2008}, and given the strong correlation between body
 size, generation time and effective population size
-\citep{Nikolaev2007a}, one can infer that species within the
+\citep{Nikolaev2007}, one can infer that species within the
 Laurasiatheria group, with generally longer generation times and
 larger body sizes than rodents \citep{Hou2009}, have effective
 population sizes more similar to those seen in primates. The

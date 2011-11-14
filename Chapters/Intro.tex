@@ -25,11 +25,13 @@ The aim of this thesis is to show how the large-scale comparative
 analysis of genes and genomes can be used to identify genomic regions
 and biological features which have been subject to exceptional levels
 of selective constraint throughout mammalian evolution. When shared
-across many species, these evolutionary patterns can highlight genes
-and pathways involved in ongoing, universal mammalian genetic
-conflicts \citep{CastilloDavis2004}; when observed in one or a few
-lineages, they may indicate more specific adaptations related to those
-species' unique evolutionary hsitory \citep{Messier1997,Sawyer2005a,Nielsen2007}.
+across many species, these evolutionary patterns of purifying and
+positive selection can highlight genes and pathways involved in
+ongoing, universal mammalian genetic conflicts related to host immune
+defense and reproduction \citep{CastilloDavis2004}; when observed in
+one or a few lineages, they may indicate more specific adaptations
+related to those species' unique evolutionary hsitory
+\citep{Messier1997,Sawyer2005a,Nielsen2007}.
 
 Furthermore, along with the increased use of high-throughput methods
 and datasets in biology has come a heightened awareness of the
@@ -225,7 +227,7 @@ are more likely to become fixed within a population having a small
 effect is the prediction of the nearly neutral thoery of molecular
 evolution \citep{Kimura1985} that many mutations in protein-coding
 regions are slightly deleterious and thus subject to this dependence
-on \ac{ne} \citep{Kimura1974a,Kimura1985,Ohta1992}. Several empirical
+on \ac{ne} \citep{Kimura1974,Kimura1985,Ohta1992}. Several empirical
 studies have supported this hypothesis, showing that a different
 \ac{ne} leads to different rates of protein evolution in bacteria
 \citep{Moran2008,Warnecke2011}, birds \citep{Axelsson2009} and mammals
@@ -326,7 +328,7 @@ sequence evolution \citep{Yang2006}.
 
 The earliest observations that biological sequences tend to randomly
 change over time were made from sequences of proteins, the main
-molecules of cellular machinery, comprised of amino acid units whose
+molecules of cellular machinery comprised of amino acid units whose
 arrangement is encoded in the DNA sequences of exons within genes. In
 the early 1960s, Zuckerkandl and Pauling were analyzing the amino acid
 sequences of hemoglobin genes from various species and noted that the
@@ -380,7 +382,7 @@ on a case-by-case basis, usually by \ac{ml} estimation
 
 Several nucleotide models were subsequently described which relax
 various assumptions of the JC69 and K80 models
-\citet{Whelan2001,Yang2006}. One especially unrealistic feature of K80
+\citep{Whelan2001,Yang2006}. One especially unrealistic feature of K80
 is its symmetric nature (meaning that the rate of substitution from
 one nucleotide to another is the same as the rate of the reverse
 substitution, e.g. G$\to$C = C$\to$G). A symmetric DNA Markov chain
@@ -434,38 +436,41 @@ incorporate at least a dinucleotide context into models for estimating
 nucleotide substitution rates from large mammalian alignments
 \citep{Blake1992,Hwang2004a,Siepel2004a}. CpG hypermutability results
 from the methylation and subsequent deamination of the cytosine
-nucleotide at CpG sites in most mammalian genomic DNA; although all
-cytosine nucleotides are prone to deamination, cytosine deamination
-produces uracil, which is removed by uracil glycosylase allowing for
-DNA repair mechanisms to replace the original cytosine, while
-5-methylcytosine produces thymidine, which results in frequent C$\to$T
-transitions \citep{Ehrlich1982,Hwang2004a}. Context-dependent
-substitution models have shown that CpG mutations are by far the
-dominant form of mutation in mammalian genomes, and such models have
-also been essential for studying the evolution of GC content and
-mammalian isochores \citep{Duret2006,Duret2008}.
+nucleotide at CpG sites in most mammalian genomic DNA. Although all
+cytosine nucleotides are prone to deamination (whether methylated or
+not), cytosine deamination produces uracil, which is removed by uracil
+glycosylase allowing for DNA repair mechanisms to replace the original
+cytosine, while 5-methylcytosine produces thymidine, which results in
+frequent C$\to$T transitions
+\citep{Ehrlich1982,Hwang2004a}. Context-dependent substitution models
+have shown that CpG mutations are by far the dominant form of mutation
+in mammalian genomes, and such models have also been essential for
+studying the evolution of GC content and mammalian isochores
+\citep{Duret2006,Duret2008}.
 
 The assumption of a homogeneous evolutionary process acting across all
-alignment sites is often violated in real datasets types
-\citep{Yang2006,Whelan2008}, and the development of methods allowing
-for this assumption to be relaxed in the analysis of various types of
-sequences has been an area of active research. Most studies have
-focused on across-site variation of a single parameter such as the
-evolutionary rate \citep{Uzzell1971,Yang1994c,Yang1996,Nielsen1998a},
-but more complex types of heterogeneity have also been explored
-\citep{Lartillot2004} . The approach generally taken for variation of
-a single parameter is to describe the rate (or any other parameter
-being modeled as varying across sites) for each site as a random draw
-from a statistical distribution. In this way, the mathematically
-convenient assumption of independence between sites is upheld while
-sites are allowed to vary according to the parameter of interest. The
-gamma distribution is commonly used here, as it contains only one
-parameter if the mean rate is normalized to 1. This parameter,
-$\alpha$, is typically estimated from the data and has a very clear
-interpretation: low values of $\alpha$ reflect a L-shaped gamma
-distribution with a large amount of rate variation, while high values
-of $\alpha$ reflect a bell-shaped distribution where most sites have
-the average rate.
+alignment sites is often violated in real datasets of all sequence
+types \citep{Yang2006,Whelan2008}, and the development of methods
+allowing for this assumption to be relaxed in the analysis of various
+types of sequences has long been an area of active research. Most
+studies have focused on across-site variation of a single parameter
+such as the evolutionary rate
+\citep{Uzzell1971,Yang1994c,Yang1996,Nielsen1998}, but more complex
+types of heterogeneity, such as heterogeneity in the entire rate
+matrix which describes the evolutionary process, have also been
+explored \citep{Lartillot2004} . The approach generally taken for
+variation of a single parameter is to describe the rate (or whichever
+parameter is being modeled as varying across sites) for each site as a
+random draw from a statistical distribution. In this way, the
+mathematically convenient assumption of independence between sites is
+upheld while sites are allowed to vary according to the parameter of
+interest. The gamma distribution is commonly used for this purpose, as
+it contains only one parameter if the mean rate is normalized to
+1. This parameter, $\alpha$, is typically estimated from the data and
+has a very clear interpretation: low values of $\alpha$ reflect a
+L-shaped gamma distribution with a large amount of rate variation,
+while high values of $\alpha$ reflect a bell-shaped distribution where
+most sites have the average rate.
 
 The final assumption of a single phylogenetic tree relating all sites
 within a sequence has been less studied. Simulations have been used to
@@ -534,8 +539,8 @@ nucleotide and codon frequencies are handled
 \citep{Yang2000c,Bierne2003a}, they are similar in that each
 incorporates a selection parameter $\omega$, representing the ratio of
 \dn and \ds, into a Markov model of coding sequence evolution. The
-$\omega$ parameter has a clear and simple interpretation, namely that
-it measures the ``the net effect of selection at the protein level''
+$\omega$ parameter has a simple interpretation, namely that it
+measures the ``the net effect of selection at the protein level''
 \citep{Yang2000CodonSubstitution}. When $\omega=1$, natural selection
 acts neither for nor against protein change, and the sequence is said
 to be evolving neutrally; when $\omega<1$, selection acts to conserve
@@ -546,7 +551,7 @@ context of population genetics, the $\omega$ parameter can be linked
 to $s$, the selective coefficient of an allele segregating in the
 population \citep{Nielsen2003,Nielsen2005b,Kryazhimskiy2008}, with
 $\omega>1$ corresponding to $s>0$ and $\omega<1$ corresponding to
-$s<0$, although this interpretation involves many assumptions and has
+$s<0$. This interpretation involves many assumptions, however, and has
 found little practical use \citep{Nielsen2003,Nielsen2005b}.
 
 For either of these Markov codon models, parameters (including
@@ -559,16 +564,16 @@ modification of the model to account for heterogeneous substitution
 rates across sites using an approach similar to that described above
 for nucleotide models. Much subsequent work has been done to develop
 models allowing for variation of $\omega$ across sites in the
-alignment \citep{Nielsen1998a,Yang2000CodonSubstitution,Yang2002,
+alignment \citep{Nielsen1998,Yang2000CodonSubstitution,Yang2002,
   Wong2004,Yang2005Bayes,Massingham2005}, between branches in the tree
-\citep{Yang1998a}, or both \citep{Yang2002b,Zhang2005a}.
-\citet{Anisimova2009} provide a comprehensive review of the
-state-of-the-art in probabilistic codon models. A detailed account of
-these developments will not be presented here, but three codon-based
+\citep{Yang1998a}, or both \citep{Yang2002b,Zhang2005}.  A detailed
+account of these developments will not be presented here
+(\citet{Anisimova2009} provide a comprehensive review of the
+state-of-the-art in probabilistic codon models), but three codon-based
 models in particular are used extensively throughout this thesis to
 examine patterns of natural selection within mammalian proteins: the
 branch model and sites models implemented in the \ac{paml} program by
-Ziheng Yang \citep{Yang2007} and the \ac{slr} method implemented in
+Ziheng Yang \citep{Yang2007PAML} and the \ac{slr} method implemented in
 the \ac{slr} program by Tim Massingham \citep{Massingham2005}. Each of
 these models is introduced in more detail below.
 
@@ -583,49 +588,54 @@ cases, such as when the amount of computational power or data
 available is limited, averaging $\omega$ across sites is a reasonable
 compromise, but as computer and sequencing technologies rapidly
 developed in the late 1990s, that compromise was becoming less
-necessary. Whole-gene $\omega$ estimates were shown to lack power
-\citep{Endo1996}, while ad-hoc analyses of particular protein regions
-were limited to cases where prior knowledge could be used
-\citep{Hughes1988}. Ziheng Yang and collaborators adopted a random
-sites approach to modeling variation of the $\omega$ ratio across
-sites for the PAML software, typically favoring the use of a gamma or
-beta distribution discretized into a predefined number of site classes
-for computational efficiency. To identify positive selection with
+necessary and whole-gene estimates less justifiable. Whole-gene
+$\omega$ estimates were shown to lack power \citep{Endo1996}, and
+although ad-hoc analyses of $\omega$ within specific regions of proteins
+were more sensitive \citep{Hughes1988}, they were limited to cases
+where prior knowledge of the tertiary or domain structure of a protein
+could be used to identify subsets of the protein for analysis. As an
+alternative, Ziheng Yang and collaborators adopted a random sites
+approach to modeling variation of the $\omega$ ratio across sites for
+the PAML software, typically favoring the use of a gamma or beta
+distribution discretized into a predefined number of site classes for
+computational efficiency. To identify positive selection with
 statistical confidence, a variety of \acp{lrt} were developed. The
 \ac{lrt} is a widely-used technique which allows a specific hypothesis
 to be tested by comparing the probabilistic fit, known as the
 likelihood, of two nested models to a given dataset. (Two models are
-nested when one model is a special case of the other.) In the context
-of detecting positive selection, the most effective \ac{lrt} typically
-compare a model allowing for some variation of $\omega$, but not
-allowing $\omega>1$, to a more complex model allowing $\omega>1$, the
-former model being nested within the latter. \citet{Nielsen1998}
-initially proposed a few simple \acp{lrt} for detecting positive
-selection; this approach was further developed in
-\citet{Yang2000CodonSubstitution}, and \citet{Anisimova2001Accuracy}
-provided extensive simulations on the power and accuracy of these
-tests. The current release of PAML recommends two \acp{lrt}, M2a--M1a
-and M8--M7 (see \citet{Wong2004}, Table 1 for a complete description
-of each model), for detecting positive selection acting at a subset of
-sites within genes. PAML also implements a method for identifying
-which individual sites show strong evidence for positive
-selection. This method, termed the Bayes Empirical Bayes method by
-\citet{Yang2005Bayes}, provides an approximate posterior probability
-that each site has been subject to positive selection. I evaluate the
-power of this method for detecting \sw positive selection in Chapter
-\ref{ch_indels}.
+nested when one model is a special case of the other, as is the case
+when one model is equivalent to the other model with a parameter held
+at a fixed value.) In the context of detecting positive selection, the
+most effective \acp{lrt} typically compare a model allowing for some
+variation of $\omega$, but not allowing $\omega>1$, to a more complex
+model which allows for $\omega>1$ (the former model being nested
+within the latter). \citet{Nielsen1998} initially proposed a few
+simple \acp{lrt} for detecting positive selection; these were further
+expanded and evaluated by \citet{Yang2000CodonSubstitution}, and
+\citet{Anisimova2001} performed extensive simulations assessing the
+power and accuracy of these tests. The current release of PAML
+recommends two \acp{lrt}, M2a--M1a and M8--M7 (see Table 1 in
+\citet{Wong2004} for a complete description of each model), for
+detecting positive selection acting at a subset of sites within
+genes. PAML also implements a method for identifying which individual
+sites show strong evidence for positive selection. This method, termed
+the Bayes Empirical Bayes method and described in
+\citet{Yang2005Bayes}, provides for each site an approximate posterior
+probability that it has been subject to positive selection. I evaluate
+the power of this method for detecting \sw positive selection in
+Chapter \ref{ch_indels1}.
 
 Codon models relaxing the assumption of a constant $\omega$ throughout
 the branches of the tree, but not across sites, were also developed
 and implemented in PAML \citep{Yang1998,Yang1998a}. Although these
 models have received less attention and use than the branch-site
 models which allow $\omega$ to vary across both sites and branches
-\citep{Zhang2005}, they may be useful when branch lengths are small,
-making parameter estimation under the complex branch-site models
+\citep{Zhang2005}, they may be useful when branch lengths are small
+and parameter estimation under the complex branch-site models is
 difficult, or when variation of $\omega$ across sites is not of
 interest. These models are used in Chapter \ref{ch_gorilla} to
-construct \acp{lrt} for detecting accelerated evolution along specific
-branches of the great ape tree.
+construct a series of \acp{lrt} for detecting accelerated evolution
+along specific branches of the great ape tree.
 
 \subsection{The Sitewise Likelihood Ratio method}
 
@@ -636,7 +646,7 @@ probabilities for positive selection are then inferred, the \ac{slr}
 method \citep{Massingham2005} was specifically designed for the
 sitewise estimation of purifying and positive selection. \ac{slr} is
 based on an explicit Markov model of codon evolution similar to that
-of \citet{Goldman1994}. No assumptions are made regarding the
+of \citet{Goldman1994a}. No assumptions are made regarding the
 distribution of $\omega$ ratios within the alignment; instead, the
 value of $\omega$ is considered to be an independent parameter at each
 site. As the estimation of model parameters and calulation of
@@ -644,11 +654,11 @@ likelihood values to perform an exact \ac{lrt} at each site would
 involve an expensive high-dimensional optimization, \ac{slr} uses two
 approximations which greatly reduce the computational complexity:
 first, common parameters are estimated under the M0 model
-\citep{Yang2000CodonSubstitution}, with one $\omega$ for all sites,
+\citep{Yang2000CodonSubstitution} with one $\omega$ for all sites
 instead of the true null model with one $\omega$ per site, and second,
 the \sw $\omega$ parameter is estimated independently at each site
-under the simplifying assumption that the contribution of each site to
-the common parameters is minimal \citep{Massingham2005}. In practical
+under the simplifying assumption that each site's contribution to the
+common parameters is minimal \citep{Massingham2005}. In practical
 terms, \ac{slr} uses the common parameters and the alignment data at
 each alignment site to calculate a sitewise statistic for non-neutral
 evolution. This statistic is based on a likelihood-ratio test where
@@ -660,10 +670,10 @@ statistic can be compared to its theoretical distribution under the
 null model, \chisq, to identify sites with evidence for purifying or
 positive selection at a desired significance threshold. Simulations
 performed by \citet{Massingham2005} showed \ac{slr} to perform as well
-as or better than PAML’s random sites models; Chapter \ref{ch_indels}
+as or better than PAML’s random sites models; Chapter \ref{ch_indels1}
 provides further assessment of the power of the \ac{slr} method to
 detect \sw positive selection under a wide range of conditions, and in
-Chapters \ref{ch_mammals1} and \ref{ch_mammals2} \ac{slr} is applied
+Chapters \ref{ch_mammals1} and \ref{ch_mammals2} I apply \ac{slr} 
 on a large scale to analyze genome-wide patterns of \sw positive
 selection in mammals.
 
@@ -673,49 +683,51 @@ This thesis describes three largely independent studies centered
 around the theme of using codon models to analyze patterns of
 selective constraint in mammalian genomes.
 
-Chapter \ref{ch_indels} describes a comprehensive simulation study I
-conducted to evaluate the impact of alignment error on detecting \sw
-positive selection. The widespread adoption of powerful methods for
-sequence analysis has been somewhat hampered by a lack of
-understanding of the limitations of, and sources of error inherent
-within, those methods. Without such knowledge, researchers could
-either avoid using such methods for fear of misleading results, or
-blindly apply such methods without regard for possible errors. Both
-paths have been taken with respect to the issue of alignment error in
-detecting positive selection. This study presented a thorough
-examination of the impact of alignment error by comparing different
-aligners, trees, and methods for detecting positive selection; it has
-been recently published \citep{Jordan2011} and is presented in Chapter
-\ref{ch_indels} largely unmodified from its published form.
+Chapter \ref{ch_indels1} describes a simulation study I conducted to
+evaluate the impact of alignment error on detecting \sw positive
+selection. The widespread adoption of powerful methods for sequence
+analysis has been somewhat hampered by a lack of understanding of the
+limitations of, and sources of error inherent within, those
+methods. Without such knowledge, researchers could either avoid using
+such methods for fear of producing misleading results, or blindly
+apply such methods without regard for possible errors. Both paths have
+been taken with respect to the issue of alignment error in detecting
+positive selection. As a first step towards an improved understanding
+of alignment error and its impact on downstream evolutionary analyses,
+this study presented a thorough examination of the impact of alignment
+error by comparing different aligners, trees, and methods for
+detecting positive selection. This work has been recently published
+\citep{Jordan2011} and is presented in Chapter \ref{ch_indels1}
+largely unmodified from its published form.
 
 With whole-genome sequences quickly accruing in the databases at an
-ever-increasing pace, I devoted a large part of my efforts towards
-applying evolutionary codon models on a large scale to mammalian and
-primate genomes. The rest of the thesis reflects this focus, with two
-major empirical analyses presented. Chapters \ref{ch_orthologs},
-\ref{ch_mammals1} and \ref{ch_mammals2} describe in three sections a
-genome-wide analysis of \sw selective pressures in mammals that was
-performed in collaboration with the \ac{mgp}; a more detailed
-description of the \acp{mgp} and my involvement in the analysis will
-be provided as a preface to Chapter \ref{ch_orthologs}. A highly
-summarized version of the results of this analyses was recently
+ever-increasing pace, I devoted a large part of my research effort
+towards applying evolutionary codon models on a large scale to
+mammalian and primate genomes. The rest of the thesis reflects this
+focus, presenting two major empirical analyses. Chapters
+\ref{ch_orthologs}, \ref{ch_mammals1} and \ref{ch_mammals2} describe
+in three sections a genome-wide analysis of \sw selective pressures in
+mammals that was performed in collaboration with the \acf{mgp}; a more
+detailed description of the \acp{mgp} and my involvement in the
+analysis is provided as a preface to Chapter \ref{ch_orthologs}. A
+highly summarized version of the results of this analyses was recently
 published \citep{LindbladToh2011}, but the version presented here
-differs in that a more recent dataset was used and the analysis is
-described in considerably more detail. In particular, special
+differs in that a more recent dataset was used and the methods and
+results are described in considerably more detail. Particular
 attention was paid to identifying (and in some cases ameliorating)
 possible sources of error and to comparing the current results with
-those found in the literature.
+those from previous similar studies in the literature.
 
 Chapter \ref{ch_gorilla} presents a more detailed survey of
-genome-wide evolutionary patterns within a much smaller group of
-mammals, the African great apes. This study was the result of a
-collaboration with Stephen Montgomery and Nick Mundy as part of the
+genome-wide evolutionary patterns within a much more closely-related
+group of mammals, the African great apes. This study was the result of
+a collaboration with Stephen Montgomery and Nick Mundy as part of the
 gorilla genome analysis group led by the Wellcome Trust Sanger
 Institute, and a manuscript including the major results from this
 analysis is currently under review. As a few aspects of the study
 design and interpretation of results were performed by collaborators
 as well as myself, those items which do not represent entirely my own
-work are carefully specified. As in the mammalian analysis, attention
+work are clearly indicated. As in the mammalian analysis, attention
 was paid to assessing the potential impact of known and unknown
 sources of error on the conclusions drawn. The short branches
 separating the great apes meant that even small amounts of sequencing
