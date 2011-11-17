@@ -5,7 +5,7 @@
 
 Over the past decade, the comparative analysis of genomic sequences
 has immeasurably expanded our understanding of the evoluion, biology
-and diversity of mammals, the taxonomic class to which we belong
+and diversity of mammals, the taxonomic class to which we belong.
 %\citep{Lander2001,Mouse2002Initial,Rat2004Genome,LindbladToh2005Genome,
 %  Sequencing2005a,Margulies2007}.
 Although the revolution in genomic
@@ -28,27 +28,28 @@ of selective constraint throughout mammalian evolution. When shared
 across many species, these evolutionary patterns of purifying and
 positive selection can highlight genes and pathways involved in
 ongoing, universal mammalian genetic conflicts related to host immune
-defense and reproduction \citep{CastilloDavis2004}; when observed in
-one or a few lineages, they may indicate more specific adaptations
-related to those species' unique evolutionary hsitory
+defense and reproduction \citep{CastilloDavis2004}. On the other hand,
+when strong selective pressures are observed in just one or a few
+lineages, they may indicate more specific adaptations related to those
+species' unique evolutionary hsitory
 \citep{Messier1997,Sawyer2005a,Nielsen2007}.
 
-Furthermore, along with the increased use of high-throughput methods
-and datasets in biology has come a heightened awareness of the
-inescapable presence of noise and error within data. The study of
-genome sequences is no exception to this point; indeed, the many
-potential sources of error in any comparative genomic analysis combine
-to make it difficult to assess accuracy or to identify anomalous
-results. This is especially problematic in comparative genomic
-analyses, where genome sequencing and sequence alignment errors can be
-mistaken for interesting biological signals
+Along with the increased use of high-throughput methods and datasets
+in biology has come a heightened awareness of the inescapable presence
+of noise and error within data. The study of genome sequences is no
+exception to this point; indeed, the many potential sources of error
+in any comparative genomic analysis combine to make it difficult to
+assess accuracy or to identify anomalous results. This is especially
+problematic in comparative genomic analyses, where genome sequencing
+and sequence alignment errors can be mistaken for interesting
+biological signals
 \citep{Mallick2009,Schneider2009,Fletcher2010,MarkovaRaina2011}. Some
 of the difficulty of assessing results stems from a limited
 understanding of how various sources of error can impact downstream
 evolutionary analyses; thus, a secondary aim of this thesis is to
-better understand the impact of error on large-scale comparative
-analyses, and to further develop methods for appropriately predicting
-and handling such error.
+contribute to our understanding of the impact of error on large-scale
+comparative analyses and to further develop methods for appropriately
+predicting and handling such error.
 
 \section{The evolution of mammals and the mammalian genome}
 \label{section_mammal_evolution}
@@ -60,7 +61,7 @@ diversity of genomic constraints under which our species has evolved
 \citep{Mouse2002Initial}. As the genome sequence of every animal is
 intertwined with all aspects of its biology, any comparison of genomes
 must be performed within the context of each species' phenotypic
-traits and evolutionary history; it will thus be useful to briefly
+traits and evolutionary history. It will thus be useful to briefly
 review some salient features of the evolutionary history of mammals
 and their genomes which will serve as useful background for the
 analyses presented in this thesis.
@@ -86,12 +87,12 @@ analysis of primate fossils provided corroborating evidence for the
 relatively early divergence of mammalian lineages
 \citep{Martin2007}. The Bininda-Emonds et al. phylogeny suggests that
 43 placental lineages with extant descendants survived through the
-mass extinction at the K/T boundary, during which up to two-thirds of
-all mammalian species went extinct \citep{Alroy1999}. After a 10
-\ac{myr} period of overall decreased diversification levels
-(e.g. lowered speciation rates), most mammalian lineages continued to
-diversify at a relatively constant rate
-\citep{BinindaEmonds2007,Martin2007}.
+mass extinction at the K/T boundary, when up to two-thirds of all
+mammalian species went extinct \citep{Alroy1999}. Most mammalian
+lineages experienced decreased diversification levels (i.e., lower
+speciation rates) for 10 \ac{myr} after the K/T extinction event,
+after which point they continued to diversify at a relatively constant
+rate up to modern times \citep{BinindaEmonds2007,Martin2007}.
 
 This evolutionary history has influenced the shape of the phylogenetic
 tree relating the extant mammalian species, a summarized version of
@@ -99,26 +100,26 @@ which is shown in Figure \ref{fig_mammals_10k}. (Note that the dates
 of some of the earliest branches of the phylogeny in Figure
 \ref{fig_mammals_10k}, which was adapted from \citet{Haussler2009}
 using data from \citet{Hedges2009}, disagree with the above
-description based on \citet{BinindaEmonds2007}, reflecting the large
-amount of uncertainty regarding more ancient events.) Deep but
-relatively short branches separate most of the ordinal groups, with
-the exception of Marsiupialia and Monotremata, which are separated
-from the other mammalian orders by much longer distances. Within each
-order, a fairly regular pattern of branching is seen (note, however
-that the tree in Figure \ref{fig_mammals_10k} is truncated at the
-family level, omitting the relationships of individual species). Most
-orders are represented by several extant species, suggesting that the
-branch length separating any one species from its closest relative is
-fairly small, again with the exception of Monotremata which contains
-only 5 species spanning 45 \ac{myr}. These aspects of the mammalian
-phylogeny make it well-suited for large-scale comparative analysis, as
-long branches separating sequenced genomes (which are a major source
-of alignment error and uncertainty in evolutionary reconstruction) can
-continue to be shortened by sequencing additional species. Indeed,
-this was part of the motivation behind the \ac{mgp}
-\citep{LindbladToh2011}, which generated much of the data used
-throughout this thesis and which I will introduce in more detail in
-Chapter \ref{ch_orthologs}.
+description based on \citet{BinindaEmonds2007}. This reflects the
+large amount of uncertainty regarding the dates of the earliest
+events.) Deep but relatively short branches separate most of the
+ordinal groups, with the exception of Marsiupialia and Monotremata,
+which are separated from the other mammalian orders by much longer
+distances. Within each order, a fairly regular pattern of branching is
+seen (but note that the phylogeny in Figure \ref{fig_mammals_10k} is
+truncated at the family level, omitting the relationships of
+individual species). Most orders are represented by several extant
+species, suggesting that the branch length separating any one species
+from its closest relative is fairly small, again with the exception of
+Monotremata which contains only 5 species spanning 45 \ac{myr}. These
+aspects of the mammalian phylogeny make it well-suited for large-scale
+comparative analysis, as long evolutionary branches separating
+sequences, which are a major source of alignment error and of
+uncertainty in evolutionary estimates, can continue to be shortened by
+sequencing additional species. Indeed, this was part of the motivation
+behind the \ac{mgp} \citep{LindbladToh2011}, which generated much of
+the data used throughout this thesis and which I will introduce in
+more detail in Chapter \ref{ch_orthologs}.
 
 \begin{figure}
 \centering
@@ -136,7 +137,7 @@ Chapter \ref{ch_orthologs}.
 Before the K/T boundary, ancestral mammal and primate species were
 likely smaller in size than they are today, as the ecological niches
 for larger animals were occupied by dinosaurs
-\citep{Martin2008,Smith2010}. Their diet is assumed to have been
+\citep{Martin2007,Smith2010}. Their diet is assumed to have been
 largely insectivorous, as folivory in extant species is observed
 mainly in larger mammals \citep{Smith2010} (but see \citet{Martin2007}
 for an alternative perspective favoring a more folivorous primate
@@ -156,8 +157,8 @@ consideration in sequence analyses, as body size has been shown to
 correlate with the overall rate of substitution in multicellular
 eukaryotes
 \citep{Mouse2002Initial,Hwang2004a,Welch2008,Galtier2009,Romiguier2010,
-  Bromham2011}.  Other phenotypic features, such as metabolic rate and
-generation time, have been similarly linked to genomic evolutionary
+  Bromham2011}.  Other phenotypic features such as metabolic rate and
+generation time have been similarly linked to genomic evolutionary
 rates \citep{Martin1993,Nabholz2008}, but all three of these
 characters are strongly cross-correlated in mammals, making it
 difficult to isolate the effect of each particular variable on the
@@ -194,13 +195,13 @@ substitutions, emphasizing the high observed substitution rates of
 most rodents and low rates of most hominids and some larger-bodied
 species from other mammalian orders. In comparative analyses where a
 larger number of substitutions increases the power of a method to
-detect a genomic feature or estimate an evolutionary rate (e.g., in
-detecting conserved regulatory elements or positive selection), the
-larger branch lengths of rodent species would be expected to result in
-improved power and statistical accuracy. This effect will be
-especially important in Chapter~\ref{ch_mammals1}, where I compare \sw
-estimates of selection pressures from groups of species from different
-mammalian orders.
+detect a genomic feature or estimate an evolutionary rate (as is the
+case for detecting conserved regulatory elements or
+positively-selected genes), the larger branch lengths of
+smaller-bodied species would be expected to result in improved power
+and statistical accuracy. This effect will be especially important in
+Chapter~\ref{ch_mammals1} where I compare \sw estimates of selection
+pressures from groups of species from different mammalian orders.
 
 A second biological characteristic showing significant variation
 between mammals, the \ac{ne}, has important consequences for the study
@@ -242,16 +243,17 @@ use genome-wide comparisons to estimate ancestral \ac{ne} in our
 closest primate relatives.
 
 Some key features of the mammalian genome itself are also worth
-highlighting. Mammals contain relatively large genomes (roughly 3 Gb
-of DNA, ranging from 2.5 to 4.5 Gb) with between 20 to 80 chromosomes
-\citep{Bachmann1972}. The large range in chromosome count is likely a
-result of the high rate of chromosomal rearrangement in mammals
-\citep{Eichler2003,Pevzner2003}. Some regions of ``rearrangement
-hotspots'' show especially large amounts of large-scale genomic
-shuffling within mammals, and it has been speculated that these
-regions have contributed to the many lineage-specific gene family
-expansions in mammals \citep{Eichler2003}. Breakpoints of mammalian
-chromosomal rearrangements tend to occur near transposable elements
+highlighting. Mammals contain relatively large genomes (containing
+roughly 3 Gb of DNA, ranging from 2.5 to 4.5 Gb) with between 20 to 80
+chromosomes \citep{Bachmann1972}. The large range in chromosome count
+is likely a result of the high rate of chromosomal rearrangement in
+mammals \citep{Eichler2003,Pevzner2003}. Some regions termed
+``rearrangement hotspots'' show especially large amounts of
+large-scale genomic shuffling within mammals, and it has been
+speculated that these regions have contributed to the many
+lineage-specific gene family expansions which are found in mammals
+\citep{Eichler2003}. Breakpoints of mammalian chromosomal
+rearrangements tend to occur near transposable elements
 \citep{Zhao2009}, which are small DNA sequences capable of replicating
 throughout the genome \citep{Lander2001}. Transposable elements, a
 diverse class of sequence elements representing a variety of
@@ -268,11 +270,11 @@ estimates of roughly 30,000 protein-coding
 genomes have been lowered based on accumulating functional and
 phylogenetic evidence to roughly 21,000 genes \citep{Macaque2007}; the
 most recent gene annotations from \ens \citep{Flicek2011} contain
-20,599 human and 21,873 mouse protein-coding genes. A majority of
-these genes are shared between all mammals'' human and mouse are
-estimated to share 80\% of genes in a ``one-to-one'' fashion, meaning
-no apparent gene duplications or deletions occurred since the common
-ancestor \citep{Mouse2002Initial}, and a wider group of mammals
+20,599 human and 21,873 mouse ``known'' protein-coding genes. A
+majority of these genes are shared between all mammals: human and
+mouse share an estimated 80\% of genes in a ``one-to-one'' fashion,
+meaning no apparent gene duplications or deletions occurred since the
+common ancestor \citep{Mouse2002Initial}, and a wider group of mammals
 including platypus show detectable orthologs (including genes with
 duplications or deletions in one or more lineages) in 82\% of genes
 \citep{Warren2008b}. Despite the relative consistency of the mammalian
@@ -280,20 +282,20 @@ protein-coding catalogue, features such as alternative splicing and
 domain concatenations have been identified as potential contributors
 to mammalian phenotypic complexity and diversity \citep{Lander2001}.
 
-In any study of vertebrate protein-coding genes, the \ac{2r}
-hypothesis looms large. Originally proposed by \citet{Ohno1970}, the
-\ac{2r} hypothesis suggests that two polyplidization events occurred
-during the early evolution of the vertebrate common ancestor,
-explaining the observation that vertebrates often have up to four
-homologs of invertebrate genes \citep{Hokamp2003}. For three decades
-the veracity of the \ac{2r} hypothesis was hotly debated
-\citep{McLysaght2002,Dehal2005}, but analyses based on comparisons
-between whole-genome sequences of several fish and basal chordates
-have repeatedly confirmed its predictions
-\citep{Kasahara2007,Putnam2008b}. In addition to having interesting
-implications for the evolution of the immune system and of
+In any study of vertebrate protein-coding genes, the \ac{2r} of genome
+duplication hypothesis looms large. Originally proposed by
+\citet{Ohno1970}, the \ac{2r} hypothesis suggests that two
+polyplidization events occurred during the early evolution of the
+vertebrate common ancestor, explaining the observation that
+vertebrates often have up to four homologs of invertebrate genes
+\citep{Hokamp2003}. For three decades the veracity of the \ac{2r}
+hypothesis was hotly debated \citep{McLysaght2002,Dehal2005}, but
+analyses based on comparisons between whole-genome sequences of
+several fish and basal chordates have repeatedly confirmed its
+predictions \citep{Kasahara2007,Putnam2008b}. In addition to having
+interesting implications for the evolution of the immune system and of
 morphological diversity within vertebrates
-\citep{Hughes1997,Hoffmann1999,Peer2009b} the existence of ancient
+\citep{Hughes1997,Hoffmann1999,Peer2009b}, the existence of ancient
 genomic duplications can cause problems in the inference of homology
 relationships between genes. Many of these aspects will be considered
 in more detail in Chapter~\ref{ch_orthologs} when a set of mammalian
@@ -302,21 +304,21 @@ orthologs suitable for evolutionary analysis is identified.
 \section{Models of sequence evolution}
 \label{section_evolution_models}
 
-The above section described the major genomic and evolutionary
-features of mammalian species. Many of those well-established
-observations were made by applying mathematical models of sequence
-evolution to comparative genomics data, which is now a widespread
-analytical appraoch. This section briefly introduces the methods and
-models of evolutionary analysis which will be applied throughout the
-remainding chapters.
+The previous section described the major genomic and evolutionary
+features of mammalian species. It is important to note that the
+majority of those well-established observations were made by applying
+mathematical models of sequence evolution to comparative genomics
+data, which is now a standard analytical approach. This section
+briefly introduces the methods and models of evolutionary analysis
+which will be applied throughout the remaining chapters.
 
 As the hereditary material of all free-living organisms, DNA
 represents a record of the history of life on earth. When an
-individual gives rise to offspring, some segments of DNA are
+individual gives rise to offspring, special segments of DNA are
 replicated and passed on to all its descendants; importantly, the
 processes of DNA replication and repair are imperfect
-\citep{Arnheim2009}, and the resulting errors, called mutations, can
-be passed on to successive generations if they occur in germline
+\citep{Arnheim2009} and the resulting errors, called mutations, can be
+passed on to successive generations if they occur in germline
 cells. In addition to being a major source of the variation between
 individuals invoked in Darwin's theory of natural selection
 \citep{Darwin1859a}, mutations in DNA leave a molecular record of
@@ -331,8 +333,8 @@ change over time were made from sequences of proteins, the main
 molecules of cellular machinery comprised of amino acid units whose
 arrangement is encoded in the DNA sequences of exons within genes. In
 the early 1960s, Zuckerkandl and Pauling were analyzing the amino acid
-sequences of hemoglobin genes from various species and noted that the
-number of changes between sequences from different species
+sequences of hemoglobin genes from various species. They noted that
+the number of changes between sequences from different species
 corresponded well with the evolutionary distance those species based
 on fossil evidence; this led them to hypothesize that evolution at a
 molecular level may occur at a largely constant rate
@@ -353,20 +355,20 @@ The simplest Markov model for DNA substitution, proposed by
 \citet{Jukes1969a}, assumes that every nucleotide has the same rate of
 changing into any other nucleotide. Although the assumption of equal
 rates is a reasonable starting point for modeling a random process,
-the point mutation of a DNA base pair is a biochemical process (or
-rather, a set of potentially many unobserved biochemical processes
-which all produce the same class of observable result), making the
-existence of biases towards or against certain types of mutations
-highly plausible. This was quickly discovered to be the case: analysis
-of the ever-increasing number of available biological DNA sequences
-showed that in most datasets \emph{transitions}, defined as
-substitutions between two pyrimidine nucleotides (e.g., T$\to$C or
-C$\to$T) or between two purine nucleotides (e.g., A$\to$G or G$\to$A),
-are more common than \emph{transversions}, defined as substitutions
-from a purine to a pyrimidine or vice-versa. \citet{Kimura1980} thus
-proposed a more complex model, called K80 or Kimura's two-parameter
-model, which accounted for this bias. Specifically, K80 extends JC69
-by incorporating an additional parameter, $\kappa$, referred to as the
+the mutation of a DNA base pair is a biochemical process (or rather, a
+set of potentially many unobserved biochemical processes which all
+produce the same class of observable result), making the existence of
+biases towards or against certain types of mutations highly
+plausible. This was quickly discovered to be the case: analysis of the
+ever-increasing number of available biological DNA sequences showed
+that in most datasets \emph{transitions}, defined as substitutions
+between two pyrimidine nucleotides (e.g., T$\to$C or C$\to$T) or
+between two purine nucleotides (e.g., A$\to$G or G$\to$A), are more
+common than \emph{transversions}, defined as substitutions from a
+purine to a pyrimidine or vice-versa. \citet{Kimura1980} thus proposed
+a more complex model, called K80 or Kimura's two-parameter model,
+which accounted for this bias. Specifically, K80 extends JC69 by
+incorporating an additional parameter, $\kappa$, referred to as the
 transition/transversion ratio, representing the ratio of the rate of
 transition substitutions to the rate of transversion
 substitutions. When $\kappa$ is greater than one, transitions occur at
@@ -396,7 +398,7 @@ equal base composition \citep{Yang2006}. Thus, models such as FEL
 \citep{Felsenstein1981a}, HKY \citep{Hasegawa1985} and TN93
 \citep{Tamura1993} were developed to allow for various combinations of
 unequal base frequencies and unequal transition/transversion
-ratios. The most general reversible nucleotide model REV includes four
+ratios. The most general reversible nucleotide model, REV, includes four
 parameters describing the equilibrium nucleotide frequencies and six
 rate parameters, one for each possible pair of substitutions
 \citep{Tavare1986}.
@@ -438,10 +440,11 @@ nucleotide substitution rates from large mammalian alignments
 from the methylation and subsequent deamination of the cytosine
 nucleotide at CpG sites in most mammalian genomic DNA. Although all
 cytosine nucleotides are prone to deamination (whether methylated or
-not), cytosine deamination produces uracil, which is removed by uracil
-glycosylase allowing for DNA repair mechanisms to replace the original
-cytosine, while 5-methylcytosine produces thymidine, which results in
-frequent C$\to$T transitions
+not), cytosine deamination produces uracil, which is removed from DNA
+strands by the enzyme uracil glycosylase, allowing for DNA repair
+mechanisms to replace the original cytosine. On the other hand, the
+deamination of 5-methylcytosine produces thymidine, which is not
+efficiently repaired and results in frequent C$\to$T transitions
 \citep{Ehrlich1982,Hwang2004a}. Context-dependent substitution models
 have shown that CpG mutations are by far the dominant form of mutation
 in mammalian genomes, and such models have also been essential for
@@ -544,9 +547,9 @@ measures the ``the net effect of selection at the protein level''
 \citep{Yang2000CodonSubstitution}. When $\omega=1$, natural selection
 acts neither for nor against protein change, and the sequence is said
 to be evolving neutrally; when $\omega<1$, selection acts to conserve
-the protein sequence, exerting a so-called \emph{purifying} selective
+the protein sequence, exerting a so-called purifying selective
 pressure; when $\omega>1$, selection acts to change the protein
-sequence, exerting a so-called positive selection pressure. Within the
+sequence, exerting a so-called positive selective pressure. Within the
 context of population genetics, the $\omega$ parameter can be linked
 to $s$, the selective coefficient of an allele segregating in the
 population \citep{Nielsen2003,Nielsen2005b,Kryazhimskiy2008}, with
@@ -559,12 +562,13 @@ $\omega$, $\kappa$, and branch lengths for the model of
 \citet{Goldman1994a}) can be numerically optimized for a given
 alignment and phylogeny by \ac{ml} using Felsenstein's pruning
 algorithm \citep{Felsenstein1981a,Goldman1994a,Yang2000c}. In their
-initial description of the model, \citet{Goldman1994a} presented a
-modification of the model to account for heterogeneous substitution
-rates across sites using an approach similar to that described above
-for nucleotide models. Much subsequent work has been done to develop
-models allowing for variation of $\omega$ across sites in the
-alignment \citep{Nielsen1998,Yang2000CodonSubstitution,Yang2002,
+initial description of the model, \citet{Goldman1994a} presented an
+example modification to the model which allowed for heterogeneous
+substitution rates across sites using an approach similar to that
+described above for nucleotide models. Much subsequent work has been
+focused on developing models allowing for variation of $\omega$ across
+sites in the alignment
+\citep{Nielsen1998,Yang2000CodonSubstitution,Yang2002,
   Wong2004,Yang2005Bayes,Massingham2005}, between branches in the tree
 \citep{Yang1998a}, or both \citep{Yang2002b,Zhang2005}.  A detailed
 account of these developments will not be presented here
@@ -573,17 +577,17 @@ state-of-the-art in probabilistic codon models), but three codon-based
 models in particular are used extensively throughout this thesis to
 examine patterns of natural selection within mammalian proteins: the
 branch model and sites models implemented in the \ac{paml} program by
-Ziheng Yang \citep{Yang2007PAML} and the \ac{slr} method implemented in
-the \ac{slr} program by Tim Massingham \citep{Massingham2005}. Each of
-these models is introduced in more detail below.
+Ziheng Yang \citep{Yang2007PAML} and the \ac{slr} method implemented
+in the \ac{slr} program by Tim Massingham \citep{Massingham2005}. Each
+of these models is introduced in more detail below.
 
 \subsection{Branch and sites models in PAML}
 
 For a long time, the $\omega$ ratio was almost always calculated as an
 average value across an entire protein \citep{Sharp1997}. Functional
 and structural constraints within a protein sequence might dominate
-the average signal of evolutionary constraint, however, even if
-positive selection had acted on some portion of the protein. In some
+the gene-averaged signal of evolutionary constraint, however, even if
+positive selection has acted on some portion of the protein. In some
 cases, such as when the amount of computational power or data
 available is limited, averaging $\omega$ across sites is a reasonable
 compromise, but as computer and sequencing technologies rapidly
@@ -593,37 +597,40 @@ $\omega$ estimates were shown to lack power \citep{Endo1996}, and
 although ad-hoc analyses of $\omega$ within specific regions of proteins
 were more sensitive \citep{Hughes1988}, they were limited to cases
 where prior knowledge of the tertiary or domain structure of a protein
-could be used to identify subsets of the protein for analysis. As an
-alternative, Ziheng Yang and collaborators adopted a random sites
-approach to modeling variation of the $\omega$ ratio across sites for
-the PAML software, typically favoring the use of a gamma or beta
-distribution discretized into a predefined number of site classes for
+could be used to identify subsets of the protein for analysis.
+
+As a statistically rigorous alternative, Ziheng Yang and collaborators
+adopted a random sites approach to modeling variation of the $\omega$
+ratio across sites for the PAML software. This implementation
+typically favored modeling $\omega$ variation with a gamma or beta
+distribution, discretized into a predefined number of site classes for
 computational efficiency. To identify positive selection with
 statistical confidence, a variety of \acp{lrt} were developed. The
 \ac{lrt} is a widely-used technique which allows a specific hypothesis
 to be tested by comparing the probabilistic fit, known as the
-likelihood, of two nested models to a given dataset. (Two models are
-nested when one model is a special case of the other, as is the case
-when one model is equivalent to the other model with a parameter held
-at a fixed value.) In the context of detecting positive selection, the
-most effective \acp{lrt} typically compare a model allowing for some
-variation of $\omega$, but not allowing $\omega>1$, to a more complex
-model which allows for $\omega>1$ (the former model being nested
-within the latter). \citet{Nielsen1998} initially proposed a few
-simple \acp{lrt} for detecting positive selection; these were further
-expanded and evaluated by \citet{Yang2000CodonSubstitution}, and
+likelihood, of two nested models to a given dataset
+\citep{Fisher1925}. (Two models are nested when one model is a special
+case of the other, as is the case when one model is equivalent to the
+other model with a parameter held at a fixed value.)  In the context
+of detecting positive selection, the most effective \acp{lrt}
+typically compare a model allowing for some variation of $\omega$, but
+not allowing $\omega>1$, to a more complex model which allows for
+$\omega>1$ (the former model being nested within the
+latter). \citet{Nielsen1998} initially proposed a few simple \acp{lrt}
+for detecting positive selection; these were further expanded and
+evaluated by \citet{Yang2000CodonSubstitution}, and
 \citet{Anisimova2001} performed extensive simulations assessing the
 power and accuracy of these tests. The current release of PAML
-recommends two \acp{lrt}, M2a--M1a and M8--M7 (see Table 1 in
-\citet{Wong2004} for a complete description of each model), for
-detecting positive selection acting at a subset of sites within
-genes. PAML also implements a method for identifying which individual
-sites show strong evidence for positive selection. This method, termed
+recommends two \acp{lrt} for detecting positive selection acting at a
+subset of sites within genes: \mbox{M2a--M1a} and \mbox{M8--M7} (see
+Table 1 in \citet{Wong2004} for a complete description of each
+model). PAML also implements a method for identifying which individual
+sites show strong evidence for positive selection. This method, called
 the Bayes Empirical Bayes method and described in
-\citet{Yang2005Bayes}, provides for each site an approximate posterior
-probability that it has been subject to positive selection. I evaluate
-the power of this method for detecting \sw positive selection in
-Chapter \ref{ch_indels1}.
+\citet{Yang2005Bayes}, calculates for each site an approximate
+posterior probability that it has been subject to positive
+selection. I evaluate the power of this method for detecting \sw
+positive selection in Chapter \ref{ch_indels1}.
 
 Codon models relaxing the assumption of a constant $\omega$ throughout
 the branches of the tree, but not across sites, were also developed
@@ -655,12 +662,12 @@ involve an expensive high-dimensional optimization, \ac{slr} uses two
 approximations which greatly reduce the computational complexity:
 first, common parameters are estimated under the M0 model
 \citep{Yang2000CodonSubstitution} with one $\omega$ for all sites
-instead of the true null model with one $\omega$ per site, and second,
-the \sw $\omega$ parameter is estimated independently at each site
-under the simplifying assumption that each site's contribution to the
-common parameters is minimal \citep{Massingham2005}. In practical
-terms, \ac{slr} uses the common parameters and the alignment data at
-each alignment site to calculate a sitewise statistic for non-neutral
+instead of the more parameter-rich true null model, and second, the
+\sw $\omega$ parameter is estimated independently at each site under
+the simplifying assumption that each site's contribution to the common
+parameters is minimal \citep{Massingham2005}. In practical terms,
+\ac{slr} uses the common parameters and the alignment data at each
+alignment site to calculate a sitewise statistic for non-neutral
 evolution. This statistic is based on a likelihood-ratio test where
 the null model is neutral evolution ($\omega=1$) and the alternative
 model is either purifying or positive selection ($\omega<1$ or
@@ -673,9 +680,9 @@ performed by \citet{Massingham2005} showed \ac{slr} to perform as well
 as or better than PAML’s random sites models; Chapter \ref{ch_indels1}
 provides further assessment of the power of the \ac{slr} method to
 detect \sw positive selection under a wide range of conditions, and in
-Chapters \ref{ch_mammals1} and \ref{ch_mammals2} I apply \ac{slr} 
-on a large scale to analyze genome-wide patterns of \sw positive
-selection in mammals.
+Chapters \ref{ch_mammals1} and \ref{ch_mammals2} I apply \ac{slr} on a
+large scale to analyze genome-wide patterns of \sw positive selection
+in mammals.
 
 \section{Outline of the thesis}
 
@@ -691,14 +698,14 @@ limitations of, and sources of error inherent within, those
 methods. Without such knowledge, researchers could either avoid using
 such methods for fear of producing misleading results, or blindly
 apply such methods without regard for possible errors. Both paths have
-been taken with respect to the issue of alignment error in detecting
-positive selection. As a first step towards an improved understanding
-of alignment error and its impact on downstream evolutionary analyses,
-this study presented a thorough examination of the impact of alignment
-error by comparing different aligners, trees, and methods for
-detecting positive selection. This work has been recently published
-\citep{Jordan2011} and is presented in Chapter \ref{ch_indels1}
-largely unmodified from its published form.
+been taken by others with respect to the issue of alignment error in
+detecting positive selection. As a first step towards an improved
+understanding of alignment error and its impact on downstream
+evolutionary analyses, I performed a thorough examination of the
+impact of alignment error by comparing different aligners, trees, and
+methods for detecting positive selection. This work has been recently
+published \citep{Jordan2011} and is presented in Chapter
+\ref{ch_indels1} largely unmodified from its published form.
 
 With whole-genome sequences quickly accruing in the databases at an
 ever-increasing pace, I devoted a large part of my research effort
@@ -723,7 +730,7 @@ genome-wide evolutionary patterns within a much more closely-related
 group of mammals, the African great apes. This study was the result of
 a collaboration with Stephen Montgomery and Nick Mundy as part of the
 gorilla genome analysis group led by the Wellcome Trust Sanger
-Institute, and a manuscript including the major results from this
+Institute, and a manuscript including the major results from our
 analysis is currently under review. As a few aspects of the study
 design and interpretation of results were performed by collaborators
 as well as myself, those items which do not represent entirely my own

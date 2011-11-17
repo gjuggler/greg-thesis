@@ -1,0 +1,12 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 11:05:45 2011
+  30 &   5 & 1.96 & GO:0048813 & dendrite morphogenesis & 4.3e-02 & 5.9e-03 & \color[HTML]{808080} 9.2e-02 & 965 & \tiny{DCX, ROBO1, CELSR2, DCLK1, CACNA1A} \\ 
+   28 &   6 & 1.83 & GO:0048675 & axon extension & 8.3e-03 & 7.9e-03 & 2.1e-02 & 935 & \tiny{RYK, ULK1, DCX, SLIT3, DCLK1} \\ 
+   74 &  10 & 4.84 & GO:0007605 & sensory perception of sound & 2.1e-02 & 2.7e-02 & \color[HTML]{808080} 1.1e-01 & 1,091 & \tiny{DFNB31, EYA1, TECTA, TMC1, MYO3A} \\ 
+   28 &   5 & 1.83 & GO:0007608 & sensory perception of smell & 3.3e-02 & 3.3e-02 & 2.5e-02 & 463 & \tiny{OR10G3, OR13G1, OR52H1, OR10G2, CNGA2} \\ 
+   69 &   9 & 4.51 & GO:0046777 & protein amino acid autophosphorylation & 3.5e-02 & 3.5e-02 & \color[HTML]{808080} 9.1e-02 & 914 & \tiny{CRKRS, MEX3B, FLT3, MYO3A, EIF2AK3} \\ 
+   23 &   5 & 1.50 & GO:0021953 & central nervous system neuron differenti... & 1.5e-02 & 3.7e-02 & 2.0e-02 & 707 & \tiny{SMO, DCX, DCLK1, EPHB1, CACNA1A} \\ 
+   48 &   8 & 3.14 & GO:0042472 & inner ear morphogenesis & 1.2e-02 & 4.3e-02 & 2.3e-02 & 780 & \tiny{EYA1, ATOH1, FOXI1, FGF3, CEP290} \\ 
+   40 &   8 & 2.61 & GO:0021510 & spinal cord development & 3.8e-03 & \color[HTML]{808080} 5.3e-02 & 5.4e-03 & 676 & \tiny{LHX3, SMO, LBX1, RFX4, SLIT3} \\ 
+  250 &  24 & 16.34 & GO:0007420 & brain development & 3.7e-02 & \color[HTML]{808080} 1.0e-01 & \color[HTML]{808080} 1.2e-01 & 809 & \tiny{CNTN4, EYA1, ATOH1, ECE2, NFIB} \\ 
+  

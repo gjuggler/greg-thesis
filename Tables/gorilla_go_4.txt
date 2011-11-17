@@ -1,0 +1,11 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 11:05:45 2011
+  58 &   6 & 1.91 & GO:0007218 & neuropeptide signaling pathway & 1.1e-02 & 1.1e-02 & 1.8e-02 & 758 & \tiny{GPR98, CELSR2, GPR125, TAC1, GPR56} \\ 
+  1070 &  48 & 35.15 & GO:0006355 & regulation of transcription, DNA-depende... & 1.4e-02 & 2.8e-02 & 3.7e-02 & 643 & \tiny{ELF5, FOXN1, NR2E3, SUPT6H, DMRT3} \\ 
+   70 &   6 & 2.30 & GO:0007018 & microtubule-based movement & 2.7e-02 & 3.6e-02 & \color[HTML]{808080} 1.6e-01 & 1,347 & \tiny{KIF25, KIF2C, KIF1C, C14orf153, DNAH6} \\ 
+  112 &   9 & 3.68 & GO:0009952 & anterior/posterior pattern formation & 1.1e-02 & 4.0e-02 & 2.1e-02 & 683 & \tiny{SRF, ARC, HOXA3, CDX1, RIPPLY1} \\ 
+   60 &   5 & 1.97 & GO:0007156 & homophilic cell adhesion & 4.6e-02 & 4.6e-02 & \color[HTML]{808080} 1.4e-01 & 1,188 & \tiny{FAT1, CELSR2, CLSTN2, CDH24, CDH23} \\ 
+   47 &   5 & 1.54 & GO:0043624 & cellular protein complex disassembly & 1.8e-02 & 4.8e-02 & 4.7e-02 & 1,049 & \tiny{MTERFD3, C12orf65, KIF2C, SHROOM2, SPTA1} \\ 
+   74 &   6 & 2.43 & GO:0007605 & sensory perception of sound & 3.4e-02 & \color[HTML]{808080} 6.5e-02 & \color[HTML]{808080} 1.2e-01 & 1,091 & \tiny{LOXHD1, GPR98, CDH23, DIAPH1, MYCBPAP} \\ 
+   50 &   5 & 1.64 & GO:0006413 & translational initiation & 2.3e-02 & \color[HTML]{808080} 1.7e-01 & 1.8e-02 & 497 & \tiny{RPS6KB2, LGTN, EIF3B, IMPACT, EIF5B} \\ 
+  

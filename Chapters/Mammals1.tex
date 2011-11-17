@@ -8,21 +8,20 @@
 
 This chapter describes the use of sitewise evolutionary estimates to
 characterize the global distribution of selective constraint across 38
-mammalian genomes and within the major mammalian superorders. I will
-apply the \ac{slr} test, evaluated in Chapter \ref{ch_indels1}, to the
-set of mammalian orthologous gene trees from Chapter
-\ref{ch_orthologs} to generate genome-wide sets of sitewise statistics
-measuring selective constraint in several groups of \mammln
-species. Both this chapter and the following one are concerned with
-the analysis of these data: here I will consider the overall
-distribution of constraint observed in several groups of mammalian
-genomes, while Chapter \ref{ch_mammals2} will look at the use of these
-\sw data to identify trends in the evolution of genes and protein
-domains.
+mammalian genomes and within the major mammalian superorders. I apply
+the \ac{slr} test, evaluated in Chapter \ref{ch_indels1}, to the set
+of mammalian orthologous gene trees from Chapter \ref{ch_orthologs} to
+generate genome-wide sets of sitewise statistics measuring selective
+constraint in several groups of \mammln species. Both this chapter and
+the following one are concerned with the analysis of these \sw data:
+here I will consider the overall distribution of constraint observed
+in several groups of mammalian genomes, while Chapter
+\ref{ch_mammals2} will look at the use of these \sw data to identify
+trends in the evolution of genes and protein domains.
 
 The first section of this chapter describes the preparation and
-alignment of the mammalian gene tree from Chapter \ref{ch_orthologs}
-and introduce a protocol for filtering genome-wide sitewise
+alignment of the mammalian orthologs from Chapter \ref{ch_orthologs}
+and introduces a protocol for filtering genome-wide sitewise
 estimates. Although the simulations from Chapter \ref{ch_indels1}
 showed that sequences with divergence levels above that of most
 mammalian proteins can be aligned without introducing many false
@@ -34,15 +33,15 @@ succession of inferences (based ultimately on the observation of a
 pool of genomic DNA by some sequencing technology), each step along
 the way involving potential errors and biases. Chapter
 \ref{ch_orthologs} looked at the identification of mammalian
-orthologs, showing that the inference of correct gene tree structures
-is fraught with difficulty and that \lcv genomes are under-represented
+orthologs, showing that the inference of correct gene trees can be
+fraught with difficulties, and that \lcv genomes are under-represented
 in gene duplications. Other sources of error, including those
-occurring while reading DNA bases \citep{TODO}, assembling genomic
-fragments \citep{TODO}, and annotating gene-coding regions
-\citep{TODO} have all been previously highlighted as being important
-in the large-scale analysis of genomic data. As such, care was taken
-to design and evaluate a variety of filters to reduce the probability
-of yielding misleading results.
+occurring while sequencing DNA bases, assembling genomic fragments,
+and annotating gene-coding regions have all been previously
+highlighted as being important in the large-scale analysis of genomic
+data \citep{TODO}. As such, care was taken to design and evaluate a
+variety of filters to reduce the probability of yielding misleading
+results.
 
 The second portion of this chapter looks at the global distribution of mammalian
 selective constraint in three ways: first, using \sw estimates from
@@ -66,87 +65,83 @@ strong purifying constraint due to their functional importance
 regions between two well-folded domains, may evolve under relaxed
 constraints, and positive selection of beneficial substitutions can
 also play a role in shaping the evolutionary history of proteins
-\citep{Pal2006}.
+\citep{Pal2006}. There has been great interest in understanding the
+role of adaptive evolution in shaping the genes and genomes of mammals
+and primates, but different studies have produced widely varying
+estimates of the number of genes subject to positive selection
+\citep{MarquesBonet2009a,Ellegren2008}.
 
-The first goal was a rather simplistic one: to place lower and upper
-boundaries on the estimated proportion of protein-coding sites that
-are subject to purifying and positive selection throughout mammals,
-and to quantify how many of those sites can be confidently
-identified. There has been great interest in understanding the role of
-adaptive evolution in shaping the genes and genomes of mammals and
-primates, but different studies have produced widely varying estimates
-of the number of genes subject to positive selection
-\citep{MarquesBonet2009a,ELLEGREN2008}. While most previous
-investigations of positive selection in mammals have focused on the
-gene as the unit of analysis, the current analysis used a primarily
-\sw approach. It was hypothesized that the focus on identifying
-\acp{psc} instead of the traditional identification of \acp{psg}, may
-allow for a more flexible quantification of levels of purifying and
-positive selection in mammals. One expected benefit of the \sw
-approach was that fine-grained filtering on a site-by-site basis could
-be performed both before and after the computationally expensive step
-of estimating evolutionary parameters, allowing for a more extensive
-and flexible set of filters to be used in estimating the potential
-impact of alignment or annotation error on the amounts of inferred
-positive selection.
+While most previous investigations of positive selection in mammals
+have focused on the gene as the unit of analysis, the current analysis
+used a primarily \sw approach. It was hypothesized that the focus on
+identifying \acp{psc} instead of the traditional identification of
+\acp{psg}, may allow for a more flexible quantification of levels of
+purifying and positive selection in mammals. One expected benefit of
+the \sw approach was that fine-grained filtering on a site-by-site
+basis could be performed both before and after the computationally
+expensive step of estimating evolutionary parameters, allowing for a
+more extensive and flexible set of filters to be used in estimating
+the potential impact of alignment or annotation error on the amounts
+of inferred positive selection.
 
-The second, more subtle goal of this analysis was to place the
-distribution of selective pressures implied by the \sw analysis within
-the context of previous population genetic and comparative
-studies. Many population genetic studies have analyzed the
-distribution of selective pressures resulting from mutations in
-protein-coding regions, known as the \ac{dfe}. Analyses of variation
-data from \emph{Drosophila} have found that relatively few amino acid
-substitutions in \emph{Drosophila} are effectively neutral, while up
-to 50\% have apparently been due to positive selection
-\citep{Loewe2006,EyreWalker2007}; similar studies based on variations
-in humans have indicated a much lower fraction of positively-selected
-substitutions in our recent evolutionary history
-\citep{EyreWalker2006a,Boyko2008}. This is in line with the
-expectation, based on population genetic theory, that species with
-higher effective population sizes experience more effective natural
-selection \citep{EyreWalker2007}. As \emph{Drosophila} has
-historically had a much larger effective population size than humans
-and most mammals (e.g., on the order of 10$^{6}$ for \emph{Drosophila}
-vs. 10$^{3}$ for humans), one would expect to see more neutral
-evolution, and less purifying and positive selection, in human
-protein-coding regions.
+%The second, more subtle goal of this analysis was to place the
+%distribution of selective pressures implied by the \sw analysis within
+%the context of previous population genetic and comparative
+%studies. Many population genetic studies have analyzed the
+%distribution of selective pressures resulting from mutations in
+%protein-coding regions, known as the \ac{dfe}. Analyses of variation
+%data from \emph{Drosophila} have found that relatively few amino acid
+%substitutions in \emph{Drosophila} are effectively neutral, while up
+%to 50\% have apparently been due to positive selection
+%\citep{Loewe2006,EyreWalker2007}; similar studies based on variations
+%in humans have indicated a much lower fraction of positively-selected
+%substitutions in our recent evolutionary history
+%\citep{EyreWalker2006a,Boyko2008}. This is in line with the
+%expectation, based on population genetic theory, that species with
+%higher effective population sizes experience more effective natural
+%selection \citep{EyreWalker2007}. As \emph{Drosophila} has
+%historically had a much larger effective population size than humans
+%and most mammals (e.g., on the order of 10$^{6}$ for \emph{Drosophila}
+%vs. 10$^{3}$ for humans), one would expect to see more neutral
+%evolution, and less purifying and positive selection, in human
+%protein-coding regions.
 
-Although there is a strong theoretical connection between the \ac{dfe}
-commonly from population genetics and the \dnds ratios more commonly
-estimated in comparative analyses, only one study, performed by
-Nielsen and Yang \citeyearpar{Nielsen2003}, has explicitly estimated
-the \ac{dfe} using data from fixed differences between species. Using
-data from primate mitochondrial genomes, Nielsen and Yang found that a
-variety of two-parameter distributions for the \ac{dfe} fit the
-dataset equally well and that none of the best-fit distributions
-contained a large amount of probability mass within the range of
-purely neutral or beneficial selection coefficients; most of the
-distribution was contained within the range of moderately deleterious
-selection coefficients (e.g., $-3<S<-1$, corresponding roughly to
-\dnds values between 0.2 and 0.6). Unfortunately, no attempt has since
-been made to use comparative data to estimate the \ac{dfe}; as a
-result, one goal of this analysis was to determine whether \sw
-estimates could successfully be used to infer the \ac{dfe}. Though the
-methods I employed for this analysis differed strongly from the
-approach of Nielsen and Yang, a comparison to their results could
-validate the use of \ac{slr} for estimating the \ac{dfe}. Furthermore,
-it would be interesting to understand whether the differences in
-historical effective population sizes between mammalian subgroups,
-which have been shown repeatedly to affect overall \dnds levels in
-primates versus rodents \citep{Kosiol2008,Ellegren2009}, has a
-detectable impact on the \ac{dfe} inferred from comparative
-data. Although the effective population size differences between
-mammalian subgroups are far smaller than the difference between
-mammals and species like \emph{Drosophila}, a comparison of the
-\ac{dfe} from different mammalian groups could be used to evaluate how
-strong of an impact the effective population size has on the
-proportion of protein-coding sites subject to varying levels of
-natural selection.
+%Although there is a strong theoretical connection between the \ac{dfe}
+%commonly from population genetics and the \dnds ratios more commonly
+%estimated in comparative analyses, only one study, performed by
+%Nielsen and Yang \citeyearpar{Nielsen2003}, has explicitly estimated
+%the \ac{dfe} using data from fixed differences between species. Using
+%data from primate mitochondrial genomes, Nielsen and Yang found that a
+%variety of two-parameter distributions for the \ac{dfe} fit the
+%dataset equally well and that none of the best-fit distributions
+%contained a large amount of probability mass within the range of
+%purely neutral or beneficial selection coefficients; most of the
+%distribution was contained within the range of moderately deleterious
+%selection coefficients (e.g., $-3<S<-1$, corresponding roughly to
+%\dnds values between 0.2 and 0.6). Unfortunately, no attempt has since
+%been made to use comparative data to estimate the \ac{dfe}; as a
+%result, one goal of this analysis was to determine whether \sw
+%estimates could successfully be used to infer the \ac{dfe}. Though the
+%methods I employed for this analysis differed strongly from the
+%approach of Nielsen and Yang, a comparison to their results could
+%validate the use of \ac{slr} for estimating the \ac{dfe}. Furthermore,
+%it would be interesting to understand whether the differences in
+%historical effective population sizes between mammalian subgroups,
+%which have been shown repeatedly to affect overall \dnds levels in
+%primates versus rodents \citep{Kosiol2008,Ellegren2009}, has a
+%detectable impact on the \ac{dfe} inferred from comparative
+%data. Although the effective population size differences between
+%mammalian subgroups are far smaller than the difference between
+%mammals and species like \emph{Drosophila}, a comparison of the
+%\ac{dfe} from different mammalian groups could be used to evaluate how
+%strong of an impact the effective population size has on the
+%proportion of protein-coding sites subject to varying levels of
+%natural selection.
 
 \section{Data quality concerns: sequencing, assembly and annotation error}
 
 \subsection{The impact of sequencing errors on error rates in detecting positive selection}
+
 \label{section_error_impact}
 
 The possibility that erroneously-aligned sequences might cause false
@@ -159,7 +154,7 @@ of data is low or the null model is violated
 \citep{Anisimova2002,Anisimova2003,Massingham2005}, most evolutionary
 analyses are based on the assumption that all sites within an
 alignment column are truly homologous. This assumption can be violated
-in a number of ways, some of which are described below.
+in a number of ways.
 
 Of course, alignment error can result from errors in reconstructing
 the evolutionary history of sequences evolving with indels, causing
@@ -173,12 +168,11 @@ coding sequences, and the number of false positives resulting from
 misalignment of biological insertions and deletions was expected to be
 low.
 
-However, biological indels are not the only potential source of
-misalignment error. Errors resulting from the inclusion of incorrect
-genomic sequence in coding sequences were an additional
-concern. Twenty of the genomes under study were sequenced at low
-coverage and were not assembled into chromosomes or finished to
-completion, making the likelihood of miscalled bases, spurious
+Biological indels are not the only potential source of misalignment
+error. Errors resulting from the inclusion of incorrect genomic
+sequence in coding sequences were an additional concern. The \lcv
+genomes were not assembled into chromosomes and had large amounts of
+missing sequence, making the likelihood of miscalled bases, spurious
 insertions or deletions, or shuffled regions due to mis-assembly
 relatively high \citep{Green2007}. The magnitude of the effect of each
 of the aforementioned types of sequence errors on the detection of
@@ -197,15 +191,15 @@ substitution within a codon, and second, the case where one or
 multiple sequence or assembly errors cause multiple spurious
 substitutions within a codon. Single spurious nucleotides, such as
 miscalled bases, would add noise to the estimation of \omg, but as a
-whole they would not be expected to cause false positive positively
-selected codons. If we assume no large difference between the natural
-mutational process and the process that caused the erroneous mutation
-(e.g., a random distribution across codon positions and no bias in the
-identity of the miscalled base) then the effect would be to shift the
-estimated \omg in the branch containing the error towards 1. This is
-because, on average, isolated miscalled bases would appear the same as
-a neutral substitution process, inflating the estimated substitution
-rate but not affecting the relative \nsyn and \syn rates.
+whole they would not be expected to cause false positive \acp{psc}. If
+we assume no large difference between the natural mutational process
+and the process that caused the erroneous mutation (e.g., a random
+distribution across codon positions and no bias in the identity of the
+miscalled base) then the effect would be to shift the estimated \omg
+in the branch containing the error towards 1. This is because, on
+average, isolated miscalled bases would appear the same as a neutral
+substitution process, inflating the estimated substitution rate but
+not affecting the relative \nsyn and \syn rates.
 
 In contrast to single spurious substitions, codons with multiple
 erroneous bases in one species may produce strongly elevated inferred
@@ -217,7 +211,7 @@ completely non-homologous codons depends on the estimated codon
 frequencies, the branch length separating the two sequences, and the
 nature of the process causing misalignment of nonhomologous codons,
 but in general it would be reasonable to expect a greater number of
-false positive \pss{}s resulting from codons with multiple erroneous
+false positive \acp{psc} resulting from codons with multiple erroneous
 bases than from codons with single errors due to the necessary
 inference of a multi-step path between codons with multiple nucleotide
 differences.
@@ -231,35 +225,35 @@ impact on the sitewise detection of positive selection. On its own, a
 miscalled nucleotide base would obviously result in a single spurious
 substitution. However, low-quality bases tend not to be uniformly
 distributed among or within sequence reads \citep{Kircher2009},
-increasing the probability of multiple errors within a codon resulting
-from miscalled bases. Spurious indels within coding regions may be
-even more likely than miscalled bases to cause multiple errors within
-a codon due to the potential for creating frameshift
+leading to an increased probability of multiple errors within a codon
+resulting from miscalled bases. Spurious indels within coding regions
+may be even more likely than miscalled bases to cause multiple errors
+within a codon due to the potential for creating frameshift
 artifacts. Assembly errors, which result in larger-scale structural
 errors including missing, repeated, shuffled or inverted sequence
 regions \citep{Jaffe2003}, are especially prone to producing codons
 with multiple erroneous substitutions due to the large amount of
 contiguous sequence data being misplaced.
 
-For detecting positive selection, the nature of the model used for
-inferring positive selection and the branch lengths separating the
-species being tested may also have an impact on the prevalence false
-positives resulting from sequence errors. Sequence errors should only
-substantially affect the estimation of \nsyn and \syn substitution
-rates along the terminal lineage leading to the erroneous sequence
-data; thus, the potential impact of sequencing error on the inference
-of a positively selected site or gene can be estimated by considering
-the potential impact of an inflated rate of \nsyn substitution along
-the terminal branch on the inference of positive selection with a
-given test. Both the branch-site test for positive selection (which is
-not used in this analysis) and the sitewise tests for positive
-selection (including \pamlEight and \slr, first described in Chapter
-\ref{ch_indels1}) are sensitive to erroneous substitutions occurring
-at individual alignment columns, with the major difference between the
-two types of test being that the branch-site test is highly sensitive
-to substitutions along the foreground branch(es) being tested for
-positive selection, while sitewise tests only measure the signal for
-positive selection across the entire evolutionary tree.
+For detecting positive selection, the specific test used and the
+branch lengths separating the species being tested may also have an
+impact on the prevalence false positives resulting from sequence
+errors. Sequence errors should only substantially affect the
+estimation of \nsyn and \syn substitution rates along the terminal
+lineage leading to the erroneous sequence data; thus, the potential
+impact of sequencing error on the inference of a positively selected
+site or gene can be estimated by considering the potential impact of
+an inflated rate of \nsyn substitution along the terminal branch on
+the inference of positive selection with a given test. Both the
+branch-site test for positive selection (which was not used in this
+analysis) and the sitewise tests for positive selection (including
+\pamlEight and \slr) are
+sensitive to erroneous substitutions occurring at individual alignment
+columns, with the major difference between the two types of test being
+that the branch-site test is highly sensitive to substitutions along
+the foreground branch(es) being tested for positive selection, while
+sitewise tests only measure the signal for positive selection across
+the entire evolutionary tree.
 
 For the branch-site test, the potential effect of sequencing error
 should depend on the location and length of the foreground branch(es):
@@ -310,6 +304,8 @@ substitution rate. In other cases, however (e.g., when teh branch
 length is small, and/or many low-quality genomes are included), it may
 significantly bias results towards excess false positives.
 
+\subsection{Empirical evidence for a strong impact of sequencing, assembly and alignment error}
+
 Simulation studies could improve our understanding of the relative
 potential of different types of sequencing errors to introduce false
 positives in downstream analyses, but the absolute frequency and
@@ -355,26 +351,26 @@ the analysis did provide good evidence that some of the obvious
 sources of error may be contributing to excessive estimates of
 branch-specific positive selection in mammals.
 
-Mallick et al. \citeyearpar{Mallick2009} took a different approach to
-the same problem by performing a careful resequencing and reassembly
-of the chimpanzee genome (the initial assembly of which had lower
-coverage and lower quality than the human genome) and re-analysing the
-evidence for positive selection along the chimpanzee linegae in 59
-genes which had previously been identified as chimpanzee \psg{}s. The
-authors, who were motivated by a concern that previous reports of a
-larger proportion of \psg{}s in chimpanzee than in human
-\citep{Bakewell2007} were the result of its lower-quality genome
-rather than a biologically significant difference in levels of
-adaptation, found that the vast majority of \psg{}s identified in two
-previous studies showed no evidence for positive selection when using
-their reassembled and higher-coverage version of the chimpanzee genome
-\citep{Mallick2009}. This suggested that the original 4x coverage
-chimpanzee genome contained a number of sequencing and assembly errors
-leading to false inferences of positive selection. A detailed analysis
-of 302 codons with multiple spurious \nsyn substitutions in the
-original assembly showed roughly comparable effects of sequence error
-(explaining 23\% of codons), assembly error (14\% of codons) and local
-alignment error (30\% of codons).
+\citet{Mallick2009} took a different approach to the same problem by
+performing a careful resequencing and reassembly of the chimpanzee
+genome (the initial assembly of which had lower coverage and lower
+quality than the human genome) and re-analysing the evidence for
+positive selection along the chimpanzee linegae in 59 genes which had
+previously been identified as chimpanzee
+\psg{}s. \citeauthor{Mallick2009}, who were motivated by a concern
+that previous reports of a larger proportion of \psg{}s in chimpanzee
+than in human \citep{Bakewell2007} were the result of its
+lower-quality genome rather than a biologically significant difference
+in levels of adaptation, found that the vast majority of \psg{}s
+identified in two previous studies showed no evidence for positive
+selection when using their reassembled and higher-coverage version of
+the chimpanzee genome \citep{Mallick2009}. This suggested that the
+original 4x coverage chimpanzee genome contained a number of
+sequencing and assembly errors leading to false inferences of positive
+selection. A detailed analysis of 302 codons with multiple spurious
+\nsyn substitutions in the original assembly showed roughly comparable
+effects of sequence error (explaining 23\% of codons), assembly error
+(14\% of codons) and local alignment error (30\% of codons).
 
 Taken together, the results of Schneider et
 al. \citeyearpar{Schneider2009} and Mallick et
@@ -389,8 +385,8 @@ would be in the detection of positive selection. Although both of
 these studies used the branch-site test for detecting positive
 selection, their results could be expected to generalize well enough
 to guide the design of filtering methods for the present \sw
-analysis. With this work in mind, I implemented three filtering steps
-to help identify and remove sequences and alignment regions
+analysis. With these results in mind, I implemented three filtering
+steps to help identify and remove sequences and alignment regions
 potentially subject to the errors noted above: filtering out
 low-quality sequence, removing gene fragments and recent paralogs, and
 identifying alignment regions with extremely high numbers of clustered
@@ -408,38 +404,35 @@ Most automated genome assembly pipelines, such as the Arachne tool
 used to sequence many of the low-coverage mammalian genomes
 \citep{Jaffe2003}, output a set of Phred quality scores alongside the
 identified genome sequence, with one Phred score per base ranging in
-value from 0 to 50. A Phred score represents the probability,
-calculated by the sequencing and/or assembly program, that a given
-base call is incorrect. This probability is usually concisely
-expressed as the negative logarithm of the probability of an error
-multiplied by ten, or $Q=-10log_{10}P$, where $Q$ is the Phred score
-and $P$ is the probability of an incorrect base call \citep{Cock2010}.
+value from 0 to 50. These scores represent the probability, calculated
+by the sequencing and/or assembly program, that a given base call is
+incorrect. This probability is usually concisely expressed as the
+negative logarithm of the probability of an error multiplied by ten,
+or $Q=-10log_{10}P$, where $Q$ is the Phred score and $P$ is the
+probability of an incorrect base call \citep{Cock2010}.
 
-Although \ens was used as the source for gene sequences in this
-analysis, it does not store quality scores from its source genome
-assemblies, so Phred quality scores were manually downloaded for all
-genomes with Phred-like quality scores made publicly available
-alongside the genomic sequence. Most quality scores were provided as a
-single file in FASTA format with one string of numerical scores per
-assembled contig. Since the process of filtering a single mammalian
-coding alignment required collecting scores from many different
-quality score files for many disjoint genomic locations, a custom
-script was written to process each quality score file to allow for
-faster score retrieval and better memory performance. In total,
-quality score files for XYZ genomes were indexed and used for quality
-filtering.
+\ens does not store quality scores from its source genome assemblies,
+so Phred quality scores were manually downloaded for all \lcv genomes
+where Phred-like quality scores were made publicly available alongside
+the genomic sequence. Most quality scores were provided as a single
+file in FASTA format with one string of numerical scores per assembled
+contig. Since the process of filtering a single mammalian coding
+alignment required collecting scores from many different quality score
+files for many disjoint genomic locations, a custom script was written
+to process each quality score file to allow for faster score retrieval
+and better memory performance. In total, quality score files for 23
+genomes were indexed and used for quality filtering.
 
 A suitable score threshold for filtering coding regions was chosen
-based on a study by Hubisz et al. \citeyearpar{Hubisz2011}, who
-performed a detailed analysis of Phred quality scores, which are a
-probabilistic prediction of the error rate, and actual error rates in
-low-coverage mammalian genome assemblies by comparing the low-coverage
-assemblies to matched regions of high-quality sequence from the ENCODE
-comparative genomics dataset
-\citep{ENCODE_Project_Consortium2007a}. The authors identified a
-strong correlation between Phred scores and actual error rates for
-scores below 25, indicating that the scores were accurate predictors
-of the true error rate in this range. Error rates did not decrease
+based on a study by \citet{Hubisz2011}, who performed a detailed
+analysis of Phred quality scores, which are a probabilistic prediction
+of the error rate, and actual error rates in low-coverage mammalian
+genome assemblies by comparing the low-coverage assemblies to matched
+regions of high-quality sequence from the ENCODE comparative genomics
+dataset \citep{Birney2007}. The authors identified a strong
+correlation between Phred scores and actual error rates for scores
+below 25, indicating that the scores were accurate predictors of the
+true error rate in this range. Error rates did not decrease
 significantly at scores above 25, however, suggesting that the use of
 an extremely high Phred score threshold would only minimally reduce
 error levels below those obtained with a moderate
@@ -509,7 +502,7 @@ mammalian genomes, different assemblies varied widely in their
 distributions of sequence quality scores within coding regions.
 
 \subsection{Removing recent paralogs}
-\label{section_removing_paralogs}
+\label{sec_removing_paralogs}
 
 As discussed in Section \ref{section_quantifying_paralogous}, the
 inclusion of paralogous gene relationships in a large-scale analysis
@@ -539,13 +532,13 @@ by removing the more-divergent paralogous copy from the the gene tree.
 
 Before describing the method for duplications, it is worth making a
 point about gene deletions. Specifically, I note that gene deletions
-can cause problems in the branch-specific detection of positive
-selection, but they should not have a detrimental effect on tests for
-selection across the entire tree. The branch-specific effect of a gene
-deletion results from the merging of multiple ancestral branches into
-one. Take for example the inference of mutations along the
-evolutionary tree of human, chimpanzee and gorilla, which contains two
-internal nodes: $HC$, the human-chimpanzee ancestor, and $HCG$, the
+can complicate the branch-specific detection of positive selection,
+but they should not have a detrimental effect on tests for selection
+across the entire tree. The effect on branch-specific tests results
+from the merging of multiple ancestral branches into one. Take for
+example the inference of mutations along the evolutionary tree of
+human, chimpanzee and gorilla, which contains two internal nodes:
+$HC$, the human-chimpanzee ancestor, and $HCG$, the
 human-chimpanzee-gorilla ancestor. When sequences from all species are
 present, mutations can be separately identified as occurring along the
 branch from $HCG$ to $HC$ and along the branch from $HC$ to the human
@@ -557,16 +550,16 @@ $HCG$ and the human sequence. The time-specificity of estimated
 evolutionary rates is thus reduced, and when the identity of the
 branch along which \syn and \nsyn mutations have occurred is important
 to a test for positive selection, this difference can complicate the
-interpretation of results. Acknowledging this effect, Kosiol et
-al. \citeyearpar{Kosiol2008} used a different set of orthology
-requirements for each branch-specific test for positive selection
-performed. When the test for positive selection does not depend on the
-identity of specific branches in the tree, however, a gene deletion
-would only serve to reduce the total amount of branch length available
-for inference. As long as the branch leading to the deleted species
-did not comprise a large portion of the total branch length, the
-effect of gene deletion on the results of tree-wide tests for
-selection should be minimal.
+interpretation of results. Acknowledging this effect,
+\citet{Kosiol2008} used a different set of orthology requirements for
+each branch-specific test for positive selection performed. When the
+test for positive selection does not depend on the identity of
+specific branches in the tree, however, a gene deletion would only
+serve to reduce the total amount of branch length available for
+inference. As long as the branch leading to the deleted species did
+not comprise a large portion of the total branch length, the effect of
+gene deletion on the results of tree-wide tests for selection should
+be minimal.
 
 Turning back to gene duplications, an additional complicating factor
 in the current analysis was the concern that many of the apparent gene
@@ -891,10 +884,10 @@ annotations for most rodent genomes were likely derived from
 alignments to mouse rather than human. In the case of discordant gene
 annotations, the entire rodent clade would share an aligned \nhom
 stretch, causing clustered substitutions to be inferred along the
-internal rodent branch. This raises the possibility that the entire
+internal rodent branch. This raised the possibility that the entire
 rodent clade contains many misaligned \nhom stretches due to
-differences in gene annotations between rodent and non-rodent
-species.
+differences in gene annotations between rodent and non-rodent species.
+
 %This appeared to be the case for at least one gene: Figure
 %\ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
 %window with 11 apparent rodent \nsyn substitutions, likely the result

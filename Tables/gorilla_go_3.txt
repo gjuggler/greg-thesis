@@ -1,0 +1,19 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 11:05:44 2011
+  48 &   8 & 2.05 & GO:0042472 & inner ear morphogenesis & 8.5e-04 & 1.3e-03 & 1.3e-03 & 780 & \tiny{SIX4, ITGA8, FGF3, MYO15A, SOX2} \\ 
+   40 &   6 & 1.70 & GO:0001942 & hair follicle development & 6.5e-03 & 3.0e-03 & 7.5e-03 & 691 & \tiny{KRT27, EDAR, HOXC13, DSG4, SOX9} \\ 
+   48 &   6 & 2.05 & GO:0008584 & male gonad development & 1.5e-02 & 1.5e-02 & 1.3e-02 & 511 & \tiny{PDGFRA, SOX9, ERCC1, RARA, NR5A1} \\ 
+  250 &  17 & 10.65 & GO:0007420 & brain development & 3.8e-02 & 1.8e-02 & \color[HTML]{808080} 6.8e-02 & 809 & \tiny{CNTN4, LMX1B, NKX2-6, SLIT1} \\ 
+   74 &   8 & 3.15 & GO:0007605 & sensory perception of sound & 1.3e-02 & 2.1e-02 & 3.1e-02 & 1,091 & \tiny{STRC, LOXHD1, OTOF, MYO15A, SOX2} \\ 
+   52 &   6 & 2.22 & GO:0006364 & rRNA processing & 2.2e-02 & 2.2e-02 & 2.0e-02 & 563 & \tiny{ERI1, NOP2, RRP9, EMG1, EXOSC2} \\ 
+   44 &   5 & 1.87 & GO:0032526 & response to retinoic acid & 3.8e-02 & 4.5e-02 & 4.3e-02 & 698 & \tiny{WNT5B, DKK1, SYNJ1, RARA, SOX2} \\ 
+  1579 &  85 & 67.28 & GO:0045449 & regulation of transcription & 1.0e-02 & \color[HTML]{808080} 6.2e-02 & 2.0e-02 & 675 & \tiny{SUPT16H, RBBP4, TBX4, ZNF165, HOXB5} \\ 
+  1070 &  58 & 45.59 & GO:0006355 & regulation of transcription, DNA-depende... & 3.0e-02 & \color[HTML]{808080} 6.5e-02 & 3.7e-02 & 643 & \tiny{TBX4, ZNF165, HOXB5, SPEN, IKZF3} \\ 
+  105 &  10 & 4.47 & GO:0048705 & skeletal system morphogenesis & 1.4e-02 & \color[HTML]{808080} 7.1e-02 & 1.4e-02 & 623 & \tiny{IMPAD1, PDGFRA, HOXB5, SIX4, SOX9} \\ 
+   78 &   7 & 3.32 & GO:0030308 & negative regulation of cell growth & 4.8e-02 & \color[HTML]{808080} 7.2e-02 & 4.1e-02 & 543 & \tiny{RERG, PRDM4, SLIT1, ING1, GNG4} \\ 
+  101 &   9 & 4.30 & GO:0043161 & proteasomal ubiquitin-dependent protein ... & 2.8e-02 & \color[HTML]{808080} 9.5e-02 & 2.1e-02 & 492 & \tiny{PSMD2, KCTD10, PLK1, FZR1, CRBN} \\ 
+   58 &   9 & 2.47 & GO:0042471 & ear morphogenesis & 7.0e-04 & \color[HTML]{808080} 1.2e-01 & 1.0e-03 & 763 & \tiny{SIX4, ITGA8, FGF3, MYO15A, SOX2} \\ 
+  124 &  10 & 5.28 & GO:0045165 & cell fate commitment & 3.9e-02 & \color[HTML]{808080} 1.9e-01 & 3.5e-02 & 581 & \tiny{TGFB1I1, SOX9, DKK1, DLX1, FGF3} \\ 
+  164 &  12 & 6.99 & GO:0046578 & regulation of Ras protein signal transdu... & 4.7e-02 & \color[HTML]{808080} 1.9e-01 & \color[HTML]{808080} 8.7e-02 & 891 & \tiny{FGD2, RABGAP1L, TBC1D12, IQSEC3, SH2B2} \\ 
+   50 &   6 & 2.13 & GO:0009116 & nucleoside metabolic process & 1.9e-02 & \color[HTML]{808080} 2.3e-01 & 1.3e-02 & 413 & \tiny{MAT2B, PRPS2, PRTFDC1, DUT, PANK4} \\ 
+  

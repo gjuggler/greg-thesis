@@ -1,6 +1,7 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Wed Nov  9 11:32:31 2011
+% Mon Nov 14 17:02:20 2011
  \tiny{PF00079} & Serpin (serine protease inhibitor) & \texttt{~~~~~~} & \texttt{P~~Mm~} &  33 & 7358 & \cellcolor[HTML]{8E8EFF}19 & \cellcolor[HTML]{8E8EFF}73 & \tiny{SERPINA3, SERPINB3, SERPINA4, SERPINB13} \\ 
+  \tiny{PF00031} & Cystatin domain & \texttt{P~LMmH} & \texttt{P~LMmH} &  11 & 780 & \cellcolor[HTML]{FFFFFF}7 & \cellcolor[HTML]{E2E2FF}33 & \tiny{HRG, KNG1, FETUB, CST9LP1} \\ 
   \tiny{PF01835} & MG2 domain & \texttt{~~~~~~} & \texttt{~~~Mm~} &   8 & 1615 & \cellcolor[HTML]{FFFFFF}7 & \cellcolor[HTML]{F5F5FF}21 & \tiny{C5, C4A, PZP, A2M} \\ 
   \tiny{PF07678} & A-macroglobulin complement component & \texttt{~~~~m~} & \texttt{~~~Mm~} &   8 & 1483 & \cellcolor[HTML]{FFFFFF}7 & \cellcolor[HTML]{FFFFFF}14 & \tiny{C5, C4A, A2M, A2ML1} \\ 
   

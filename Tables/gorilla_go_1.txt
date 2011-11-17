@@ -1,0 +1,20 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 11:05:44 2011
+  31 &   6 & 1.59 & GO:0006368 & RNA elongation from RNA polymerase II pr... & 4.3e-03 & 4.3e-03 & 2.8e-03 & 421 & \tiny{ERCC3, POLR2E, GTF2E1, TAF12, TAF11} \\ 
+   76 &  10 & 3.90 & GO:0010552 & positive regulation of gene-specific tra... & 5.2e-03 & 5.2e-03 & 7.3e-03 & 620 & \tiny{NKX2-1, CELA1, TFEB, LEF1} \\ 
+   46 &   7 & 2.36 & GO:0006367 & transcription initiation from RNA polyme... & 8.4e-03 & 8.4e-03 & 7.3e-03 & 542 & \tiny{ERCC3, POLR2E, GTF2E1, TAF12, TAF11} \\ 
+  112 &  11 & 5.75 & GO:0009952 & anterior/posterior pattern formation & 2.9e-02 & 9.0e-03 & 4.0e-02 & 683 & \tiny{APC, LEF1, HOXD4, T, ALDH1A2} \\ 
+   50 &   7 & 2.57 & GO:0007588 & excretion & 1.3e-02 & 9.2e-03 & 1.5e-02 & 506 & \tiny{SLC22A18, OXT, TRPV1, NR3C2, AQP4} \\ 
+   46 &   7 & 2.36 & GO:0051028 & mRNA transport & 8.4e-03 & 9.3e-03 & 1.4e-02 & 766 & \tiny{NUP210, SMG5, SEH1L, NUP155, MYO1C} \\ 
+   74 &   9 & 3.80 & GO:0007605 & sensory perception of sound & 1.3e-02 & 1.9e-02 & 3.7e-02 & 1,091 & \tiny{EYA1, LOXHD1, OTOG, MYO7A, CHRNA10} \\ 
+   38 &   5 & 1.95 & GO:0001707 & mesoderm formation & 4.3e-02 & \color[HTML]{808080} 5.3e-02 & \color[HTML]{808080} 5.8e-02 & 616 & \tiny{EYA2, LEF1, SNAI1, SRF, TWSG1} \\ 
+  182 &  15 & 9.34 & GO:0007017 & microtubule-based process & 4.7e-02 & \color[HTML]{808080} 5.9e-02 & \color[HTML]{808080} 1.5e-01 & 1,057 & \tiny{APC, BRCA1, C14orf153, RFX3, TACC2} \\ 
+   50 &   6 & 2.57 & GO:0048704 & embryonic skeletal system morphogenesis & 4.2e-02 & \color[HTML]{808080} 6.5e-02 & \color[HTML]{808080} 5.0e-02 & 604 & \tiny{EYA1, HOXD4, HOXA3, DSCAML1, TGFBR1} \\ 
+  189 &  20 & 9.70 & GO:0048568 & embryonic organ development & 1.6e-03 & \color[HTML]{808080} 8.7e-02 & 2.9e-03 & 652 & \tiny{EYA1, MYO7A, TFEB, LEF1, HOXD4} \\ 
+   33 &   5 & 1.69 & GO:0021983 & pituitary gland development & 2.5e-02 & \color[HTML]{808080} 8.9e-02 & 2.6e-02 & 459 & \tiny{NKX2-1, EYA1, ALDH1A2, SALL1} \\ 
+  855 &  56 & 43.89 & GO:0007399 & nervous system development & 3.2e-02 & \color[HTML]{808080} 9.8e-02 & \color[HTML]{808080} 1.3e-01 & 747 & \tiny{NKX2-1, RET, APC, BRCA1} \\ 
+  122 &  11 & 6.26 & GO:0001822 & kidney development & 4.9e-02 & \color[HTML]{808080} 1.1e-01 & \color[HTML]{808080} 7.6e-02 & 700 & \tiny{RET, APC, EYA1, LEF1, EPCAM} \\ 
+   82 &  10 & 4.21 & GO:0050954 & sensory perception of mechanical stimulu... & 8.9e-03 & \color[HTML]{808080} 1.4e-01 & 2.8e-02 & 1,069 & \tiny{EYA1, LOXHD1, OTOG, MYO7A, TRPV1} \\ 
+  1322 &  84 & 67.87 & GO:0030154 & cell differentiation & 1.9e-02 & \color[HTML]{808080} 1.8e-01 & \color[HTML]{808080} 8.9e-02 & 684 & \tiny{NKX2-1, RET, APC, POU2F3} \\ 
+   68 &   8 & 3.49 & GO:0035270 & endocrine system development & 2.2e-02 & \color[HTML]{808080} 1.9e-01 & 2.6e-02 & 494 & \tiny{NKX2-1, EYA1, RFX3, ALDH1A2} \\ 
+  

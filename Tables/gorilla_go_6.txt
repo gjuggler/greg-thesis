@@ -1,0 +1,13 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 11:05:45 2011
+ 133 &   8 & 3.64 & GO:0016055 & Wnt receptor signaling pathway & 2.9e-02 & 6.6e-03 & 4.2e-02 & 630 & \tiny{SALL1, CELA1, DKK2, BCL9, RYK} \\ 
+   74 &   7 & 2.02 & GO:0007605 & sensory perception of sound & 4.0e-03 & 8.9e-03 & 2.9e-02 & 1,091 & \tiny{LOXHD1, CDH23, EYA1, GPR98, USH1C} \\ 
+  105 &   8 & 2.87 & GO:0048705 & skeletal system morphogenesis & 7.9e-03 & 3.5e-02 & 1.1e-02 & 623 & \tiny{ANKRD11, EYA1, RYK, DSCAML1, HOXB7} \\ 
+  150 &   9 & 4.10 & GO:0050953 & sensory perception of light stimulus & 2.2e-02 & \color[HTML]{808080} 5.3e-02 & \color[HTML]{808080} 5.2e-02 & 744 & \tiny{CDH23, GPR98, MYO3A, HMCN1, C2orf71} \\ 
+  137 &   8 & 3.74 & GO:0007548 & sex differentiation & 3.4e-02 & \color[HTML]{808080} 5.3e-02 & 4.3e-02 & 600 & \tiny{SALL1, GATA6, DMRT3, NR5A1, CDKL2} \\ 
+  524 &  21 & 14.32 & GO:0009790 & embryonic development & 5.0e-02 & \color[HTML]{808080} 5.6e-02 & \color[HTML]{808080} 1.6e-01 & 728 & \tiny{PTK7, ANKRD11, CDH23, SALL1, EYA1} \\ 
+   82 &   6 & 2.24 & GO:0032318 & regulation of Ras GTPase activity & 2.4e-02 & \color[HTML]{808080} 7.9e-02 & \color[HTML]{808080} 5.9e-02 & 826 & \tiny{TBC1D1, AGAP2, C6orf170, AGFG1, SFRP1} \\ 
+  148 &   8 & 4.05 & GO:0007601 & visual perception & 5.0e-02 & \color[HTML]{808080} 1.6e-01 & \color[HTML]{808080} 9.7e-02 & 724 & \tiny{GPR98, MYO3A, HMCN1, C2orf71, TULP1} \\ 
+  227 &  11 & 6.20 & GO:0007389 & pattern specification process & 4.7e-02 & \color[HTML]{808080} 1.7e-01 & \color[HTML]{808080} 8.9e-02 & 685 & \tiny{EYA1, HIPK1, DAND5, FOXF1, DSCAML1} \\ 
+   57 &   5 & 1.56 & GO:0006937 & regulation of muscle contraction & 1.9e-02 & \color[HTML]{808080} 2.4e-01 & 2.3e-02 & 604 & \tiny{MYL5, DMPK, MYBPH, MYBPC3, TACR3} \\ 
+  

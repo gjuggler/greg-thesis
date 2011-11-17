@@ -1,0 +1,11 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Wed Nov 16 17:42:31 2011
+ Human & \cellcolor[HTML]{C0C0FF}663 & \cellcolor[HTML]{F2F2FF}10 & \cellcolor[HTML]{FFFFFF}151 & \cellcolor[HTML]{F4F4FF}2 & \cellcolor[HTML]{FFFFFF}142 & \cellcolor[HTML]{FFFFFF}8 \\ 
+  Chimpanzee & \cellcolor[HTML]{D3D3FF}562 & \cellcolor[HTML]{E3E3FF}18 & \cellcolor[HTML]{FCFCFF}157 & \cellcolor[HTML]{FFFFFF}1 & \cellcolor[HTML]{E8E8FF}192 & \cellcolor[HTML]{8E8EFF}40 \\ 
+  Gorilla & \cellcolor[HTML]{D8D8FF}535 & \cellcolor[HTML]{EBEBFF}14 & \cellcolor[HTML]{D4D4FF}226 & \cellcolor[HTML]{FFFFFF}1 & \cellcolor[HTML]{EDEDFF}183 & \cellcolor[HTML]{C5C5FF}27 \\ 
+  AGA Branch & \cellcolor[HTML]{FFFFFF}299 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{8E8EFF}314 & \cellcolor[HTML]{FFFFFF}1 & \cellcolor[HTML]{FBFBFF}152 & \cellcolor[HTML]{EBEBFF}15 \\ 
+  AGA Clade & \cellcolor[HTML]{8E8EFF}869 & \cellcolor[HTML]{8E8EFF}52 & \cellcolor[HTML]{A5A5FF}289 & \cellcolor[HTML]{8E8EFF}9 & \cellcolor[HTML]{8E8EFF}341 & \cellcolor[HTML]{D9D9FF}21 \\ 
+  Human-Chimpanzee & \cellcolor[HTML]{A2A2FF}795 & \cellcolor[HTML]{CECEFF}28 & \cellcolor[HTML]{DEDEFF}210 & \cellcolor[HTML]{E9E9FF}3 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+  Gorilla-Human & \cellcolor[HTML]{ADADFF}750 & \cellcolor[HTML]{CECEFF}28 & \cellcolor[HTML]{B3B3FF}272 & \cellcolor[HTML]{C1C1FF}6 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+  Gorilla-Chimpanzee & \cellcolor[HTML]{BEBEFF}671 & \cellcolor[HTML]{AFAFFF}41 & \cellcolor[HTML]{A9A9FF}285 & \cellcolor[HTML]{DCDCFF}4 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+  
