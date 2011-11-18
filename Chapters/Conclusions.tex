@@ -4,4 +4,97 @@
 \acresetall
 %************************************************
 
-yadda yadda yadda...
+In this thesis, I proposed to explore the application of mathematical
+evolutionary models to better understand the patterns of natural
+selection acting on mammalian protein-coding genes. Throughout the
+analyses and discussions presented here, two dichotomies underscored
+significant challenges and opportunities in contemporary comparative
+genomics: the distinction between truth and error in collecting
+aligned protein-coding sequences, and the distinction between neutral
+evolution and natural selection in explaining their evolution.
+
+The theme of error was at the forefront of Chapter \ref{ch_indels1},
+where simulated alignments were used to investigate the impact of
+alignment error on the detection of \sw positive selection. The best
+aligners showed a good ability to accurately identify homologous
+codons, even in very divergent sequences prone to large amounts of
+biological insertion and deletion. On the other hand, \emph{post-hoc}
+methods for alignment filtering seemed unable to improve on the best
+aligners in distinguishing true from erroneous homology.
+
+Even with powerful aligners available, errors were abundant in the
+alignments of mammalian and primate genes. Difficulties in identifying
+orthologs (Chapter \ref{ch_orthologs}), sequencing and assembling DNA
+(Chapter \ref{ch_mammals1}), gene conversion events (Chapter
+\ref{ch_mammals2}) and incomplete lineage sorting (Chapter
+\ref{ch_gorilla}) were all identified as plausible, and in some cases
+unavoidable, sources of error in the studies presented here. In
+Chapters \ref{ch_mammals1} and \ref{ch_gorilla} I described a
+heuristic approach to masking sequences or alignment regions with
+suspiciously dense clusters of \nsyn substitutions; further
+development of this approach, including quantification of its ability
+to reduce false positives in downstream analyses, may be a fruitful
+area for future research.
+
+The ability to powerfully distinguish between neutral evolution and
+natural selection is a major advantage of codon-based models of
+evolution versus their nucleotide or amino acid counterparts. In
+applying these models to a large number of mammalian genomes, I showed
+how they can be used to dig ever deeper into the patterns of selective
+constraint experienced by protein-coding genes. It was clear that the
+additional mammalian genomes made available by the \ac{mgp} increased
+the power to detect purifying and positive selection, expanding the
+catalogue of genes with statistically significant evidence for
+positive selection and showing that \acp{psg} often contain interwoven
+patterns of purifying and positive selection. In comparing the
+evolution of different mammalian groups, however, the distinction
+between drift and constraint was \changeme{less certain}. Chapters
+\ref{ch_mammals1} and \ref{ch_mammals2} found lower numbers of
+\acp{psc} and \acp{psg}, and lower average \dnds ratios within genes,
+in glires compared to primates and laurasiatheria. Given the
+well-established differences in \ac{ne} between glires and primate
+species, the nearly neutral theory provided a good explanation for the
+different \dnds ratios. The difference in levels of positive selection
+was harder to explain with confidence, but a number of factors may
+have contributed: widespread fixation of deleterious mutations in
+primates and laurasiatheria as a result of lower long-term \ac{ne},
+higher error rates for detecting \acp{psc} in primates due to the
+shorter total branch length, or a historically greater prevalence of
+positive selection in primates and laurasiatheria could all plausibly
+be responsible for the observed species-dependent differences in
+patterns of positive selection.
+
+Future work could be directed towards an improved understanding of
+these differences. Results from the study of genetic variation in
+present-day populations may help shed light on levels of purifying and
+positive selection in the recent history of diverse mammals, and
+reasonable extrapolations deeper into history may provide new insight
+into the patterns observed here. Alternatively, the development of
+evolutionary models that explicitly account for changing \ac{ne} may
+help us better understand the impact of \ac{ne} on the evolution of
+mammalian genomes. The results from Chapter \ref{ch_gorilla}, which
+estimated a lower historical \ac{ne} for human than for all other
+\ac{aga} lineages examined, provided additional support for the
+development of advanced evolutionary models incorporating the effects
+of \ac{ne} within the framework of the nearly neutral theory.
+
+The cost of sequencing a human-sized genome has dropped nearly
+700-fold during the 4 years of my Ph.D. research (from \$7m to \$10k
+per genome, \citep{Wetterstrand2011}), and ambitious yet realistic
+plans have been drawn to sequence several thousand vertebrate genomes
+in the near future \citep{Haussler2009}. With respect to the
+rapidly-developing technology of genome sequencing, two concluding
+points seem especially pertinent. First, the increasing amount of
+available genomic data will be outpaced perhaps only by the number of
+potential false discoveries made possible by the error-prone nature of
+such high-throughput data collection and analysis. As a result, a
+rigorous understanding of these errors, combined with widespread
+adoption of best practices for reducing their impact on all types of
+downstream evolutionary analyses, will become increasingly
+important. Second, given the limited amount of evolutionary
+``leverage'' available in studies of humans and closely-related
+primates, it seems likely that the continued development of more
+complex evolutionary models, rather than the sequencing of more
+primate genomes, has the most potential to significantly improve our
+power to identify and understand the molecular signatures of adaptive
+changes in our recent evolutionary past.

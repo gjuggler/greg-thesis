@@ -5,10 +5,11 @@
 
 \section{Introduction}
 
-The search for what defines us as humans is a recurring theme in
-biology. The field of molecular evolution has deep roots in the use of
-molecules to compare humans with our closest relatives, gorilla and
-chimpanzee: in the 1960s Zuckerkandl and Pauling's applied their
+%The search for what defines us as humans is a recurring theme in
+%biology. 
+The field of molecular evolution has deep roots in the use of
+molecules to compare humans with chimpanzee and gorilla, our closest
+living relatives: in the 1960s Zuckerkandl and Pauling's applied their
 molecular clock hypothesis to estimate the gorilla-human divergence
 time, and \citeauthor{King1975}'s infamous 1975 paper ``Evolution at
 Two Levels in Humans and Chimpanzees'' proposed that changes to the
@@ -31,7 +32,7 @@ evolution were observed.
 \label{fig_king_wilson}
 \end{figure}
 
-Continued genetic, anatomical and \emph{in situ} study of primates has
+Continued genetic, anatomical and behavioral study of primates has
 somewhat tempered the imbalance in the ``organismal'' rates of human
 and chimpanzee evolution as drawn by King and Wilson: the evolution of
 human form does not appear to be exceptional within the context of
@@ -48,12 +49,12 @@ that ``We thus find minimal evidence of acceleration unique to either
 the human or chimpanzee lineage across broad functional categories.''
 Still, these general findings do not preclude the possibility of
 \emph{some} amount of protein-coding change playing a role in the
-differences between humans and our close relatives. Accordingly,
-studies of protein-coding evolution in humans and our close relatives
-have provided insight into the evolution of the great apes as a whole,
-identifying patterns of adaptive evolution or relaxed constraint in
-genes related to sound perception \citep{Clark2003}, coloration
-\citep{Mundy2007}, language \citep{Enard2002} and brain size
+differences between humans and our close relatives. Studies of
+protein-coding evolution in humans and other great apes have provided
+insight into the evolution of primates as a whole, identifying
+patterns of adaptive evolution or relaxed constraint in genes related
+to sound perception \citep{Clark2003}, coloration \citep{Mundy2007},
+language \citep{Enard2002} and brain size
 \citep{Montgomery2011}. Adaptive evolution in genes related to sperm
 production \citep{Clark2005} and immune defense \citep{Sawyer2005a}
 has also repeatedly been found in primates, though these patterns of
@@ -63,29 +64,27 @@ clade, as evinced in Chapter \ref{ch_mammals2}.
 Within this context, the recent sequencing of a western lowland
 gorilla genome provided an opportunity to further examine patterns of
 molecular evolution within human and our closest living relatives,
-even if the power to detect lineage-specific adaptive events (or the
-actual presence of such events) was likely to be limited. Previous
-phylogenetic estimates indicate that the \ac{hcg} common ancestor
-lived 6-10 \ac{myr} ago, with humans and chimpanzees diverging a few
-\ac{myr} after that \citep{Bradley2008}. The inclusion of gorilla
-within a comparative analysis would thus provide 6-10 \ac{myr} of
-additional branch length to the primate tree in addition to allowing
-the distinction between substitutions along the \ac{hcg} and the
-\ac{hc} ancestral branches of the phylogenetic tree. With gorilla,
-potential differences in the molecular evolution of our distant (e.g.,
-\ac{hcg}) and more recent (e.g., \ac{hc}) great ape ancestors could be
-investigated. Furthermore, analysis of the terminal branch of gorilla
-could provide additional information regarding the constancy or
+even if the power to detect lineage-specific adaptive events was
+likely to be limited and the prevalence of such events is still
+debated. Previous phylogenetic estimates indicated that the \ac{hcg}
+common ancestor lived 6-10 \ac{myr} ago, with humans and chimpanzees
+diverging a few \ac{myr} after that \citep{Bradley2008}. The inclusion
+of gorilla into a sequence analysis would thus allow methods to make a
+distinction between substitutions along the more distant \ac{hcg} and
+the more recent \ac{hc} ancestral branches of the phylogeny. The
+inclusion of gorilla within a comparative analysis would also provide
+6-10 \ac{myr} of additional branch length to the primate tree,
+possibly providing additional information regarding the constancy or
 variability of evolutionary rates in the recent evolution of the
-\ac{aga} (e.g., human, chimpanzee and gorilla). Previous analyses have
+\acp{aga} (e.g., human, chimpanzee and gorilla). Previous analyses have
 estimated a greater \ac{ne} in chimpanzee compared to human
 \citep{Sequencing2005a,Siepel2009a}, and somewhat surprisingly, one
 study identified more lineage-specific \acp{psg} in chimpanzee than in
 human (\citet{Bakewell2007}, but see \citet{Mallick2009} for evidence
 of false positives in these results). Gorilla, representing a third
-independent \ac{aga} lineage with a slightly longer branch length than
-human and chimpanzee, will provide an important additional data point
-in this regard.
+independent \ac{aga} lineage with a slightly longer terminal branch
+length than human and chimpanzee, could provide an important
+additional data point in this regard.
 
 In collaboration with Stephen Montgomery and Nick Mundy from the
 Zoology department of Cambridge University, I performed an analysis of
@@ -93,20 +92,20 @@ the evolution of protein-coding genes in gorilla and the \ac{aga}. The
 analysis was jointly designed by Stephen, Nick and myself; all data
 collection, calculations and statistical analyses were performed by
 me; and results were interpreted by us and other members of the
-gorilla analysis consortium. As with the analysis for the \ac{mgp}, a
+gorilla analysis consortium. As with the analysis for the \acl{mgp}, a
 summary of our main findings was contributed to the manuscript
 describing the gorilla genome, which is currently undergoing peer
 review. The description of the methods and results presented here is
 similar to the text included in the submitted manuscript and
 supplementary documents.
 
-The main goal of the analysis was to use codon models of evolution to
-identify genes with accelerated \nsyn substitution rates in the
+The main focus of this analysis was to use codon models of evolution
+to identify genes with accelerated \nsyn substitution rates in the
 terminal and ancestral branches of the \ac{aga}. To do this, I
 collected a highly filtered set of coding alignments in six primate
-species (the African great apes plus orangutan, rhesus macaque, and
+species (the \acp{aga} plus orangutan, rhesus macaque, and
 marmoset) and used a series of \acp{lrt} based on the branch models
-implemented in \acp{paml} to identify accelerated genes along branches
+implemented in \acsu{paml} to identify accelerated genes along branches
 of the primate phylogeny. Within the wider context of the gorilla
 genome analysis, which included an investigation of \ac{ils} in coding
 and non-coding regions, a secondary goal of this study was to identify
@@ -114,7 +113,8 @@ patterns of \ac{ils} within and near protein-coding genes. A third
 goal was to use the set of genome-wide coding alignments to estimate
 lineage-specific average \dnds ratios. Through the connection between
 \ac{ne} and \dnds, these results could be used to place gorilla and
-the ancestral \ac{aga} branches within the wider context of changing primate population sizes through time \citep{Sequencing2005a}.
+the ancestral \ac{aga} branches within the wider context of changing
+primate population sizes through time \citep{Sequencing2005a}.
 
 \section{Data collection and quality control}
 \subsection{Primate one-to-one orthologous genes}
@@ -749,7 +749,8 @@ accelerations was to identify \ac{go} terms enriched for genes with
 evidence for parallel acceleration in each pair of \ac{aga}
 species. The methodology used to identify enriched \ac{go} terms will
 be described Section \ref{sec_gorilla_go}, but the parallel results
-are described here for clarity.
+are described here for continuity with the discussion of parallel
+accelerations.
 
 For each species pair, genes with \lrtmin$>1.5$ were considered
 significant in the \ac{go} enrichment tests. This more lenient
@@ -848,7 +849,6 @@ Len. & Top 5 Significant Genes \\
 \end{longtable}
 \end{landscape}
 
-
 Interestingly, the term ``sensory perception of sound'' was enriched
 at $p<0.05$ in all three species pairs, but only three genes
 (\gene{LOXHD1}, \gene{CDH23} and \gene{GPR98}) were significant at
@@ -863,12 +863,43 @@ elevated \dnds levels was relatively widespread in all three \ac{aga}
 genomes, with variation in the specific genes having undergone
 acceleration in each species or species pair. It is also worth noting
 that the enrichment for this term among parallel accelerated genes was
-strongest in the \ac{GH} species pair, where the enrichment was
+strongest in the \ac{gh} species pair, where the enrichment was
 significant at $p<0.05$ in both the \topgo and \goseq tests. The term
 had $p>0.05$ for those tests in the \ac{gc} and \ac{hc} pairs,
 indicating that human and gorilla share a slightly stronger signal for
-parallel accelerated evolution in hearing genes than do the other
-pairs of \ac{aga} species.
+parallel accelerated evolution in hearing-related genes than do the
+other pairs of \ac{aga} species.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{Figs/gorilla_gpr98.pdf}
+\caption{Patterns of inferred substitution events in \gene{GPR98} and
+  \gene{LOXHD1}, two hearing-related genes with evidence for independent
+  elevated \dnds in \ac{aga} species. \ac{paml} was used to infer
+  \ac{ml} ancestral sequences \citep{Yang1995} for the 6-way alignment
+  of each gene, and substitution events were assigned to branches in
+  the phylogeny. Only substitutions between nodes where the ancestral
+  reconstruction had a posterior probability of $>0.95$ are
+  shown. Since marmoset was the outgroup species, substitutions along
+  the branch connecting marmoset to the remaining primates were
+  arbitrarily assigned to the marmoset terminal branch. Substitutions
+  are drawn as rectangles arranged in a horizontal line for each
+  branch in the tree. Within each branch, all \syn substitutions are
+  drawn to the left of all \nsyn substitutions. Each rectangle is
+  colored according to its position in the alignment and scaled
+  according to the Grantham score \citep{Grantham1974} between the
+  ancestral and derived amino acid.}
+\label{fig_gorilla_gpr98}
+\end{figure}
+
+Figure \ref{fig_gorilla_gpr98} shows the patterns of \nsyn and \syn
+substitutions throughout the 6-way primate phylogeny for two
+hearing-related genes, \gene{GPR98} and \gene{LOXHD1}, with strong
+signals of parallel elevated \dnds. The much longer \gene{GPR98} has
+accrued more substitutions in each branch of the primate tree than
+\gene{LOXHD1}, but both genes showed large numbers of \nsyn
+substitutions in each of the \ac{aga} species relative to their short
+overall branch lengths.
 
 \subsection{Top parallel accelerated genes}
 
@@ -896,7 +927,7 @@ for the functional activity of these genes suggests that the elevated
 \dnds levels across all three African great apes are not well
 explained by a substantial loss of functional constraint; other
 possible causes might be relaxed evolutionary constraint due to a
-decreased effective population size relative to the primate
+decreased \ac{ne} relative to the primate
 background, positive selection due to functional adaptation, or some
 combination of the two. 
 
@@ -960,64 +991,25 @@ in the list, while terms with non-significant \goseq \pvs should be
 treated with caution due to a detected length bias in the detection of
 accelerated genes.
 
-It is worth noting that none of the \ac{go} term enrichments for any
-of the branch-LRTs shown in Table \ref{table_gorilla_go} remained
-significant at \ac{fdr}$<0.1$ after applying the \citet{Benjamini1995}
-correction (results not shown). The lack of significance after
-correcting for multiple tests could be taken as evidence that no
-strong associations between accelerated genes and \ac{go} terms
-existed in these results. However, it may also be due to a variety of
-other factors, including limited power of branch models to detect
-\dnds shifts, noise in the \ac{go} annotation of genes, or the
-specific choice of LRT cutoffs used to identify significant
-accelerations. Other studies have avoided the use of cutoff thresholds
-by using different tests such as the Mann-Whitney U test to identify
-terms with a significantly lower distribution of \pvs than expected
-\citep{Clark2003,Kosiol2008}, but this was not done here. Despite the
-lack of strongly-controlled statistical significance, the use of a
-nominal $p<0.05$ cutoff to identify enriched GO terms for display in
-Table \ref{table_gorilla_go} yielded a limited set of enriched terms
-for each branch-LRT that summarized the strongest functional
-associations with moderately to strongly accelerated genes.
-
-\begin{landscape}
-\centering \scriptsize
-\rowcolors{1}{white}{gray!10}
-\begin{longtable}{lllllllb{6cm}}
-%\begin{longtable}{>{\raggedright}b{1.8cm}>{\raggedright}b{1cm}>{\raggedright}b{1cm}>{\raggedright}b{1.2cm}>{\raggedright}b{1cm}>{\raggedright}b{.9cm}>{\raggedright}b{.9cm}>{\raggedright}b{8cm}lll}
-
-\toprule
-Study & FG Species & Gene Count & Test & Ontology & Accel. & \acp{psg} & Top 5 enriched terms \\
-\midrule
-\endhead
-
-\midrule
-\\
-\multicolumn{8}{l}{\normalsize{Table \ref{table_gorilla_studies}} (\emph{continued on next page})} \\
-\endfoot
-
-\\[-1.8ex] \hline \hline
-\endlastfoot
-
-\input{Tables/gorilla_studies.txt}
-
-\bottomrule
-
-\caption{A comparison of previous genome-wide studies of primate gene
-  evolution. Nine studies of positive selection or accelerated \dnds
-  in primates, including the current study, are summarized by various
-  factors including the number of genes analyzed, the tests of
-  selection performed, the accelerated or positively-selected gene
-  count, and the most strongly enriched functional terms. The current
-  results were largely consistent with previous results in the
-  percentage of accelerated and positively-selected genes
-  identified. In contrast, the functional terms detected as enriched
-  for accelerated genes varied widely, both within the set of
-  previously-published studies and with the current results.}
-\label{table_gorilla_studies}
-
-\end{longtable}
-\end{landscape}
+None of the \ac{go} term enrichments for any of the branch-LRTs shown
+in Table \ref{table_gorilla_go} remained significant at \ac{fdr}$<0.1$
+after applying the \citet{Benjamini1995} correction (results not
+shown). The lack of significance after correcting for multiple tests
+could be taken as evidence that no strong associations between
+accelerated genes and \ac{go} terms existed in these results. However,
+it may also be due to a variety of other factors, including limited
+power of branch models to detect \dnds shifts, noise in the \ac{go}
+annotation of genes, or the specific choice of LRT cutoffs used to
+identify significant accelerations. Other studies have avoided the use
+of cutoff thresholds by using different tests such as the Mann-Whitney
+U test to identify terms with a significantly lower distribution of
+\pvs than expected \citep{Clark2003,Kosiol2008}, but this was not done
+here. Despite the lack of strongly-controlled statistical
+significance, the use of a nominal $p<0.05$ cutoff to identify
+enriched GO terms for display in Table \ref{table_gorilla_go} yielded
+a limited set of enriched terms for each branch-LRT that summarized
+the strongest functional associations with moderately to strongly
+accelerated genes.
 
 \section{Comparison with previous genome-wide scans for accelerated or positively-selected genes}
 
@@ -1081,6 +1073,46 @@ enrichment of brain-related terms in human and gorilla, including
 $p=0.032$, Table \ref{table_gorilla_go}), although both terms may be
 subject to a gene length bias and fail to reach $p<0.05$ using the
 \goseq method for detecting enriched terms.
+
+\begin{landscape}
+\centering \scriptsize
+\rowcolors{1}{white}{gray!10}
+\begin{longtable}{lllllllb{6cm}}
+%\begin{longtable}{>{\raggedright}b{1.8cm}>{\raggedright}b{1cm}>{\raggedright}b{1cm}>{\raggedright}b{1.2cm}>{\raggedright}b{1cm}>{\raggedright}b{.9cm}>{\raggedright}b{.9cm}>{\raggedright}b{8cm}lll}
+
+\toprule
+Study & FG Species & Gene Count & Test & Ontology & Accel. & \acp{psg} & Top 5 enriched terms \\
+\midrule
+\endhead
+
+\midrule
+\\
+\multicolumn{8}{l}{\normalsize{Table \ref{table_gorilla_studies}} (\emph{continued on next page})} \\
+\endfoot
+
+\\[-1.8ex] \hline \hline
+\endlastfoot
+
+\input{Tables/gorilla_studies.txt}
+
+\bottomrule
+
+\caption{A comparison of genome-wide studies of primate gene
+  evolution. Nine studies of positive selection or accelerated \dnds
+  in primates, including the current study, are summarized by various
+  factors including the number of genes analyzed, the tests of
+  selection performed, the accelerated or positively-selected gene
+  count, and the most strongly enriched functional terms. The current
+  results were largely consistent with previous results in the
+  percentage of accelerated and positively-selected genes
+  identified. In contrast, the functional terms detected as enriched
+  for accelerated genes varied widely, both within the set of
+  previously-published studies and with the current results.}
+\label{table_gorilla_studies}
+
+\end{longtable}
+\end{landscape}
+
 
 %\section{Levels of \acf{ils} within and near genes}
 
@@ -1197,10 +1229,10 @@ subject to a gene length bias and fail to reach $p<0.05$ using the
 %gene and could be observed in windows further than 100kb from the
 %nearest exon.
 
-\section{Genome-wide \dnds ratios in the \ac{aga} phylogeny}
+\section[Genome-wide \dnds ratios in the African great ape phylogeny]{Genome-wide \dnds ratios in the \acf{aga} phylogeny}
 
 The gorilla genome also provided an opportunity to examine global
-trends in the evolutionary dynamics of the African great apes and
+trends in the evolutionary dynamics of the \acp{aga} and
 their ancestral populations. I used the genome-wide set of coding
 alignments to examine lineage-specific \dnds estimates across the
 six-primate phylogenetic tree.
@@ -1400,23 +1432,21 @@ different selective pressures and analyze each group independently. I
 took this approach by separating protein-coding sites into bins based
 on their estimated sitewise selective pressure across mammals and
 separately analyzing the set of sites within each bin. Sitewise
-selection pressures were estimated from all 11,534 genes by applying
-\ac{slr} \citep{Massingham2005} to a coding alignment of all Eutherian
-orthologs from the Ensembl Compara database. The protein-based MCoffee
-alignments calculated by the \ens pipeline were used directly. The \sw
-\ac{lrt} statistic calculated by SLR was used to sort all sites by
-their strength of evidence for non-neutral selection, with strongly
-purifying sites receiving low values, neutral sites receiving
-intermediate values, and positively-selected sites receiving high
-values. Sites were then split into five bins corresponding to the
-following cumulative percentiles of the LRT statistic: 0--0.05,
-0.05--0.33, 0.33--0.67, 0.67--0.98, and 0.98--1.0. These ranges were
-chosen so that three bins of roughly equal size covered the bulk of
-sites, while two bins focused on the 5\% most strongly purifying sites
-and the 2\% of sites with strongest evidence for positive
-selection. All sites from each bin were concatenated into one
-alignment and analyzed with the \ac{paml} free-ratios model as
-described above.
+selection pressures were estimated for all 11,534 genes by applying
+\ac{slr} \citep{Massingham2005} to coding alignments of all Eutherian
+orthologs downloaded from the Ensembl Compara database. (Note that for
+this analysis, the protein-based MCoffee alignments calculated by the
+\ens pipeline were used directly.) The \sw \ac{lrt} statistic
+calculated by SLR was used to sort all sites by their strength of
+evidence for non-neutral selection. Sites were then split into five
+bins corresponding to the following cumulative percentiles of the LRT
+statistic: 0--0.05, 0.05--0.33, 0.33--0.67, 0.67--0.98, and
+0.98--1.0. These ranges were chosen so that three bins of roughly
+equal size covered the bulk of sites, while two bins focused on the
+5\% most strongly purifying sites and the 2\% of sites with strongest
+evidence for positive selection. All sites from each bin were
+concatenated into one alignment and analyzed with the \ac{paml}
+free-ratios model as described above.
 
 \begin{figure}
 \centering
@@ -1459,7 +1489,7 @@ with the expected decrease in the differential effects of \ac{ne} in
 sites subject to weaker purifying (e.g., more nearly neutral)
 selection.
 
-The pattern of \dnds levels in the highest bin---representing the top
+The pattern of genome-wide \dnds levels in the highest bin---representing the top
 2\% of alignment sites ordered by the LRT statistic, and thus the 2\%
 of sites with the greatest site-specific evidence for positive
 selection across Eutherian mammals---was distinct from the other 4
@@ -1487,23 +1517,50 @@ evidence for positive selection across Eutherian mammals.
 
 \section{Conclusions}
 
-With a comprehensive stage set by previous comparative genome-wide
-analyses focusing more closely-related \citep{Sequencing2005a} and
-more distantly-related \citep{Macaque2007,Locke2011} primates, the
-goal of this study was to investigate
+The gorilla genome sequence provided an opportunity to investigate
+patterns of recent molecular evolution through comparison to the
+genomes of other \acp{aga} and more distantly-related
+primates. Relative to human, gorilla was neither the closest
+\citep{Sequencing2005a} nor the most distantly-related primate to have
+its genome sequenced \citep{Macaque2007,Locke2011}, limiting the
+expectation that its sequence might help identify entirely novel
+human-specific or primate-specific evolutionary trends. Instead, the
+aim of this chapter was to leverage gorilla's intermediate
+phylogenetic position to help assess how variable or consistent
+patterns of evolutionary constraint have been throughout the evolution
+of the \ac{aga} clade.
 
-Continued study of the evolution of these candidate parallel
-accelerated genes, particularly with attention paid to the recent
-population structure of the African great ape species, will further
-elucidate the shared and unique behavioral and environmental features
-of our species and our closest evolutionary neighbours.
+This was done through a number of distinct but complementary
+analyses. First, a series of branch-LRTs were used to identify genes
+with evidence of elevated \dnds along different branches of the
+primate phylogeny. The three \acp{aga} showed similar overall counts
+of accelerated genes, and a number of distinct functional categories
+were enriched for accelerated genes; sound perception and hearing
+genes showed especially strong evidence for independent acceleration
+in \ac{aga} species. These LRT results were also used to quantify
+levels of parallel acceleration between pairs of \ac{aga} species,
+showing a greater amount of parallel acceleration between gorilla and
+human than between gorilla and chimpanzee. Finally, the set of
+genome-wide primate alignments was used to estimate lineage-specific
+\dnds ratios, providing precise estimates of the \acf{ne} in the
+recent and distant evolution of gorilla and the \acp{aga}.
 
-In conclusion, we used a set of highly filtered coding alignments in
-six primate genomes to estimate genome-wide, lineage-specific dN/dS
-levels for the analysis of relative effective population sizes. Our
-results were largely in agreement with previous estimates based on
-analysis of variation in divergence times and tree topologies in
-neutral regions, providing additional evidence for a large effective
-population size in ancestral primate populations and a slightly
-smaller human effective population size when compared to the other
-African apes.
+In conclusion, this study used codon models of evolution to place the
+gorilla genome within the context of the other \acp{aga} and
+primates. The wealth of data afforded by genome-wide datasets allowed
+confident conclusions to be made regarding the variability of
+molecular evolutionary patterns among the \acp{aga} species, revealing
+a largely uniform landscape of recent \ac{aga} gene evolution which
+was generally in accordance with previously-published studies. On the
+other hand, the extent to which strong statements could be made about
+individual genes appeared somewhat limited by the small amount of
+divergence within the \ac{aga} clade. Furthermore, the evidence for
+lower \acp{ne} in the recent history of \ac{aga} species suggests that
+patterns of recent \ac{aga} and human evolution over the past 6-10
+\ac{myr} have been dominated by genetic drift and relaxed
+constraint. Still, future work on the analysis of genes with the
+strongest signals of elevated \dnds---perhaps incorporating
+information from the wider history of mammalian evolution into the
+identification of such genes---may identify genes that have played
+important roles in the ancient and continued evolution of the
+\aclp{aga}.

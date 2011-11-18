@@ -1110,22 +1110,23 @@ reduces the beneficial effect of alignment filtering, so much so that
 current filtering methods are scarcely able to improve the
 performance of \prankc alignments when analyzed with SLR.
 
-As a result, I cannot unequivocally recommend the use of alignment
-filtering in the detection of sitewise positive selection, except
-perhaps for the most divergent and indel-prone sequences, which are
+As a result, the use of alignment filtering in the detection of
+sitewise positive selection cannot be uniquivocally recommended,
+except perhaps for the most divergent and indel-prone
+sequences. Importantly, sequences with these levels of divergence are
 unlikely to be encountered in analyses focusing on mammalian or
 vertebrate genes. Although GUIDANCE showed some ability to improve the
 error-controlled power under difficult alignment conditions at high
-divergence levels (whereas T-Coffee and Gblocks filtering failed to improve upon
-any \prankc alignments), this improvement was modest in magnitude and
-was achieved largely through the recovery of false negatives as
-opposed to the elimination of false positives. For an analysis where
-the control of false positives is the primary concern, the added
-computational expense of running many bootstrap alignment replicates
-(as performed by GUIDANCE) may not be offset by the possibility of a
-slight increase in power. However, GUIDANCE never significantly
-reduced power, so its use would not be expected to yield worse
-results.
+divergence levels (whereas T-Coffee and Gblocks filtering failed to
+improve upon any \prankc alignments), this improvement was modest in
+magnitude and was achieved largely through the recovery of false
+negatives as opposed to the elimination of false positives. For an
+analysis where the control of false positives is the primary concern,
+the added computational expense of running many bootstrap alignment
+replicates (as performed by GUIDANCE) may not be offset by the
+possibility of a slight increase in power. However, GUIDANCE never
+significantly reduced power, so its use would not be expected to yield
+worse results.
 
 Some of the current  conclusions differ from those of Privman et
 al. \citeyearpar{Privman2011Improving}, who found strong improvements

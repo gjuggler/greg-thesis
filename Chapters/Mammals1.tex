@@ -546,8 +546,7 @@ by removing the more-divergent paralogous copy from the the gene tree.
 %gene deletion on the results of tree-wide tests for selection should
 %be minimal.
 
-%Turning back to gene duplications, 
-An additional complicating factor
+%Turning back to gene duplications, An additional complicating factor
 in the current analysis was the concern that many of the apparent gene
 duplications were actually artifacts of the annotation of \lcv
 genomes. Each \lcv genome assembly is highly fragmented, meaning that
@@ -564,25 +563,23 @@ placed at very similar positions in the gene tree due to each sequence
 having been derived from a gene with a single correct evolutionary
 position. While this result might not be detrimental to sitewise
 analysis in itself (as each shortened gene might be correctly aligned
-and provide useful information to the alignment), a number of factors,
+and provide useful information to the alignment), a number of factors
 including the low quality of genomic sequence and assembly within
 these shortened genes, problems with aligning small fractions of a
 gene against complete sequences, and the potential for incorrect
 placement of fragmented sequences within the gene tree, made it
-desirable to remove these shortened genes before estimating
-evolutionary rates. These split genes could be effectively identified
-by their shortened length.
+desirable to remove the shortest of these gene fragments. These split
+genes could be effectively identified by their shortened length.
 
-Sequence divergence was the other criterion by which I selected which
-paralogous copy of recently-duplicated genes to retain for
-evolutionary analysis. A well-established theoretical model of
-evolution after gene duplication predicts that one of the duplicate
-copies retains the ancestral function (and its associated pattern of
-evolutionary constraint) while the other duplicate experiences relaxed
-constraint followed by either degradation or functional
-diversification \citep{Han2009}. Thus, the least-diverged copy of a
-recently duplicated gene should be the one most likely to have
-retained the pattern of evolutionary constraint shared among the
+Sequence divergence was the other criterion used to select which
+paralogous copy of recently-duplicated genes to retain. Models of
+evolution after gene duplication have tended to predict that one of the
+duplicate copies retains the ancestral function (and its associated
+pattern of evolutionary constraint) while the other duplicate
+experiences relaxed constraint followed by either degradation or
+functional diversification \citep{Han2009}. Thus, the least-diverged
+copy of a recently duplicated gene should be the one most likely to
+have retained the pattern of evolutionary constraint shared among the
 mammalian species being examined in this study.
 
 The protocol I implemented for filtering apparent paralogs used both
@@ -601,19 +598,20 @@ putative paralog to the mean sequence length across the tree
 (hereafter referred to as the length ratio) was also calculated.
 
 Genes were grouped by species within each gene tree, and any group of
-2 or more genes was considered to be a set of putative paralogs
-. Within each set of putative paralogs, a single gene was chosen to be
-retained for evolutionary analysis based on three rules applied in the
-following order: (1) if only one sequence had a length ratio above 0.5
-and all others had a length ratio below 0.5, the longest sequence was
-kept; (2) if at least one sequence yielded a mean distance below the
-others, that sequence was kept; (3) if all mean distances were
-identical then the longest sequence was kept, or if all mean distances
-and length ratios were equal, an arbitrary choice was made.
+2 or more genes from the same species was considered to be a set of
+putative paralogs. Within each set of putative paralogs, a single gene
+was chosen to be retained for evolutionary analysis based on three
+rules applied in the following order: (1) if only one sequence had a
+length ratio above 0.5 and all others had a length ratio below 0.5,
+the longest sequence was kept; (2) if at least one sequence yielded a
+mean distance below the others, that sequence was kept; (3) if all
+mean distances were identical then the longest sequence was kept, or
+if all mean distances and length ratios were equal, an arbitrary
+choice was made.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{Figs/filtered_paralogs_hist.pdf}
+\includegraphics[scale=0.9]{Figs/mammals_paralogs_hist.pdf}
 \caption{Length ratios of putative paralogs. The length ratio was
   calculated as the length of a putative paralogous copy divided by
   the mean length all sequences its corresponding gene
@@ -624,23 +622,23 @@ and length ratios were equal, an arbitrary choice was made.
 \label{filtered_paralogs_hist}
 \end{figure}
 
-These rules were applied to each of the 29,756 putative paralogs
-contained within the 16,XYZ largely orthologous gene trees from the
-previous chapter. Figure \ref{filtered_paralogs_hist} shows the
-distributions of length ratios separately for the set of all putative
-paralogs, those discarded from the alignments, and those kept for
-subsequent analysis. The overall distribution of length ratios shows
-that most putative paralogs had lengths similar to the mean length
-across the gene tree (with a peak at or slightly above 1), but the
-shape of the distribution was asymmetric, with a strong bias towards
-shorter lengths. The filtering protocol effectively removed these
-shortened genes, as evidenced by the strong enrichment of lower length
-ratios in the distribution of discarded genes and the less skewed
-distribution of length ratios in the set of XYZ kept paralogs.
+These rules were applied to each of the 70,164 putative paralogs
+contained within the 9,604 gene trees containing at least one set of
+putative paralogs. Figure \ref{filtered_paralogs_hist} shows the
+distributions of length ratios for the set of all putative paralogs,
+those discarded from the alignments, and those kept for subsequent
+analysis. The overall distribution of length ratios showed that most
+putative paralogs had lengths similar to the mean length across the
+gene tree (with a peak at or slightly above 1), but the shape of the
+distribution was asymmetric, with a bias towards shorter lengths. The
+filtering protocol effectively removed these shortened genes, as
+evidenced by the enrichment of lower length ratios in the distribution
+of discarded genes and the less skewed distribution of length ratios
+in the set of 38,761 kept putative paralogs.
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{Figs/filtered_paralogs_scatter.pdf}
+\includegraphics[scale=0.9]{Figs/mammals_paralogs_scatter.pdf}
 \caption{Sequence divergence of kept and discarded putative
   paralogs. Each point represents a gene which was discarded from the
   tree for one of three reasons: it had more sequence divergence than
@@ -648,20 +646,17 @@ distribution of length ratios in the set of XYZ kept paralogs.
   sequence divergence but shorter length than the kept gene
   (\emph{Shorter Length}; middle panel), or it had a gene length
   (relative to the mean across all sequences) of less than 0.5 while
-  the kept copy had a relative length greater than 0.5 (\emph{Length
+  the kept copy had a length ratio greater than 0.5 (\emph{Length
     $<$ 0.5}; right panel). Divergence was measured as the mean
   pairwise divergence between the gene and all other sequences in the
-  tree, and a value of -1 was assigned to genes for which no reliable
-  divergence estimate could be attained due to a lack of sufficient
-  data)}
+  tree.}
 \label{filtered_paralogs_scatter}
 \end{figure}
 
-To better compare the characteristics of the discarded and kept genes,
-a dmore detailed view of the results of the paralog filter is
-presented in Figure \ref{filtered_paralogs_scatter}, showing a scatter
-plot of the mean distance and length ratio of each discarded paralog
-compared to that of the corresponding kept paralog. Figure
+A more detailed view of the results of the paralog filter is presented
+in Figure \ref{filtered_paralogs_scatter}, showing a scatter plot of
+the mean distance and length ratio of each discarded paralog compared
+to that of the corresponding kept paralog. Figure
 \ref{filtered_paralogs_scatter} is separated into panels according to
 the rule used to discard the paralogous copy: the first panel
 corresponds to rule (1), where genes with a length ratio below 0.5
@@ -876,26 +871,22 @@ differences in gene annotations between rodent and non-rodent species.
 %genomes.
 
 The end result of this analysis was the identification, for each
-terminal node of the mammalian tree, windows with \nsyn substitution
-counts above the top 0.1\% of 15-codon windows genome-wide; these
+terminal node of the mammalian tree, of windows with \nsyn
+substitution counts above the top 0.1\% of 15-codon windows; these
 windows were considered potential stretches of \nhom aligned
 sequence. Despite evidence that some internal nodes might also suffer
 from this type of alignment artifact, most internal nodes were free
 from an obvious excess of clustered \nsyn substitutions, so internal
-nodes were excluded from this list. And although there is no way to
-show that the 0.1\% threshold is the most appropriate one for
-discriminating true from erroneous windows of clustered substitutions,
-manual analysis of regions containing windows at a variety of
-thresholds showed it to perform well.
+nodes were excluded from this list. A qualitative analysis of regions
+containing windows at a variety of thresholds found the 0.1\%
+threshold to strike a good balance between sensitivity and
+specificity.
 
-In total, 30,XYZ \draft{numers are approximate, will fill in later}
-windows containing potential stretches of \nhom aligned sequence were
-identified across 3,XYZ genes, with XYZ genes containing at least 1
-such window and XYZ genes containing greater than 10. The locations of
-these windows were stored for later use in defining the most
-conservatively-filtered sitewise dataset, and the impact of these
-potentially \nhom windows on sitewise levels of positive selection is
-described in Section \ref{section_stringent_filter}.
+In total, 37,824 windows containing potential stretches of \nhom
+aligned sequence were identified across 8,951 alignments, with 881
+genes containing more than 10 windows. The locations of these windows
+were stored for later use in defining the most conservatively-filtered
+sitewise dataset.
 
 \section{Genome-wide analysis of sitewise selective pressures in mammals}
 
@@ -929,10 +920,10 @@ whole mammalian alignment (along with the corresponding \subtr) and
 input to SLR, which was run with its default parameters. If fewer than
 two sequences were available for a given gene and species group, the
 sitewise analysis was skipped for that group. The species included in
-each group are listed in Table \ref{table_species_set_summary} alongside the
-\ac{mpl} and total branch length of their subtrees estimated as the
-median value across all 16xyz gene-wise dS branch length estimates
-from SLR.
+each group are listed in Table \ref{table_species_set_summary}
+alongside the \ac{mpl} and total branch length of their subtrees
+estimated as the median value across all \ntrees gene-wise \ds branch
+length estimates from SLR.
 
 Three species groups (Glires, Primates, and Laurasiatheria) were
 chosen because they represent the three mammalian superorders with the
@@ -1238,34 +1229,31 @@ purifying, neutral, and positively-selected at two different \ac{fpr}
 thresholds (columns under the headings ``\chisqlt{0.1}'' and
 ``\chisqlt{0.05}'').
 
-These views make clear the impact of extensive filtering on the
-genome-wide levels of positive and purifying selection observed in the
-data. The unfiltered data from the Primates group contained 9.07\% of
-sites with \omgml~$>1$, and 0.59\% of sites were \acp{psc} at a
-nominal 5\% \ac{fpr}; the evidence for positive selection was reduced
-in the conservatively-filtered data, showing 7.87\% sites with
-\omgml~$>1$ and 0.41\% \acp{psc}. An even stronger effect of filtering
-was seen for the Mammals data, with \omgml~$>1.5$ being reduced from
-5.71 to 2.73 between the unfiltered and conservatively-filtered
-datasets, and the percentage of \acp{psc} reduced from 0.72\% to
-0.35\%. The rows representing two sets of sites which were removed
-during the conservative filtering process showed higher signals of
-positive selection than the unfiltered data, suggesting that these two
-filtering steps were at least somewhat effective in removing
-potentially anomalous or untrustworthy sites from the dataset. For
-sites removed from being within clusters of \nsyn substitutions, the
-enrichment for signals of positive selection was clear: in Primates,
-18.28\% of sites yielded \omgml~$>1$, and 1.47\% of sites were
-\acp{psc} at a 5\% \ac{fpr} threshold, more than three times the
-proportion of \acp{psc} seen in the conservatively-filtered
-dataset. Sites removed as a result of being within genes containing
-recent duplications showed less of a signal for positive selection,
-but the proportions of \acp{psc} and sites with \omgml~$>1$ were still
-above those seen in either the relaxed or conservatively filtered
-datasets for both Mammals and Primates. Thus, genes that have
-experienced many recent duplications in mammals contained higher
-levels of positive selection even after the most-divergent paralogous
-copies were removed.
+These views made clear the impact of extensive filtering on the levels
+of positive and purifying selection observed in the data. The
+unfiltered data from the Primates group contained 9.07\% of sites with
+\omgml~$>1$ and 0.59\% of sites were \acp{psc} at a nominal 5\%
+\ac{fpr}; the evidence for positive selection was reduced in the
+conservatively-filtered data, showing 7.87\% sites with \omgml~$>1$
+and 0.41\% \acp{psc}. An even stronger effect of filtering was seen
+for the Mammals data, with \omgml~$>1.5$ being reduced from 5.71\% to
+2.73\% between the unfiltered and conservatively-filtered datasets and
+the percentage of \acp{psc} reduced from 0.72\% to 0.35\%.
+
+The rows representing two sets of sites which were removed during the
+conservative filtering process showed higher signals of positive
+selection than the unfiltered data, suggesting that these two
+filtering steps were at least somewhat effective in removing anomalous
+or untrustworthy sites from the dataset. For sites removed due to
+being within clusters of \nsyn substitutions, the enrichment for
+signals of positive selection was clear: in Primates, 18.28\% of sites
+yielded \omgml~$>1$ and 1.47\% of sites were \acp{psc} at a 5\%
+\ac{fpr} threshold, more than three times the proportion of \acp{psc}
+seen in the conservatively-filtered dataset. Sites removed as a result
+of being within genes containing recent duplications showed less
+enrichment for positive selection, but the proportions of \acp{psc}
+and sites with \omgml~$>1$ were still above those seen in either the
+relaxed or conservatively filtered datasets.
 
 \begin{landscape}
 \begin{table}
@@ -1348,7 +1336,7 @@ groups, sitewise data from each species group were processed with the
 conservative filter as described above. The resulting global
 distributions of site patterns, sitewise \omgml estimates, and 95\%
 confidence intervals are shown in Figure
-\ref{fig_global_distributions}. The left panel in each row plots the
+\ref{fig_global_distributions}. The left panel in each row shows the
 number of sites with constant, \syn, and \nsyn patterns; all sites
 with \omgml$=0$ had constant or \syn patterns, and all sites with
 \omgml$>0$ had \nsyn patterns. The right panel in each row shows the
@@ -1364,48 +1352,41 @@ covering little branch length, such as Primates and Atlantogenata,
 contained mostly constant sites, while groups covering a large amount
 of branch length, such as Eutheria and Mammals, contained few constant
 sites and roughly equal proportions of sites with \syn and \nsyn site
-patterns. Comparing the Glires and Mammals data with their
-corresponding ``sparse'' datasets confirmed that this trend was
-largely due to branch length as opposed to biological factors: the
-Sparse Glires data, for example, yielded a smaller proportion of \nsyn
-sites and a greater proportion of constant sites than the Glires data
-(17.41\% versus 24.08\% for \nsyn sites, 44.21\% versus 33.98\% for
-constant sites).
+patterns.
 
 The distributions of \omgml estimates are shown in Figure
 \ref{global_distributions} as a series of histograms showing the
 \omgml density (for \nz values of \omgml only) and a series of solid
 lines showing the cumulative \omgml density (representing all values);
-the lower and upper dashed lines show the cumulative density of the
-lower and upper 95\% confidence interval resulting from each \sw
-estimate. From these distributions, it is clear that the majority of
-protein-coding sites have evolved under purifying selection in
-mammals, a fact which is most easily seen in the larger species
-groups. The Mammalia group, which contained only a small proportion of
-uninformative constant sites (8.17\%), showed a maximum density of \nz
-\omgml estimates at $\omega\approx0.1$, and the vast majority of sites
-showed some evidence of purifying selection with \omgml estimates
-below 1. The height of the \omgml cumulative distribution at
-$\omega=1$ corresponds to the proportion of sites with some evidence
-for purifying selection. The \nz \omgml values were more evenly spread
-in the other species groups: Glires contained a maximum \nz \omgml
-density at around $\omega\approx0.25$ and Primates at
-$\omega\approx0.7$. This upwards shift in \nz \omgml estimates
-relative to Mammalia was likely due to the greater proportion of
-constant and \syn sites in datasets with lower overall branch lengths:
-sites which were truly evolving with $0<\omega<1$, but where no \nsyn
-or \syn substitutions were observed, would have their \omgml estimate
-``pushed'' towards zero, presumably causing a concomitant upwards
-shift in the distribution of the remaining \nz \omgml values.
+the lower and upper dashed lines show the cumulative densities of the
+lower and upper limits of the 95\% confidence interval resulting from
+each \sw estimate. It was clear that the majority of protein-coding
+sites have evolved under purifying selection in mammals, a fact which
+was most easily seen in the species groups with large total branch
+length. The Mammals group showed a maximum density of \nz \omgml
+estimates at $\omega\approx0.1$, and the vast majority of sites showed
+some evidence of purifying selection with \omgml$<1$.
 
-\subsubsection{Sitewise confidence intervals and LRT statistics identify sites with significant evidence for purifying and positive selection}
+The \nz \omgml values were more evenly spread in the other species
+groups: Glires contained a maximum \nz \omgml density at around
+$\omega\approx0.25$ and Primates at $\omega\approx0.7$. This upwards
+shift in \nz \omgml estimates relative to Mammals was likely due to
+the greater proportion of constant and \syn sites in datasets with
+lower overall branch lengths: sites which were truly evolving with
+$0<\omega<1$, but where no \nsyn or \syn substitutions were observed,
+would have their \omgml estimate ``pushed'' towards zero, presumably
+causing an apparent upwards shift in the distribution of the remaining
+\nz \omgml values.
 
-An important component of SLR's output is the set of statistics
-providing information about the confidence with which purifying or
-positive selection was detected. These values include the lower and
-upper bounds of \ci, the 95\% confidence interval for each \omgml
-estimate, and the LRT statistic, which corresponds to the strength of
-evidence for purifying or positive selection. Following Massingham
+\subsubsection{Sitewise confidence intervals and LRT statistics identify 
+sites with significant evidence for purifying and positive selection}
+
+An important component of SLR's output is \sw information indicating
+the confidence with which purifying or positive selection was
+detected. These values include the lower and upper bounds of \ci, the
+95\% confidence interval for each \omgml estimate, and the LRT
+statistic, which corresponds to the strength of evidence for purifying
+or positive selection. Following Massingham
 \citeyearpar{Massingham2005}, I used a signed version of the LRT
 statistic (hereafter \slrt), formed by negating the LRT statistic for
 sites where \omgml$<1$, as a way to sort sites according to their
@@ -1420,7 +1401,7 @@ negative \slrt for a site with \omgml only moderately below 1, because
 the evidence for purifying selection at that site was highly
 statistically significant; on the other hand, a strongly-purifying
 site in an alignment covering less branch length might produce a much
-less-negative \slrt, even with an estimated  \omgml near zero.
+less-negative \slrt, even with an estimated \omgml near zero.
 
 \begin{figure}[b!]
 \centering
@@ -1437,18 +1418,18 @@ less-negative \slrt, even with an estimated  \omgml near zero.
 \label{fig_sites_scatters}
 \end{figure}
 
-To further explore this point, Figure \ref{fig_sites_scatters}A shows
-the relationship between \slrt, \omgml and the \ci width for sites
-from the Mammals group. The left panel, comparing the \slrt to \nz
-\omgml estimates, shows that the two values are highly correlated,
-with the greatest number of low \omgml estimates occurring at sites
-with strongly negative \slrt{}s. Correspondingly, the middle panel
-shows an even stronger relationship between the \slrt magnitude and
-the \ci width, with the tightest confidence intervals at sites with
-very strong evidence for purifying selection. The rightmost panel
-compares the \omgml of each site with the width of its \ci, revealing
-a more linear and diffuse positive relationship between \omgml and the
-size of the \ci. The equivalent plots for Primates, shown in Figure
+Figure \ref{fig_sites_scatters}A shows the relationship between \slrt,
+\omgml and the \ci width for sites from the Mammals group. The left
+panel, comparing the \slrt to \nz \omgml estimates, shows that the two
+values are highly correlated, with the greatest number of low \omgml
+estimates occurring at sites with strongly negative
+\slrt{}s. Correspondingly, the middle panel shows an even stronger
+relationship between the \slrt magnitude and the \ci width, with the
+tightest confidence intervals at sites with very strong evidence for
+purifying selection. The rightmost panel compares the \omgml of each
+site with the width of its \ci, revealing a more linear and diffuse
+positive relationship between \omgml and the size of the \ci. The
+equivalent plots for Primates, shown in Figure
 \ref{fig_sites_scatters}B, reveal similar patterns, but with generally
 less-negative \slrt values, higher \omgml, and larger \ci. These
 differences highlight the impact of branch length on the amount of
