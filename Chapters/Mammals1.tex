@@ -9,15 +9,16 @@
 This chapter describes the use of sitewise evolutionary estimates to
 characterize the global distribution of selective constraint across 38
 mammalian genomes and within the major mammalian superorders. I apply
-the \ac{slr} test, evaluated in Chapter \ref{ch_indels1}, to the set
-of mammalian orthologous gene trees from Chapter \ref{ch_orthologs} to
-generate genome-wide sets of sitewise statistics measuring selective
-constraint in several groups of \mammln species. Both this chapter and
-the following one are concerned with the analysis of these \sw data:
-here I will consider the overall distribution of constraint observed
-in several groups of mammalian genomes, while Chapter
-\ref{ch_mammals2} will look at the use of these \sw data to identify
-trends in the evolution of genes and protein domains.
+the \ac{slr} test, which was introduced in Chapter \ref{ch_intro} and
+evaluated in Chapter \ref{ch_indels1}, to the set of mammalian
+orthologous gene trees from Chapter \ref{ch_orthologs} to generate
+genome-wide sets of sitewise statistics measuring selective constraint
+in several groups of \mammln species. Both this chapter and the
+following one are concerned with the analysis of these \sw data: here
+I will consider the overall distribution of constraint observed in
+several groups of mammalian genomes, while Chapter \ref{ch_mammals2}
+will look at the use of these \sw data to identify trends in the
+evolution of genes and protein domains.
 
 The first section of this chapter describes the preparation and
 alignment of the mammalian orthologs from Chapter \ref{ch_orthologs}
@@ -43,46 +44,39 @@ data \citep{TODO}. As such, care was taken to design and evaluate a
 variety of filters to reduce the probability of yielding misleading
 results.
 
-The second portion of this chapter looks at the global distribution of mammalian
-selective constraint in three ways: first, using \sw estimates from
-\ac{slr} to identify sites evolving under purifying and positive
-selection at various confidence levels; second, fitting parametric
-distributions to the set of sitewise estimates to infer the
-distribution of selective pressures; and third, evaluating the impact
-of genomic variation in GC content and recombination rate on the
-distribution of sitewise estimates. The consistency of these results
-with previous work will be explored.
-
-In parallel with the major goal of the \ac{mgp} to understand the
-amount of evolutionary constraint across the entire mammalian genome,
-the main purpose of my analysis was to better understand the
+The second portion of this chapter looks at the global distribution of
+mammalian selective constraint, using \sw estimates to identify sites
+evolving under purifying and positive selection at various confidence
+levels. In parallel with the major goal of the \ac{mgp} to understand
+the amount of evolutionary constraint across the entire mammalian
+genome, the purpose of this analysis was to better understand the
 distribution of evolutionary constraint within mammalian
-protein-coding regions---in other words, to understand what proportion
-of protein-coding material has been evolving under purifying, neutral,
-or positive selection. Proteins are well understood to evolve under
+protein-coding regions, focusing on what proportion of protein-coding
+material has been evolving under purifying, neutral, or positive
+selection in mammals. Proteins are well understood to evolve under
 strong purifying constraint due to their functional importance
 \citep{Fay2003}, but some regions of proteins, such as disordered
 regions between two well-folded domains, may evolve under relaxed
-constraints, and positive selection of beneficial substitutions can
-also play a role in shaping the evolutionary history of proteins
-\citep{Pal2006}. There has been great interest in understanding the
-role of adaptive evolution in shaping the genes and genomes of mammals
-and primates, but different studies have produced widely varying
-estimates of the number of genes subject to positive selection
-\citep{MarquesBonet2009a,Ellegren2008}.
+constraints. Furthermore, positive selection of beneficial
+substitutions can also play a role in shaping the evolutionary history
+of proteins \citep{Pal2006}. There has thus been great interest in
+understanding the role of adaptive evolution in shaping the genes and
+genomes of mammals and primates, but different studies have produced
+widely varying estimates of the number of genes subject to positive
+selection \citep{MarquesBonet2009a,Ellegren2008}.
 
 While most previous investigations of positive selection in mammals
 have focused on the gene as the unit of analysis, the current analysis
-used a primarily \sw approach. It was hypothesized that the focus on
-identifying \acp{psc} instead of the traditional identification of
-\acp{psg}, may allow for a more flexible quantification of levels of
-purifying and positive selection in mammals. One expected benefit of
-the \sw approach was that fine-grained filtering on a site-by-site
-basis could be performed both before and after the computationally
-expensive step of estimating evolutionary parameters, allowing for a
-more extensive and flexible set of filters to be used in estimating
-the potential impact of alignment or annotation error on the amounts
-of inferred positive selection.
+used a primarily \sw approach. The focus on identifying \acp{psc}
+instead of the traditional identification of \acp{psg}, allowed for a
+more flexible quantification of levels of purifying and positive
+selection in mammals. One expected benefit of the \sw approach was
+that fine-grained filtering on a site-by-site basis could be performed
+both before and after the computationally expensive step of estimating
+evolutionary parameters, allowing for a more extensive and flexible
+set of filters to be used in estimating the potential impact of
+alignment or annotation error on the amounts of inferred positive
+selection.
 
 %The second, more subtle goal of this analysis was to place the
 %distribution of selective pressures implied by the \sw analysis within
@@ -141,8 +135,7 @@ of inferred positive selection.
 \section{Data quality concerns: sequencing, assembly and annotation error}
 
 \subsection{The impact of sequencing errors on error rates in detecting positive selection}
-
-\label{section_error_impact}
+\label{sec_error_impact}
 
 The possibility that erroneously-aligned sequences might cause false
 positives in the detection of sitewise positive selection was a major
@@ -288,20 +281,20 @@ expectation that a phylogeny with a greater proportion of its branch
 length within terminal branches (which, in contrast to internal
 branches, may contain spurious substitutions resulting from sequencing
 errors) would be more prone to false positives should still hold.
-
-To summarize, the expected effect of alignment errors on the sitewise
-detection of positive selection should be minimal when using a good
-aligner and analysing data within vertebrate divergence levels, but
-the number of false positives resulting from sequence errors depends
-on a number of factors including the frequency, spatial clustering,
-and terminal branch length associated with sequencing, assembly and
-annotation errors. In some cases, even a relatively large amount of
+%To summarize, the expected effect of alignment errors on the sitewise
+%detection of positive selection should be minimal when using a good
+%aligner and analysing data within vertebrate divergence levels, but
+%the number of false positives resulting from sequence errors depends
+%on a number of factors including the frequency, spatial clustering,
+%and terminal branch length associated with sequencing, assembly and
+%annotation errors.
+In some cases, even a relatively large amount of
 sequencing error may not produce a strongly elevated \fpr (e.g., when
 the total internal branch length is large as when analyzing all
 mammals or vertebrates), as the addition of a few spurious
 substitutions would not significantly change the estimated \nsyn
-substitution rate. In other cases, however (e.g., when teh branch
-length is small, and/or many low-quality genomes are included), it may
+substitution rate. In other cases, however (e.g., when the branch
+length is small or when many low-quality genomes are included), it may
 significantly bias results towards excess false positives.
 
 \subsection{Empirical evidence for a strong impact of sequencing, assembly and alignment error}
@@ -400,45 +393,37 @@ rates in such assemblies \citep{Hubbard2007}, I applied a conservative
 filter to the set of input sequences based on sequence quality scores
 where available.
 
-Most automated genome assembly pipelines, such as the Arachne tool
-used to sequence many of the low-coverage mammalian genomes
-\citep{Jaffe2003}, output a set of Phred quality scores alongside the
-identified genome sequence, with one Phred score per base ranging in
-value from 0 to 50. These scores represent the probability, calculated
-by the sequencing and/or assembly program, that a given base call is
-incorrect. This probability is usually concisely expressed as the
-negative logarithm of the probability of an error multiplied by ten,
-or $Q=-10log_{10}P$, where $Q$ is the Phred score and $P$ is the
-probability of an incorrect base call \citep{Cock2010}.
+Most automated genome assembly pipelines output a set of Phred quality
+scores alongside the identified genome sequence, with one Phred score
+per base ranging in value from 0 to 50. These scores represent the
+probability, calculated by the sequencing and/or assembly program,
+that a given base call is incorrect. This probability is concisely
+expressed as the negative logarithm of the probability of an error
+multiplied by ten, or $Q=-10log_{10}P$, where $Q$ is the Phred score
+and $P$ is the probability of an incorrect base call \citep{Cock2010}.
 
 \ens does not store quality scores from its source genome assemblies,
-so Phred quality scores were manually downloaded for all \lcv genomes
-where Phred-like quality scores were made publicly available alongside
-the genomic sequence. Most quality scores were provided as a single
-file in FASTA format with one string of numerical scores per assembled
-contig. Since the process of filtering a single mammalian coding
-alignment required collecting scores from many different quality score
-files for many disjoint genomic locations, a custom script was written
-to process each quality score file to allow for faster score retrieval
-and better memory performance. In total, quality score files for 23
-genomes were indexed and used for quality filtering.
+so Phred quality scores were downloaded for all \lcv genomes where
+Phred-like quality scores were made publicly available alongside the
+genomic sequence. Most quality scores were provided as a single file
+in FASTA format with one string of numerical scores per assembled
+contig.
 
 A suitable score threshold for filtering coding regions was chosen
 based on a study by \citet{Hubisz2011}, who performed a detailed
-analysis of Phred quality scores, which are a probabilistic prediction
-of the error rate, and actual error rates in low-coverage mammalian
-genome assemblies by comparing the low-coverage assemblies to matched
-regions of high-quality sequence from the ENCODE comparative genomics
-dataset \citep{Birney2007}. The authors identified a strong
+analysis of Phred quality scores and actual error rates in \lcv
+mammalian genome assemblies by comparing the \lcv assemblies to
+matched regions of high-quality sequence from the ENCODE comparative
+genomics dataset \citep{Birney2007}. The authors identified a strong
 correlation between Phred scores and actual error rates for scores
 below 25, indicating that the scores were accurate predictors of the
 true error rate in this range. Error rates did not decrease
 significantly at scores above 25, however, suggesting that the use of
 an extremely high Phred score threshold would only minimally reduce
 error levels below those obtained with a moderate
-threshold. Furthermore, Hubisz et al. noted that 85\% of bases in the
-low-coverage mammalian genomes contain very high Phred scores ($>45$)
-and only 4\% have low scores ($<20$).
+threshold. Furthermore, \citet{Hubisz2011} noted that 85\% of the
+bases in the low-coverage mammalian genomes contain very high Phred
+scores ($>45$) and only 4\% have low scores ($<20$).
 
 Based on these observations, a threshold Phred score of 25 was chosen
 as a reasonable trade-off between the potential benefit of avoiding
@@ -448,27 +433,27 @@ available, a ``minimum score'' approach was used to filter out whole
 codons: all codons containing one or more nucleotides with a score
 below 25 were masked out with three ambiguous nucleotides, 'NNN'.
 
-The expected proportion of filtered nucleotides could be calculated
-from the fraction of bases below the Phred score threshold of
-25. According to Hubisz et al. \citeyearpar{Hubisz2011}, approximately
-5\% of bases in low-coverage mammalian genomes contain Phred scores
-below 25. The worst case scenario (e.g., the worst case in terms of
-the number of high-quality bases being masked as a result of using the
-minimum score approach) would be if only one base per codon had a
-score below the threshold. In that case, an expected 15\% of
-nucleotides would be filtered, since 3 bases would be masked for every
-low-quality base. However, the distribution of low-quality bases is
-likely highly clustered, due to the uneven distribution of
-repetitiveness and GC content as well as the tendency for uncertain
-base calls to occur towards the end of sequence reads (all of which
-are known to affect read coverage and assembly performance,
-e.g. \cite{Teytelman2009}). A more clustered distribution of
-low-quality bases would cause fewer high-quality bases to become
-masked by the minimum score approach, reaching the limit of an
-expected 5\% total filtered bases if low-quality bases always occurred
-in groups of three and were positioned along the boundary of codon
-triplets. Thus, anywhere from 5\% to 15\% of nucleotides from
-low-coverage genomes were expected to be filtered by this approach.
+%The expected proportion of filtered nucleotides could be calculated
+%from the fraction of bases below the Phred score threshold of
+%25. According to Hubisz et al. \citeyearpar{Hubisz2011}, approximately
+%5\% of bases in low-coverage mammalian genomes contain Phred scores
+%below 25. The worst case scenario (e.g., the worst case in terms of
+%the number of high-quality bases being masked as a result of using the
+%minimum score approach) would be if only one base per codon had a
+%score below the threshold. In that case, an expected 15\% of
+%nucleotides would be filtered, since 3 bases would be masked for every
+%low-quality base. However, the distribution of low-quality bases is
+%likely highly clustered, due to the uneven distribution of
+%repetitiveness and GC content as well as the tendency for uncertain
+%base calls to occur towards the end of sequence reads (all of which
+%are known to affect read coverage and assembly performance,
+%e.g. \cite{Teytelman2009}). A more clustered distribution of
+%low-quality bases would cause fewer high-quality bases to become
+%masked by the minimum score approach, reaching the limit of an
+%expected 5\% total filtered bases if low-quality bases always occurred
+%in groups of three and were positioned along the boundary of codon
+%triplets. Thus, anywhere from 5\% to 15\% of nucleotides from
+%low-coverage genomes were expected to be filtered by this approach.
 
 \begin{figure}
 \centering
@@ -530,38 +515,39 @@ which do not satisfy the requirement of strict orthology, I developed
 an approach, described below, for handling recently duplicated genes
 by removing the more-divergent paralogous copy from the the gene tree.
 
-Before describing the method for duplications, it is worth making a
-point about gene deletions. Specifically, I note that gene deletions
-can complicate the branch-specific detection of positive selection,
-but they should not have a detrimental effect on tests for selection
-across the entire tree. The effect on branch-specific tests results
-from the merging of multiple ancestral branches into one. Take for
-example the inference of mutations along the evolutionary tree of
-human, chimpanzee and gorilla, which contains two internal nodes:
-$HC$, the human-chimpanzee ancestor, and $HCG$, the
-human-chimpanzee-gorilla ancestor. When sequences from all species are
-present, mutations can be separately identified as occurring along the
-branch from $HCG$ to $HC$ and along the branch from $HC$ to the human
-sequence, allowing for a test to differentiate between a signal of
-adaptive evolution in one branch or the other. For a gene which was
-deleted in chimpanzee those two branches become effectively merged
-into one, and mutations can only be inferred to have occurred between
-$HCG$ and the human sequence. The time-specificity of estimated
-evolutionary rates is thus reduced, and when the identity of the
-branch along which \syn and \nsyn mutations have occurred is important
-to a test for positive selection, this difference can complicate the
-interpretation of results. Acknowledging this effect,
-\citet{Kosiol2008} used a different set of orthology requirements for
-each branch-specific test for positive selection performed. When the
-test for positive selection does not depend on the identity of
-specific branches in the tree, however, a gene deletion would only
-serve to reduce the total amount of branch length available for
-inference. As long as the branch leading to the deleted species did
-not comprise a large portion of the total branch length, the effect of
-gene deletion on the results of tree-wide tests for selection should
-be minimal.
+%Before describing the method for duplications, it is worth making a
+%point about gene deletions. Specifically, I note that gene deletions
+%can complicate the branch-specific detection of positive selection,
+%but they should not have a detrimental effect on tests for selection
+%across the entire tree. The effect on branch-specific tests results
+%from the merging of multiple ancestral branches into one. Take for
+%example the inference of mutations along the evolutionary tree of
+%human, chimpanzee and gorilla, which contains two internal nodes:
+%$HC$, the human-chimpanzee ancestor, and $HCG$, the
+%human-chimpanzee-gorilla ancestor. When sequences from all species are
+%present, mutations can be separately identified as occurring along the
+%branch from $HCG$ to $HC$ and along the branch from $HC$ to the human
+%sequence, allowing for a test to differentiate between a signal of
+%adaptive evolution in one branch or the other. For a gene which was
+%deleted in chimpanzee those two branches become effectively merged
+%into one, and mutations can only be inferred to have occurred between
+%$HCG$ and the human sequence. The time-specificity of estimated
+%evolutionary rates is thus reduced, and when the identity of the
+%branch along which \syn and \nsyn mutations have occurred is important
+%to a test for positive selection, this difference can complicate the
+%interpretation of results. Acknowledging this effect,
+%\citet{Kosiol2008} used a different set of orthology requirements for
+%each branch-specific test for positive selection performed. When the
+%test for positive selection does not depend on the identity of
+%specific branches in the tree, however, a gene deletion would only
+%serve to reduce the total amount of branch length available for
+%inference. As long as the branch leading to the deleted species did
+%not comprise a large portion of the total branch length, the effect of
+%gene deletion on the results of tree-wide tests for selection should
+%be minimal.
 
-Turning back to gene duplications, an additional complicating factor
+%Turning back to gene duplications, 
+An additional complicating factor
 in the current analysis was the concern that many of the apparent gene
 duplications were actually artifacts of the annotation of \lcv
 genomes. Each \lcv genome assembly is highly fragmented, meaning that
@@ -616,7 +602,7 @@ putative paralog to the mean sequence length across the tree
 
 Genes were grouped by species within each gene tree, and any group of
 2 or more genes was considered to be a set of putative paralogs
-.Within each set of putative paralogs, a single gene was chosen to be
+. Within each set of putative paralogs, a single gene was chosen to be
 retained for evolutionary analysis based on three rules applied in the
 following order: (1) if only one sequence had a length ratio above 0.5
 and all others had a length ratio below 0.5, the longest sequence was
@@ -719,31 +705,32 @@ to other sequences in the gene family allowed a sensible decision to
 be made.
 
 This was obviously not the most conservative approach to dealing with
-recent duplications---one could remove all copies from a set of
-putative paralogs, creating an apparent gene deletion, or one could
-simply ignore all gene families with any recent duplications (e.g.,
-require one-to-one orthology allowing for gene deletions). The latter
-option is almost certainly too conservative, but the former option may
-be appropriate for a more conservative approach. As the main concern
-over the handling duplicated genes has been that they may introduce a
-bias towards elevated evolutionary rates, I marked the XYZ genes
-containing at least XYZ sets of putative paralogs for further
-evaluation. Sitewise estimates from these genes were excluded from the
-most conservatively-filtered sitewise dataset and examined separately
-for excess signal of positive selection (see Section
-\ref{section_sitewise_filtering}), and in the next chapter I examine
-whether using the more conservative approach of removing all
-paralogous copies from genes removed the signal of positive selection
-from a subset of genes (see Section
-\ref{section_genes_paralog_subset}).
+recent duplications---one could instead remove all copies from a set
+of putative paralogs, creating an apparent gene deletion in that
+species, or simply ignore all gene families with any recent
+duplications (e.g., require one-to-one orthology allowing for gene
+deletions). The latter option would likely be overly conservative for
+a mammal-wide analysis, but the former option may be appropriate for a
+more conservative approach. As the main concern over the handling
+duplicated genes has been that they may introduce a bias towards
+elevated evolutionary rates, I marked the genes containing sets of
+putative paralogs for further evaluation. Sitewise estimates from
+these genes were excluded from the most conservatively-filtered
+sitewise dataset and examined separately for excess signal of positive
+selection (see Section \ref{section_sitewise_filtering})
+%, and in the
+%next chapter I examine whether using the more conservative approach of
+%removing all paralogous copies from genes removed the signal of
+%positive selection from a subset of genes (see Section
+%\ref{section_genes_paralog_subset}).
 
 \subsection{Identifying clusters of \nsyn substitutions}
 \label{section_windows_clustered_subs}
 
 After filtering for sequence quality and removing paralogous genes and
 shortened gene fragments, PRANK was used to align the codon sequences
-of each of the 16XYZ mammalian gene trees. Manual analysis of a number
-of these alignments revealed many short stretches of clearly
+of each of the 16,477 mammalian gene trees. Manual analysis of a
+number of these alignments revealed many short stretches of clearly
 nonhomologous sequence in one species, often flanked by stretches of
 perfect homology and often lying on the borders of exon junctions.
 %An
@@ -752,13 +739,13 @@ perfect homology and often lying on the borders of exon junctions.
 %20-codon stretch of the XYZ sequence appears to contain little
 %homology to the sequences from other species.
 These obviously erroneous stretches were likely due to mis-assembly of
-a genomic region or mis-identification of exon boundaries within the
+a genomic region orf misidentification of exon boundaries within the
 gene of one species. These errors were particularly concerning with
 respect to the detection of positive selection, as the incorporation
 of a stretch of apparently nonhomologous material into a sequence
 alignment would produce many alignment columns with multiple
 nucleotide differences per codon. As discussed in Section
-\ref{section_error_impact}, this type of error is particuarly prone to
+\ref{sec_error_impact}, this type of error is particuarly prone to
 cause false positives in the detection of positive selection.
 
 I hypothesized that these stretches of \nhom sequence could be
@@ -778,22 +765,18 @@ substitutions to identify regions of \nhom aligned sequence. First,
 the length of the terminal branch leading to each species determines
 how many lineage-specific substitutions would be expected to occur
 within a window of a certain size. The terminal human branch, for
-example, is very short (as it shares a very recent common ancestor
-with chimpanzee), while the platypus branch is very long (sharing a
-most recent common ancestor only with the entire eutherian
-clade). Thus, one would expect to observe many more lineage-specific
-substitutions in platypus than in human for a given alignment
-window. In contrast, a stretch of \nhom aligned sequence should
-introduce, on average, a constant number of \nsyn and \syn
-substitutions into the branch ancestral to the sequence in which it
-exists. The end result is that it should be more difficult to
-distinguish homologous from \nhom stretches in species with long
-terminal lineages, as species with long terminal lineages will have
-higher numbers of substitutions in truly homologous regions. On the
-other hand, this trend should also serve to limit the negative impact
-of \nhom stretches in those species on the detection of positive
-selection, because the resulting elevation in \nsyn or \syn
-substitutions rates would be less severe.
+example, is very short, while the platypus branch is very long. Thus,
+one would expect to observe many more lineage-specific substitutions
+in platypus than in human for a given alignment window. In contrast, a
+stretch of \nhom aligned sequence should introduce, on average, a
+constant number of \nsyn and \syn substitutions into the branch
+ancestral to the sequence in which it exists. For this reason it
+should be more difficult to distinguish homologous from \nhom
+stretches in species with long terminal lineages. On the other hand,
+this trend should also serve to limit the negative impact of \nhom
+stretches in those species on the detection of positive selection,
+because the resulting elevation in \nsyn or \syn substitutions rates
+would be less severe.
 
 The second confounding factor is that \nsyn substitutions have been
 shown to be significantly more clustered than expected by chance in a
@@ -810,24 +793,22 @@ stretches of aligned \nhom sequence.
 
 I investigated the distributions of \nsyn and \syn substitutions
 within windows of mammalian alignments by using \emph{codeml}
-\citep{Yang2007PAML} under the M0 model (e.g., assuming one \omg for all
-sites and all branches in the tree) to perform the marginal
+\citep{Yang2007PAML} under the M0 model (e.g., assuming one \omg for
+all sites and all branches in the tree) to perform the marginal
 reconstruction of ancestral sequences at internal nodes
 \citep{Yang1995} and to identify the substitution events implied by
-the reconstructed ancestral sequences of each gene alignemnt. Only
+the reconstructed ancestral sequences of each gene alignment. Only
 substitution events occurring between codons with high posterior
 probabilities in the marginal ancestral reconstruction ($>0.9$) were
 analyzed, and the location of each substitution event along the
 alignment and within the gene tree was stored. This analysis was
-performed on all gene trees, yielding a large database of substitution
-events along internal and terminal branches of the phylogenetic tree
-confidently inferred from the codon-based PRANK alignments of
-mammalian gene trees.
+performed on all gene trees, yielding a large database of confidently
+inferred substitution events along internal and terminal branches of
+the mammalian phylogenetic tree.
 
-Using this set of inferred substitutions, counts of \syn and \nsyn
-substitutions within non-overlapping 15-codon alignment windows for
-all terminal and internal nodes were collected; the results for a
-selection of species and internal nodes are shown in Figure
+Counts of \syn and \nsyn substitutions along each branch were
+collected for non-overlapping 15-codon alignment windows; the results
+for a selection of species and internal nodes are shown in Figure
 \ref{fig_wcs}, which plots the number of 15-codon windows containing a
 given number of \nsyn and \syn substitutions for a selection of
 terminal and internal nodes. The mean length of the branch ancestral

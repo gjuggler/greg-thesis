@@ -285,10 +285,11 @@ additional genomes was a major reason why I performed the analysis
 described in the following chapters using Ensembl as a source of gene
 trees and alignments, representing a major advantage over otherwise
 similar orthology databases due to the greater species sampling
-density. Here I provide some more detail on the way \lcv genomes are
-handled within the Ensembl annotation pipeline, as certain features of
-the \lcv genomes cause characteristic anomalies in the orthology
-analyses.
+density. 
+%Here I provide some more detail on the way \lcv genomes are
+%handled within the Ensembl annotation pipeline, as certain features of
+%the \lcv genomes cause characteristic anomalies in the orthology
+%analyses.
 
 The prevalence of missing sequence data and fragmented contigs in \lcv
 genomes presents a unique set of problems for the generation of
@@ -311,33 +312,36 @@ complete, coding transcripts to be generated for \lcv genomes,
 leveraging the high level of sequence similarity between human and
 other \euth mammals to project genes and transcripts from the
 high-quality human genome to the unannotated, highly fragmented \lcv
-genome assemblies. Still, in many cases the \ens pipeline cannot map
-complete genes or transcripts from human to the target genome, causing
-difficulty in identifying duplications \citep{Hubbard2007}. On one
-hand, the lack of completely assembled chromosomes means that
-segmental duplications in \lcv genomes are often unresolved or
-unidentifiable, making it difficult or impossible to confidently
-identify recently duplicated genes. On the other hand, the shorter
-length of assembled fragments causes genes to occasionally be split
-between two sequence fragments; the \ens pipeline currently annotates
-such genes as two separate shortened gene fragments, resulting in an
-excess of shortened apparent paralogs in resulting gene trees (see
-Section \ref{sec_removing_paralogs} for more detail on this artifact).
+genome assemblies. 
 
-The \cmp gene family pipeline, which I describe in more detail below,
-uses the set of annotated transcripts from each species as its input
-\citep{Vilella2009}, so the quality of gene annotation from each
-source genome has a direct impact on the overall quality and accuracy
-of the resulting gene trees which formed the source data for my
-analysis. Although the reliance on genome-wide alignments to, and gene
-annotations from, a reference genome could be criticized for
-potentially causing a bias towards the genomic properties of the
-reference, this approach is a reasonable workaround in the absence of
-higher-coverage sequence data or a painstakingly curated
-assembly. Furthermore, the gene model error-correcting features of the
-Ensembl pipeline are especially beneficial, making more complicated
-methods for correcting sequencing errors from \lcv genomes such as
-those described by \citep{Hubisz2011} seem less necessary.
+Still, in many cases the \ens pipeline cannot map complete genes or
+transcripts from human to the target genome, causing difficulty in
+identifying duplications \citep{Hubbard2007}. On one hand, the lack of
+completely assembled chromosomes means that segmental duplications in
+\lcv genomes are often unresolved or unidentifiable, making it
+difficult or impossible to confidently identify recently duplicated
+genes. On the other hand, the shorter length of assembled fragments
+causes genes to occasionally be split between two sequence fragments;
+the \ens pipeline currently annotates such genes as two separate
+shortened gene fragments, resulting in an excess of shortened apparent
+paralogs in the resulting gene trees.
+% (see Section
+%\ref{sec_removing_paralogs} for more detail on this artifact).
+
+The \cmp gene family pipeline uses the set of annotated transcripts
+from each species as its input \citep{Vilella2009}, so the quality of
+gene annotation from each source genome has a direct impact on the
+overall quality and accuracy of the resulting gene trees which formed
+the source data for my analysis. Although the reliance on genome-wide
+alignments to, and gene annotations from, a reference genome could be
+criticized for potentially causing a bias towards the genomic
+properties of the reference, this approach is a reasonable workaround
+in the absence of higher-coverage sequence data or a painstakingly
+curated assembly. Furthermore, the gene model error-correcting
+features of the Ensembl pipeline are especially beneficial, making
+more complicated methods for correcting sequencing errors from \lcv
+genomes such as those described by \citep{Hubisz2011} seem less
+necessary.
 
 \section{The Ensembl Compara gene tree pipeline}
 \label{sec_compara_pipeline}
@@ -357,23 +361,24 @@ is not straightforward, however, as the prevalence of alternative
 splicing in \euth mammals makes it common for a single gene to harbor
 many different transcript structures.
 
-As an aside, it is worth mentioning that in terms of mammalian biology
-and evolution, alternative splicing is a very interesting
-phenomenon. Tightly linked to the evolutionary innovation of
-regulatory control and tissue-specific gene expression, the existence
-of multiple transcripts per gene is one of the likely substrates of
-biological and developmental complexity within vertebrates and mammals
-as compared to single-celled eukaryotes, which show less developmental
-complexity but largely similar numbers of genes
-\citep{Csuros2011}. Further evidence of the unique evolutionary
-characteristics of alternatively-spliced exons comes from molecular
-evolutionary studies which have shown such exons to show, on average,
-higher levels of evolutionary constraint, possibly owing to the
-importance of exonic splice enhancers in modulating the inclusion or
-exclusion of their associated exons \citep{Parmley2006}.
+%As an aside, it is worth mentioning that in terms of mammalian biology
+%and evolution, alternative splicing is a very interesting
+%phenomenon. Tightly linked to the evolutionary innovation of
+%regulatory control and tissue-specific gene expression, the existence
+%of multiple transcripts per gene is one of the likely substrates of
+%biological and developmental complexity within vertebrates and mammals
+%as compared to single-celled eukaryotes, which show less developmental
+%complexity but largely similar numbers of genes
+%\citep{Csuros2011}. Further evidence of the unique evolutionary
+%characteristics of alternatively-spliced exons comes from molecular
+%evolutionary studies which have shown such exons to show, on average,
+%higher levels of evolutionary constraint, possibly owing to the
+%importance of exonic splice enhancers in modulating the inclusion or
+%exclusion of their associated exons \citep{Parmley2006}.
 
-In terms of organizing biological data, however, the pervasiveness of
-alternative splicing is somewhat burdensome. Roughly 34\% of human
+%In terms of organizing biological data, however, 
+The pervasiveness of
+alternative splicing is somewhat burdensome for a comparative anlaysis of genes. Roughly 34\% of human
 genes contain at least two, and up to several dozen, transcripts per
 gene \citep{Mironov1999}, showing tissue-specific and species-specific
 expression patterns, different levels of overall transcription, and
@@ -438,7 +443,7 @@ largely from synteny and orthology to human and mouse annotated genes,
 but two classes of genomes---those resulting from low-coverage
 sequencing and those from more distant species whose annotations are
 derived from largely independent data sources---will still suffer from
-some amount error in the form of poor transcript choice. The OPTIC
+some amount error due to transcript choice. In comparison, the OPTIC
 database, which contains orthologous groups identified within a wide
 range of animal and fungal clades, uses the transcript with the
 maximum length as the canonical transcript \citep{Heger2008}.
@@ -464,36 +469,36 @@ using a simple set of rules based on the structure of the inferred
 gene tree and the annotation of ancestral nodes where a duplication
 event has likely occurred.
 
-The Compara pipeline has been a part of the Ensembl ecosystem since
-its first introduction to Ensembl in release 42
-\citep{Birney2006}. Remarkably, aside from slight tweaks to the
-protein clustering method and some changes in the exact aligners used,
-the pipeline has changed little from its original published form
-\citep{Vilella2009}. In part, this lack of change reflects the ease
-with which sets of vertebrate orthologs can be identified using the
-existing methodology, lying in contrast to the equivalent task in sets
-of insect or fungal genomes where divergence levels between extant
-species with sequenced genomes are much larger \citep{Siepel2005} and
-the shape of the underlying species tree may be uncertain and/or
-unknown \citep{MacKenzie2008a}, making the development of specialized
-methods or extensive manual annotation necessary
-\citep{Kellis2004,Rasmussen2007}. This is equivalent to saying that
-Ensembl's pipeline, while not perfect in its orthology predictions or
-tree inferences (as indicated in a series of back-and-forth papers
-between \citet{Milinkovitch2010} and \citet{Vilella2011}), has proved
-sufficiently accurate enough that an extensive reworking of the system
-has not yet been deemed necessary. However, it is worth noting that
-the recent development of a new Bayesian method for gene tree
-reconciliation, based on a generative model of gene family evolution
-as a birth-death process and incorporating species-specific and
-gene-specific rate variation, showed good performance in resolving
-fungal and invertebrate gene trees, and could easily be adapted to the
-vertebrate genomes in the Compara database
-\citep{Rasmussen2011}. Additional validation of the overall approach
-taken by Compara comes in the form of Treefam and OPTIC
-\citep{Ruan2008,Heger2008}, databases of animal and fungal gene trees
-which applied a similar set of tools to infer gene trees from a more
-diverse set of genomes \citep{Vilella2009}.
+%The Compara pipeline has been a part of the Ensembl ecosystem since
+%its first introduction to Ensembl in release 42
+%\citep{Birney2006}. Remarkably, aside from slight tweaks to the
+%protein clustering method and some changes in the exact aligners used,
+%the pipeline has changed little from its original published form
+%\citep{Vilella2009}. In part, this lack of change reflects the ease
+%with which sets of vertebrate orthologs can be identified using the
+%existing methodology, lying in contrast to the equivalent task in sets
+%of insect or fungal genomes where divergence levels between extant
+%species with sequenced genomes are much larger \citep{Siepel2005} and
+%the shape of the underlying species tree may be uncertain and/or
+%unknown \citep{MacKenzie2008a}, making the development of specialized
+%methods or extensive manual annotation necessary
+%\citep{Kellis2004,Rasmussen2007}. This is equivalent to saying that
+%Ensembl's pipeline, while not perfect in its orthology predictions or
+%tree inferences (as indicated in a series of back-and-forth papers
+%between \citet{Milinkovitch2010} and \citet{Vilella2011}), has proved
+%sufficiently accurate enough that an extensive reworking of the system
+%has not yet been deemed necessary. However, it is worth noting that
+%the recent development of a new Bayesian method for gene tree
+%reconciliation, based on a generative model of gene family evolution
+%as a birth-death process and incorporating species-specific and
+%gene-specific rate variation, showed good performance in resolving
+%fungal and invertebrate gene trees, and could easily be adapted to the
+%vertebrate genomes in the Compara database
+%\citep{Rasmussen2011}. Additional validation of the overall approach
+%taken by Compara comes in the form of Treefam and OPTIC
+%\citep{Ruan2008,Heger2008}, databases of animal and fungal gene trees
+%which applied a similar set of tools to infer gene trees from a more
+%diverse set of genomes \citep{Vilella2009}.
 
 \section[Quantifying paralogous relationships within Ensembl gene trees]{Quantifying paralogous relationships within \\ Ensembl gene trees}
 \label{section_quantifying_paralogous}
@@ -823,19 +828,21 @@ implicitly uses taxonomic information when classifying gene
 relationships, allowing one to avoid the inclusion of paralogous
 genes. The main drawback of this approach was that it was based on
 annotations of orthology with respect to a single reference
-species. This resulted in each \subtr{} not necessarily containing a
-completely unique set of genes. For example, a gene which was recently
-duplicated in the human terminal lineage would yield two \subtr{}s,
-one for each human paralog, with identical sets of non-human genes in
-each tree. If those non-human genes evolved with a large amount of
-positive selection, then this signal would over-represented in the
-downstream analysis due to the inclusion of multiple copies of those
-sequences. The tree-based \subtr splitting approach was preferable in
-this regard, guaranteeing that each \ac{lot} would only be included
-once in the analysis. Still, I expected that the sets of \subtr{}s
-resulting from the \ens ortholog annotations would serve as a useful
-reference against which to compare the methods based purely on
-\acp{tcc}.
+species. Unless only strict one-to-one orthology was required---which
+would hvae been overly conservative, given the large number of species
+included here---the use of a reference species resulted in each
+\subtr{} not necessarily containing a completely unique set of
+genes. For example, a gene which was recently duplicated in the human
+terminal lineage would yield two \subtr{}s, one for each human
+paralog, with identical sets of non-human genes in each tree. If those
+non-human genes evolved with a large amount of positive selection,
+then this signal would over-represented in the downstream analysis due
+to the inclusion of multiple copies of those sequences. The tree-based
+\subtr splitting approach was preferable in this regard, guaranteeing
+that each \ac{lot} would only be included once in the analysis. Still,
+I expected that the sets of \subtr{}s resulting from the \ens ortholog
+annotations would serve as a useful reference against which to compare
+the methods based purely on \acp{tcc}.
 
 \begin{table} \footnotesize
 \centering
@@ -927,7 +934,6 @@ of small trees. This indicated that whatever process was causing the
 much of an impact on the overall placement of human protein-coding
 genes within the database of root \cmp gene trees.
 
-
 As mentioned in Section \ref{section_quantifying_paralogous}, a closer
 examination of the distribution of tree sizes in the set of root \cmp
 trees presented a clear view of the over-clustering of \mammln
@@ -948,14 +954,14 @@ support for the scenario described in Section
 clustering together two or more \mammln \acp{lot} related by a more
 distant duplication event.
 
-I found it interesting to characterize the set of root \cmp gene trees
-by the proportion of all protein sequences which are covered by trees
-of a given size or smaller. This value is plotted in Figure
-\ref{fig_ensembl_roots_hist} as a gray line. First, this plot showed that
-trees with fewer than 15 sequences (which were excluded from the plot
-but inlcuded in the calculation of the cumulative distribution shown)
-represented a very small fraction of the sequences within the \cmp
-database; this observation was similar, but not identical, to the
+It was also informative to characterize the set of root \cmp gene trees by
+the proportion of all protein sequences which are covered by trees of
+a given size or smaller. This value is plotted in Figure
+\ref{fig_ensembl_roots_hist} as a gray line. First, this plot showed
+that trees with fewer than 15 sequences (which were excluded from the
+plot but inlcuded in the calculation of the cumulative distribution
+shown) represented a very small fraction of the sequences within the
+\cmp database; this observation was similar, but not identical, to the
 statistic noted above, that only 4\% of human genes were contained
 within small trees. Second, the steady upward slope of the cumulative
 curve contrasted with the declining height of the histogram bars at
@@ -986,8 +992,8 @@ referred to as the N50 length, is the contig length for which 50\% of
 bases are contained in contigs of that size or larger
 \citep{Miller2010}. For the \cmp gene trees, the N50 tree size was
 139, slightly less than three times the number of vertebrate species
-(Table \ref{table_ensembl_roots}). Thus, the average protein in the set
-of \cmp gene trees belonged to a tree with 139 sequences,
+(Table \ref{table_ensembl_roots}). Thus, the average protein in the
+set of \cmp gene trees belonged to a tree with 139 sequences,
 corresponding roughly to three \mammln \acp{lot} related by ancient
 duplication events, likely resulting from the two rounds of vertebrate
 genome duplication.

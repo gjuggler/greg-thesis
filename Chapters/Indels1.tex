@@ -184,22 +184,22 @@ selection becoming standard practice
 investigation of potential benefits of alignment filtering to the
 detection of positive selection seems well-warranted.
 
-This paper aims to use a simulation framework to incorporate alignment
-error and alignment filtering into estimates of the error rate and
-power of \sw evolutionary inference of positive selection. This
-approach builds on those of Anisimova et al.
+This chapter aims to use a simulation framework to incorporate
+alignment error and alignment filtering into estimates of the error
+rate and power of \sw evolutionary inference of positive
+selection. This approach builds on those of Anisimova et al.
 \citeyearpar{Anisimova2002Accuracy}, Fletcher and Yang
 \citeyearpar{Fletcher2010}, and Privman et
 al. \citeyearpar{Privman2011Improving}, using simulated protein
 alignments including insertions and deletions to evaluate methods for
-detecting \sw positive selection. Furthermore, I incorporate a diverse
-sample of aligners and alignment filters into an experimental design
-that differs from previous ones in a number of important ways.
+detecting \sw positive selection. Furthermore, I incorporated a
+diverse sample of aligners and alignment filters into an experimental
+design that differs from previous ones in a number of important ways.
 
-I focus on sitewise detection of positive selection occurring
+I focused on sitewise detection of positive selection occurring
 throughout a phylogeny and evaluate the impact of a number of
 alignment filtering methods on the \sw analysis. Thus, the biological
-hypothesis being investigated is different from that studied by
+hypothesis being investigated were different from that studied by
 Fletcher and Yang \citeyearpar{Fletcher2010}, who focused on
 genewise selection acting at specific branches.  Privman et
 al. \citeyearpar{Privman2011Improving} recently published a related
@@ -215,11 +215,11 @@ evolution \citep{Kosiol2008Patterns} and which comprise a larger
 diversity of protein structures and a wider range of species
 divergence levels.
 
-I hypothesize that the divergence level and indel rate, two important
+I hypothesized that the divergence level and indel rate, two important
 evolutionary factors which are highly variable within and between
 different genomes, may strongly affect the performance of methods for
 alignment and detection of selection. Accordingly, these simulations
-encompass a wide range of biologically plausible indel rates and
+encompassed a wide range of biologically plausible indel rates and
 divergence levels while fixing other parameters at values typical to
 those encountered in the \sw analysis of vertebrate gene families.
 
@@ -311,7 +311,7 @@ The distribution of \sw selective pressures (embodied by the parameter
 rate of \syn substitution) was modeled with a log-normal
 distribution derived from a maximum-likelihood fit to a large dataset
 of \sw selective pressures estimated from mammalian gene trees
-(Lindblad-Toh et al. \citeyear{LindbladToh2011}; log-normal parameters shown in Table
+(\citet{LindbladToh2011}; log-normal parameters shown in Table
 \ref{table_indels_1}). This distribution, with mean \omg of 0.28 and 6\% of
 sites having \omg$>1$, is consistent with the structure-based
 expectation of many protein sites under purifying selection and few
@@ -418,41 +418,15 @@ T-Coffee, using a score threshold of 0.5.
 
 \Sw estimates of selective pressures were calculated using
 maximum-likelihood methods implemented in the Phylogenetic Analysis by
-Maximum Likelihood (PAML; \citealt{Yang2007PAML}) and Sitewise Likelihood Ratio
-(SLR; \citealt{Massingham2005}) software packages.
-
-The $codeml$ program from PAML implements a number of likelihood ratio
-tests (LRTs) for detecting the presence of positive selection in a
-gene while allowing the \omg ratio to vary among sites
-\citep{Yang2000CodonSubstitution}. These models, known as the sites or
-random sites models, use a variety of predefined statistical
-distributions to account for heterogeneous \omg ratios among sites. After
-the likelihood optimization is performed, Bayesian methods can be used
-to estimate the posterior probability of each site being drawn from a
-given site class, where a high posterior probability of a site
-belonging to a class with $\omega>1$ can be considered strong
-evidence that a site has evolved under positive selection
-\citep{Yang2005Bayes}. I used the two models for which the
-recommended Bayes Empirical Bayes method are implemented, M2a and M8.
-
-SLR implements a method specifically designed for \sw estimates which
-has been shown in simulations to perform as well as or better than
-PAML's \sw random sites models \citep{Massingham2005}. SLR
-models codon evolution as a continuous-time Markov process where
-substitutions at one site are independent of substitutions at all
-other sites. No assumptions are made regarding the
-distribution of \omg ratios within the alignment. The value of
-\omg is considered to be an independent parameter at each site:
-after first optimizing shared parameters using the whole alignment,
-SLR uses the shared parameters and the data at each alignment site to
-calculate a \sw statistic for non-neutral evolution. This statistic is
-based on a likelihood-ratio test where the null model is neutral
-evolution ($\omega=1$) and the alternative model is either purifying or
-positive selection ($\omega<1$ or $\omega>1$, respectively). The raw
-statistic measures the strength of evidence for non-neutral evolution
-at each site; following Massingham and Goldman
-\citeyearpar{Massingham2005} I use a signed version of the
-SLR statistic (created by negating the statistic for sites with
+Maximum Likelihood (PAML; \citealt{Yang2007PAML}) and Sitewise
+Likelihood Ratio (SLR; \citealt{Massingham2005}) software
+packages. The major models implemented by these two programs were
+introduced in Chapter \ref{ch_intro}. To estimate \sw selective
+pressures with \ac{paml} I used the two models for which the
+recommended Bayes Empirical Bayes method are implemented, M2a and
+M8. \ac{slr} was run using default parameters. Following Massingham
+and Goldman \citeyearpar{Massingham2005}, I use a signed version of
+the SLR statistic (created by negating the statistic for sites with
 $\omega<1$) as the test statistic for positive selection.
 
 \subsection{Measuring Performance}

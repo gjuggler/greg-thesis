@@ -1,0 +1,21 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Thu Nov 17 16:10:05 2011
+ \citet{Clark2003} & H & 7,645 & B/BS & PAN & 20.24\% & 8.72\% & Olfaction \newline Sensory perception \newline Cell surface receptor-med. signal transd. \newline Chemosensory perception \newline Nuclear transport \\ 
+  Ibid. & C &  &  &  & 20.07\% &  & Signal transduction \newline Amino acid metabolism \newline Amino acid transport \newline Cell proliferation and differentiation \newline Cell structure \\ 
+  \citet{Sequencing2005a} & H/C & 7,043 & B & GEN & 8.31\% &  & Sensory perception of chemical stimulus \newline Perception of smell \newline Xenobiotic metabolism \newline Complement activation \newline Regulation of cytokine biosynthesis \\ 
+  \citet{Nielsen2005} & H/C & 8,079 & B ($\omega>1$) & PAN &  & 0.43\% & Immunity and defense \newline T-cell mediated immunity \newline Chemosensory perception \newline Unclassified \newline Olfaction \\ 
+  \citet{Macaque2007} & H/C & 10,376 & BS & PAN &  & 0.65\% & Physiological response to stimulus \newline Immune response \newline Immune system process \newline Physiological response to wounding \newline Sensory perception of chemical stimulus \newline Olfactory receptor activity \\ 
+  Ibid. & M &  &  &  &  & 1.26\% & Extracellular region \newline Physiological response to wounding \newline Physiological response to stimulus \newline Response to wounding \newline Defense response \\ 
+  \citet{Bakewell2007} & H & 13,888 & BS & PAN &  & 1.11\% & Anion/Ion transport \newline Phosphate transport \newline Ectoderm development \newline Fatty acid metabolism \newline G-protein mediated signaling \\ 
+  Ibid. & C &  &  &  &  & 0.96\% & Protein metabolism and modififcation \newline mRNA transcription \newline Proteolysis \newline mRNA transcription regulation \newline Stress response \\ 
+  \citet{Kosiol2008} & H/C/M & 12,823 & BS & PAN &  & 4.24\% & Olfactory receptor activity \newline Sensory perception of chemical stimulus \newline Sensory perception of smell \newline G-protein coupled receptor activity \newline Sensory perception \\ 
+  \citet{Uddin2008} & H/C/M & 23,945 & OCPAT & DAVID & 7.07\% &  & Glycoprotein \newline Olfaction \newline Transmembrane \newline Mitochondrion \newline Oxidative phosphorylation \newline Cytokine activity \newline Immune response \\ 
+  \citet{Locke2011} & H/C/M & 13,882 & BS & GO/PAN &  &  & Immunity and defense \newline Visual perception \newline Glycolipid metabolic processes \\ 
+  This Study & H & 11,534 & B & GO & 5.75\% & 1.23\% & RNA elongation from PolII \newline Positive regulation of gene-specific transcr. \newline Transcription initiation from RNA polymerase \newline Anterior/posterior pattern formation \newline Excretion \\ 
+  Ibid. & G &  &  &  & 4.87\% & 1.66\% & Inner ear morphogen. \newline Hair follicle development \newline Male gonad development \newline Brain development \newline Sensory perception of sound \\ 
+  Ibid. & C & 11,534 & GO &  & 4.64\% & 1.59\% & Nitric oxide biosynthesis \newline DNA replication \newline Hexose metabolic process \newline Glycolysis \newline Regulation of DNA-dependent transcription \\ 
+  Ibid. & \ac{aga} Branch &  &  &  & 2.59\% & 1.32\% & Response to cAMP \newline Microtubule-based movement \newline Response to nutrient \newline Negative regulation of organelle organization \newline Fat cell differentiation \\ 
+  Ibid. & H-C &  &  &  & 2.48\% &  & Neuropeptide signaling pathway \newline Regulation of DNA-dependent transcription \newline Microtubule-based movement \newline Anterior/posterior pattern formation \newline Homophilic cell adhesion \\ 
+  Ibid. & G-C &  &  &  & 1.79\% &  & Protein amino acid autophosphorylation \newline Positive regulation of TF activity \newline Inner ear development \newline Microtubule-based movement \newline Post-embryonic development \\ 
+  Ibid. & G-H &  &  &  & 2.06\% &  & Wnt receptor signaling pathway \newline Sensory perception of sound \newline Skeletal system morphogenesis \newline Sensory perception of light stimulus \newline Sex differentiation \\ 
+  
