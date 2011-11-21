@@ -7,76 +7,70 @@
 \section{Introduction}
 
 This chapter describes the use of sitewise evolutionary estimates to
-characterize the global distribution of selective constraint across 38
-mammalian genomes and within the major mammalian superorders. I apply
-the \ac{slr} test, which was introduced in Chapter \ref{ch_intro} and
-evaluated in Chapter \ref{ch_indels1}, to the set of mammalian
-orthologous gene trees from Chapter \ref{ch_orthologs} to generate
-genome-wide sets of sitewise statistics measuring selective constraint
-in several groups of \mammln species. Both this chapter and the
-following one are concerned with the analysis of these \sw data: here
-I will consider the overall distribution of constraint observed in
-several groups of mammalian genomes, while Chapter \ref{ch_mammals2}
-will look at the use of these \sw data to identify trends in the
-evolution of genes and protein domains.
+characterize the genome-wide distribution of selective constraint in
+mammals and within the major mammalian superorders. I apply the
+\ac{slr} test, which was introduced in Chapter \ref{ch_intro} and
+evaluated in Chapter \ref{ch_indels1}, to the set of orthologous gene
+trees from Chapter \ref{ch_orthologs} to estimate statistics measuring
+\sw selective constraint in several groups of \mammln species. Both
+this chapter and Chapter \ref{ch_mammals2} are concerned with the
+analysis of these \sw data: here I will analyze the overall
+distribution of constraint observed in several groups of mammalian
+genomes, and Chapter \ref{ch_mammals2} will apply these \sw data to
+identify genes, biological processes and protein domains enriched for
+evidence of positive selection.
 
-The first section of this chapter describes the preparation and
-alignment of the mammalian orthologs from Chapter \ref{ch_orthologs}
-and introduces a protocol for filtering genome-wide sitewise
-estimates. Although the simulations from Chapter \ref{ch_indels1}
-showed that sequences with divergence levels above that of most
-mammalian proteins can be aligned without introducing many false
-positives due to misaligning biological insertions and deletions, the
-analysis of empirical sequence data involves many potential
-non-evolutionary sources of alignment error. A sequenced and annotated
-genome is not a piece of observed data; rather, it is the result of a
-succession of inferences (based ultimately on the observation of a
-pool of genomic DNA by some sequencing technology), each step along
-the way involving potential errors and biases. Chapter
-\ref{ch_orthologs} looked at the identification of mammalian
-orthologs, showing that the inference of correct gene trees can be
-fraught with difficulties, and that \lcv genomes are under-represented
-in gene duplications. Other sources of error, including those
-occurring while sequencing DNA bases, assembling genomic fragments,
-and annotating gene-coding regions have all been previously
-highlighted as being important in the large-scale analysis of genomic
-data \citep{TODO}. As such, care was taken to design and evaluate a
-variety of filters to reduce the probability of yielding misleading
-results.
+The first section of this chapter describes the filtering and
+alignment of mammalian orthologs and introduces a protocol for
+filtering genome-wide sitewise estimates. Although the simulations
+from Chapter \ref{ch_indels1} showed that sequences with
+mammalian-like divergence levels showing biological patterns of
+insertion and deletion can be aligned without introducing many false
+positive \acp{psc}, the analysis of real sequence data involves many
+potential non-biological sources of alignment error. A sequenced and
+annotated genome is not a piece of observed data; rather, it is the
+result of a succession of inferences, each one of which involves
+potential errors and biases. Errors may arise from the sequencing of
+DNA bases, assembly of genomic fragments, and annotation of
+gene-coding regions; each of these steps has been previously
+highlighted as an important source of error in the large-scale
+analysis of genomic alignments \citep{TODO}. As such, care was taken
+to design and evaluate a variety of filters to reduce the probability
+of yielding misleading results.
 
-The second portion of this chapter looks at the global distribution of
-mammalian selective constraint, using \sw estimates to identify sites
-evolving under purifying and positive selection at various confidence
-levels. In parallel with the major goal of the \ac{mgp} to understand
-the amount of evolutionary constraint across the entire mammalian
-genome, the purpose of this analysis was to better understand the
-distribution of evolutionary constraint within mammalian
-protein-coding regions, focusing on what proportion of protein-coding
-material has been evolving under purifying, neutral, or positive
-selection in mammals. Proteins are well understood to evolve under
-strong purifying constraint due to their functional importance
-\citep{Fay2003}, but some regions of proteins, such as disordered
-regions between two well-folded domains, may evolve under relaxed
-constraints. Furthermore, positive selection of beneficial
-substitutions can also play a role in shaping the evolutionary history
-of proteins \citep{Pal2006}. There has thus been great interest in
-understanding the role of adaptive evolution in shaping the genes and
-genomes of mammals and primates, but different studies have produced
-widely varying estimates of the number of genes subject to positive
-selection \citep{MarquesBonet2009a,Ellegren2008}.
+The second portion of this chapter presents an analysis of the global
+distribution of mammalian selective constraint, using \sw estimates to
+identify sites evolving under purifying and positive selection in
+different groups of species. In parallel with the major goal of the
+\ac{mgp} to better identify and understand the nature of evolutionary
+constraint across mammalian genomes, the purpose of this analysis was
+to better characterize the distribution of evolutionary constraint
+within mammalian protein-coding regions. Thus, a major question was
+what proportion of protein-coding material has been evolving under
+purifying, neutral, or positive selection in mammals. Proteins are
+well understood to evolve under strong purifying constraint due to
+their functional importance \citep{Fay2003}, but some regions of
+proteins, such as disordered regions between two well-folded domains,
+may evolve under relaxed constraints. Furthermore, positive selection
+of beneficial substitutions can also play a role in shaping the
+evolutionary history of proteins \citep{Pal2006}. There has thus been
+great interest in understanding the role of adaptive evolution in
+shaping the genes and genomes of mammals and primates, but different
+studies have produced widely varying estimates of the number of genes
+subject to positive selection \citep{MarquesBonet2009a,Ellegren2008}.
 
-While most previous investigations of positive selection in mammals
-have focused on the gene as the unit of analysis, the current analysis
-used a primarily \sw approach. The focus on identifying \acp{psc}
-instead of the traditional identification of \acp{psg}, allowed for a
-more flexible quantification of levels of purifying and positive
-selection in mammals. One expected benefit of the \sw approach was
-that fine-grained filtering on a site-by-site basis could be performed
-both before and after the computationally expensive step of estimating
-evolutionary parameters, allowing for a more extensive and flexible
-set of filters to be used in estimating the potential impact of
-alignment or annotation error on the amounts of inferred positive
-selection.
+While most genome-wide analyses of selective constraint have focused
+on the gene as the unit of analysis
+\citep{Nielsen2005,Sequencing2005a,Kosiol2008}, this chapter adopts a
+primarily \sw approach, presenting distributions of \sw estimates
+aggregated across all sites from all genes. The use of explicitly \sw
+estimates allowed for various types of filtering to be applied by
+removing sites sites from the dataset according to different filtering
+criteria. Different \sw filters could be applied without the
+computationally expensive step of re-estimating evolutionary
+parameters, allowing for the impact of various filters on the amount
+of inferred positive and purifying selection to be quickly and
+flexibly estimated.
 
 %The second, more subtle goal of this analysis was to place the
 %distribution of selective pressures implied by the \sw analysis within
@@ -133,154 +127,153 @@ selection.
 %natural selection.
 
 \section{Data quality concerns: sequencing, assembly and annotation error}
-
-\subsection{The impact of sequencing errors on error rates in detecting positive selection}
+%\subsection{The impact of sequencing errors on error rates in detecting positive selection}
 \label{sec_error_impact}
 
 The possibility that erroneously-aligned sequences might cause false
 positives in the detection of sitewise positive selection was a major
 concern for this analysis, especially given the \lcv nature of the 20
-newly-sequenced genomes. Although the \slr test and other \sw \ml
-methods have been shown to be conservative in their identification of
-positively selected sites under most conditions, even when the amount
-of data is low or the null model is violated
+genomes sequenced by the \ac{mgp}. Although the \slr test and other
+\sw \ml methods have been shown to be conservative in their
+identification of positively selected sites under most conditions,
+even when the amount of data is low or the null model is violated
 \citep{Anisimova2002,Anisimova2003,Massingham2005}, most evolutionary
 analyses are based on the assumption that all sites within an
 alignment column are truly homologous. This assumption can be violated
-in a number of ways.
+in a number of ways, resulting in misalignment.
+%Here misalignemnt will be
+%defined as the incorrect placement of \nhom nucleotides into the same
+%column of a multiple sequence alignment.
 
-Of course, alignment error can result from errors in reconstructing
-the evolutionary history of sequences evolving with indels, causing
-non-homologous codons to be placed in the same alignment column. In
-Chapter \ref{ch_indels1} I explored the tendency of a number of
-progressive multiple alignment programs to produce such errors,
-showing that \prankc alignments introduce few falsely identified
-positively-selected sites resulting from alignment errors at
-mammalian-like divergence levels. Thus, \prankc was used to align all
-coding sequences, and the number of false positives resulting from
-misalignment of biological insertions and deletions was expected to be
-low.
+In Chapter \ref{ch_indels1} I explored misalignment resulting from
+errors in reconstructing the evolutionary history of sequences
+evolving with insertions and deletions. Simulations showed that
+\prankc alignments contained little misalignment and caused few false
+positives in the \sw detection of positive selection. However,
+biological insertions and deletions are not the only potential source
+of misalignment. An additional concern was the potential for errors
+resulting from the inclusion of erroneous or \nhom sequence regions
+within the mammalian orthologs. As the \lcv genomes were not assembled
+into chromosomes and contained large amounts of missing sequence, the
+likelihood of miscalled bases, spurious insertions or deletions, or
+shuffled regions due to mis-assembly was relatively high
+\citep{Green2007}. Most aligners were not designed to these types of
+errors, so they may be expected to result in excess misaligned
+regions.
 
-Biological indels are not the only potential source of misalignment
-error. Errors resulting from the inclusion of incorrect genomic
-sequence in coding sequences were an additional concern. The \lcv
-genomes were not assembled into chromosomes and had large amounts of
-missing sequence, making the likelihood of miscalled bases, spurious
-insertions or deletions, or shuffled regions due to mis-assembly
-relatively high \citep{Green2007}. The magnitude of the effect of each
-of the aforementioned types of sequence errors on the detection of
-positive or purifying selection depends on the nature of the inference
-method, the type of sequencing error, and the branch length of the
-terminal lineage leading to the species containing the sequence error.
+%Since \ac{slr} uses a model which assumes independence between amino
+%acid sites, the effect of any type of misalignment on the resulting
+%inference will be largely, but not entirely. independent between
+%neighboring codons. In reality, errors will have some impact on other
+%sites through the estimation of parameters which are common to all
+%sites.
 
-As most codon-based inference methods assume independence between
-amino acid sites, the effect of misalignment on the resulting
-inference will be independent between neighboring codons. Thus, one
-may first consider the effect---in isolation---of a single
-spuriously-assigned homologous codon on the \ml estimation of
-\omg. Two distinct situations can be encountered: first, the case
-where a single sequence error causes one spurious nucleotide
-substitution within a codon, and second, the case where one or
-multiple sequence or assembly errors cause multiple spurious
-substitutions within a codon. Single spurious nucleotides, such as
-miscalled bases, would add noise to the estimation of \omg, but as a
-whole they would not be expected to cause false positive \acp{psc}. If
-we assume no large difference between the natural mutational process
-and the process that caused the erroneous mutation (e.g., a random
-distribution across codon positions and no bias in the identity of the
-miscalled base) then the effect would be to shift the estimated \omg
-in the branch containing the error towards 1. This is because, on
-average, isolated miscalled bases would appear the same as a neutral
-substitution process, inflating the estimated substitution rate but
-not affecting the relative \nsyn and \syn rates.
+% . Thus, one may first consider the
+%effect---in isolation---of a single spuriously-assigned homologous
+%codon on the \ml estimation of \omg. Two distinct situations can be
+%encountered: first, the case where a single sequence error causes one
+%spurious nucleotide substitution within a codon, and second, the case
+%where one or multiple sequence or assembly errors cause multiple
+%spurious substitutions within a codon. Single spurious nucleotides,
+%such as miscalled bases, would add noise to the estimation of \omg,
+%but as a whole they would not be expected to cause false positive
+%\acp{psc}. If we assume no large difference between the natural
+%mutational process and the process that caused the erroneous mutation
+%(e.g., a random distribution across codon positions and no bias in the
+%identity of the miscalled base) then the effect would be to shift the
+%estimated \omg in the branch containing the error towards 1. This is
+%because, on average, isolated miscalled bases would appear the same as
+%a neutral substitution process, inflating the estimated substitution
+%rate but not affecting the relative \nsyn and \syn rates.
 
-In contrast to single spurious substitions, codons with multiple
-erroneous bases in one species may produce strongly elevated inferred
-substitution rates and \omg estimates. This is due to the necessity of
-the codon model implemented in SLR to infer a multi-step path of
-single substitutions between the two codons on either side of a given
-evolutionary branch. The exact \ml path estimated between two
-completely non-homologous codons depends on the estimated codon
-frequencies, the branch length separating the two sequences, and the
-nature of the process causing misalignment of nonhomologous codons,
-but in general it would be reasonable to expect a greater number of
-false positive \acp{psc} resulting from codons with multiple erroneous
-bases than from codons with single errors due to the necessary
-inference of a multi-step path between codons with multiple nucleotide
-differences.
+%In contrast to single spurious substitions, codons with multiple
+%erroneous bases in one species may produce strongly elevated inferred
+%substitution rates and \omg estimates. This is due to the necessity of
+%the codon model implemented in SLR to infer a multi-step path of
+%single substitutions between the two codons on either side of a given
+%evolutionary branch. The exact \ml path estimated between two
+%completely non-homologous codons depends on the estimated codon
+%frequencies, the branch length separating the two sequences, and the
+%nature of the process causing misalignment of nonhomologous codons,
+%but in general it would be reasonable to expect a greater number of
+%false positive \acp{psc} resulting from codons with multiple erroneous
+%bases than from codons with single errors due to the necessary
+%inference of a multi-step path between codons with multiple nucleotide
+%differences.
 
-Given the potentially greater impact of codons with multiple errors,
-the propensity of each of the common sequencing error types identified
-above (miscalled bases, spurious indels, and
-shuffled/repeated/collapsed regions due to mis-assembly) to cause
-single or multiple errors within codons could strongly affect its
-impact on the sitewise detection of positive selection. On its own, a
-miscalled nucleotide base would obviously result in a single spurious
-substitution. However, low-quality bases tend not to be uniformly
-distributed among or within sequence reads \citep{Kircher2009},
-leading to an increased probability of multiple errors within a codon
-resulting from miscalled bases. Spurious indels within coding regions
-may be even more likely than miscalled bases to cause multiple errors
-within a codon due to the potential for creating frameshift
-artifacts. Assembly errors, which result in larger-scale structural
-errors including missing, repeated, shuffled or inverted sequence
-regions \citep{Jaffe2003}, are especially prone to producing codons
-with multiple erroneous substitutions due to the large amount of
-contiguous sequence data being misplaced.
+%Given the potentially greater impact of codons with multiple errors,
+%the propensity of each of the common sequencing error types identified
+%above (miscalled bases, spurious indels, and
+%shuffled/repeated/collapsed regions due to mis-assembly) to cause
+%single or multiple errors within codons could strongly affect its
+%impact on the sitewise detection of positive selection. On its own, a
+%miscalled nucleotide base would obviously result in a single spurious
+%substitution. However, low-quality bases tend not to be uniformly
+%distributed among or within sequence reads \citep{Kircher2009},
+%leading to an increased probability of multiple errors within a codon
+%resulting from miscalled bases. Spurious indels within coding regions
+%may be even more likely than miscalled bases to cause multiple errors
+%within a codon due to the potential for creating frameshift
+%artifacts. Assembly errors, which result in larger-scale structural
+%errors including missing, repeated, shuffled or inverted sequence
+%regions \citep{Jaffe2003}, are especially prone to producing codons
+%with multiple erroneous substitutions due to the large amount of
+%contiguous sequence data being misplaced.
 
-For detecting positive selection, the specific test used and the
-branch lengths separating the species being tested may also have an
-impact on the prevalence false positives resulting from sequence
-errors. Sequence errors should only substantially affect the
-estimation of \nsyn and \syn substitution rates along the terminal
-lineage leading to the erroneous sequence data; thus, the potential
-impact of sequencing error on the inference of a positively selected
-site or gene can be estimated by considering the potential impact of
-an inflated rate of \nsyn substitution along the terminal branch on
-the inference of positive selection with a given test. Both the
-branch-site test for positive selection (which was not used in this
-analysis) and the sitewise tests for positive selection (including
-\pamlEight and \slr) are
-sensitive to erroneous substitutions occurring at individual alignment
-columns, with the major difference between the two types of test being
-that the branch-site test is highly sensitive to substitutions along
-the foreground branch(es) being tested for positive selection, while
-sitewise tests only measure the signal for positive selection across
-the entire evolutionary tree.
+%For detecting positive selection, the specific test used and the
+%branch lengths separating the species being tested may also have an
+%impact on the prevalence false positives resulting from sequence
+%errors. Sequence errors should only substantially affect the
+%estimation of \nsyn and \syn substitution rates along the terminal
+%lineage leading to the erroneous sequence data; thus, the potential
+%impact of sequencing error on the inference of a positively selected
+%site or gene can be estimated by considering the potential impact of
+%an inflated rate of \nsyn substitution along the terminal branch on
+%the inference of positive selection with a given test. Both the
+%branch-site test for positive selection (which was not used in this
+%analysis) and the sitewise tests for positive selection (including
+%\pamlEight and \slr) are
+%sensitive to erroneous substitutions occurring at individual alignment
+%columns, with the major difference between the two types of test being
+%that the branch-site test is highly sensitive to substitutions along
+%the foreground branch(es) being tested for positive selection, while
+%sitewise tests only measure the signal for positive selection across
+%the entire evolutionary tree.
 
-For the branch-site test, the potential effect of sequencing error
-should depend on the location and length of the foreground branch(es):
-if the terminal branch leading to the spurious sequence is within the
-foreground, and especially if it represents a sizeable portion of the
-overall foreground branch length, then false positives could easily
-result; if, however, the terminal branch is outside of the foreground,
-then it would have little direct impact on the \fpr of the branch-site
-test aside from adding noise to the estimation of parameters in the
-non-foreground branches of the tree.
+%For the branch-site test, the potential effect of sequencing error
+%should depend on the location and length of the foreground branch(es):
+%if the terminal branch leading to the spurious sequence is within the
+%foreground, and especially if it represents a sizeable portion of the
+%overall foreground branch length, then false positives could easily
+%result; if, however, the terminal branch is outside of the foreground,
+%then it would have little direct impact on the \fpr of the branch-site
+%test aside from adding noise to the estimation of parameters in the
+%non-foreground branches of the tree.
 
-For site-based tests such as \slr, the effect of sequencing error
-should be independent of the position of the terminal branch within
-the tree, depending more on the magnitude of \nsyn substitution rate
-elevation resulting from the sequence error and the fraction of total
-branch length covered by the ``erroneous'' terminal branch within the
-phylogenetic tree being studied. It would be difficult to consider
-each of these factors (the terminal branch length and the magnitude of
-\nsyn substitution rate elevation) in isolation due to their
-non-independence: sequence errors in a short terminal branch may yield
-a strongly elevated \nsyn substitution rate, but the impact on the
-overall inference of positive selection may be limited as a result of
-the short branch length. On the other hand, the same erroneous
-sequence in a species with a longer terminal branch would likely cause
-a smaller elevation in the \nsyn substitution rate (due to the higher
-expected number of substitutions along a longer branch) yet the impact
-of such an elevated rate on the sitewise inference would be
-proportionally greater due to the higher branch length. A reasonable
-hypothesis would be that these opposing factors would effectively
-cancel each other out in the \ml calculations. In either case, the
-expectation that a phylogeny with a greater proportion of its branch
-length within terminal branches (which, in contrast to internal
-branches, may contain spurious substitutions resulting from sequencing
-errors) would be more prone to false positives should still hold.
+%For site-based tests such as \slr, the effect of sequencing error
+%should be independent of the position of the terminal branch within
+%the tree, depending more on the magnitude of \nsyn substitution rate
+%elevation resulting from the sequence error and the fraction of total
+%branch length covered by the ``erroneous'' terminal branch within the
+%phylogenetic tree being studied. It would be difficult to consider
+%each of these factors (the terminal branch length and the magnitude of
+%\nsyn substitution rate elevation) in isolation due to their
+%non-independence: sequence errors in a short terminal branch may yield
+%a strongly elevated \nsyn substitution rate, but the impact on the
+%overall inference of positive selection may be limited as a result of
+%the short branch length. On the other hand, the same erroneous
+%sequence in a species with a longer terminal branch would likely cause
+%a smaller elevation in the \nsyn substitution rate (due to the higher
+%expected number of substitutions along a longer branch) yet the impact
+%of such an elevated rate on the sitewise inference would be
+%proportionally greater due to the higher branch length. A reasonable
+%hypothesis would be that these opposing factors would effectively
+%cancel each other out in the \ml calculations. In either case, the
+%expectation that a phylogeny with a greater proportion of its branch
+%length within terminal branches (which, in contrast to internal
+%branches, may contain spurious substitutions resulting from sequencing
+%errors) would be more prone to false positives should still hold.
+
 %To summarize, the expected effect of alignment errors on the sitewise
 %detection of positive selection should be minimal when using a good
 %aligner and analysing data within vertebrate divergence levels, but
@@ -288,39 +281,41 @@ errors) would be more prone to false positives should still hold.
 %on a number of factors including the frequency, spatial clustering,
 %and terminal branch length associated with sequencing, assembly and
 %annotation errors.
-In some cases, even a relatively large amount of
-sequencing error may not produce a strongly elevated \fpr (e.g., when
-the total internal branch length is large as when analyzing all
-mammals or vertebrates), as the addition of a few spurious
-substitutions would not significantly change the estimated \nsyn
-substitution rate. In other cases, however (e.g., when the branch
-length is small or when many low-quality genomes are included), it may
-significantly bias results towards excess false positives.
+
+The impact of these types of errors on detecting positive selection at
+any given codon should depend on the model used to infer selection,
+the number and identify of the \nhom nucleotides placed in the same
+aligned codon, and the branch length leading to the sequence
+containing the misaligned bases. Misalignment of multiple nucleotides
+in the same codon would tend to produce more false positives than
+single-nucleotide errors, and misalignment in sequences or trees with
+shorter branch length may have an overall greater impact on the
+estimated \nsyn substitution rates.
 
 \subsection{Empirical evidence for a strong impact of sequencing, assembly and alignment error}
 
 Simulation studies could improve our understanding of the relative
 potential of different types of sequencing errors to introduce false
 positives in downstream analyses, but the absolute frequency and
-pattern of such errors would still difficult to predict without a
+pattern of such errors would still be difficult to predict without a
 reliable model for their generation. This is especially true for
 larger-scale errors from misassembly or misannotation, which are less
 easily modeled than base calling errors and could have potentially
 more significant negative effects. Instead, an empirical approach
 seems more appropriate for quantifying the false positives resulting
-from these types of sequence errors. In particular, two empirical
-studies in mammals have provided convincing evidence that sequence,
-alignment and annotation errors can drastically increase the number of
-false positive \psg{}s in the branch-site test for positive selection.
+from these types of sequence errors. Two recent empirical studies in
+mammals provided convincing evidence that sequence, alignment and
+annotation errors can increase the number of false positive \psg{}s in
+the branch-site test for positive selection.
 
-Schneider et al. \citeyearpar{Schneider2009} performed a genome-wide
+\citet{Schneider2009} performed a genome-wide
 scan for positive selection in the terminal branches of 7 mammalian
 genomes using the branch-site test and analysed the fraction of
 \psg{}s within subsets of high- or low-quality genes according to
 three sequence and alignment quality metrics. They found that the
 fraction of \psg{}s was significnatly higher for genes exhibiting
-lower quality sequence, annotation and alignment metric, with genes in
-the highest-quality and lowest-quality categories showing a 7.2-fold
+lower quality sequence, annotation and alignments, with genes in the
+highest-quality and lowest-quality categories showing a 7.2-fold
 difference in the inferred fraction of \psg{}s
 \citep{Schneider2009}. This observation provided evidence of a
 correlation between the chosen quality metrics and the tendency of an
@@ -338,69 +333,67 @@ selection, such as recent gene duplication
 might have had an error-independent effect resulting in a higher
 proportion of \psg{}s in low-scoring categories. The heads-or-tails
 method has also been shown to be inappropriate for estimating
-alignment uncertainty \citep{Fletcher2010}, so results based on this
-measurement should be taken with caution. Despite these criticisms,
-the analysis did provide good evidence that some of the obvious
-sources of error may be contributing to excessive estimates of
-branch-specific positive selection in mammals.
+alignment uncertainty \citep{Fletcher2010}, so the authors' results
+based on this measurement were questionable. Despite these criticisms,
+overall \citet{Schneider2009} provided good evidence that some
+measurable sources of error may be contributing to excessive estimates
+of branch-specific positive selection in mammals.
 
 \citet{Mallick2009} took a different approach to the same problem by
 performing a careful resequencing and reassembly of the chimpanzee
 genome (the initial assembly of which had lower coverage and lower
 quality than the human genome) and re-analysing the evidence for
 positive selection along the chimpanzee linegae in 59 genes which had
-previously been identified as chimpanzee
-\psg{}s. \citeauthor{Mallick2009}, who were motivated by a concern
-that previous reports of a larger proportion of \psg{}s in chimpanzee
-than in human \citep{Bakewell2007} were the result of its
-lower-quality genome rather than a biologically significant difference
-in levels of adaptation, found that the vast majority of \psg{}s
-identified in two previous studies showed no evidence for positive
-selection when using their reassembled and higher-coverage version of
-the chimpanzee genome \citep{Mallick2009}. This suggested that the
-original 4x coverage chimpanzee genome contained a number of
-sequencing and assembly errors leading to false inferences of positive
-selection. A detailed analysis of 302 codons with multiple spurious
-\nsyn substitutions in the original assembly showed roughly comparable
-effects of sequence error (explaining 23\% of codons), assembly error
-(14\% of codons) and local alignment error (30\% of codons).
+previously been identified as chimpanzee \psg{}s. \citet{Mallick2009}
+were motivated by a concern that previous reports of a larger
+proportion of \psg{}s in chimpanzee than in human \citep{Bakewell2007}
+were the result of the lower-quality chimpanzee genome rather than a
+biologically significant difference in levels of
+adaptation. \citet{Mallick2009} found that the vast majority of
+\psg{}s identified in two previous studies showed no evidence for
+positive selection when using their reassembled and higher-coverage
+version of the chimpanzee genome. This suggested that the original 4x
+coverage chimpanzee genome contained a number of sequencing and
+assembly errors leading to false inferences of positive selection. The
+authors' detailed analysis of 302 codons with multiple spurious \nsyn
+substitutions in the original chimpanzee assembly showed roughly
+comparable effects of sequence error (explaining 23\% of codons),
+assembly error (14\% of codons) and local alignment error (30\% of
+codons).
 
-Taken together, the results of Schneider et
-al. \citeyearpar{Schneider2009} and Mallick et
-al. \citeyearpar{Mallick2009} provide strong evidence in support of
-the hypothesis that errors in sequencing, assembly, annotation and
+Taken together, the results of \citet{Schneider2009} and
+\citet{Mallick2009} provide strong evidence in support of the
+hypothesis that errors in sequencing, assembly, annotation and
 alignment can result in strongly elevated inferred \omg values when
 using sensitive tests for detecting positive selection. Furthermore,
 the detailed identification and quantification of error sources
-performed by Mallick et al. \citeyearpar{Mallick2009} provided an
-empirical estimate of how important each potential source of error
-would be in the detection of positive selection. Although both of
-these studies used the branch-site test for detecting positive
-selection, their results could be expected to generalize well enough
-to guide the design of filtering methods for the present \sw
-analysis. With these results in mind, I implemented three filtering
-steps to help identify and remove sequences and alignment regions
-potentially subject to the errors noted above: filtering out
-low-quality sequence, removing gene fragments and recent paralogs, and
-identifying alignment regions with extremely high numbers of clustered
-substitutions.
+performed by \citet{Mallick2009} shows how important each potential
+source of error would be in the detection of positive
+selection. Although both of these studies used the branch-site test
+for detecting positive selection while the current analysis focused on
+detecting \sw positive selection throughout the tree, their results
+could be expected to generalize well enough to guide the design of
+filtering methods for the present \sw analysis.
+
+Three filtering steps were implemented to help identify and remove
+sequences and alignment regions potentially subject to the errors
+noted above: filtering out low-quality sequence, removing gene
+fragments and recent paralogs, and identifying alignment regions with
+extremely high numbers of clustered substitutions.
 
 \subsection{Filtering out low-quality sequence}
 
-Due to the presence of several low-coverage genome assemblies in the
-set of available mammalian genomes and the elevated sequencing error
-rates in such assemblies \citep{Hubbard2007}, I applied a conservative
-filter to the set of input sequences based on sequence quality scores
-where available.
-
-Most automated genome assembly pipelines output a set of Phred quality
-scores alongside the identified genome sequence, with one Phred score
-per base ranging in value from 0 to 50. These scores represent the
-probability, calculated by the sequencing and/or assembly program,
-that a given base call is incorrect. This probability is concisely
-expressed as the negative logarithm of the probability of an error
-multiplied by ten, or $Q=-10log_{10}P$, where $Q$ is the Phred score
-and $P$ is the probability of an incorrect base call \citep{Cock2010}.
+I first applied a conservative filter to the set of input sequences
+based on sequence quality scores associated with each genome for which
+such scores were available. Most automated genome assembly pipelines
+output a set of Phred quality scores alongside the identified genome
+sequence, with one Phred score per base ranging in value from 0 to
+50. These scores represent the probability, calculated by the
+sequencing and/or assembly program, that a given base call is
+incorrect. This probability is concisely expressed as the negative
+logarithm of the probability of an error multiplied by ten, or
+$Q=-10log_{10}P$, where $Q$ is the Phred score and $P$ is the
+probability of an incorrect base call \citep{Cock2010}.
 
 \ens does not store quality scores from its source genome assemblies,
 so Phred quality scores were downloaded for all \lcv genomes where
@@ -425,8 +418,8 @@ threshold. Furthermore, \citet{Hubisz2011} noted that 85\% of the
 bases in the low-coverage mammalian genomes contain very high Phred
 scores ($>45$) and only 4\% have low scores ($<20$).
 
-Based on these observations, a threshold Phred score of 25 was chosen
-as a reasonable trade-off between the potential benefit of avoiding
+Based on these observations, a score threhold of 25 was chosen as a
+reasonable trade-off between the potential benefit of removing
 miscalled bases and the potential cost of masking out correctly
 sequenced bases. For each protein-coding sequence with quality scores
 available, a ``minimum score'' approach was used to filter out whole
@@ -463,57 +456,59 @@ below 25 were masked out with three ambiguous nucleotides, 'NNN'.
 \end{figure}
 
 The above filtering scheme was applied to all coding sequences from
-each species for which quality scores were available, which included
-all of the species with \lcv genomes as well as five with
-high-coverage genomes: chimpanzee, guinea pig, dog, horse, cow, and
-elephant. (Note that guinea pig and elephant genomes were originally
-sequenced at low 2x coverage for the \ac{mgp}, but they have since
-undergone additional sequencing to produce high-coverage 7x
-assemblies. These assemblies were used in \ens version 63 and thus in
-the analysis described below.) The overall percentage of nucleotides
-filtered from each genome is shown in Figure
-\ref{filtered_qual_bars}. As expected, genomes with high-coverage
-sequences contained fewer bases with low Phred scores, resulting in
-1-2\% of nucleotides being filtered. The bulk of low-coverage genomes
-resulted in 4-8\% of nucleotides being filtered, while five genomes
-(bushbaby, squirrel, tree shrew, armadillo and tenrec) showed a
-noticeably higher proportion of low-quality bases, with 9-11\%
-nucleotides being filtered out. The distribution of filtered
+each genome for which quality scores were available, which included
+all of the \lcv genomes as well as five high-coverage genomes:
+chimpanzee, guinea pig, dog, horse, cow, and elephant. (The guinea pig
+and elephant genomes were originally sequenced at the low 2x coverage
+for the \ac{mgp}, but they have since undergone additional sequencing
+to produce high-coverage 7x assemblies. These higher-coverage
+assemblies were used for release 63 of \ens and for the present
+analysis.) The overall percentage of nucleotides filtered from each
+genome is shown in Figure \ref{filtered_qual_bars}. Genomes with
+high-coverage sequences contained fewer bases with low Phred scores,
+resulting in 1-2\% of nucleotides being filtered, while the bulk of
+low-coverage genomes resulted in 4-8\% of nucleotides being filtered.
+Five genomes (bushbaby, squirrel, tree shrew, armadillo and tenrec)
+showed a noticeably higher proportion of low-quality bases, with
+9-11\% nucleotides being filtered out. The distribution of filtered
 nucleotide proportions confirmed the expectation that 5-15\% of
 nucleotides would be filtered using a Phred score threshold of 25, and
 the variation in filtered nucleotide proportions between different
-species showed that despite the uniform 2x coverage of the \lcv
+\lcv species showed that despite the uniform 2x coverage of the \lcv
 mammalian genomes, different assemblies varied widely in their
 distributions of sequence quality scores within coding regions.
 
 \subsection{Removing recent paralogs}
 \label{sec_removing_paralogs}
 
-As discussed in Section \ref{section_quantifying_paralogous}, the
-inclusion of paralogous gene relationships in a large-scale analysis
-of orthologous gene evolution may produce misleading signals of
-adaptive evolution \citep{Lynch2000}, artifacts resulting from gene
-conversion \citep{Casola2009}, and produce biases due to lineage-specific
-family expansion, a process which is relatively common in mammalian
-gene families \citep{Gu2002}. As a result, it has traditionally been
-considered important to filter out recently-duplicated genes (e.g.,
-genes duplicated after the whole-genome duplication event in the
-vertebrate ancestor) in large-scale evolutionary analyses. Previous
-genome-wide scans for positive selection involving six or fewer
-mammalian genomes have either required strict one-to-one orthology
+%As discussed in Section \ref{section_quantifying_paralogous}, 
+
+The inclusion of paralogous gene relationships in a large-scale
+analysis of orthologous gene evolution may produce unwanted signals of
+adaptive evolution following gene duplication \citep{Lynch2000},
+artifacts resulting from gene conversion \citep{Casola2009}, and
+produce biases due to lineage-specific family expansion, a process
+which is relatively common in mammalian gene families
+\citep{Gu2002}. As a result, it has traditionally been considered
+important to filter out recently-duplicated genes (e.g., genes
+duplicated after the whole-genome duplication event in the vertebrate
+ancestor) in large-scale evolutionary analyses. Previous genome-wide
+scans for positive selection involving six or fewer mammalian genomes
+have either required strict one-to-one orthology
 \citep{Clark2003,Nielsen2005} or allowed very limited numbers of
 recent duplications in specific lineages \citep{Kosiol2008}. With
-larger mammalian trees, however, the requirement of strict one-to-one
-orthology becomes increasingly untenable: if gene duplications and
-deletions occur randomly in time, then the probability of observing at
-least one such event in a given gene family should increase linearly
-with the amount of branch length covered by the tree. The requirement
-of one-to-one orthology would result in fewer genes being available
-for analysis as more species are incorporated into the analysis, which
-is clearly an undesirable trend. As an alternative to ignoring genes
-which do not satisfy the requirement of strict orthology, I developed
-an approach, described below, for handling recently duplicated genes
-by removing the more-divergent paralogous copy from the the gene tree.
+larger numbers of species included in a phylogenetic analysis,
+however, the requirement of strict one-to-one orthology becomes
+increasingly untenable: if gene duplications and deletions occur
+randomly in time, then the probability of observing at least one such
+event in a given gene family should increase linearly with the amount
+of branch length covered by the tree. The requirement of one-to-one
+orthology would result in fewer genes being available for analysis as
+more species are included, which is clearly an undesirable trend. As
+an alternative to ignoring genes which do not satisfy the requirement
+of strict orthology, I developed an approach, described below, for
+handling recently duplicated genes by removing the more divergent or
+shorter paralogous copy from the the gene tree.
 
 %Before describing the method for duplications, it is worth making a
 %point about gene deletions. Specifically, I note that gene deletions
@@ -546,30 +541,31 @@ by removing the more-divergent paralogous copy from the the gene tree.
 %gene deletion on the results of tree-wide tests for selection should
 %be minimal.
 
-%Turning back to gene duplications, An additional complicating factor
-in the current analysis was the concern that many of the apparent gene
-duplications were actually artifacts of the annotation of \lcv
-genomes. Each \lcv genome assembly is highly fragmented, meaning that
-it contains many short sequence segments that were unable to be
-assembled into chromosome-sized sequences due to missing sequence
-data. Sometimes the exons of a gene spanned the boundaries of these
-sequence segments, causing different parts of a gene to exist on
-different segments. The \ens annotation pipeline was not designed to
-merge gene annotations across different sequence segments, so each
-part of a gene residing on multiple sequence segments would be
-annotated as a separate shortened gene. These shortened genes would be
-treated as independent proteins by the \cmp pipeline, likely being
-placed at very similar positions in the gene tree due to each sequence
-having been derived from a gene with a single correct evolutionary
-position. While this result might not be detrimental to sitewise
-analysis in itself (as each shortened gene might be correctly aligned
-and provide useful information to the alignment), a number of factors
-including the low quality of genomic sequence and assembly within
-these shortened genes, problems with aligning small fractions of a
-gene against complete sequences, and the potential for incorrect
-placement of fragmented sequences within the gene tree, made it
-desirable to remove the shortest of these gene fragments. These split
-genes could be effectively identified by their shortened length.
+%Turning back to gene duplications,
+
+An additional complicating factor in the current analysis was the
+concern that many of the apparent gene duplications were actually
+artifacts of the annotation of \lcv genomes. Each \lcv genome assembly
+is highly fragmented, meaning that it contains many short sequence
+segments that were unable to be assembled into chromosome-sized
+sequences due to missing sequence data. Sometimes the exons of a gene
+spanned the boundaries of these sequence segments, causing different
+parts of a gene to exist on different segments. The \ens annotation
+pipeline was not designed to merge gene annotations across different
+sequence segments, so each part of a gene residing on multiple
+sequence segments would be annotated as a separate shortened
+gene. These shortened genes would be treated as independent proteins
+by the \cmp pipeline, likely being placed at very similar positions in
+the gene tree due to each sequence having been derived from a gene
+with a single correct evolutionary position. This result might not be
+detrimental to sitewise analysis in itself, as each shortened gene may
+end up being correctly aligned and provide useful information to the
+alignment. However, a number of factors, including the low quality of
+genomic sequence and assembly within these shortened genes, problems
+with aligning small fractions of a gene against complete sequences,
+and the potential for incorrect placement of fragmented sequences
+within the gene tree, made it desirable to remove the shortest of
+these gene fragments.
 
 Sequence divergence was the other criterion used to select which
 paralogous copy of recently-duplicated genes to retain. Models of
@@ -592,10 +588,11 @@ pairwise sequence distance was calculated between each putative
 paralog and all other sequences in the gene tree, resulting in one
 mean pairwise distance estimate per putative paralog (hereafter
 referred to as the mean distance). For these distance calculations,
-the stock \cmp codon alignments and the JC69 nucleotide model to
-estimate distances. Second, the ratio of the sequence length of each
-putative paralog to the mean sequence length across the tree
-(hereafter referred to as the length ratio) was also calculated.
+the coding sequence alignments provided by \ens \cmp and the JC69
+nucleotide model were used to estimate distances. Second, the ratio of
+the sequence length of each putative paralog to the mean sequence
+length across the tree (hereafter referred to as the length ratio) was
+also calculated.
 
 Genes were grouped by species within each gene tree, and any group of
 2 or more genes from the same species was considered to be a set of
@@ -682,35 +679,29 @@ the dashed line with a slope of 2). Finally, the distribution of
 length ratios and mean distances in the set of genes where length was
 the discriminating factor (or where an arbitrary decision was made)
 shows that most of these genes were mostly identical whether measured
-by sequence distance or sequence length.
+by sequence distance or by sequence length.
 
 These results provided evidence that a sizeable fraction of recently
 duplicated mammalian genes are identical or very similar to each
-other: for roughly 30\% of putative paralogs, not enough time has
+other: for roughly 30\% of all putative paralogs, not enough time has
 elapsed since the duplication event for a detectable amount of
 sequence change to have occurred, and the choice between retaining one
 copy or the other was essentially arbitrary. For the roughly 40\% of
 putative paralogs where differences in mean distance could be
-identified, these differences tended to be small, suggesting that
-massive functional divergence of recent gene duplicates has not been a
-common phenomenon in mammalian evolution. Nonetheless, this protocol
-was designed to identify the least-diverged copy of a recently
-duplicated gene, and for 40\% of putative paralogs the mean distance
-to other sequences in the gene family allowed a sensible decision to
-be made.
+identified, these differences tended to be small.
 
 This was obviously not the most conservative approach to dealing with
-recent duplications---one could instead remove all copies from a set
-of putative paralogs, creating an apparent gene deletion in that
-species, or simply ignore all gene families with any recent
-duplications (e.g., require one-to-one orthology allowing for gene
-deletions). The latter option would likely be overly conservative for
-a mammal-wide analysis, but the former option may be appropriate for a
-more conservative approach. As the main concern over the handling
-duplicated genes has been that they may introduce a bias towards
-elevated evolutionary rates, I marked the genes containing sets of
-putative paralogs for further evaluation. Sitewise estimates from
-these genes were excluded from the most conservatively-filtered
+recent duplications. One could instead remove all putatively
+paralogous copies from the gene tree, creating an apparent gene
+deletion in that species, or simply ignore all gene families with any
+recent duplications (e.g., require one-to-one orthology allowing for
+gene deletions). The latter option would likely be overly restrictive
+for any sensible genome-wide analysis, but the former option may be
+appropriate for a more conservative approach. As the main concern over
+the handling duplicated genes has been that they may introduce a bias
+towards elevated evolutionary rates, I marked the genes containing
+sets of putative paralogs for further evaluation. Sitewise estimates
+from these genes were excluded from the most conservatively-filtered
 sitewise dataset and examined separately for excess signal of positive
 selection (see Section \ref{section_sitewise_filtering})
 %, and in the
@@ -723,25 +714,34 @@ selection (see Section \ref{section_sitewise_filtering})
 \label{section_windows_clustered_subs}
 
 After filtering for sequence quality and removing paralogous genes and
-shortened gene fragments, PRANK was used to align the codon sequences
-of each of the 16,477 mammalian gene trees. Manual analysis of a
-number of these alignments revealed many short stretches of clearly
-nonhomologous sequence in one species, often flanked by stretches of
-perfect homology and often lying on the borders of exon junctions.
-%An
-%example of one such region is shown in Figure \ref{figure_TODO}. In
-%this otherwise highly conserved region of the XYZ gene, a short
-%20-codon stretch of the XYZ sequence appears to contain little
-%homology to the sequences from other species.
-These obviously erroneous stretches were likely due to mis-assembly of
-a genomic region orf misidentification of exon boundaries within the
-gene of one species. These errors were particularly concerning with
-respect to the detection of positive selection, as the incorporation
-of a stretch of apparently nonhomologous material into a sequence
-alignment would produce many alignment columns with multiple
-nucleotide differences per codon. As discussed in Section
-\ref{sec_error_impact}, this type of error is particuarly prone to
-cause false positives in the detection of positive selection.
+shortened gene fragments, \prankc was used to align the codon
+sequences of each of the \ntrees mammalian gene trees. Manual analysis
+of a number of these alignments revealed many short stretches of
+clearly nonhomologous sequence in one species, often flanked by
+stretches of perfect homology and often lying on the borders of exon
+junctions. Examples of two such regions are shown in Figure
+\ref{fig_mammals_cluster_subs}.  These obviously erroneous stretches
+were likely due to mis-assembly of a genomic region orf
+misidentification of exon boundaries within the gene of one
+species. These errors were particularly concerning with respect to the
+detection of positive selection, as the incorporation of a stretch of
+apparently nonhomologous material into a sequence alignment would
+produce many alignment columns with multiple nucleotide differences
+per codon. As discussed in Section \ref{sec_error_impact}, this type
+of error is particuarly prone to cause false positives in the
+detection of positive selection.
+
+\begin{figure}
+\centering \includegraphics[scale=0.25]{Figs/mammals_cluster_subs.pdf}
+\caption{Two alignment regions with stretches of \nhom sequence in one
+  species. Alignments are shown with amino acids colored according to
+  \citet{Taylor1975}. (A) The \gene{G3BP1} alignment, showing a
+  mis-annotated exon in gorilla resulting in misalignment. (B) The
+  \gene{ATN1} alignment, showing a mis-annotated exon in macaque
+  resulting in misalignment.}
+\label{fig_mammals_cluster_subs}
+\end{figure}
+
 
 I hypothesized that these stretches of \nhom sequence could be
 identified by their impact on the pattern of substitutions within each
@@ -907,7 +907,7 @@ Name & Count & List & MPL & Total \\
 \end{tabular}
 \caption{Species groups used for sitewise analysis by \ac{slr}. The
   median \acp{mpl} and the median total branch length are shown for
-  each species group, taken from the \ngenes branch lengths estimated
+  each species group, taken from the \ntrees branch lengths estimated
   by \ac{slr} for each gene. MPL -- mean path length.}
 \label{table_species_set_summary}
 \end{table}
