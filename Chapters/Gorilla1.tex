@@ -181,7 +181,7 @@ primate duplications; 308 genes with human-specific duplications; and
 %or multiple mammalian outgroups, but these comparisons were made
 %mostly to gain an understanding of whether gene deletions or
 %duplications were more responsible for genes which did not have
-5one-to-one orthology within \ac{aga}.
+%one-to-one orthology within \ac{aga}.
 
 %\begin{figure}
 %\centering
@@ -255,12 +255,12 @@ aggressive set of filters was applied to each alignment prior to the
 \ac{paml} analysis.
 
 First, the chimpanzee, orangutan, macaque and marmoset sequences were
-filtered using PHRED or PHRED-like quality scores downloaded from the
-UCSC (chimpanzee and macaque) or WUSTL (orantugan and marmoset)
+filtered using Phred or Phred-like quality scores downloaded from the
+UCSC (chimpanzee and macaque) or WUSTL (orangutan and marmoset)
 websites. Any bases with a quality score lower than 30 (corresponding
 to an expected error rate of 1 in 1000 bases) were replaced with `N's.
 
-An initial analysis of the PHRED filtered 6-way alignments revealed
+An initial analysis of the Phred filtered 6-way alignments revealed
 many stretches of alignment with obviously non-homologous sequence in
 one or more non-human genomes. These regions appeared similar to the
 clustered substitutions seen in Chapter \ref{ch_mammals1}, although
@@ -322,7 +322,7 @@ terminal ``ILS'' branches sharing the most recent common ancestor) or
 one substitution along the \ac{hcg} ancestral branch and a second
 reversion substitution along the non-ILS terminal branch. I observed
 that PAML tended to infer the latter sequence of events as the most
-likely substitution history. The long length of the \ac{acg} ancestral
+likely substitution history. The long length of the \ac{hcg} ancestral
 branch may have contributed to the two-substitution path being the
 most likely one.
 
@@ -454,7 +454,7 @@ distinct foreground and background \omg parameters in the model
 shows the models used in this study, with background branches in gray
 and foreground branches in red. Each branch model was designed to
 allow for an elevated (accelerated) or decreased (decelerated) \dnds
-ratio in a branches of particluar interest to the study of \ac{aga}
+ratio in a branches of particular interest to the study of \ac{aga}
 evolution. \ac{paml} was used to estimate parameters and calculate the
 likelihood value for each model in Figure
 \ref{fig_gorilla_branch_models} applied to each coding alignment. A
@@ -529,9 +529,9 @@ The ``alternative'' models shown in Figure
 accelerations along the human and chimpanzee lineages while correcting
 for the difference in branch length between the human-chimpanzee
 terminal branches and the gorilla terminal branch, did not yield
-significantly different results from the equivalent uncorrected
-models, so results from those tests were discarded from the rest of
-the analysis.
+qualitatively different results from the equivalent uncorrected
+models. To simplify the discussion, results from those tests were
+discarded from the rest of the analysis.
 
 \subsection{Branch-LRT and branch-site LRT results}
 
@@ -546,15 +546,16 @@ Model / Species & $p<0.05$ & FDR$<0.1$ & $p<0.05$ & FDR$<0.1$ & $p<0.05$ & FDR$<
 \input{Tables/gorilla_lrt_results.txt}
 \bottomrule
 \end{tabular}
-\caption{Branch-LRT and branch-site LRT results. Each row corresponds
-  to a model in Figure \ref{fig_gorilla_branch_models}, except for the
-  two ``alternative'' models, which were excluded from the
-  analysis. Each cell represents the number of genes for which the
-  \ac{lrt} was significant at the specified threshold for the given
-  model. \pvs were calculated by comparing the \ac{lrt} statistic to a
-  \chisq distribution with one degree of freedom. The \acf{fdr} was
-  controlled within each model separately for the branch-LRTs and for
-  the branch-site LRTs using the \citet{Benjamini1995} method.}
+\caption{A summary of the branch-LRT and branch-site LRT results. Each
+  row corresponds to a model in Figure
+  \ref{fig_gorilla_branch_models}, except for the two ``alternative''
+  models, which were excluded from the analysis. Each cell represents
+  the number of genes for which the \ac{lrt} was significant at the
+  specified threshold for the given model. \pvs were calculated by
+  comparing the \ac{lrt} statistic to a \chisq distribution with one
+  degree of freedom. The \acf{fdr} was controlled within each model
+  separately for the branch-LRTs and for the branch-site LRTs using
+  the \citet{Benjamini1995} method.}
 \label{table_gorilla_lrt_results}
 \end{table}
 
@@ -596,7 +597,7 @@ amount of branch length in the foreground portions of their models.
 \section{Parallel accelerations}
 \label{sec_parallel_accel}
 
-I used the linaege-specific gene acceleration LRT results to evaluate
+I used the lineage-specific gene acceleration LRT results to evaluate
 the prevalence and strength of parallel gene accelerations between
 \ac{gh}, \ac{gc}, and \ac{ch} during the time period since the
 speciation of each pair. Parallel accelerations where analyzed on
@@ -770,7 +771,7 @@ at a nominal $p<0.05$ significance using \ac{fet}. The top three terms
 for \ac{hc} parallel accelerations were ``neuropeptide signaling
 pathway'', ``regulation of DNA-dependent transcription'' and
 ``microtubule-based movement''; for \ac{gc} parallel accelerations,
-``protein autophosphorylation'', ``innear ear development and positive
+``protein autophosphorylation'', ``inner ear development and positive
 regulation of transcription factor activity''; and for \ac{gh}
 parallel accelerations, ``Wnt receptor signaling pathway'', ``sensory
 perception of sound'' and ``skeletal system morphogenesis'' showed
@@ -858,7 +859,7 @@ uniquely significant in the \ac{gh} pair were \gene{EYA1},
 \gene{USH1C}, \gene{MYO3A} and \gene{SLC1AC}; for the GC pair,
 \gene{OTOF} and \gene{FZD4}; and for the HC pair, \gene{DIAPH1},
 \gene{MYCBPAP} and \gene{DFNB31}. This suggested that the tendency of
-genes involved in sound perception to experience midly to moderately
+genes involved in sound perception to experience mildly to moderately
 elevated \dnds levels was relatively widespread in all three \ac{aga}
 genomes, with variation in the specific genes having undergone
 acceleration in each species or species pair. It is also worth noting
@@ -1039,7 +1040,7 @@ gorilla) again fell within the lower end of the the published range of
 0.43\% to 8.72\%. Most published studies did not show a large
 difference in the proportion of accelerated or positively-selected
 genes between chimpanzees and humans; our results further confirm this
-trend and extend to gorilla the observed conistency in numbers of
+trend and extend to gorilla the observed consistency in numbers of
 lineage-specific accelerated and positively-selected genes between
 different \ac{aga} species.
 
