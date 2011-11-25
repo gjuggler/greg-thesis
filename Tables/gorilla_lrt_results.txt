@@ -1,11 +1,11 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 17:07:57 2011
- Human & \cellcolor[HTML]{B1B1FF}663 & \cellcolor[HTML]{EEEEFF}10 & \cellcolor[HTML]{D3D3FF}151 & \cellcolor[HTML]{EBEBFF}2 & \cellcolor[HTML]{FFFFFF}142 & \cellcolor[HTML]{FFFFFF}8 \\ 
-  Chimpanzee & \cellcolor[HTML]{C0C0FF}562 & \cellcolor[HTML]{DFDFFF}18 & \cellcolor[HTML]{D1D1FF}157 & \cellcolor[HTML]{F5F5FF}1 & \cellcolor[HTML]{E8E8FF}192 & \cellcolor[HTML]{8E8EFF}40 \\ 
-  Gorilla & \cellcolor[HTML]{C4C4FF}535 & \cellcolor[HTML]{E7E7FF}14 & \cellcolor[HTML]{B7B7FF}226 & \cellcolor[HTML]{F5F5FF}1 & \cellcolor[HTML]{EDEDFF}183 & \cellcolor[HTML]{C5C5FF}27 \\ 
-  AGA Branch & \cellcolor[HTML]{E1E1FF}299 & \cellcolor[HTML]{FAFAFF}3 & \cellcolor[HTML]{8E8EFF}314 & \cellcolor[HTML]{F5F5FF}1 & \cellcolor[HTML]{FBFBFF}152 & \cellcolor[HTML]{EBEBFF}15 \\ 
-  AGA Clade & \cellcolor[HTML]{8E8EFF}869 & \cellcolor[HTML]{8E8EFF}52 & \cellcolor[HTML]{9B9BFF}289 & \cellcolor[HTML]{8E8EFF}9 & \cellcolor[HTML]{8E8EFF}341 & \cellcolor[HTML]{D9D9FF}21 \\ 
-  HC Parallel & \cellcolor[HTML]{FCFCFF}51 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FDFDFF}14 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
-  GH Parallel & \cellcolor[HTML]{FDFDFF}40 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FEFEFF}10 & \cellcolor[HTML]{F5F5FF}1 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
-  GC Parallel & \cellcolor[HTML]{FFFFFF}25 & \cellcolor[HTML]{FDFDFF}1 & \cellcolor[HTML]{FFFFFF}8 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+% Fri Nov 25 00:55:39 2011
+ Human & \cellcolor[HTML]{D6D6FF}663 & \cellcolor[HTML]{F5F5FF}10 & \cellcolor[HTML]{E7E7FF}151 & \cellcolor[HTML]{F4F4FF}2 & \cellcolor[HTML]{FFFFFF}142 & \cellcolor[HTML]{FFFFFF}8 \\ 
+  Chimpanzee & \cellcolor[HTML]{DDDDFF}562 & \cellcolor[HTML]{EDEDFF}18 & \cellcolor[HTML]{E6E6FF}157 & \cellcolor[HTML]{F9F9FF}1 & \cellcolor[HTML]{F2F2FF}192 & \cellcolor[HTML]{C7C7FF}40 \\ 
+  Gorilla & \cellcolor[HTML]{DFDFFF}535 & \cellcolor[HTML]{F1F1FF}14 & \cellcolor[HTML]{D9D9FF}226 & \cellcolor[HTML]{F9F9FF}1 & \cellcolor[HTML]{F5F5FF}183 & \cellcolor[HTML]{E0E0FF}27 \\ 
+  AGA Branch & \cellcolor[HTML]{EFEFFF}299 & \cellcolor[HTML]{FCFCFF}3 & \cellcolor[HTML]{C7C7FF}314 & \cellcolor[HTML]{F9F9FF}1 & \cellcolor[HTML]{FDFDFF}152 & \cellcolor[HTML]{F4F4FF}15 \\ 
+  AGA Clade & \cellcolor[HTML]{C7C7FF}869 & \cellcolor[HTML]{C7C7FF}52 & \cellcolor[HTML]{CCCCFF}289 & \cellcolor[HTML]{C7C7FF}9 & \cellcolor[HTML]{C7C7FF}341 & \cellcolor[HTML]{EAEAFF}21 \\ 
+  HC Parallel & \cellcolor[HTML]{FDFDFF}51 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FEFEFF}14 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+  GH Parallel & \cellcolor[HTML]{FEFEFF}40 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FFFFFF}10 & \cellcolor[HTML]{F9F9FF}1 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
+  GC Parallel & \cellcolor[HTML]{FFFFFF}25 & \cellcolor[HTML]{FEFEFF}1 & \cellcolor[HTML]{FFFFFF}8 & \cellcolor[HTML]{FFFFFF}0 & \cellcolor[HTML]{FFFFFF}- & \cellcolor[HTML]{FFFFFF}- \\ 
   

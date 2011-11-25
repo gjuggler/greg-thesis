@@ -1,5 +1,5 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 11:05:45 2011
+% Fri Nov 25 00:55:40 2011
   58 &   6 & 1.91 & GO:0007218 & neuropeptide signaling pathway & 1.1e-02 & 1.1e-02 & 1.8e-02 & 758 & \tiny{GPR98, CELSR2, GPR125, TAC1, GPR56} \\ 
   1070 &  48 & 35.15 & GO:0006355 & regulation of transcription, DNA-depende... & 1.4e-02 & 2.8e-02 & 3.7e-02 & 643 & \tiny{ELF5, FOXN1, NR2E3, SUPT6H, DMRT3} \\ 
    70 &   6 & 2.30 & GO:0007018 & microtubule-based movement & 2.7e-02 & 3.6e-02 & \color[HTML]{808080} 1.6e-01 & 1,347 & \tiny{KIF25, KIF2C, KIF1C, C14orf153, DNAH6} \\ 

@@ -1,5 +1,5 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 11:05:45 2011
+% Fri Nov 25 00:55:40 2011
   69 &   6 & 1.63 & GO:0046777 & protein amino acid autophosphorylation & 5.7e-03 & 5.7e-03 & 1.5e-02 & 914 & \tiny{MEX3B, MAP3K13, NEK2, PDGFRA, VRK2} \\ 
    59 &   6 & 1.40 & GO:0051091 & positive regulation of transcription fac... & 2.6e-03 & 1.4e-02 & 2.5e-03 & 550 & \tiny{HMGA2, AGER, MAP3K13, PLA2G1B, FZD4} \\ 
    70 &   7 & 1.66 & GO:0048839 & inner ear development & 1.3e-03 & 3.0e-02 & 3.7e-03 & 820 & \tiny{FGF3, GPR98, CDH23, ATOH1, PDGFRA} \\ 

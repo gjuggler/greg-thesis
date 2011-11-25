@@ -1,0 +1,13 @@
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov 25 00:36:25 2011
+ Primates &  10 & \tiny{Bushbaby, Chimpanzee, Gibbon, Gorilla, Human, Macaque, Marmoset, Mouse Lemur, Orangutan, Tarsier} & \cellcolor[HTML]{FFFFFF}0.16 & \cellcolor[HTML]{FFFFFF}0.83 \\ 
+  Glires &   7 & \tiny{Guinea Pig, Kangaroo rat, Mouse, Pika, Rabbit, Rat, Squirrel} & \cellcolor[HTML]{F5F5FF}0.26 & \cellcolor[HTML]{FEFEFF}0.97 \\ 
+  Laurasiatheria &  12 & \tiny{Alpaca, Cat, Cow, Dog, Dolphin, Hedgehog, Horse, Megabat, Microbat, Panda, Pig, Shrew} & \cellcolor[HTML]{EDEDFF}0.34 & \cellcolor[HTML]{FEFEFF}1.01 \\ 
+  Atlantogenata &   5 & \tiny{Armadillo, Elephant, Hyrax, Sloth, Tenrec} & \cellcolor[HTML]{EBEBFF}0.36 & \cellcolor[HTML]{FCFCFF}1.32 \\ 
+  Eutheria &  35 & \tiny{Alpaca, Armadillo, Bushbaby, Cat, Chimpanzee, Cow, Dog, Dolphin, Elephant, Gibbon, Gorilla, Guinea Pig, Hedgehog, Horse, Human, Hyrax, Kangaroo rat, Macaque, Marmoset, Megabat, Microbat, Mouse, Mouse Lemur, Orangutan, Panda, Pig, Pika, Rabbit, Rat, Shrew, Sloth, Squirrel, Tarsier, Tenrec, Tree Shrew} & \cellcolor[HTML]{F0F0FF}0.31 & \cellcolor[HTML]{FAFAFF}1.61 \\ 
+  Mammals &  38 & \tiny{Alpaca, Armadillo, Bushbaby, Cat, Chimpanzee, Cow, Dog, Dolphin, Elephant, Gibbon, Gorilla, Guinea Pig, Hedgehog, Horse, Human, Hyrax, Kangaroo rat, Macaque, Marmoset, Megabat, Microbat, Mouse, Mouse Lemur, Opossum, Orangutan, Panda, Pig, Pika, Platypus, Rabbit, Rat, Shrew, Sloth, Squirrel, Tarsier, Tenrec, Tree Shrew, Wallaby} & \cellcolor[HTML]{E7E7FF}0.40 & \cellcolor[HTML]{F8F8FF}1.90 \\ 
+  Sparse Glires &   5 & \tiny{Guinea Pig, Kangaroo rat, Mouse, Rat, Squirrel} & \cellcolor[HTML]{F5F5FF}0.26 & \cellcolor[HTML]{F6F6FF}2.16 \\ 
+  Sparse Mammals &   7 & \tiny{Armadillo, Dog, Elephant, Human, Mouse, Platypus, Wallaby} & \cellcolor[HTML]{CFCFFF}0.61 & \cellcolor[HTML]{F1F1FF}2.86 \\ 
+  HQ Mammals &   9 & \tiny{Chimpanzee, Cow, Dog, Horse, Human, Macaque, Mouse, Pig, Rat} & \cellcolor[HTML]{ECECFF}0.35 & \cellcolor[HTML]{D6D6FF}6.43 \\ 
+  HMRD &   4 & \tiny{Dog, Human, Mouse, Rat} & \cellcolor[HTML]{C7C7FF}0.67 & \cellcolor[HTML]{C7C7FF}8.21 \\ 
+  

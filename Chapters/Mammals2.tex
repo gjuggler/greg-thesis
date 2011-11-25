@@ -111,13 +111,13 @@ A major issue in combining \sw estimates to identify \acp{psg} is that
 of correcting for performing multiple \sw tests per gene. The \ac{slr}
 method performs an independent statistical test at each site,
 producing a sitewise statistic which can be compared to a \chisq
-distribution to yield a p-value representing the strength of evidence
+distribution to yield a \pv representing the strength of evidence
 against strict neutral evolution \citep{Massingham2005}. When
-combining these p-values to decide whether a gene contains significant
+combining these \pvs to decide whether a gene contains significant
 evidence for positive selection, the number of tests performed must be
 taken into account. For example, a 100-codon gene evolving under the
 null model ($\omega=1$) would be expected to produce 5 sites with
-p-values at a nominal \ac{fpr} of 0.05; correspondingly, the chance
+\pvs at a nominal \ac{fpr} of 0.05; correspondingly, the chance
 that at least one site within the gene would have $p<0.05$ is
 99.4\%. This is calculated as the complement of the probability that
 no sites out of $n$ have $p<x$, which is $(1-x)^{n}$. Thus, if the set
@@ -133,9 +133,9 @@ statistically controlled manner.
 I tested 3 types of methods which are capable of correcting for
 multiple \sw tests within genes to identify \acp{psg}: first,
 adjusting significance thresholds to control the \ac{fwer}; second,
-combining p-values from multiple tests to produce a single p-value
+combining \pvs from multiple tests to produce a single \pv
 summarizing the overall evidence against the null hypothesis; third,
-estimating empirical gene-wise p-values based on the genome-wide
+estimating empirical gene-wise \pvs based on the genome-wide
 distribution of \sw estimates. Each approach makes different use of
 the \sw data from each gene to identify a set of significant \acp{psg}
 and thus had the potential to identify slightly different sets of
@@ -147,14 +147,14 @@ each of the three approaches was applied to the \sw data.
 The \ac{fwer} is defined as the probability, for a given set of tests
 performed, of one or more tests producing a false positive result. In
 the example of a 100-codon gene evolving under the null model, the
-\ac{fwer} at a nominal p-value of 0.05 was 0.994. Assuming an
-appropriate uniform null distribution of p-values and independence
+\ac{fwer} at a nominal \pv of 0.05 was 0.994. Assuming an
+appropriate uniform null distribution of \pvs and independence
 between tests, the \v{S}id\`{a}k equation (to which the popular
 Bonferroni correction is a more easily computed approximation)
-identifies the p-value threshold $x$ which is necessary to control the
+identifies the \pv threshold $x$ which is necessary to control the
 \ac{fwer} at the desired level $\alpha$. The \ac{fwer} expected for a
-family of $n$ tests thresholded at a nominal p-value of $x$ is
-$\alpha=1 - (1 - x)^{n}$, so the p-value threshold necessary to
+family of $n$ tests thresholded at a nominal \pv of $x$ is
+$\alpha=1 - (1 - x)^{n}$, so the \pv threshold necessary to
 control for a desired \ac{fwer} can be found by rearranging the
 equation: $x=1 - (1 - \alpha)^{1/n}$. A similar but more powerful
 approach to controlling the \ac{fwer} is the step-up method from
@@ -167,8 +167,8 @@ $p.adjust$ method from the R statistical project to apply the Hochberg
 procedure to the set of \sw \pvs from each gene. This produced a
 new set of \pvs representing the \ac{fwer} expected if all sites
 with \pvs equally or more extreme than the given site were called
-significant. The overall p-value for each gene was taken as the
-minimum \ac{fwer}-adjusted p-value across all sites.
+significant. The overall \pv for each gene was taken as the
+minimum \ac{fwer}-adjusted \pv across all sites.
 
 One expected weakness of this approach was that the evidence for a
 \ac{psg} comes only from the site in each gene with the most extreme
@@ -181,7 +181,7 @@ expected to lack some power. The next two methods described are both
 sensitive to more than just the most significant site, making them
 potentially more powerful for identifying \acp{psg}.
 
-\subsection{Combining p-values}
+\subsection{Combining \pvs}
 
 The second approach to multiple testing addresses the potential
 weakness of the \ac{fwer}-controlling approach by combining \pvs from
@@ -196,19 +196,19 @@ the most popular methods are Fisher's combined probability test and
 Stouffer's method (\citealp{Fisher1932}; \citealp{Stouffer1949};
 reviewed in \citealp{Whitlock2005}). Both methods first combine the
 set of \pvs from independent tests in some way: Fisher's test takes
-the product of all p-values, while Stouffer's method transforms
-p-values into normal quantiles and sums the resulting z-scores. The
+the product of all \pvs, while Stouffer's method transforms
+\pvs into normal quantiles and sums the resulting z-scores. The
 combined statistic is then compared to the expected null distribution
-given the same number of input p-values. A comparison of both tests by
-\citet{Darlington2000} suggested that they provide similar power
-overall, but Stouffer's method generally yields smaller p-values when
-the input p-values are more similar and Fisher's test yields smaller
-p-values when the input p-values vary widely.
+given the same number of input \pvs. A comparison of both tests by
+\citet{Darlington2000} suggests that they provide similar power
+overall, but that Stouffer's method generally yields smaller \pvs
+when the input \pvs are more similar and Fisher's test yields
+smaller \pvs when the input \pvs vary widely.
 
-When the distribution of input p-values is nonuniform or the number of
+When the distribution of input \pvs is nonuniform or the number of
 tests is large, however, performance of Fisher's and Stouffer's
 methods can be reduced. \citet{Zaykin2002} noted that a relatively
-small number of large p-values can limit the power of Fisher's test,
+small number of large \pvs can limit the power of Fisher's test,
 and the Stouffer method can be expected to be equally sensitive to a
 bias towards large \pvs. Since the majority of the \sw estimates in
 mammals showed moderately strong signals of purifying selectio, the
@@ -220,9 +220,9 @@ Stouffer's methods were expected to lack power to identify \acp{psg}
 given the strong impact of purifying selection on the \sw data.
 
 The variants of Fisher's and Stouffer's methods which incorporate a
-truncation step (i.e., including only p-values below a pre-specified
+truncation step (i.e., including only \pvs below a pre-specified
 threshold to calculate the combined statistic) provided a potentially
-more powerful approach to combining \sw p-values within genes
+more powerful approach to combining \sw \pvs within genes
 \citep{Darlington2000,Zaykin2002,Zaykin2007}. Zaykin et
 al. \citeyearpar{Zaykin2002,Zaykin2007} showed that the \ac{tpm}, a
 truncated version of Fisher's product method, is well-suited for
@@ -230,43 +230,43 @@ large-scale genomics experiments where the number of tests is large
 and the standard methods lack power. The authors suggest a truncation
 threshold of $p<0.05$ provides a good balance of sensitivity and
 power, and they note that the method is asymptotically equivalent to
-Fisher's combined test as the p-value trunctation is increased to
+Fisher's combined test as the \pv trunctation is increased to
 1. Thus, the truncation threshold determines the extent to which the
 method focuses on more significant test results. The test statistic is
-calculated as the product of all p-values below the truncation
+calculated as the product of all \pvs below the truncation
 threshold, and in the implementation provided by Zaykin get
 al. \citeyearpar{Zaykin2002} the significance of the statistic is
 determined by simulation based on the null model. As an example, for a
 gene with 100 sites and 5 where $p<0.05$, the test statistic would be
-the product of those 5 p-values and its significance would be tested
+the product of those 5 \pvs and its significance would be tested
 by generating 5,000 replicates under the null model (i.e., uniformly
-distributed p-values) using the same $p<0.05$ criterion to calculate
-the truncated product of p-values.
+distributed \pvs) using the same $p<0.05$ criterion to calculate
+the truncated product of \pvs.
 
-To explore the behavior of the \ac{tpm} at various p-value truncation
+To explore the behavior of the \ac{tpm} at various \pv truncation
 thresholds, I used the implementation provided by Zaykin et
-al. \citeyearpar{Zaykin2002} to calculate combined p-values at
+al. \citeyearpar{Zaykin2002} to calculate combined \pvs at
 truncation thresholds corresponding to a nominal 5\%, 10\%, 20\%, and
-50\% \sw \acp{fpr}. I also calculated a combined p-value using
+50\% \sw \acp{fpr}. I also calculated a combined \pv using
 Fisher's standard combined method to test the hypothesis that the
 method lacked power to detect \acp{psg} in protein-coding genes due to
 the presence of many purifying sites.
 
-\subsection{Assigning empirical p-values based on the global \sw distribution}
+\subsection{Assigning empirical \pvs based on the global \sw distribution}
 
 The previous two approaches are fairly generic statistical methods,
 with formulas whose accuracy depends on the assumption of
-uniformly-distributed p-values under the null hypothesis. Since the
-overall distribution of one-tailed p-values from \sw estimates is far
+uniformly-distributed \pvs under the null hypothesis. Since the
+overall distribution of one-tailed \pvs from \sw estimates is far
 from uniform, however, the large proportion of sites with strong
 evidence for purifying selection may cause problems when a uniform
-distribution of p-values is assumed. This problem is alleviated
+distribution of \pvs is assumed. This problem is alleviated
 somewhat by the fact that \ac{fwer} control mainly uses only the most
 significant test result to identify a \acp{psg}. The sensitivity of
-the \ac{tpm} method to largely non-uniform p-values should also be
-reduced, as sites with p-values above a certain threshold from the
+the \ac{tpm} method to largely non-uniform \pvs should also be
+reduced, as sites with \pvs above a certain threshold from the
 calculation of the combined statistic, thus avoiding undue influence
-from non-significant p-values. Still, the apparent mismatch between
+from non-significant \pvs. Still, the apparent mismatch between
 the neutral null model tested by \ac{slr} and the large majority of
 sites evolving under purifying selection suggested that tests based on
 the theoretical distribution of \ac{lrt} statistics may be overly
@@ -275,14 +275,14 @@ be desirable, but for the global analysis of functional trends in
 genes subject to \acp{psg}, a less conservative approach should
 provide more signal. Given the large set of \sw estimates available
 for each species group, the identification of \acp{psg} based on
-empirical p-values was an attractive alternative approach, with
+empirical \pvs was an attractive alternative approach, with
 potentially more power to detect genes with significant deviations
 from the observed genome-wide distribution of \slrt statistics within
 each species group \citep{Noble2009a}.
 
-I implemented a randomization method to assign an empirical p-value to
+I implemented a randomization method to assign an empirical \pv to
 each gene based on the length of the gene and the number of sites with
-p-values below a certain pre-specified significance threshold. This
+\pvs below a certain pre-specified significance threshold. This
 design shares some characteristics with the \ac{tpm} method, as the
 test statistic comes from the subset of sites exceeding a certain
 significance threshold. The test statistic here, however, was a simple
@@ -294,10 +294,10 @@ estimates. Using the pre-specified significance threshold, the number
 of significant sites from each replicate was counted. Given $n$, the
 number of replicates, and $r$, the number of replicates with as many
 or more significant sites than the observed count, the empirical
-p-value was calculated as $(r+1) / (n+1)$ \citep{North2002}. This
+\pv was calculated as $(r+1) / (n+1)$ \citep{North2002}. This
 method was applied to each gene using 100,00 replicates; as with the
 \ac{tpm} method, the effect of different truncation thresholds was
-assessed by separately calculating empirical p-values using nominal
+assessed by separately calculating empirical \pvs using nominal
 0.05\%, 1\%, 5\%, and 10\% \ac{fpr} thresholds.
 
 \section{Analysis of \acp{psg} identified using \sw selective pressures}
@@ -307,30 +307,30 @@ the 10 species groups 3 levels of \sw filtering from Chapter
 \ref{ch_mammals1}.
 
 To assess the overall behavior of each method, I first looked at the
-distribution of p-values for different species sets using the
+distribution of \pvs for different species sets using the
 conservatively-filtered \sw data. Figure \ref{fig_psg_pvals} shows the
-distribution of gene-wise p-values for 10 species groups using the
+distribution of gene-wise \pvs for 10 species groups using the
 Hochberg, Fisher, \ac{tpm}, and empirical methods described
 above. (Note that for the \ac{tpm} and empirical methods, only one
 truncation threshold is shown for simplicity; the distributions of
-p-values for the other truncation thresholds were qualitatively
+\pvs for the other truncation thresholds were qualitatively
 similar.) As expected, Fisher's product method produced very few
-p-values below 1, showing little to no power to detect positive
+\pvs below 1, showing little to no power to detect positive
 selection in any species group. The \ac{tpm} was slightly more
 sensitive than Fisher's product method with roughtly 10\% of genes
-yielding p-values below 1 for the Mammals species group; the
+yielding \pvs below 1 for the Mammals species group; the
 comparison between Fisher's method and the \ac{tpm} showed that the
 truncation slightly increased the sensitivity of the method, but the
 overall sensitivity remained low with very few genes producing low
-p-values.
+\pvs.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.9]{Figs/psg_pvals.pdf}
-\caption{Cumulative distributions of gene-wise p-values for positive
+\caption{Cumulative distributions of gene-wise \pvs for positive
   selection resulting from 4 different methods for combining \sw
   estimates within genes. Note that the species groups are listed in
-  order of their cumulative proportions at a p-value of 0.5 for the
+  order of their cumulative proportions at a \pv of 0.5 for the
   Hochberg method. To more clearly show the separation between species
   groups at lower y-values, cumulative proportions above 0.3 are not
   shown.}
@@ -339,36 +339,36 @@ p-values.
 
 The Hochberg and empirical methods both showed much greater
 sensitivity and revealed strong differences in the distributions of
-p-values between species groups. For the Hochberg method, Eutheria and
-Mammals groups showed a large proportion of p-values in the realm of
+\pvs between species groups. For the Hochberg method, Eutheria and
+Mammals groups showed a large proportion of \pvs in the realm of
 significance, with roughly 10\% of genes having $p<0.05$. Primates and
 Laurasiatheria clustered together with the next highest proportion of
-low p-values (roughly 5\% with $p<0.05$), followed by the HQ Mammals
+low \pvs (roughly 5\% with $p<0.05$), followed by the HQ Mammals
 group with roughtly 2\% of genes with $p<0.05$. The other species
-groups all showed no visible enrichment for low p-values, with a
-largely uniform distribution of p-values in the range of $0<p<1$ and
-less than 5\% of genes with a p-value below 1. The empirical method
+groups all showed no visible enrichment for low \pvs, with a
+largely uniform distribution of \pvs in the range of $0<p<1$ and
+less than 5\% of genes with a \pv below 1. The empirical method
 produced two tight clusters of species groups: the first cluster, with
 roughly 5-7\% of genes with $p<0.05$, contained Eutheria, Mammals,
 Primates, Laurasiatheria and HQ Mammals; the second cluster, with
 roughly 2\% of genes having $p<0.05$, contained the other 5 species
 groups. Note that the cumulative curve for species groups in the lower
 cluster levels off at around $p=0.2$. This leveling off occurred at
-the maximum p-value given to genes with at least one site below the
+the maximum \pv given to genes with at least one site below the
 truncation threshold; the substantial fraction of genes with zero
-sites below the truncation threshold yielded p-values near to 1.
+sites below the truncation threshold yielded \pvs near to 1.
 
 The major differences between the Hochberg and empirical methods were
-the tighter clustering of the empirical p-values for the 5 species
+the tighter clustering of the empirical \pvs for the 5 species
 groups with greater evidence for positive selection and the greater
-proportion of low empirical p-values for the 5 species groups with
+proportion of low empirical \pvs for the 5 species groups with
 less evidence for positive selection. Both differences could be
 explained by the fact that the Hochberg method assessed significance
 based on the absolute magnitude of the \ac{lrt} statistic for positive
 selection, while the empirical method assessed significance based on
 the magnitude of evidence for positive selection \emph{relative} to
 all \sw estimates for a given species group. This had the effect of
-increasing the proportion of genes with low p-values for species sets
+increasing the proportion of genes with low \pvs for species sets
 with less branch length (e.g., Primates, Laurasiatheria, and HQ
 Mammals) or less overall evidence for positive selection (e.g., the
 five species groups from the lower cluster). As a result, although the
@@ -419,16 +419,16 @@ Filter & Species Group & Genes & \wa & \wg & \psghoch & \psgfisher & \psgtfifty 
 \bottomrule
 \end{tabular}
 \caption{\acp{psg} identified using \sw data with 3 \sw filters, 10
-  species groups and different methods to combine p-values across
+  species groups and different methods to combine \pvs across
   sites. The columns \wa and \wg present the arithmetic and geometric
   means, respectively, of the gene-wide \omg values estimated by
   \ac{slr}. To identify \acp{psg}, only genes with at least 50 \sw
   estimates from the given species group and filter were tested. The
   Benjamini-Hochberg method was used to identify \acp{psg} significant
   at FDR$<0.1$ for all methods. Hoch.---Hochberg's method for
-  \ac{fwer} control; Fis.---Fisher's combined p-value test;
+  \ac{fwer} control; Fis.---Fisher's combined \pv test;
   TPM---truncated product method using 50\%, 20\%, 10\% and 5\%
-  \ac{fpr} thresholds; E---empirical p-values using 0.5\%, 1\%, 5\%
+  \ac{fpr} thresholds; E---empirical \pvs using 0.5\%, 1\%, 5\%
   and 10\% \ac{fpr} thresholds.}
 \label{table_psg_summary}
 \eetable
@@ -467,9 +467,9 @@ selection. This corresponded well with the pattern seen in Chapter
 \ref{ch_mammals1} for the prevalence of positively-selected sites.
 
 Comparing between the different methods for identifying \acp{psg}, the
-Hochberg \ac{fwer} control and empirical p-value methods were much
+Hochberg \ac{fwer} control and empirical \pv methods were much
 more sensitive than the Fisher and \ac{tpm} methods, as expected from
-the p-value distributions in Figure \ref{fig_psg_pvals}. The Fisher
+the \pv distributions in Figure \ref{fig_psg_pvals}. The Fisher
 method was the most conservative, identifying a vanishingly small
 number of \acp{psg} in all species groups. Comparing results from the
 \ac{tpm} method at different truncation thresholds, the method proved
@@ -499,7 +499,7 @@ only the species groups with a large total branch length and a high
 prevalence of positive selection produced a large number of Hochberg
 \acp{psg}.
 
-In contrast, \acp{psg} from empirical p-values reflected a significant
+In contrast, \acp{psg} from empirical \pvs reflected a significant
 clustering of less extreme \acp{psc}. As a result, the empirical
 method identified some \acp{psg} in species groups where the Hochberg
 method identified none. The qualitative pattern between species groups
@@ -514,7 +514,7 @@ had zero Hochberg \acp{psg} but several hundred empirical
 \acp{psg}. This was consistent with the intermediate location of the
 cumulative curve for HQ Mammals under the Hochberg method in Figure
 \ref{fig_psg_pvals}; although this species group showed a greater
-enrichment of low p-values than the lowest cluster of curves, it was
+enrichment of low \pvs than the lowest cluster of curves, it was
 not strong enough to produce any significant genes at FDR$<0.1$.
 
 In summary, the 3 types of methods for combining \sw estimates to
@@ -522,7 +522,7 @@ identify \acp{psg} showed very different performance patterns across
 the different species groups. While the \ac{tpm} and Fisher's method
 have been extensively used in large-scale studies, they appeared to
 lack power in this application. Control of the \ac{fwer} or the use of
-empirical p-values yielded greater numbers of \acp{psg}. Using these
+empirical \pvs yielded greater numbers of \acp{psg}. Using these
 methods to identify \acp{psg}, the 10 species groups fell into 2
 clusters, each with a very different proportion of identified
 \acp{psg}.
@@ -534,14 +534,14 @@ clusters, each with a very different proportion of identified
 \includegraphics[scale=0.3]{Figs/psg_venns.pdf}
 \caption{Venn diagrams of \acp{psg} identified in different species
   groups and using different methods. (A) \acp{psg} identified using
-  empirical p-values in Primates, Glires, and Laurasiatheria. (B)
-  \acp{psg} identified using empirical p-values in
+  empirical \pvs in Primates, Glires, and Laurasiatheria. (B)
+  \acp{psg} identified using empirical \pvs in
   Mammals. Laurasiatheria and Primates. (C) \acp{psg} identified using
-  empirical p-values in species groups with high and low levels of
+  empirical \pvs in species groups with high and low levels of
   positive selection. (D) \acp{psg} identified in the Mammals group
   using three different methods for combining \sw estimates within
   genes. (E) \acp{psg} identified in the Mammals group using the
-  empirical p-value method with 3 different truncation thresholds:
+  empirical \pv method with 3 different truncation thresholds:
   $p<0.01$ (smallest circle, left), $p<0.05$ (middle circle, right),
   $p<0.10$ (largest circle, top).}
 \label{fig_psg_venns}
@@ -585,7 +585,7 @@ in the Eutheria and Mammals groups. Figure \ref{fig_psg_venns}D shows
 the overlap of \acp{psg} identified in the Mammals group by different
 methods; while the \ac{tpm} yielded no unique \acp{psg}, a large
 number of the Hochberg genes were unique, indicating that the Hochberg
-and empirical p-value methods were sensitive to different patterns of
+and empirical \pv methods were sensitive to different patterns of
 positively-selected sites within genes. In contrast, Figure
 \ref{fig_psg_venns}E shows that the different variants of the
 empirical method using different truncation thresholds yielded largely
@@ -614,13 +614,13 @@ counts of \acp{psg} and non-\acp{psg} which were annotated and not
 annotated with the current term (each combination of which filled one
 cell of the table), and \ac{fet} was used to perform a one-sided test
 for independence of rows and columns. A highly significant \ac{fet}
-p-value thus represented strong evidence for a positive association
+\pv thus represented strong evidence for a positive association
 between a gene being positively-selected and being annotated with the
 given term \citep{Rivals2007}. To control for multiple tests being
 performed, I excluded all terms containing fewer than 5 \acp{psg} (to
 reduce the number of tests performed and to avoid including highly
 specific and less biologically-informative \ac{go} terms) and used the
-Benjamini-Hochberg method to identify the \ac{fet} p-value needed to
+Benjamini-Hochberg method to identify the \ac{fet} \pv needed to
 control for an expected \ac{fdr}$<0.1$ within each set of
 \acp{psg}. The second method I used to assess significance was the
 \texttt{weight} algorithm from the \topgo program
@@ -633,7 +633,7 @@ significantly-enriched descendant terms. The result of this weighting
 is that clusters of closely-related and highly significant terms,
 which may otherwise clutter the list of top \ac{fet} results with an
 uninformative set of very similar terms, are thinned out by reducing
-the p-values of the less-specific ancestors. Only terms which were
+the \pvs of the less-specific ancestors. Only terms which were
 significant by both \ac{fet} (FDR$<0.1$) and the \texttt{weight}
 algorithm ($p<0.1$) were included in the top and bottom sections of
 Table \ref{table_go}. Terms with more than 300 or fewer than 30
@@ -659,7 +659,7 @@ Primates (\texttt{P}), the 409 \psgefive \acp{psg} from Glires
 (\texttt{L}). Finally, the set of 273 genes with independent evidence
 for positive selection in each of the Primates, Glires, and
 Laurasiatheria groups was obtained by taking the least significant
-\psgefive p-value for each gene from each species group and
+\psgefive \pv for each gene from each species group and
 identifying genes which remained significant (\texttt{i}). Note that
 groups indicated by lowercase letters correspond to those using the
 less conservative \psgefive \ac{psg} definition.
@@ -715,7 +715,7 @@ ID & Description & \multicolumn{1}{c}{This Study} & \multicolumn{1}{c}{Lit.} & \
   previously-published studies showed enrichment for \acp{psg} for
   that term (see text for definitions). The last 6 columns show values
   from the Mammals \psgefive set, corresponding to the `\texttt{M}'
-  flag; bold P-values indicate significance (FDR$<0.1$ for \ac{fet}
+  flag; bold \pvs indicate significance (FDR$<0.1$ for \ac{fet}
   and p$<0.05$ for \topgo). Genes discussed in the text are presented
   in bold face. Lit.---literature; \ac{fet}---Fisher's Exact Test;
   Sig.---Significant; Exp.---Expected.}
@@ -1377,7 +1377,7 @@ response and cell proliferation \citep{Bustos2009}.
 \multicolumn{2}{c}{All Sites} & \multicolumn{2}{c}{$p<0.01$ Sites} & \\
 \cmidrule(r){1-2} \cmidrule(r){3-4} \cmidrule(r){5-6} \cmidrule(r){7-8}
 Accession & Description & Cons. & Relaxed & Genes & Sites &
-Genes & Sites & Top 5 Genes with $p<0.01$ in Mammals \\
+Genes & Sites & Top 5 Genes with $p<0.01$ \acp{psc} \\
 
 \endhead
 

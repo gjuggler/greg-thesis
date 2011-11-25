@@ -1,17 +1,18 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Wed Nov  9 11:32:30 2011
- \tiny{PF07686} & Immunoglobulin V-set domain & \texttt{~~~MmH} & \texttt{PgLMmH} & 220 & 10851 & \cellcolor[HTML]{8E8EFF}58 & \cellcolor[HTML]{8E8EFF}210 & \tiny{TMIGD1, TREM1, CD2, PILRA} \\ 
-  \tiny{PF00047} & Immunoglobulin domain & \texttt{~~~~~H} & \texttt{P~~MmH} & 240 & 30486 & \cellcolor[HTML]{A1A1FF}51 & \cellcolor[HTML]{A5A5FF}180 & \tiny{Pecam1, CD4, PIGR, FCRL4} \\ 
-  \tiny{PF00084} & Sushi domain (SCR repeat) & \texttt{~~~~~~} & \texttt{P~LMmH} &  37 & 7957 & \cellcolor[HTML]{E8E8FF}17 & \cellcolor[HTML]{C8C8FF}125 & \tiny{C1S, CD46, C4BPA, CR2} \\ 
-  \tiny{PF00059} & Lectin C-type domain & \texttt{~g~Mm~} & \texttt{PgLMmH} &  51 & 4798 & \cellcolor[HTML]{D2D2FF}29 & \cellcolor[HTML]{D0D0FF}111 & \tiny{CD72, KLRB1, PRG3, MBL2} \\ 
-  \tiny{PF00048} & Small cytokines (intecrine/chemokine), IL-8 like & \texttt{~~LMmH} & \texttt{PgLMmH} &  26 & 1231 & \cellcolor[HTML]{E3E3FF}20 & \cellcolor[HTML]{EDEDFF}53 & \tiny{CXCL13, CXCL9, CCL23, CCL16} \\ 
-  \tiny{PF01823} & MAC/Perforin domain & \texttt{P~~MmH} & \texttt{P~LMmH} &   9 & 1176 & \cellcolor[HTML]{FCFCFF}5 & \cellcolor[HTML]{F8F8FF}28 & \tiny{C9, C8A, C6, C7} \\ 
-  \tiny{PF00021} & u-PAR/Ly-6 domain & \texttt{~~~~~~} & \texttt{P~LMmH} &  16 & 775 & \cellcolor[HTML]{F9F9FF}7 & \cellcolor[HTML]{F9F9FF}27 & \tiny{CD59, TEX101, CD177, LYPD4} \\ 
-  \tiny{PF00340} & Interleukin-1 / 18 & \texttt{~~~~~~} & \texttt{PgLMm~} &   8 & 523 & \cellcolor[HTML]{FAFAFF}6 & \cellcolor[HTML]{F9F9FF}27 & \tiny{IL1A, IL18, IL1F6, IL1F9} \\ 
-  \tiny{PF00969} & Class II histocompatibility antigen, beta domain & \texttt{~~~~~~} & \texttt{P~~MmH} &   5 & 266 & \cellcolor[HTML]{FDFDFF}4 & \cellcolor[HTML]{FBFBFF}22 & \tiny{HLA-DMB, HLA-DRB1} \\ 
-  \tiny{PF02841} & Guanylate-binding protein, C-terminal domain & \texttt{~~~~~~} & \texttt{PgLMm~} &   4 & 970 & \cellcolor[HTML]{FDFDFF}4 & \cellcolor[HTML]{FCFCFF}21 & \tiny{GBP4, GBP5, GBP3, GBP6} \\ 
-  \tiny{PF00074} & Pancreatic ribonuclease & \texttt{~~~~~~} & \texttt{~~~Mm~} &   5 & 338 & \cellcolor[HTML]{FCFCFF}5 & \cellcolor[HTML]{FDFDFF}17 & \tiny{RNASE7, RNASE12, RNASE4, RNASE10} \\ 
-  \tiny{PF00993} & Class II histocompatibility antigen, alpha domain & \texttt{~~~~~~} & \texttt{~gLMmH} &   5 & 364 & \cellcolor[HTML]{FDFDFF}4 & \cellcolor[HTML]{FEFEFF}16 & \tiny{HLA-DQA1, HLA-DMA} \\ 
+% Fri Nov 25 00:52:35 2011
+ \tiny{PF07686} & Immunoglobulin V-set domain & \texttt{~~~MmH} & \texttt{PgLMmH} & 220 & 10851 & \cellcolor[HTML]{C7C7FF}58 & \cellcolor[HTML]{C7C7FF}210 & \tiny{TMIGD1, TREM1, CD2, PILRA} \\ 
+  \tiny{PF00047} & Immunoglobulin domain & \texttt{~~~~~H} & \texttt{P~~MmH} & 240 & 30486 & \cellcolor[HTML]{CFCFFF}51 & \cellcolor[HTML]{D1D1FF}180 & \tiny{Pecam1, CD4, PIGR, FCRL4} \\ 
+  \tiny{PF00084} & Sushi domain (SCR repeat) & \texttt{~~~~~~} & \texttt{P~LMmH} &  37 & 7957 & \cellcolor[HTML]{F2F2FF}17 & \cellcolor[HTML]{E1E1FF}125 & \tiny{C1S, CD46, C4BPA, CR2} \\ 
+  \tiny{PF00059} & Lectin C-type domain & \texttt{~g~Mm~} & \texttt{PgLMmH} &  51 & 4798 & \cellcolor[HTML]{E7E7FF}29 & \cellcolor[HTML]{E5E5FF}111 & \tiny{CD72, KLRB1, PRG3, MBL2} \\ 
+  \tiny{PF00048} & Small cytokines (intecrine/chemokine), IL-8 like & \texttt{~~LMmH} & \texttt{PgLMmH} &  26 & 1231 & \cellcolor[HTML]{EFEFFF}20 & \cellcolor[HTML]{F5F5FF}53 & \tiny{CXCL13, CXCL9, CCL23, CCL16} \\ 
+  \tiny{PF00530} & Scavenger receptor cysteine-rich domain & \texttt{~~~~~H} & \texttt{P~~MmH} &  17 & 2865 & \cellcolor[HTML]{FBFBFF}8 & \cellcolor[HTML]{F8F8FF}42 & \tiny{CD5L, MARCO, MSR1, CD5} \\ 
+  \tiny{PF01823} & MAC/Perforin domain & \texttt{P~~MmH} & \texttt{P~LMmH} &   9 & 1176 & \cellcolor[HTML]{FDFDFF}5 & \cellcolor[HTML]{FBFBFF}28 & \tiny{C9, C8A, C6, C7} \\ 
+  \tiny{PF00021} & u-PAR/Ly-6 domain & \texttt{~~~~~~} & \texttt{P~LMmH} &  16 & 775 & \cellcolor[HTML]{FBFBFF}7 & \cellcolor[HTML]{FBFBFF}27 & \tiny{CD59, TEX101, CD177, LYPD4} \\ 
+  \tiny{PF00340} & Interleukin-1 / 18 & \texttt{~~~~~~} & \texttt{PgLMm~} &   8 & 523 & \cellcolor[HTML]{FCFCFF}6 & \cellcolor[HTML]{FBFBFF}27 & \tiny{IL1A, IL18, IL1F6, IL1F9} \\ 
+  \tiny{PF00969} & Class II histocompatibility antigen, beta domain & \texttt{~~~~~~} & \texttt{P~~MmH} &   5 & 266 & \cellcolor[HTML]{FEFEFF}4 & \cellcolor[HTML]{FDFDFF}22 & \tiny{HLA-DMB, HLA-DRB1} \\ 
+  \tiny{PF02841} & Guanylate-binding protein, C-terminal domain & \texttt{~~~~~~} & \texttt{PgLMm~} &   4 & 970 & \cellcolor[HTML]{FEFEFF}4 & \cellcolor[HTML]{FDFDFF}21 & \tiny{GBP4, GBP5, GBP3, GBP6} \\ 
+  \tiny{PF00074} & Pancreatic ribonuclease & \texttt{~~~~~~} & \texttt{~~~Mm~} &   5 & 338 & \cellcolor[HTML]{FDFDFF}5 & \cellcolor[HTML]{FEFEFF}17 & \tiny{RNASE7, RNASE12, RNASE4, RNASE10} \\ 
+  \tiny{PF00993} & Class II histocompatibility antigen, alpha domain & \texttt{~~~~~~} & \texttt{~gLMmH} &   5 & 364 & \cellcolor[HTML]{FEFEFF}4 & \cellcolor[HTML]{FEFEFF}16 & \tiny{HLA-DQA1, HLA-DMA} \\ 
   \tiny{PF00354} & Pentaxin family & \texttt{~~~~~~} & \texttt{Pg~MmH} &   6 & 677 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FFFFFF}14 & \tiny{CRP, APCS, SVEP1} \\ 
-  \tiny{PF00062} & C-type lysozyme/alpha-lactalbumin family & \texttt{~~~~~~} & \texttt{~~~MmH} &   7 & 462 & \cellcolor[HTML]{FCFCFF}5 & \cellcolor[HTML]{FFFFFF}13 & \tiny{LALBA, LYZ, LYZL6, SPACA5B} \\ 
+  \tiny{PF00062} & C-type lysozyme/alpha-lactalbumin family & \texttt{~~~~~~} & \texttt{~~~MmH} &   7 & 462 & \cellcolor[HTML]{FDFDFF}5 & \cellcolor[HTML]{FFFFFF}13 & \tiny{LALBA, LYZ, LYZL6, SPACA5B} \\ 
   

@@ -1,28 +1,26 @@
-% latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Sun Sep 25 20:58:10 2011
- Mammals & 0.10 & 0.31 & 0.74 & 1.46 &   2 &   3 &   6 & \cellcolor[HTML]{FFFFFF} 81.87 & \cellcolor[HTML]{8E8EFF} 18.13 & \cellcolor[HTML]{8E8EFF} 2.09 \\ 
-   & 0.20 & 3.28 & 3.78 & 4.17 &  19 &  30 &  35 & \cellcolor[HTML]{A0A0FF} 95.01 & \cellcolor[HTML]{E6E6FF} 4.99 & \cellcolor[HTML]{EBEBFF} 0.52 \\ 
-   & 0.30 & 4.77 & 5.02 & 5.24 &  27 &  33 &  36 & \cellcolor[HTML]{8E8EFF} 96.90 & \cellcolor[HTML]{FEFEFF} 3.10 & \cellcolor[HTML]{FFFFFF} 0.35 \\ 
-   & 0.40 & 5.67 & 5.86 & 6.04 &  28 &  33 &  36 & \cellcolor[HTML]{8E8EFF} 96.94 & \cellcolor[HTML]{FFFFFF} 3.06 & \cellcolor[HTML]{FFFFFF} 0.35 \\ 
-   & 0.50 & 6.38 & 6.55 & 6.72 &  29 &  33 &  36 & \cellcolor[HTML]{9090FF} 96.75 & \cellcolor[HTML]{FCFCFF} 3.24 & \cellcolor[HTML]{F9F9FF} 0.39 \\ 
-   & 0.60 & 7.06 & 7.22 & 7.40 &  29 &  33 &  36 & \cellcolor[HTML]{9393FF} 96.41 & \cellcolor[HTML]{F7F7FF} 3.59 & \cellcolor[HTML]{F4F4FF} 0.44 \\ 
-   & 0.70 & 7.77 & 7.95 & 8.15 &  29 &  33 &  36 & \cellcolor[HTML]{9797FF} 96.04 & \cellcolor[HTML]{F2F2FF} 3.96 & \cellcolor[HTML]{EEEEFF} 0.50 \\ 
-   & 0.80 & 8.58 & 8.79 & 9.03 &  29 &  33 &  35 & \cellcolor[HTML]{9D9DFF} 95.43 & \cellcolor[HTML]{EBEBFF} 4.57 & \cellcolor[HTML]{E3E3FF} 0.61 \\ 
-   & 0.90 & 9.58 & 9.88 & 10.24 &  29 &  33 &  35 & \cellcolor[HTML]{A4A4FF} 94.57 & \cellcolor[HTML]{E2E2FF} 5.43 & \cellcolor[HTML]{D4D4FF} 0.79 \\ 
-   & 1.00 & 11.22 & 12.00 & 13.28 &  29 &  32 &  35 & \cellcolor[HTML]{B2B2FF} 92.95 & \cellcolor[HTML]{D3D3FF} 7.04 & \cellcolor[HTML]{BDBDFF} 1.14 \\ 
-  % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Sun Sep 25 20:58:10 2011
+% latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov 25 00:13:37 2011
+ Mammals & 0.20 & 3.31 & 3.80 & 4.18 &  19 &  30 &  35 & \cellcolor[HTML]{DDDDFF}95.59 & \cellcolor[HTML]{E7E7FF}4.41 & \cellcolor[HTML]{F4F4FF}0.43 \\ 
+   & 0.30 & 4.79 & 5.03 & 5.26 &  27 &  33 &  36 & \cellcolor[HTML]{C7C7FF}97.02 & \cellcolor[HTML]{FFFFFF}2.98 & \cellcolor[HTML]{FFFFFF}0.34 \\ 
+   & 0.40 & 5.69 & 5.89 & 6.07 &  28 &  33 &  36 & \cellcolor[HTML]{C8C8FF}97.00 & \cellcolor[HTML]{FFFFFF}3.00 & \cellcolor[HTML]{FEFEFF}0.35 \\ 
+   & 0.50 & 6.43 & 6.60 & 6.78 &  29 &  33 &  36 & \cellcolor[HTML]{CBCBFF}96.81 & \cellcolor[HTML]{FBFBFF}3.19 & \cellcolor[HTML]{F9F9FF}0.39 \\ 
+   & 0.60 & 7.12 & 7.29 & 7.47 &  29 &  33 &  36 & \cellcolor[HTML]{D0D0FF}96.46 & \cellcolor[HTML]{F5F5FF}3.54 & \cellcolor[HTML]{F5F5FF}0.43 \\ 
+   & 0.70 & 7.83 & 8.02 & 8.21 &  29 &  33 &  36 & \cellcolor[HTML]{D6D6FF}96.04 & \cellcolor[HTML]{EEEEFF}3.96 & \cellcolor[HTML]{EEEEFF}0.50 \\ 
+   & 0.80 & 8.64 & 8.87 & 9.12 &  29 &  33 &  35 & \cellcolor[HTML]{DEDEFF}95.48 & \cellcolor[HTML]{E6E6FF}4.52 & \cellcolor[HTML]{E6E6FF}0.60 \\ 
+   & 0.90 & 9.67 & 9.99 & 10.36 &  29 &  33 &  35 & \cellcolor[HTML]{ECECFF}94.49 & \cellcolor[HTML]{D8D8FF}5.51 & \cellcolor[HTML]{D8D8FF}0.81 \\ 
+   & 1.00 & 11.33 & 12.14 & 13.42 &  29 &  33 &  35 & \cellcolor[HTML]{FFFFFF}93.02 & \cellcolor[HTML]{C7C7FF}6.98 & \cellcolor[HTML]{C7C7FF}1.12 \\ 
+  % latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov 25 00:13:37 2011
   &  &  &  &  &  &  &  &  &  &  \\ 
-  % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Sun Sep 25 20:58:10 2011
- Primates & 0.10 & 0.17 & 0.25 & 0.30 &   4 &   6 &   8 & \cellcolor[HTML]{8E8EFF} 94.42 & \cellcolor[HTML]{FFFFFF} 5.58 & \cellcolor[HTML]{CFCFFF} 0.61 \\ 
-   & 0.20 & 0.38 & 0.41 & 0.44 &   8 &   9 &  10 & \cellcolor[HTML]{8E8EFF} 94.39 & \cellcolor[HTML]{FFFFFF} 5.61 & \cellcolor[HTML]{FCFCFF} 0.32 \\ 
-   & 0.30 & 0.49 & 0.52 & 0.54 &   8 &   9 &  10 & \cellcolor[HTML]{9A9AFF} 93.64 & \cellcolor[HTML]{F4F4FF} 6.36 & \cellcolor[HTML]{FFFFFF} 0.30 \\ 
-   & 0.40 & 0.59 & 0.61 & 0.63 &   8 &   9 &  10 & \cellcolor[HTML]{A2A2FF} 93.09 & \cellcolor[HTML]{ECECFF} 6.91 & \cellcolor[HTML]{F9F9FF} 0.33 \\ 
-   & 0.50 & 0.67 & 0.69 & 0.71 &   8 &   9 &  10 & \cellcolor[HTML]{ABABFF} 92.39 & \cellcolor[HTML]{E3E3FF} 7.61 & \cellcolor[HTML]{F4F4FF} 0.35 \\ 
-   & 0.60 & 0.76 & 0.78 & 0.80 &   8 &   9 &  10 & \cellcolor[HTML]{B9B9FF} 91.29 & \cellcolor[HTML]{D6D6FF} 8.71 & \cellcolor[HTML]{E3E3FF} 0.46 \\ 
-   & 0.70 & 0.85 & 0.87 & 0.90 &   8 &   9 &  10 & \cellcolor[HTML]{C1C1FF} 90.68 & \cellcolor[HTML]{CFCFFF} 9.32 & \cellcolor[HTML]{DDDDFF} 0.50 \\ 
-   & 0.80 & 0.97 & 1.00 & 1.04 &   8 &   9 &  10 & \cellcolor[HTML]{D3D3FF} 89.10 & \cellcolor[HTML]{BDBDFF} 10.90 & \cellcolor[HTML]{C9C9FF} 0.66 \\ 
-   & 0.90 & 1.13 & 1.19 & 1.25 &   9 &   9 &  10 & \cellcolor[HTML]{E7E7FF} 87.13 & \cellcolor[HTML]{A8A8FF} 12.87 & \cellcolor[HTML]{B3B3FF} 0.86 \\ 
-   & 1.00 & 1.44 & 1.61 & 1.95 &   8 &   9 &  10 & \cellcolor[HTML]{FFFFFF} 84.64 & \cellcolor[HTML]{8E8EFF} 15.36 & \cellcolor[HTML]{8E8EFF} 1.24 \\ 
+  % latex table generated in R 2.12.0 by xtable 1.5-6 package
+% Fri Nov 25 00:13:37 2011
+ Primates & 0.20 & 0.39 & 0.42 & 0.45 &   8 &   9 &  10 & \cellcolor[HTML]{C7C7FF}94.69 & \cellcolor[HTML]{FFFFFF}5.31 & \cellcolor[HTML]{FFFFFF}0.27 \\ 
+   & 0.30 & 0.50 & 0.52 & 0.55 &   8 &   9 &  10 & \cellcolor[HTML]{CCCCFF}93.88 & \cellcolor[HTML]{F8F8FF}6.12 & \cellcolor[HTML]{FFFFFF}0.27 \\ 
+   & 0.40 & 0.59 & 0.61 & 0.63 &   8 &   9 &  10 & \cellcolor[HTML]{D0D0FF}93.19 & \cellcolor[HTML]{F3F3FF}6.81 & \cellcolor[HTML]{FAFAFF}0.32 \\ 
+   & 0.50 & 0.67 & 0.70 & 0.72 &   8 &   9 &  10 & \cellcolor[HTML]{D5D5FF}92.37 & \cellcolor[HTML]{EDEDFF}7.63 & \cellcolor[HTML]{F6F6FF}0.36 \\ 
+   & 0.60 & 0.76 & 0.78 & 0.80 &   8 &   9 &  10 & \cellcolor[HTML]{DBDBFF}91.35 & \cellcolor[HTML]{E7E7FF}8.65 & \cellcolor[HTML]{EDEDFF}0.45 \\ 
+   & 0.70 & 0.85 & 0.88 & 0.91 &   9 &   9 &  10 & \cellcolor[HTML]{DFDFFF}90.61 & \cellcolor[HTML]{E3E3FF}9.39 & \cellcolor[HTML]{E9E9FF}0.52 \\ 
+   & 0.80 & 0.97 & 1.01 & 1.05 &   8 &   9 &  10 & \cellcolor[HTML]{E8E8FF}89.01 & \cellcolor[HTML]{DADAFF}10.99 & \cellcolor[HTML]{E0E0FF}0.66 \\ 
+   & 0.90 & 1.14 & 1.19 & 1.26 &   9 &   9 &  10 & \cellcolor[HTML]{F3F3FF}87.05 & \cellcolor[HTML]{D1D1FF}12.95 & \cellcolor[HTML]{D5D5FF}0.86 \\ 
+   & 1.00 & 1.45 & 1.63 & 2.01 &   8 &   9 &  10 & \cellcolor[HTML]{FFFFFF}84.81 & \cellcolor[HTML]{C7C7FF}15.19 & \cellcolor[HTML]{C7C7FF}1.21 \\ 
   

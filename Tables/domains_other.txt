@@ -1,14 +1,13 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Wed Nov  9 11:32:32 2011
- \tiny{PF00092} & von Willebrand factor type A domain & \texttt{~~~~~H} & \texttt{~~LMmH} &  53 & 13254 & \cellcolor[HTML]{8E8EFF}25 & \cellcolor[HTML]{8E8EFF}108 & \tiny{ITIH4, COL6A5, CLCA1, CLCA4} \\ 
-  \tiny{PF00067} & Cytochrome P450 & \texttt{~~~~mH} & \texttt{~~LMmH} &  39 & 11918 & \cellcolor[HTML]{BBBBFF}18 & \cellcolor[HTML]{BDBDFF}75 & \tiny{CYP7B1, CYP17A1, CYP2J2, CYP4A11} \\ 
-  \tiny{PF00530} & Scavenger receptor cysteine-rich domain & \texttt{~~~~~H} & \texttt{P~~MmH} &  17 & 2865 & \cellcolor[HTML]{EBEBFF}8 & \cellcolor[HTML]{E2E2FF}42 & \tiny{CD5L, MARCO, MSR1, CD5} \\ 
-  \tiny{PF01284} & Membrane-associating domain & \texttt{~~~M~H} & \texttt{~gLMmH} &  25 & 2499 & \cellcolor[HTML]{E2E2FF}10 & \cellcolor[HTML]{EFEFFF}29 & \tiny{SYPL1, CKLF, CMTM6, PLP2} \\ 
-  \tiny{PF01099} & Uteroglobin family & \texttt{~~~~~~} & \texttt{P~~MmH} &   4 & 271 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{F3F3FF}24 & \tiny{SCGB1D1, SCGB2A1, SCGB1A1} \\ 
-  \tiny{PF08840} & BAAT / Acyl-CoA thioester hydrolase C terminal & \texttt{~~~~~~} & \texttt{P~~Mm~} &   2 & 333 & \cellcolor[HTML]{FBFBFF}4 & \cellcolor[HTML]{F7F7FF}20 & \tiny{BAAT, ACOT4, ACOT2, ACOT6} \\ 
-  \tiny{PF01630} & Hyaluronidase & \texttt{~~~~m~} & \texttt{~gLMmH} &   5 & 1435 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FAFAFF}17 & \tiny{SPAM1, HYAL3, HYAL1} \\ 
-  \tiny{PF00049} & Insulin/IGF/Relaxin family & \texttt{~~~~~~} & \texttt{~~~Mm~} &   4 & 232 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FBFBFF}15 & \tiny{RLN1, INSL6, INS-IGF2} \\ 
-  \tiny{PF04326} & Divergent AAA domain & \texttt{~~~~~~} & \texttt{P~~Mm~} &   4 & 225 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FBFBFF}15 & \tiny{SLFN12, SLFN11, SLFN14} \\ 
-  \tiny{PF00068} & Phospholipase A2 & \texttt{~~~~~~} & \texttt{P~~Mm~} &   8 & 412 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FDFDFF}13 & \tiny{PLA2G2A, PLA2G2D, PLA2G10} \\ 
-  \tiny{PF01471} & Putative peptidoglycan binding domain & \texttt{~~~~~~} & \texttt{~~LMm~} &  16 & 796 & \cellcolor[HTML]{F7F7FF}5 & \cellcolor[HTML]{FFFFFF}11 & \tiny{Mmp12, MMP3, MMP7, MMP9} \\ 
+% Fri Nov 25 00:52:36 2011
+ \tiny{PF00092} & von Willebrand factor type A domain & \texttt{~~~~~H} & \texttt{~~LMmH} &  53 & 13254 & \cellcolor[HTML]{C7C7FF}25 & \cellcolor[HTML]{C7C7FF}108 & \tiny{ITIH4, COL6A5, CLCA1, CLCA4} \\ 
+  \tiny{PF00067} & Cytochrome P450 & \texttt{~~~~mH} & \texttt{~~LMmH} &  39 & 11918 & \cellcolor[HTML]{DBDBFF}18 & \cellcolor[HTML]{DCDCFF}75 & \tiny{CYP7B1, CYP17A1, CYP2J2, CYP4A11} \\ 
+  \tiny{PF01284} & Membrane-associating domain & \texttt{~~~M~H} & \texttt{~gLMmH} &  25 & 2499 & \cellcolor[HTML]{EFEFFF}10 & \cellcolor[HTML]{F6F6FF}29 & \tiny{SYPL1, CKLF, CMTM6, PLP2} \\ 
+  \tiny{PF01099} & Uteroglobin family & \texttt{~~~~~~} & \texttt{P~~MmH} &   4 & 271 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{F8F8FF}24 & \tiny{SCGB1D1, SCGB2A1, SCGB1A1} \\ 
+  \tiny{PF08840} & BAAT / Acyl-CoA thioester hydrolase C terminal & \texttt{~~~~~~} & \texttt{P~~Mm~} &   2 & 333 & \cellcolor[HTML]{FDFDFF}4 & \cellcolor[HTML]{FAFAFF}20 & \tiny{BAAT, ACOT4, ACOT2, ACOT6} \\ 
+  \tiny{PF01630} & Hyaluronidase & \texttt{~~~~m~} & \texttt{~gLMmH} &   5 & 1435 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FCFCFF}17 & \tiny{SPAM1, HYAL3, HYAL1} \\ 
+  \tiny{PF00049} & Insulin/IGF/Relaxin family & \texttt{~~~~~~} & \texttt{~~~Mm~} &   4 & 232 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FDFDFF}15 & \tiny{RLN1, INSL6, INS-IGF2} \\ 
+  \tiny{PF04326} & Divergent AAA domain & \texttt{~~~~~~} & \texttt{P~~Mm~} &   4 & 225 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FDFDFF}15 & \tiny{SLFN12, SLFN11, SLFN14} \\ 
+  \tiny{PF00068} & Phospholipase A2 & \texttt{~~~~~~} & \texttt{P~~Mm~} &   8 & 412 & \cellcolor[HTML]{FFFFFF}3 & \cellcolor[HTML]{FEFEFF}13 & \tiny{PLA2G2A, PLA2G2D, PLA2G10} \\ 
+  \tiny{PF01471} & Putative peptidoglycan binding domain & \texttt{~~~~~~} & \texttt{~~LMm~} &  16 & 796 & \cellcolor[HTML]{FBFBFF}5 & \cellcolor[HTML]{FFFFFF}11 & \tiny{Mmp12, MMP3, MMP7, MMP9} \\ 
   

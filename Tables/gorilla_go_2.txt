@@ -1,5 +1,5 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 11:05:44 2011
+% Fri Nov 25 00:55:40 2011
   34 &   5 & 1.54 & GO:0006809 & nitric oxide biosynthetic process & 1.8e-02 & 6.3e-03 & 9.6e-03 & 468 & \tiny{SLC7A2, DDAH2, EGFR, NOS1, GIMAP5} \\ 
   154 &  13 & 6.99 & GO:0006260 & DNA replication & 2.3e-02 & 1.7e-02 & 2.7e-02 & 705 & \tiny{CCDC111, RFC3, TNFAIP1, ORC2L, NFIA} \\ 
   150 &  12 & 6.80 & GO:0019318 & hexose metabolic process & 4.0e-02 & \color[HTML]{808080} 5.9e-02 & 3.7e-02 & 569 & \tiny{B4GALT1, OGDHL, PDX1, MYC, TSTA3} \\ 

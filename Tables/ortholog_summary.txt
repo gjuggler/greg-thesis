@@ -1,5 +1,5 @@
 % latex table generated in R 2.13.0 by xtable 1.5-6 package
-% Tue Nov 15 09:39:44 2011
+% Fri Nov 25 00:41:59 2011
  Ingroups & Primates & \cellcolor[HTML]{CACAFF}17673 & 46 (6 / 388) & 8.0e+05 & \cellcolor[HTML]{E4E4FF}48 & \cellcolor[HTML]{FCFCFF}0.02 & \cellcolor[HTML]{9E9EFF}0.93 & \cellcolor[HTML]{F4F4FF}0.05 & \cellcolor[HTML]{DCDCFF}19024 & \cellcolor[HTML]{C9C9FF}0.68 & \cellcolor[HTML]{AAAAFF}42 \\ 
    & Glires & \cellcolor[HTML]{D7D7FF}15786 & 48 (8 / 391) & 7.8e+05 & \cellcolor[HTML]{E3E3FF}49 & \cellcolor[HTML]{FCFCFF}0.02 & \cellcolor[HTML]{A4A4FF}0.90 & \cellcolor[HTML]{EEEEFF}0.08 & \cellcolor[HTML]{E2E2FF}17904 & \cellcolor[HTML]{C5C5FF}0.73 & \cellcolor[HTML]{A4A4FF}44 \\ 
    & Laurasiatheria & \cellcolor[HTML]{D7D7FF}15764 & 48 (8 / 391) & 7.8e+05 & \cellcolor[HTML]{E3E3FF}49 & \cellcolor[HTML]{FDFDFF}0.01 & \cellcolor[HTML]{A4A4FF}0.90 & \cellcolor[HTML]{EEEEFF}0.09 & \cellcolor[HTML]{E2E2FF}17952 & \cellcolor[HTML]{C5C5FF}0.73 & \cellcolor[HTML]{A4A4FF}44 \\ 

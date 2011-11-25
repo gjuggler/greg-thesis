@@ -1,5 +1,5 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 11:05:44 2011
+% Fri Nov 25 00:55:39 2011
   31 &   6 & 1.59 & GO:0006368 & RNA elongation from RNA polymerase II pr... & 4.3e-03 & 4.3e-03 & 2.8e-03 & 421 & \tiny{ERCC3, POLR2E, GTF2E1, TAF12, TAF11} \\ 
    76 &  10 & 3.90 & GO:0010552 & positive regulation of gene-specific tra... & 5.2e-03 & 5.2e-03 & 7.3e-03 & 620 & \tiny{NKX2-1, CELA1, TFEB, LEF1} \\ 
    46 &   7 & 2.36 & GO:0006367 & transcription initiation from RNA polyme... & 8.4e-03 & 8.4e-03 & 7.3e-03 & 542 & \tiny{ERCC3, POLR2E, GTF2E1, TAF12, TAF11} \\ 

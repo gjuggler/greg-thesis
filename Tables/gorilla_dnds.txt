@@ -1,12 +1,12 @@
 % latex table generated in R 2.12.0 by xtable 1.5-6 package
-% Thu Nov 17 23:41:26 2011
- Human & \cellcolor[HTML]{F4F4FF}0.0057 & \cellcolor[HTML]{8E8EFF}0.26 & 2.5e-03 & \cellcolor[HTML]{9393FF}0.26 & 2.5e-03 & \cellcolor[HTML]{F7F7FF}0.39 \\ 
-  Chimpanzee & \cellcolor[HTML]{F5F5FF}0.0055 & \cellcolor[HTML]{A0A0FF}0.25 & 2.5e-03 & \cellcolor[HTML]{8E8EFF}0.26 & 2.4e-03 & \cellcolor[HTML]{9494FF}4.02 \\ 
-  H/C ancestor & \cellcolor[HTML]{FFFFFF}0.0019 & \cellcolor[HTML]{E7E7FF}0.21 & 3.7e-03 & \cellcolor[HTML]{E9E9FF}0.21 & 3.1e-03 & \cellcolor[HTML]{F5F5FF}0.47 \\ 
-  Gorilla & \cellcolor[HTML]{EEEEFF}0.0077 & \cellcolor[HTML]{B6B6FF}0.24 & 2.0e-03 & \cellcolor[HTML]{A6A6FF}0.25 & 2.1e-03 & \cellcolor[HTML]{8E8EFF}4.18 \\ 
-  H/C/G ancestor & \cellcolor[HTML]{EBEBFF}0.0087 & \cellcolor[HTML]{F6F6FF}0.20 & 1.8e-03 & \cellcolor[HTML]{F8F8FF}0.20 & 1.8e-03 & \cellcolor[HTML]{F5F5FF}0.50 \\ 
-  Orangutan & \cellcolor[HTML]{D3D3FF}0.016 & \cellcolor[HTML]{E4E4FF}0.21 & 1.3e-03 & \cellcolor[HTML]{E0E0FF}0.22 & 1.3e-03 & \cellcolor[HTML]{C8C8FF}2.35 \\ 
-  H/C/G/O ancestor & \cellcolor[HTML]{DDDDFF}0.0131 & \cellcolor[HTML]{F4F4FF}0.20 & 1.5e-03 & \cellcolor[HTML]{F7F7FF}0.20 & 1.5e-03 & \cellcolor[HTML]{FFFFFF}0.00 \\ 
-  Macaque & \cellcolor[HTML]{8E8EFF}0.0324 & \cellcolor[HTML]{FFFFFF}0.20 & 8.9e-04 & \cellcolor[HTML]{FFFFFF}0.20 & 8.9e-04 & \cellcolor[HTML]{E9E9FF}1.03 \\ 
-  All & \cellcolor[HTML]{FFFFFF} & \cellcolor[HTML]{DCDCFF}0.22 & 3.8e-04 & \cellcolor[HTML]{DDDDFF}0.22 & 3.8e-04 & \cellcolor[HTML]{EBEBFF}0.92 \\ 
+% Fri Nov 25 00:55:42 2011
+ Human & \cellcolor[HTML]{F9F9FF}0.0057 & \cellcolor[HTML]{C7C7FF}0.26 & 2.5e-03 & \cellcolor[HTML]{C9C9FF}0.26 & 2.5e-03 & \cellcolor[HTML]{FAFAFF}0.39 \\ 
+  Chimpanzee & \cellcolor[HTML]{F9F9FF}0.0055 & \cellcolor[HTML]{CFCFFF}0.25 & 2.5e-03 & \cellcolor[HTML]{C7C7FF}0.26 & 2.4e-03 & \cellcolor[HTML]{CACAFF}4.02 \\ 
+  H/C ancestor & \cellcolor[HTML]{FFFFFF}0.0019 & \cellcolor[HTML]{F2F2FF}0.21 & 3.7e-03 & \cellcolor[HTML]{F3F3FF}0.21 & 3.1e-03 & \cellcolor[HTML]{F9F9FF}0.47 \\ 
+  Gorilla & \cellcolor[HTML]{F5F5FF}0.0077 & \cellcolor[HTML]{D8D8FF}0.24 & 2.0e-03 & \cellcolor[HTML]{D1D1FF}0.25 & 2.1e-03 & \cellcolor[HTML]{C7C7FF}4.18 \\ 
+  H/C/G ancestor & \cellcolor[HTML]{F4F4FF}0.0087 & \cellcolor[HTML]{FAFAFF}0.20 & 1.8e-03 & \cellcolor[HTML]{FBFBFF}0.20 & 1.8e-03 & \cellcolor[HTML]{F9F9FF}0.50 \\ 
+  Orangutan & \cellcolor[HTML]{E7E7FF}0.016 & \cellcolor[HTML]{F0F0FF}0.21 & 1.3e-03 & \cellcolor[HTML]{EEEEFF}0.22 & 1.3e-03 & \cellcolor[HTML]{E2E2FF}2.35 \\ 
+  H/C/G/O ancestor & \cellcolor[HTML]{ECECFF}0.0131 & \cellcolor[HTML]{F8F8FF}0.20 & 1.5e-03 & \cellcolor[HTML]{FAFAFF}0.20 & 1.5e-03 & \cellcolor[HTML]{FFFFFF}0.00 \\ 
+  Macaque & \cellcolor[HTML]{C7C7FF}0.0324 & \cellcolor[HTML]{FFFFFF}0.20 & 8.9e-04 & \cellcolor[HTML]{FFFFFF}0.20 & 8.9e-04 & \cellcolor[HTML]{F3F3FF}1.03 \\ 
+  All & \cellcolor[HTML]{FFFFFF} & \cellcolor[HTML]{ECECFF}0.22 & 3.8e-04 & \cellcolor[HTML]{ECECFF}0.22 & 3.8e-04 & \cellcolor[HTML]{F4F4FF}0.92 \\ 
   
