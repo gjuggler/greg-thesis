@@ -1378,8 +1378,9 @@ enrichment for positive selection, but the proportions of \acp{psc}
 and sites with \omgml~$>1$ were still above those seen in either the
 relaxed or conservatively filtered datasets.
 
-\begin{landscape}
-\begin{table}
+%\begin{landscape}
+%\begin{table}
+\bbtable
 \scriptsize{
 \centering
 \begin{tabular}{lllrrrrrrrrrrrrr}
@@ -1432,8 +1433,9 @@ Name & Filter &
   showing significant evidence for non-neutral selection.}
 \label{table_filter_summaries_2}
 }
-\end{table}
-\end{landscape}
+%\end{table}
+%\end{landscape}
+\eetable
 
 \section[The global distribution of \sw selective pressures in mammals]{The global distribution of \sw selective \\ pressures in mammals}
 
@@ -1689,23 +1691,82 @@ showed a strong dependency on the branch length of the species set,
 with a much higher power in Mammals than in Primates to confidently
 detect purifying selection (83.87\% vs.\ 15.97\%).
 
+The strong correlation between branch length and the amount of
+purifying selection detected was consistent with a relatively constant
+level of purifying selection in mammalian proteins and greater power
+to detect such selection in larger alignments. The overall proportion
+of protein-coding sites subject to purifying selection appeared to be
+between 90-95\% based on the proportion of sites under purifying
+selection with $p<0.1$, \omgml$<0.5$ and \omgml$<1$ (90.61\%, 90.86\%
+and 97.25\%, respectively, in Mammals). The effect of branch length
+could clearly be seen by comparing the Mammals and Glires species
+groups with their ``sparse'' counterparts: in both comparisons, the
+proportion of sites with \omgml$<0.5$ was nearly identical, but the
+proportion of purifying sites at $p<0.1$ was much lower in the
+``sparse'' group.
+
+The detection of positively-selected sites within different species
+groups showed no such clear trend. As was perhaps expected, Mammals
+and Eutheria, the two species groups with the greatest branch length,
+contained the greatest proportion of \acp{psc} at a $p<0.01$
+threshold: 0.16\% and 0.19\%, respectively. However, there appeared to
+be significant variation---independent of branch length---in the
+amount of positive selection detected within different species
+groups. Comparing the percentage of \acp{psc} at $p<0.01$ between
+Mammals, Sparse Mammals, and HQ Mammals, the ``sparse'' dataset
+contained by far the fewest \acp{psc}, and HQ Mammals showed roughly
+half as many $p<0.01$ \acp{psc} as Mammals. At a more relaxed $p<0.1$
+threshold, HQ Mammals and Mammals contained roughly the same
+proportion of \acp{psc}, while Sparse Mammals still had far fewer. The
+difference between Mammals and HQ Mammals at the two thresholds
+suggested that the larger branch length of the Mammals species group
+allowed \acp{psc} to be more readily detected at higher significance
+levels. In contrast, the consistently lower proportion of \acp{psc} in
+Sparse Mammals could only be readily explained by a species sampling
+effect. The Glires and Sparse Glires species groups showed similarly
+low levels of positive selection, suggesting that species sampling
+within this clade did not strongly affect the prevalence of \acp{psc}.
+
+Despite the large number of species groups considered in this
+analysis, it was difficult to assess whether the observed variation in
+levels of positive selection was associated with true biological
+variation or with some artifact of genome quality or branch
+length. With respect to genome quality, the strong presence of
+\acp{psc} within the HQ Mammals group provided some evidence that \lcv
+genomes were not solely responsible for the increased level of
+positive selection in certain species groups. Due to the overlap
+between many of the species groups, the effects of branch length and
+species sampling were difficult to disentangle. One hypothesis,
+motivated by the few \acp{psc} in Sparse Mammals compared to HQ
+Mammals, is that a mammalian phylogeny with a greater proportion of
+its branch length in shorter or more recent branches may either
+contain more positive selection or have more power to detect it. A
+thorough exploration of this hypothesis is beyond the scope of this
+thesis, but a simple simulation study could be performed to test
+whether the \ac{lrt} performed by \ac{slr} is more sensitive to
+episodic positive selection occurring within short branches than
+within longer branches of the phylogeny.
+
 \section{The impact of \ac{ne} on protein-coding constraint in mammals}
 
-Overall, the conservatively-filtered \sw data showed that, when using
-\omgml estimates, between 1\% to 5\% of protein-coding sites are
-evolving under positive selection. This number varied strongly between
-different species groups, however. Comparing between the four
-phylogenetically independent mammalian superorders (Primates, Glires,
-Laurasiatheria, and Atlantogenata), I found that Primates showed by
-far the most \acp{psc} and sites with \omgml$>1$. Laurasiatheria
-showed similar proportions of sites with \omgml$>1$, but Atlantogenata
-showed fewer \acp{psc} than Laurasiatheria. The Glires group showed
-strikingly lower levels of positive selection compared to the other
-mammalian superorders. Despite the relatively large amount of branch
-length covered by the Glires group (median total length of 1.77,
-versus 2.03 for Laurasiatheria), only 0.10\% of sites were identified
-as \acp{psc} in Glires at a 5\% \ac{fpr}, compared to 0.33\% in
-Laurasiatheria and 0.41\% in Primates.
+Another possible source of variation in levels of positive selection
+between different species groups was true biological differences in
+the proportion of purifying and positively-selected sites. The
+conservatively-filtered \sw data showed that, when using \omgml
+estimates, between 1\% to 5\% of protein-coding sites are evolving
+under positive selection. However, this number varied strongly between
+different species groups. Comparing between the four phylogenetically
+independent mammalian superorders (Primates, Glires, Laurasiatheria,
+and Atlantogenata), Primates showed by far the most \acp{psc} and
+sites with \omgml$>1$. Laurasiatheria showed similar proportions of
+sites with \omgml$>1$, but Atlantogenata showed fewer \acp{psc} than
+Laurasiatheria. The Glires group showed strikingly lower levels of
+positive selection compared to the other mammalian
+superorders. Despite the relatively large amount of branch length
+covered by the Glires group (median total length of 1.77, versus 2.03
+for Laurasiatheria), only 0.10\% of sites were identified as \acp{psc}
+in Glires at a 5\% \ac{fpr}, compared to 0.33\% in Laurasiatheria and
+0.41\% in Primates.
 
 These results may be evaluated in terms of the impact of \ac{ne} on
 the efficacy of natural selection in mammals

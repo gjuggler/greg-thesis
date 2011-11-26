@@ -34,23 +34,22 @@ reason to believe \emph{a priori} that the detection of \acp{psg}
 using mammalian alignments incorporating \lcv genomes would be more
 powerful than in previous whole-genome analyses, which typically
 included 12 or fewer species across mammals and lower total branch
-length \citep{Ellegren2008}. However, differences in the specific
-models used to detect positive selection are expected to affect the
-sensitivities of one study compared to another \citep{Anisimova2009},
-so the set of genes identified using the current methodology would not
-necessarily be expected to overlap significantly of those identified
-in previous studies. Most large-scale studies have used the
-branch-site test for positive selection \citep{Zhang2005}, while the
-results described in this chapter were generated using \ac{slr}. I
-showed in Chapter \ref{ch_indels1} that \ac{slr} has similar power to
-the site-based test implemented in PAML for detecting \sw positive
-selection, but no analysis has yet compared the differences in
-\acp{psg} identified by site-specific and branch-site methods on a
-large scale. For this reason, I hoped that a quantitative comparison
-between \acp{psg} identified using the current methodology and those
-found in previously-published studies may improve our understanding of
-how similar or different the \acp{psg} identified by different methods
-can be.
+length \citep{Ellegren2008}. However, differences in the alignments
+and methods used to detect positive selection may act to limit the
+amount of overlap in \acp{psg} between different studies. Most
+large-scale studies have used the branch-site test for positive
+selection \citep{Zhang2005}, while the results described in this
+chapter were generated using \ac{slr}. I showed in Chapter
+\ref{ch_indels1} that \ac{slr} has similar power to the site-based
+test implemented in \acs{paml} for detecting \sw positive selection,
+but no analysis has yet explicitly compared the differences in
+\acp{psg} identified by site-specific and branch-site methods---or the
+differences in \acp{psg} identified by the same method in different
+studies---on a large scale. For this reason, I hoped that a
+quantitative comparison between \acp{psg} identified using the current
+methodology and those found in previously-published studies may
+improve our understanding of how similar or different the \acp{psg}
+identified by different methods can be.
 
 This chapter describes the use of \sw data to identify trends in the
 evolution of protein-coding genes and domains, focusing on the
@@ -58,19 +57,19 @@ detection of \acp{psg}. I first develop a number of methods for using
 \sw estimates to identify signals of positive selection within genes
 and apply these methods to the \sw data generated in Chapter
 \ref{ch_mammals1}. Next, to provide a higher-level interpretation of
-these results I use \ac{go} annotations to identify categories
-enriched for genes with evidence of positive selection in different
-species groups. A quantitative comparison to results from the
-literature is provided through a direct comparison of the \acp{psg}
-and \ac{go} term results to previously-published studies. Finally, I
-apply the same methods for combining \sw estimates to identify protein
-domains with the strongest enrichment for positive selection
-throughout mammalian evolution.
+these results I use \ac{go} annotations \citep{Ashburner2000} to
+identify categories enriched for genes with evidence of positive
+selection in different species groups. A quantitative comparison to
+results from the literature is provided through a direct comparison of
+the \acp{psg} and \ac{go} term results to previously-published
+studies. Finally, I apply the same methods for combining \sw estimates
+to identify protein domains with the strongest enrichment for positive
+selection throughout mammalian evolution.
 
 \section{Combining \sw estimates to identify positive selection}
 \label{sec_combining_sites}
 
-In Chapter \ref{ch_mammals2} I covered the generation and analysis of
+In Chapter \ref{ch_mammals1} I covered the generation and analysis of
 several highly filtered sets of genome-wide \sw selective pressures
 within different groups of mammalian species. These \sw estimates were
 used to characterize the global distribution of evolutionary
@@ -116,25 +115,23 @@ against strict neutral evolution \citep{Massingham2005}. When
 combining these \pvs to decide whether a gene contains significant
 evidence for positive selection, the number of tests performed must be
 taken into account. For example, a 100-codon gene evolving under the
-null model ($\omega=1$) would be expected to produce 5 sites with
-\pvs at a nominal \ac{fpr} of 0.05; correspondingly, the chance
-that at least one site within the gene would have $p<0.05$ is
-99.4\%. This is calculated as the complement of the probability that
-no sites out of $n$ have $p<x$, which is $(1-x)^{n}$. Thus, if the set
-of genes containing at least one site with nominal $p<0.05$ were
-called \acp{psg}, nearly all genes evolving under the true null model
-would be selected. In contrast, the \ac{lrt}s for positive selection
-implemented in PAML only perform one statistical test per gene and do
-not suffer from the same multiple testing problem. Clearly, some
-procedure for correcting or combining the results from multiple tests
-must be applied in order to identify \acp{psg} using \sw data in a
-statistically controlled manner.
+null model ($\omega=1$) would be expected to produce 5 sites with \pvs
+at a nominal \ac{fpr} of 0.05; correspondingly, the chance that at
+least one site within the gene would have $p<0.05$ is 99.4\%. Thus, if
+the set of genes containing at least one site with nominal $p<0.05$
+were called \acp{psg}, nearly all genes evolving under the true null
+model would be selected. In contrast, the \ac{lrt}s for positive
+selection implemented in PAML only perform one statistical test per
+gene and do not suffer from the same multiple testing
+problem. Clearly, some procedure for correcting or combining the
+results from multiple tests must be applied in order to identify
+\acp{psg} using \sw data in a statistically controlled manner.
 
-I tested 3 types of methods which are capable of correcting for
+I tested three types of methods which are capable of correcting for
 multiple \sw tests within genes to identify \acp{psg}: first,
 adjusting significance thresholds to control the \ac{fwer}; second,
-combining \pvs from multiple tests to produce a single \pv
-summarizing the overall evidence against the null hypothesis; third,
+combining \pvs from multiple tests to produce a single \pv summarizing
+the overall evidence against the null hypothesis; and third,
 estimating empirical gene-wise \pvs based on the genome-wide
 distribution of \sw estimates. Each approach makes different use of
 the \sw data from each gene to identify a set of significant \acp{psg}
@@ -147,20 +144,20 @@ each of the three approaches was applied to the \sw data.
 The \ac{fwer} is defined as the probability, for a given set of tests
 performed, of one or more tests producing a false positive result. In
 the example of a 100-codon gene evolving under the null model, the
-\ac{fwer} at a nominal \pv of 0.05 was 0.994. Assuming an
-appropriate uniform null distribution of \pvs and independence
-between tests, the \v{S}id\`{a}k equation (to which the popular
-Bonferroni correction is a more easily computed approximation)
-identifies the \pv threshold $x$ which is necessary to control the
-\ac{fwer} at the desired level $\alpha$. The \ac{fwer} expected for a
-family of $n$ tests thresholded at a nominal \pv of $x$ is
-$\alpha=1 - (1 - x)^{n}$, so the \pv threshold necessary to
-control for a desired \ac{fwer} can be found by rearranging the
-equation: $x=1 - (1 - \alpha)^{1/n}$. A similar but more powerful
-approach to controlling the \ac{fwer} is the step-up method from
-Hochberg; this method is implemented internally by \ac{slr} for
-reporting the number of positively- and negatively-selected sites
-after multiple testing correction \citep{Hochberg1988,Massingham2005}.
+\ac{fwer} at a nominal \pv of 0.05 was 0.994. Assuming an appropriate
+uniform null distribution of \pvs and independence between tests, the
+\v{S}id\`{a}k equation (to which the popular Bonferroni correction is
+a more easily computed approximation) identifies the \pv threshold $x$
+which is necessary to control the \ac{fwer} at the desired level
+$\alpha$ \citep{Sidak1967}. The \ac{fwer} expected for a family of $n$
+tests thresholded at a nominal \pv of $x$ is $\alpha=1 - (1 - x)^{n}$,
+so the \pv threshold necessary to control for a desired \ac{fwer} can
+be found by rearranging the equation: $x=1 - (1 - \alpha)^{1/n}$. A
+similar but more powerful approach to controlling the \ac{fwer} is the
+step-up method from Hochberg; this method is implemented internally by
+\ac{slr} for reporting the number of positively- and
+negatively-selected sites after multiple testing correction
+\citep{Hochberg1988,Massingham2005}.
 
 To identify \acp{psg} by controlling the \ac{fwer}, I used the
 $p.adjust$ method from the R statistical project to apply the Hochberg
@@ -197,7 +194,7 @@ Stouffer's method (\citealp{Fisher1932}; \citealp{Stouffer1949};
 reviewed in \citealp{Whitlock2005}). Both methods first combine the
 set of \pvs from independent tests in some way: Fisher's test takes
 the product of all \pvs, while Stouffer's method transforms
-\pvs into normal quantiles and sums the resulting z-scores. The
+\pvs into normal quantiles and sums the resulting $z$-scores. The
 combined statistic is then compared to the expected null distribution
 given the same number of input \pvs. A comparison of both tests by
 \citet{Darlington2000} suggests that they provide similar power
@@ -213,11 +210,26 @@ and the Stouffer method can be expected to be equally sensitive to a
 bias towards large \pvs. Since the majority of the \sw estimates in
 mammals showed moderately strong signals of purifying selectio, the
 distribution of one-sided \pvs for positive selection was heavily
-weighted towards 1. This can be seen clearly in Figure \ref{fig_xyz},
+weighted towards 1. This can be seen clearly in Figure \ref{fig_pset_pvals},
 which shows a histogram of genome-wide one-tailed \pvs based on the
 Mammals species group. The standard versions of both Fisher's and
 Stouffer's methods were expected to lack power to identify \acp{psg}
 given the strong impact of purifying selection on the \sw data.
+
+\begin{figure}
+\centering \scriptsize
+\includegraphics[scale=0.32]{Figs/pset_pvals.pdf}
+\caption{Histograms of \sw \pvs in 10 species groups using the
+  conservative filter. Two-tailed \pvs for sites with \omgml$<1$ (left
+  panels) and for sites with \omgml$>1$ (middle panels) are
+  shown. One-tailed \pvs for positive selection (right panels) were
+  constructed by halving the two-tailed \pvs for sites with \omgml$<1$
+  and \omgml$>1$ and negating the \omgml$<1$ \pvs (shown visually by
+  the blue and red arrows). Note: the $y$-axis is held fixed in the
+  middle and right panels, but not in the left panels. Some histogram
+  bars in the right panels are cut off at high \pvs.}
+\label{fig_pset_pvals}
+\end{figure}
 
 The variants of Fisher's and Stouffer's methods which incorporate a
 truncation step (i.e., including only \pvs below a pre-specified
@@ -230,18 +242,18 @@ large-scale genomics experiments where the number of tests is large
 and the standard methods lack power. The authors suggest a truncation
 threshold of $p<0.05$ provides a good balance of sensitivity and
 power, and they note that the method is asymptotically equivalent to
-Fisher's combined test as the \pv trunctation is increased to
-1. Thus, the truncation threshold determines the extent to which the
-method focuses on more significant test results. The test statistic is
-calculated as the product of all \pvs below the truncation
-threshold, and in the implementation provided by Zaykin get
+Fisher's combined test as the \pv trunctation is increased to 1. Thus,
+the truncation threshold determines the extent to which the method
+focuses on more significant test results. The test statistic is
+calculated as the product of all \pvs below the truncation threshold,
+and in the implementation provided by Zaykin get
 al. \citeyearpar{Zaykin2002} the significance of the statistic is
 determined by simulation based on the null model. As an example, for a
-gene with 100 sites and 5 where $p<0.05$, the test statistic would be
-the product of those 5 \pvs and its significance would be tested
-by generating 5,000 replicates under the null model (i.e., uniformly
-distributed \pvs) using the same $p<0.05$ criterion to calculate
-the truncated product of \pvs.
+gene with 100 sites of which five have $p<0.05$, the test statistic
+would be the product of those five \pvs and its significance would be
+tested by generating 5,000 replicates under the null model (i.e.,
+uniformly distributed \pvs) using the same $p<0.05$ criterion to
+calculate the truncated product of \pvs.
 
 To explore the behavior of the \ac{tpm} at various \pv truncation
 thresholds, I used the implementation provided by Zaykin et
@@ -257,72 +269,103 @@ the presence of many purifying sites.
 The previous two approaches are fairly generic statistical methods,
 with formulas whose accuracy depends on the assumption of
 uniformly-distributed \pvs under the null hypothesis. Since the
-overall distribution of one-tailed \pvs from \sw estimates is far
-from uniform, however, the large proportion of sites with strong
-evidence for purifying selection may cause problems when a uniform
-distribution of \pvs is assumed. This problem is alleviated
-somewhat by the fact that \ac{fwer} control mainly uses only the most
-significant test result to identify a \acp{psg}. The sensitivity of
-the \ac{tpm} method to largely non-uniform \pvs should also be
-reduced, as sites with \pvs above a certain threshold from the
-calculation of the combined statistic, thus avoiding undue influence
-from non-significant \pvs. Still, the apparent mismatch between
-the neutral null model tested by \ac{slr} and the large majority of
-sites evolving under purifying selection suggested that tests based on
-the theoretical distribution of \ac{lrt} statistics may be overly
-conservative. For the confident identification of \acp{psg} this may
-be desirable, but for the global analysis of functional trends in
-genes subject to \acp{psg}, a less conservative approach should
-provide more signal. Given the large set of \sw estimates available
-for each species group, the identification of \acp{psg} based on
-empirical \pvs was an attractive alternative approach, with
-potentially more power to detect genes with significant deviations
-from the observed genome-wide distribution of \slrt statistics within
-each species group \citep{Noble2009a}.
+overall distribution of one-tailed \pvs from \sw estimates is far from
+uniform, however, the large proportion of sites with strong evidence
+for purifying selection may cause problems when a uniform distribution
+of \pvs is assumed. This problem is alleviated somewhat by the fact
+that \ac{fwer} control mainly uses only the most significant test
+result to identify a \ac{psg}. The sensitivity of the \ac{tpm} method
+to largely non-uniform \pvs should also be reduced, as sites with \pvs
+above a certain threshold are excluded from the calculation of the
+combined statistic, thus avoiding undue influence from non-significant
+\pvs; however, the \ac{tpm} method still assessed the significance of
+the combined statistic against a uniform distribution of \pvs. Thus,
+the apparent mismatch between the neutral null model tested by
+\ac{slr} and the large majority of sites evolving under purifying
+selection suggested that tests based on the theoretical distribution
+of \ac{lrt} statistics may be overly conservative. For the confident
+identification of \acp{psg} this may be desirable, allowing for strong
+statements to be made about genes showing significance with these
+methods. However, for a global analysis of functional trends in genes
+subject to positive selection, a less conservative approach would
+provide more signal and may be preferable. Given the large set of \sw
+estimates available for each species group, the identification of
+\acp{psg} based on empirical \pvs was an attractive alternative
+approach with potentially more power to detect genes with significant
+deviations from the observed genome-wide distribution of \slrt
+statistics within each species group \citep{Noble2009a}.
 
 I implemented a randomization method to assign an empirical \pv to
 each gene based on the length of the gene and the number of sites with
-\pvs below a certain pre-specified significance threshold. This
-design shares some characteristics with the \ac{tpm} method, as the
-test statistic comes from the subset of sites exceeding a certain
+\pvs below a certain pre-specified significance threshold. This design
+shares some characteristics with the \ac{tpm} method, as the test
+statistic comes from the subset of sites exceeding a certain
 significance threshold. The test statistic here, however, was a simple
-count of the significant sites. To assess the significance of the
-observed count for a given gene, a set of pseudo-replicate genes (each
-with the same number of sites as the real gene) was generated by
-sampling with replacement from the genome-wide set of \sw
-estimates. Using the pre-specified significance threshold, the number
-of significant sites from each replicate was counted. Given $n$, the
-number of replicates, and $r$, the number of replicates with as many
-or more significant sites than the observed count, the empirical
-\pv was calculated as $(r+1) / (n+1)$ \citep{North2002}. This
-method was applied to each gene using 100,00 replicates; as with the
-\ac{tpm} method, the effect of different truncation thresholds was
-assessed by separately calculating empirical \pvs using nominal
-0.05\%, 1\%, 5\%, and 10\% \ac{fpr} thresholds.
+count of the significant sites as opposed to the product of \pvs. The
+decision to use the count of significant sites as the test statistic
+was made primarily due to its simplicity and ease of implementation;
+further testing of the empirical approach described here could
+evaluate methods using the product of \pvs or other test
+statistics. To assess the significance of the observed count for a
+given gene, a set of pseudo-replicate genes (each with the same number
+of sites as the real gene) was generated by sampling with replacement
+from an appropriate genome-wide set of \sw estimates. Using the
+pre-specified significance threshold, the number of significant sites
+from each replicate was counted. Given $n$, the number of replicates,
+and $r$, the number of replicates with as many or more significant
+sites than the observed count, the empirical \pv was calculated as
+$(r+1) / (n+1)$ \citep{North2002}. This method was applied to each
+gene using 10,000 replicates; as with the \ac{tpm} method, the effect
+of different truncation thresholds was assessed by separately
+calculating empirical \pvs for each gene using nominal 0.05\%, 1\%,
+5\%, and 10\% \ac{fpr} thresholds.
+
+In calculating gene-wise \pvs using the empirical method described
+above, the empirical distribution of \sw estimates (from which the
+pseudo-replicate genes were sampled) was chosen to match the species
+group and \sw filter used to generate the observed test statistic. For
+example: to test the significance of a 500-codon gene with 10 $p<0.01$
+sites in the Glires species group using the conservative \sw filter,
+replicates were randomly sampled from the genome-wide distribution of
+\sw \pvs using the same species group and filter. The resulting
+gene-wise \pv measured the significance of the test statistic for that
+gene relative to the statistic expected from a gene with \sw selective
+pressures randomly drawn from the genome-wide distribution. This
+interpretation was slightly different from the Hochberg and \ac{tpm}
+methods described above, as the significance of a given test statistic
+for those methods would not vary depending on the species group or
+filtering protocol used. Instead, for the empirical method the
+significance was tested relative to the \sw observations across all
+genes with a matched species group and filter. For example, the
+observation of a given number of $p<0.01$ sites in the Glires species
+group would yield a more significant gene-wise empirical \pv than in
+the Primates species group, as the genome-wide ``null'' distribution
+of \sw \pvs in Primates contained many more sites with $p<0.01$ (as
+seen in Figure \ref{fig_pset_pvals}).
 
 \section{Analysis of \acp{psg} identified using \sw selective pressures}
 
-The methods described above was applied to \sw estimates from each of
-the 10 species groups 3 levels of \sw filtering from Chapter
-\ref{ch_mammals1}.
-
-To assess the overall behavior of each method, I first looked at the
-distribution of \pvs for different species sets using the
-conservatively-filtered \sw data. Figure \ref{fig_psg_pvals} shows the
-distribution of gene-wise \pvs for 10 species groups using the
+The methods described above were applied to the one-tailed \sw \pvs
+for positive selection, calculated by \ac{slr} from each of the 10
+species groups and three levels of \sw filtering described in
+\ref{ch_mammals1}. To assess the overall behavior of each method for
+combining \sw \pvs from each gene into a gene-wise \pv, I first looked
+at the distribution of gene-wise \pvs for different species sets using
+the conservatively-filtered \sw data. Figure \ref{fig_psg_pvals} shows
+the distribution of gene-wise \pvs for 10 species groups using the
 Hochberg, Fisher, \ac{tpm}, and empirical methods described
 above. (Note that for the \ac{tpm} and empirical methods, only one
 truncation threshold is shown for simplicity; the distributions of
-\pvs for the other truncation thresholds were qualitatively
-similar.) As expected, Fisher's product method produced very few
-\pvs below 1, showing little to no power to detect positive
-selection in any species group. The \ac{tpm} was slightly more
-sensitive than Fisher's product method with roughtly 10\% of genes
-yielding \pvs below 1 for the Mammals species group; the
-comparison between Fisher's method and the \ac{tpm} showed that the
-truncation slightly increased the sensitivity of the method, but the
-overall sensitivity remained low with very few genes producing low
-\pvs.
+\pvs for the other truncation thresholds were qualitatively similar.)
+
+As expected, Fisher's product method produced very few \pvs below 1,
+showing little or no power to detect positive selection in any species
+group. The \ac{tpm} was slightly more sensitive than Fisher's product
+method with roughtly 10\% of genes yielding \pvs below 1 for the
+Mammals species group; the comparison between Fisher's method and the
+\ac{tpm} showed that the truncation slightly increased the sensitivity
+of the method, but the overall sensitivity remained low with very few
+genes producing low \pvs.
 
 \begin{figure}
 \centering
@@ -351,7 +394,7 @@ less than 5\% of genes with a \pv below 1. The empirical method
 produced two tight clusters of species groups: the first cluster, with
 roughly 5-7\% of genes with $p<0.05$, contained Eutheria, Mammals,
 Primates, Laurasiatheria and HQ Mammals; the second cluster, with
-roughly 2\% of genes having $p<0.05$, contained the other 5 species
+roughly 2\% of genes having $p<0.05$, contained the other five species
 groups. Note that the cumulative curve for species groups in the lower
 cluster levels off at around $p=0.2$. This leveling off occurred at
 the maximum \pv given to genes with at least one site below the
@@ -359,21 +402,21 @@ truncation threshold; the substantial fraction of genes with zero
 sites below the truncation threshold yielded \pvs near to 1.
 
 The major differences between the Hochberg and empirical methods were
-the tighter clustering of the empirical \pvs for the 5 species
+the tighter clustering of the empirical \pvs for the five species
 groups with greater evidence for positive selection and the greater
-proportion of low empirical \pvs for the 5 species groups with
-less evidence for positive selection. Both differences could be
-explained by the fact that the Hochberg method assessed significance
-based on the absolute magnitude of the \ac{lrt} statistic for positive
-selection, while the empirical method assessed significance based on
+proportion of low empirical \pvs for the five species groups with less
+evidence for positive selection. Both differences could be explained
+by the fact that the Hochberg method assesses significance based on
+the absolute magnitude of the \ac{lrt} statistic for positive
+selection, while the empirical method assesses significance based on
 the magnitude of evidence for positive selection \emph{relative} to
 all \sw estimates for a given species group. This had the effect of
-increasing the proportion of genes with low \pvs for species sets
-with less branch length (e.g., Primates, Laurasiatheria, and HQ
-Mammals) or less overall evidence for positive selection (e.g., the
-five species groups from the lower cluster). As a result, although the
-overall pattern for each method was somewhat similar, it appeared that
-the empirical method provided greater sensitivity to detect signals of
+increasing the proportion of genes with low \pvs for species sets with
+less branch length (e.g., Primates, Laurasiatheria, and HQ Mammals) or
+less overall evidence for positive selection (e.g., the five species
+groups from the lower cluster). As a result, although the overall
+pattern for each method was somewhat similar, it appeared that the
+empirical method provided greater sensitivity to detect signals of
 positive selection while accounting for differences in branch lengths
 and the background distribution of \sw selective pressures.
 
@@ -395,15 +438,20 @@ expected proportion of rejections of the null hypothesis that are
 false, is a powerful and easily interpreted type of statistical
 control \citep{Benjamini1995}. Thus, the \acp{psg} reported in Table
 \ref{table_psg_summary} are those genes which remained significant
-after controlling for an expected FDR$<0.1$ using the Benjamini
-Hochberg method \citep{Benjamini1995}.
+after controlling for an expected FDR$<0.1$ using the
+\citet{Benjamini1995} method.
 
 \bbtable
 \centering \scriptsize
 \begin{tabular}{llrrrrrrrrrrrrr}
 \toprule
-Filter & Species Group & Genes & \wa & \wg & \psghoch & \psgfisher & \psgtfifty & \psgttwenty & 
-\psgtten & \psgtfive & \psgeohfive & \psgeone & \psgefive & \psgeten \\
+
+ & & Gene & & & & & \multicolumn{4}{c}{TPM} &
+\multicolumn{4}{c}{Empirical} \\
+
+\cmidrule(r){8-11} \cmidrule(r){12-15}
+
+Filter & Species Group & Count & \wa & \wg & Hochberg & Fisher & \tiny{$p<0.5$} & \tiny{$p<0.2$} & \tiny{$p<0.1$} & \tiny{$p<0.05$} & \tiny{$p<0.005$} & \tiny{$p<0.01$} & \tiny{$p<0.05$} & \tiny{$p<0.1$} \\
   \midrule
 
 \input{Tables/psg_summary_default.txt}
@@ -418,29 +466,33 @@ Filter & Species Group & Genes & \wa & \wg & \psghoch & \psgfisher & \psgtfifty 
 
 \bottomrule
 \end{tabular}
-\caption{\acp{psg} identified using \sw data with 3 \sw filters, 10
-  species groups and different methods to combine \pvs across
-  sites. The columns \wa and \wg present the arithmetic and geometric
-  means, respectively, of the gene-wide \omg values estimated by
-  \ac{slr}. To identify \acp{psg}, only genes with at least 50 \sw
-  estimates from the given species group and filter were tested. The
-  Benjamini-Hochberg method was used to identify \acp{psg} significant
-  at FDR$<0.1$ for all methods. Hoch.---Hochberg's method for
-  \ac{fwer} control; Fis.---Fisher's combined \pv test;
-  TPM---truncated product method using 50\%, 20\%, 10\% and 5\%
-  \ac{fpr} thresholds; E---empirical \pvs using 0.5\%, 1\%, 5\%
-  and 10\% \ac{fpr} thresholds.}
+\caption{Counts of \acp{psg} identified using \sw data with three \sw
+  filters, 10 species groups and different methods to combine \pvs
+  across sites. The \citet{Benjamini1995} method was used to control
+  for multiple tests; counts of \acp{psg} significant at FDR$<0.1$ are
+  shown. The columns \wa and \wg represent the arithmetic and
+  geometric means, respectively, of the gene-wide \omg values
+  estimated by \ac{slr}. To identify \acp{psg}, only genes with at
+  least 50 \sw estimates from the given species group and filter were
+  tested. $TPM$---truncated product method.}
 \label{table_psg_summary}
 \eetable
 
 Table \ref{table_psg_summary} provides a summary of \acp{psg}
-identified by each method for each \sw filter and species group. Only
-genes with at least 50 \sw estimates were tested, resulting in
-different numbers of genes for different species groups and \sw
-filters. Groups containing fewer species, such as Atlantogenata and
-HMRD, tended to contain slightly fewer genes than larger groups; this
-mirrored differences between species groups in the genome-wide number
-of \sw estimates seen in Chapter \ref{ch_mammals1} (see Table
+identified by each method for the 10 species groups and for the
+relaxed, conservative, and Pfam \sw filters. These three filters were
+chosen to represent a range of filtering protocols; results for the
+unfiltered \sw data were not shown due to the elevated levels of
+spurious positive selection identified within unfiltere data in
+Chapter \ref{ch_mammals1}. The Pfam filtered dataset was filtered
+using the same rules as the relaxed filter, but only sites within
+annotated Pfam domains were retained for analysis. Only genes with at
+least 50 \sw estimates were tested, resulting in different numbers of
+genes for different species groups and \sw filters. Groups containing
+fewer species, such as Atlantogenata and HMRD, tended to contain
+slightly fewer analyzed genes than larger groups; this mirrored
+differences between species groups in the genome-wide number of \sw
+estimates seen in Chapter \ref{ch_mammals1} (see Table
 \ref{table_pset_summaries_1}).
 
 The pattern of \ac{psg} counts was qualitatively similar between
@@ -460,7 +512,7 @@ conservative filters: as an example, for \acp{psg} identified in the
 Mammals group using Hochberg \ac{fwer}, 7.8\% of genes were \acp{psg}
 using the relaxed filter, 4.7\% using the conservative filter, and
 2.8\% using only sites within annotated Pfam domains. A similar trend
-was observed for the other \acp{psg} identification methods, showing
+was observed for the other \ac{psg} identification methods, showing
 that the conservative and Pfam filtered datasets contained
 progressively lower proportions of genes subject to positive
 selection. This corresponded well with the pattern seen in Chapter
@@ -517,15 +569,18 @@ cumulative curve for HQ Mammals under the Hochberg method in Figure
 enrichment of low \pvs than the lowest cluster of curves, it was
 not strong enough to produce any significant genes at FDR$<0.1$.
 
-In summary, the 3 types of methods for combining \sw estimates to
-identify \acp{psg} showed very different performance patterns across
-the different species groups. While the \ac{tpm} and Fisher's method
-have been extensively used in large-scale studies, they appeared to
-lack power in this application. Control of the \ac{fwer} or the use of
+In summary, the four methods for combining \sw estimates to identify
+\acp{psg} showed very different performance patterns across the
+different species groups. While the \ac{tpm} and Fisher's method have
+been extensively used in large-scale studies, they appeared to lack
+power in this application. Control of the \ac{fwer} or the use of
 empirical \pvs yielded greater numbers of \acp{psg}. Using these
-methods to identify \acp{psg}, the 10 species groups fell into 2
+methods to identify \acp{psg}, the 10 species groups fell into two
 clusters, each with a very different proportion of identified
-\acp{psg}.
+\acp{psg}. This was consistent with the results from Chapter
+\ref{ch_mammals1}, where the species groups also clustered into two
+groups based on the prevalence of positively-selected codons within
+the genome-wide distribution.
 
 \subsection{Overlaps between positively-selected genes in different species groups}
 
@@ -534,20 +589,19 @@ clusters, each with a very different proportion of identified
 \includegraphics[scale=0.3]{Figs/psg_venns.pdf}
 \caption{Venn diagrams of \acp{psg} identified in different species
   groups and using different methods. (A) \acp{psg} identified using
-  empirical \pvs in Primates, Glires, and Laurasiatheria. (B)
-  \acp{psg} identified using empirical \pvs in
-  Mammals. Laurasiatheria and Primates. (C) \acp{psg} identified using
-  empirical \pvs in species groups with high and low levels of
-  positive selection. (D) \acp{psg} identified in the Mammals group
-  using three different methods for combining \sw estimates within
-  genes. (E) \acp{psg} identified in the Mammals group using the
-  empirical \pv method with 3 different truncation thresholds:
-  $p<0.01$ (smallest circle, left), $p<0.05$ (middle circle, right),
-  $p<0.10$ (largest circle, top).}
+  empirical \pvs in Primates, Glires and Laurasiatheria. (B) \acp{psg}
+  identified using empirical \pvs in Mammals. Laurasiatheria and
+  Primates. (C) \acp{psg} identified using empirical \pvs in species
+  groups with high and low levels of positive selection. (D) \acp{psg}
+  identified in the Mammals group using three different methods for
+  combining \sw estimates within genes. (E) \acp{psg} identified in
+  the Mammals group using the empirical \pv method with 3 different
+  truncation thresholds: $p<0.01$ (smallest circle, left), $p<0.05$
+  (middle circle, right), $p<0.10$ (largest circle, top).}
 \label{fig_psg_venns}
 \end{figure}
 
-Using the sets of significant \acp{psg} from Table
+Using the sets of significant \acp{psg} summarized in Table
 \ref{table_psg_summary}, it was possible to identify how many
 \acp{psg} were shared between, or unique to, different species groups
 or methods. Unless otherwise specified, all future analyses in this
@@ -555,17 +609,17 @@ chapter will be derived from the conservatively-filtered dataset.
 
 I first looked at the distribution of \acp{psg} from the empirical
 method with a $p<0.01$ truncation threshold across species
-groups. Overall, a total of 1035 out of 11520 genes, or 8.9\% of those
-investigated, were identified as a \ac{psg} in at least one of the
-species groups. Figure \ref{fig_psg_venns} shows a more detailed
+groups. Overall, a total of 1,035 out of 11,520 genes, or 8.9\% of
+those investigated, were identified as a \ac{psg} in at least one of
+the species groups. Figure \ref{fig_psg_venns} shows a more detailed
 breakdown of how many \acp{psg} were shared between various species
 groups. Figure \ref{fig_psg_venns}A compares genes from the three
 major mammalian superorders, showing that Primates and Laurasiatheria
 share roughly a third of their \acp{psg} and that around two-thirds of
-\acp{psg} in Glires are also significant in Primates, Glires, or
-both. Figure \ref{fig_psg_venns}B looked at \acp{psg} shared between
-Primates, Laurasiatheria, and Mammals (which contained all of the
-species within the Primates and Laurasiatheria groups), showing
+\acp{psg} in Glires are also significant in Primates, Laurasiatheria,
+or both. Figure \ref{fig_psg_venns}B looked at \acp{psg} shared
+between Primates, Laurasiatheria, and Mammals (which contained all of
+the species within the Primates and Laurasiatheria groups), showing
 roughly equal mixtures of shared and unique genes. Finally, I split
 the 10 species groups into 2 clusters based on the prevalence of
 \acp{psg}: Mammals, HQ Mammals, Eutheria, Primates and Eutheria were
@@ -578,8 +632,8 @@ to the species groups which showed less overall positive selection.
 
 Expanding the count to include \acp{psg} identified by the Hochberg,
 Fisher, and truncated product methods (at a truncation threshold of
-$p<0.05$), the total number of \acp{psg} identified was 1300, or
-11.3\% of all genes tested. Compared to the 1035 from the empirical
+$p<0.05$), the total number of \acp{psg} identified was 1,300, or
+11.3\% of all genes tested. Compared to the 1,035 from the empirical
 method alone, the additional 265 genes came from the Hochberg method
 in the Eutheria and Mammals groups. Figure \ref{fig_psg_venns}D shows
 the overlap of \acp{psg} identified in the Mammals group by different
@@ -594,18 +648,32 @@ truncation threshold was relaxed from $p<0.01$ to $p<0.10$.
 
 \section{Functional analysis of \acp{psg} and comparison to previous studies}
 
-I used \ac{go} term annotations from the \ens database to identify
-functional categories enriched for \acp{psg}. \ac{go} annotations for
-all human genes were downloaded from version 64 of \ens and were
-applied to the mammalian alignment containing each human gene. As the
-\ac{go} ontology contains links between terms forming a directed
-acyclic graph, I followed the common practice of applying the set of
-all ancestral, and thus less-specific, terms to each gene as well
-\citep{Rivals2007}. Only terms within the Biological Process ontology
-were included in this analysis, as the Molecular Function and Cellular
-Component hierarchies contain less information on the types of
-processes generally associated with the presence of positive selection
-in mammalian genes \citep{Macaque2007}.
+The \acf{go} \citep{Ashburner2000} is a structured ontology for
+describing the biological functions performed by the proteins encoded
+in genes. A major focus of gene annotation projects has been to
+accurately assign \ac{go} terms to genes, and genome-wide \ac{go}
+annotations have often been used to summarize the types of biological
+functions associated with different groups of genes
+\citep{Camon2004}. I used \ac{go} term annotations from the \ens
+database to identify functional categories enriched for
+\acp{psg}. \ac{go} annotations for all human genes were downloaded
+from version 64 of \ens and were applied to the mammalian alignment
+containing each human gene. As the \ac{go} ontology contains links
+between terms forming a directed acyclic graph, I followed the common
+practice of applying the set of all ancestral, and thus less-specific,
+terms to each gene as well \citep{Rivals2007}. Only terms within the
+Biological Process ontology were included in this analysis, as the
+Molecular Function and Cellular Component hierarchies contain less
+information on the types of processes generally associated with the
+presence of positive selection in mammalian genes
+\citep{Macaque2007}. One assumption of this approach was that gene
+function is conserved between a gene and all of its mammalian
+orthologs. This assumption is true for any evolutionary analysis using
+experimental or functional information derived from a single extant
+species. At least within mammals, all of whom share similar
+developmental regimes and core biochemical capabilities, this
+assumption seems unlikely to be violated by too many genes with
+largely 1-to-1 orthology throughout the phylogenetic tree.
 
 Two methods were employed to identify \ac{go} terms enriched for
 \acp{psg}. First, a simple test for independent association was
@@ -623,8 +691,8 @@ specific and less biologically-informative \ac{go} terms) and used the
 Benjamini-Hochberg method to identify the \ac{fet} \pv needed to
 control for an expected \ac{fdr}$<0.1$ within each set of
 \acp{psg}. The second method I used to assess significance was the
-\texttt{weight} algorithm from the \topgo program
-\citep{Alexa2006a}. The \texttt{weight} algorithm also uses \ac{fet}
+``weight'' algorithm from the \topgo program
+\citep{Alexa2006a}. The ``weight'' algorithm also uses \ac{fet}
 to identify significant associations between terms and genes of
 interest, but it accounts for the fact that gene annotations for
 nearby terms in the \ac{go} graph structure are highly correlated by
@@ -634,7 +702,7 @@ is that clusters of closely-related and highly significant terms,
 which may otherwise clutter the list of top \ac{fet} results with an
 uninformative set of very similar terms, are thinned out by reducing
 the \pvs of the less-specific ancestors. Only terms which were
-significant by both \ac{fet} (FDR$<0.1$) and the \texttt{weight}
+significant by both \ac{fet} (FDR$<0.1$) and the ``weight''
 algorithm ($p<0.1$) were included in the top and bottom sections of
 Table \ref{table_go}. Terms with more than 300 or fewer than 30
 annotated genes were also excluded from inclusion in the top or bottom
@@ -649,17 +717,17 @@ enriched terms was assigned a letter for identification in Table
 reference. From the Mammals group, I tested for enriched \ac{go} terms
 in the 474 \psghoch \acp{psg} (\texttt{H}), the 585 \psgeone \acp{psg}
 (\texttt{M}), the 934 \psgefive \acp{psg} (\texttt{m}), and the 202
-genes in the top 2\% genome-wide by overall \dnds value
-(\texttt{D}). The latter group was defined using gene-wide \dnds
-values output by \ac{slr}, based on fitting a M0-like codon model to
-the mammalian alignment. To evaluate \acp{psg} identified in the
-mammalian superorders, I tested the 459 \psgeone \acp{psg} from
-Primates (\texttt{P}), the 409 \psgefive \acp{psg} from Glires
-(\texttt{g}), and the 400 \psgeone \acp{psg} from Laurasiatheria
-(\texttt{L}). Finally, the set of 273 genes with independent evidence
-for positive selection in each of the Primates, Glires, and
-Laurasiatheria groups was obtained by taking the least significant
-\psgefive \pv for each gene from each species group and
+genes in the top 2\% genome-wide by overall \dnds value calculated by
+\ac{slr} using the M0 codon model (\texttt{D}). The latter group was
+defined using gene-wide \dnds values output by \ac{slr}, based on
+fitting a M0-like codon model to the mammalian alignment. To evaluate
+\acp{psg} identified in the mammalian superorders, I tested the 459
+\psgeone \acp{psg} from Primates (\texttt{P}), the 409 \psgefive
+\acp{psg} from Glires (\texttt{g}), and the 400 \psgeone \acp{psg}
+from Laurasiatheria (\texttt{L}). Finally, the set of 273 genes with
+independent evidence for positive selection in each of the Primates,
+Glires, and Laurasiatheria groups was obtained by taking the least
+significant \psgefive \pv for each gene from each species group and
 identifying genes which remained significant (\texttt{i}). Note that
 groups indicated by lowercase letters correspond to those using the
 less conservative \psgefive \ac{psg} definition.
@@ -667,8 +735,7 @@ less conservative \psgefive \ac{psg} definition.
 In order to facilitate a comparison with functional associations
 reported in previously-published studies, I also collected the lists
 of terms enriched for \acp{psg} from \citet{Clark2003} (\texttt{C}),
-the \citet{Macaque2007} (\texttt{R}), and \citet{Kosiol2008}
-(\texttt{K}).
+\citet{Macaque2007} (\texttt{R}), and \citet{Kosiol2008} (\texttt{K}).
 
 \bbtable
 \centering \scriptsize
@@ -707,18 +774,21 @@ ID & Description & \multicolumn{1}{c}{This Study} & \multicolumn{1}{c}{Lit.} & \
 \caption{Example \ac{go} terms enriched for \acp{psg} in this study
   and in the literature. Top section: the 10 terms most significantly
   enriched for \psgefive \acp{psg} in the Mammals species
-  group. Middle section: other terms found in at least 2 of 3
+  group. Middle section: other terms found in at least two of three
   published genome-wide scans. Bottom section: other terms enriched
   for \acp{psg} in this study but not in the literature. The presence
   or absence of characters under the columns ``This Study'' and
   ``Lit.'' indicates which sets of genes from this or
   previously-published studies showed enrichment for \acp{psg} for
-  that term (see text for definitions). The last 6 columns show values
-  from the Mammals \psgefive set, corresponding to the `\texttt{M}'
-  flag; bold \pvs indicate significance (FDR$<0.1$ for \ac{fet}
-  and p$<0.05$ for \topgo). Genes discussed in the text are presented
-  in bold face. Lit.---literature; \ac{fet}---Fisher's Exact Test;
-  Sig.---Significant; Exp.---Expected.}
+  that term (see text for definitions). The last six columns show
+  values from the Mammals \psgefive set, corresponding to the
+  `\texttt{M}' flag; bold \pvs indicate significance (FDR$<0.1$ for
+  \ac{fet} and p$<0.05$ for \topgo). Genes discussed in the text are
+  presented in bold face. Lit.---literature; \ac{fet}---Fisher's Exact
+  Test; Ann.---the number of genes annotated with the term; Sig.---the
+  observed number of significant genes annotated with the term;
+  Exp.---the number of significant genes expected to be annotated with
+  the term given random assortment.}
 \label{table_go}
 \eetable
 
@@ -751,28 +821,28 @@ distinct in function and composition of Mammalian \psgefive \acp{psg}.
 The middle section of Table \ref{table_go} focuses on \ac{go} terms
 commonly associated with \acp{psg} in the literature which were not
 included in the 10 top terms, showing all terms identified in at least
-2 of the 3 previously published studies. The first 5 terms largely
-recapitulated those included in the top section relating to defense
-response and inflammation, all of which were identified in most gene
-sets from the current study. The next several terms, including
-\emph{sensory perception of taste} and \emph{cell surface receptor
-  linked signaling}, were more related to sensory perception and were
-uniformly not associated with \acp{psg} in this study. The lack of an
-association for these terms in the current study was surprising, as
-olfaction and sensory perception have been among the most consistently
-identified functional categories in large-scale scans for positive
-selection \citep{Nielsen2005,Nielsen2005b}. One explanation for this
-difference may be that the removal of highly-duplicated genes from the
-conservatively-filtered dataset has reduced the number of olfactory
-and sensory genes available for analysis. While there was some
-evidence that the current dataset was depleted of olfactory genes
-compared to previous analyses (according to Table \ref{table_go} only
-17 genes were annotated with \emph{sensory perception of smell}, while
-Kosiol et al. \citeyearpar{2008} analyzed 229 such genes), the number
-of genes annotated with \emph{sensory perception} (274) and
-\emph{sensory perception of chemical stimulus} (36) were still large
-enough to produce a significant enrichment if one existed. Other
-possible explanations included the possibility that
+two of the three previously published studies. The first five terms
+largely recapitulated those included in the top section relating to
+defense response and inflammation, all of which were identified in
+most gene sets from the current study. The next several terms,
+including \emph{sensory perception of taste} and \emph{cell surface
+  receptor linked signaling}, were more related to sensory perception
+and were uniformly not associated with \acp{psg} in this study. The
+lack of an association for these terms in the current study was
+surprising, as olfaction and sensory perception have been among the
+most consistently identified functional categories in large-scale
+scans for positive selection \citep{Nielsen2005,Nielsen2005b}. One
+explanation for this difference may be that the removal of
+highly-duplicated genes from the conservatively-filtered dataset has
+reduced the number of olfactory and sensory genes available for
+analysis. While there was some evidence that the current dataset was
+depleted of olfactory genes compared to previous analyses (according
+to Table \ref{table_go} only 17 genes were annotated with
+\emph{sensory perception of smell}, while \citet{Kosiol2008} analyzed
+229 such genes), the number of genes annotated with \emph{sensory
+  perception} (274) and \emph{sensory perception of chemical stimulus}
+(36) were still large enough to produce a significant enrichment if
+one existed. Other possible explanations included the possibility that
 positively-selected sensory genes were more prone to exclusion from
 the current analysis for other reasons (for example, if their
 alignments contained more clustered \nsyn substitutions) or less
@@ -783,15 +853,15 @@ The bottom section of Table \ref{table_go} shows the remainder of
 terms which were identified in the current study, but not in previous
 studies providing \ac{go} term enrichments, as associated with
 \acp{psg}. The first term, \emph{double-stranded break repair}, was
-identified in 3 of the 8 gene sets, with the association with
+identified in three of the 8 gene sets, with the association with
 \acp{psg} driven by genes such as \gene{SETX}, a RNA helicase which
 causes ataxia and lateral sclerosis when defective
 \citep{Suraweera2007}, and \gene{BRCA2}, a tumor suppressor gene for
 which a common allele is associated with an increased risk of breast
 cancer and whose close relative, \gene{BRCA1}, has been shown to be
 positively selected in mammals \citep{Huttley2000a}. Some of the next
-terms, including \emph{cell division} and \emph{T cell costimulation}
-and \emph{TNF superfamily cytokine production}, were similar to other
+terms, including \emph{cell division}, \emph{T cell costimulation} and
+\emph{TNF superfamily cytokine production}, were similar to other
 terms in the first two sections and contained similar sets of
 \acp{psg}, but the terms \emph{organic anion transport} and
 \emph{spermatogenesis} were quite distinct in their function and set
@@ -822,8 +892,8 @@ positive selection resulting from ``antagonistic coevolution'' between
 various entities (e.g., hosts and parasites, parents and offspring, or
 sperm cells and eggs) has been the driving force behind the evolution
 of increased cancer risk. Although similar trends were observed by
-Nielsen et al., the current study provided additional support for an
-association between positive selection and cancer-related genes,
+\citet{Nielsen2005}, the current study provides additional support for
+an association between positive selection and cancer-related genes,
 expanding the list of \acp{psg} in functional categories related to
 cancer progression and containing known tumor suppressor genes.
 
@@ -900,7 +970,7 @@ matched. Still, these genes appeared to contain most of the 50 top
 \acp{psg} reported in their analysis \citep{Nielsen2005}. Although the
 authors did not provide specific criteria by which \acp{psg} were
 defined, I took the lowest \ac{lrt} value from the 50 genes described,
-1.67, and identified 142 successfully mapped genes with \ac{lrt}
+1.67, and identified 151 successfully mapped genes with \ac{lrt}
 values greater than that value. \citet{Macaque2007} provided the names of
 179 \acp{psg} identified using a branch-site test along any branch of
 the primate tree. Of those, 123 genes were matched by name to genes
@@ -926,30 +996,28 @@ were identified.
 \end{figure}
 
 Figure \ref{fig_pub_psg_venn} shows the overlap between \acp{psg}
-identified in this and previously-published studies. Note that the
-total numbers of \acp{psg} are smaller than those noted in the
-previous paragraph, as genes which were absent from the
-conservatively-filtered dataset were removed. (Results from a
-comparison using the relaxed filter were qualitatively similar to
-those in Figure \ref{fig_pub_psg_venn}.) Overall, the lack of overlap
-in identified \acp{psg} was striking: Figure \ref{fig_pub_psg_venn}A
-shows the overlap between the three studies in primates, with zero
-genes shared by all 3 studies and from 4 to 17 genes shared between
-any pair. Although each analyses identified similar numbers of
-\acp{psg}, very few of the actual genes identified were in
-common. This result did not appear to be an artifact of genes lost
-during the mapping process, as Nielsen et al. also noted that only 1
-of their top 50 genes was also identified by Clark et
-al. \citeyearpar{2003} as evolving under positive selection. Figure
-\ref{fig_pub_psg_venn}B shows slightly more overlap between the two
-most recent studies, with 45 \acp{psg} shared between Kosiol et
-al. and the Rhesus genome analysis. The comparison between \acp{psg}
-from Nielsen et al., Kosiol et al., and the set of \psgeone \acp{psg}
-from the Mammals species group shown in Figure \ref{fig_pub_psg_venn}C
-revealed a similar number of overlapping genes, even though a slightly
-higher number of overlapping \acp{psg} may have been expected due to
-the larger overall number of \acp{psg} identified in the current
-study.
+identified in this and previously-published studies. (Note that all of
+these comparisons were made using results from the conservative
+filter; comparisons using the relaxed filter were qualitatively
+similar to those in Figure \ref{fig_pub_psg_venn}.) Overall, the lack
+of overlap in identified \acp{psg} was striking: Figure
+\ref{fig_pub_psg_venn}A shows the overlap between the three past
+studies in primates, with no genes shared by all three studies and
+from 4 to 17 genes shared between any pair. Although each analysis
+identified similar numbers of \acp{psg}, very few of the actual genes
+identified were in common. This result did not appear to be an
+artifact of genes lost during the mapping process, as
+\citet{Nielsen2005} also noted that only 1 of their top 50 genes was
+also identified by \citet{Clark2003} as evolving under positive
+selection. Figure \ref{fig_pub_psg_venn}B shows slightly more overlap
+between the two most recent studies, with 45 \acp{psg} shared between
+\citet{Kosiol2008} and \citet{Macaque2007}. The comparison between
+\acp{psg} from \citet{Nielsen2005}, \citet{Kosiol2008}, and the set of
+\psgeone \acp{psg} from the Mammals species group shown in Figure
+\ref{fig_pub_psg_venn}C revealed a similar number of overlapping
+genes, even though a slightly higher number of overlapping \acp{psg}
+may have been expected due to the larger overall number of \acp{psg}
+identified in the current study.
 
 The comparison of overlapping \acp{psg} was somewhat limited, as it
 required the use of a cutoff threshold to identify each set of
@@ -967,7 +1035,7 @@ with the current study.
 As an alternative approach to comparing between the current results
 and previous studies, I constructed a series of \ac{roc} curves for
 each published study. For each study, the set of \acp{psg} was used as
-the binary classifier (or ``truth'' value), and a set of 4 gene-wide
+the binary classifier (or ``truth'' value), and a set of four gene-wide
 $p$-values or \dnds estimates from the current study were evaluated as
 test statistics. Curves were constructed by sorting the list of
 matched genes by each test statistic and counting the cumulative
@@ -1009,13 +1077,13 @@ al. \citeyearpar{Nielsen2005} and Kosiol et
 al. \citeyearpar{Kosiol2008} sets of \acp{psg}.
 
 The \citet{Clark2003} curves hardly strayed from the diagonal line,
-showing little ability beyond random chance to identify \acp{psg} from
-that study. This was not necessarily unexpected, as that study tested
-for positive selection only along the very short human and chimpanzee
-branches of the primate tree, while even the Primates species group
-from the current study contained sequences from species as distant as
-tarsier, covering much more branch length and a much more diverse set
-of primate species. The \citet{Nielsen2005} study
+showing little ability beyond random chance to identify the \acp{psg}
+from that study. This was not necessarily unexpected, as that study
+tested for positive selection only along the very short human and
+chimpanzee branches of the primate tree, while even the Primates
+species group from the current study contained sequences from species
+as distant as tarsier, covering much more branch length and a much
+more diverse set of primate species. The \citet{Nielsen2005} study
 showed a noticeably stronger enrichment for \acp{psg} in genes with
 low $p$-values or high \dnds values in the current study, with each
 \ac{roc} curve rising well above the diagonal, and the Primates \dnds
@@ -1035,7 +1103,7 @@ opposed to genes with smaller proportions of positively-selected
 sites.
 
 The \ac{roc} curves for the two more recent studies showed noticeably
-greater, and roughly equivalent, performance. In both cases, all 4
+greater, and roughly equivalent, performance. In both cases, all four
 curves showed nearly identical performance in the high-specificity
 region of the graph, identifying roughly 25\% of the total number of
 \acp{psg} were identified by all curves before the vertical dashed
@@ -1055,19 +1123,19 @@ positive selection distributed throughout a protein.
 \section{Gene families with many \acp{psg}}
 
 Table \ref{table_go} contained a relatively large number of \acp{psg}
-from the same gene family (e.g., solute carrier family genes
+from certain gene families (e.g., solute carrier family genes
 \gene{SLC26A8}, \gene{SLC16A7}, \gene{SLC4A1}, \gene{SLC13A2},
 \gene{SLC9A10}; collagen genes \gene{COL1A2}, \gene{COL4A3},
-\gene{COL16A1}; and \ac{tlr} genes \gene{TLR1} and
-\gene{TLR4}). The clustering of \acp{psg} within large gene families
-was not unexpected, as different members of a gene family may be more
-likely to have similar cellular functions and be subject to similar
-selective pressures; thus, a family of largely immune genes such as
-the \ac{tlr} family may be expected to be enriched for \acp{psg}. The
-prevalence of positively-selected gene family members was concerning,
-however, as many gene families arise through segmental duplications
-\citep{Ohno1970}, and duplicate genes residing nearby on a chromosome
-are likely targets of ectopic gene conversion events
+\gene{COL16A1}; and \ac{tlr} genes \gene{TLR1} and \gene{TLR4}). The
+clustering of \acp{psg} within large gene families was not unexpected,
+as different members of a gene family may be more likely to have
+similar cellular functions and be subject to similar selective
+pressures; thus, a family of largely immune genes such as the \ac{tlr}
+family may be expected to be enriched for \acp{psg}. The prevalence of
+positively-selected gene family members was at the same time
+concerning, however, as many gene families arise through segmental
+duplications \citep{Ohno1970}, and duplicate genes residing nearby on
+a chromosome are likely targets of ectopic gene conversion events
 \citep{Ezawa2006,Benovoy2009}. Gene conversion is a non-reciprocal
 recombination process which is initiated by a double-stranded break in
 the DNA helix that is subsequently repaired through strand invasion by
@@ -1095,7 +1163,7 @@ Gene Family & Genes & NPPs & PSGs &
 \multicolumn{2}{l}{NPP--PSGs} & Top 4 NPP--PSGs \\
 
 \midrule
-\multicolumn{4}{l}{Ensembl Families with $>4$ \acp{psg}} & & & \\
+\multicolumn{4}{l}{Ensembl Families with $\geq 3$\acp{psg}} & & & \\
 \midrule
 
 \input{Tables/psg_fams_ensf.txt}
@@ -1108,7 +1176,15 @@ Gene Family & Genes & NPPs & PSGs &
 
 \bottomrule
 \end{tabular}
-\caption{}
+\caption{Coincidence of \acp{psg} and \ac{npp} within Ensembl gene
+  families. Top: Counts of \acp{npp} and \acp{psg} in Ensembl gene
+  families with at least three \acp{psg}, sorted by the number of
+  genes within that family which are both \acp{psg} and
+  \acp{npp}. Bottom: the same summaries for manually-curated families
+  and the set of all genes. The \ac{fet} \pv for independent
+  assortment of \acp{npp} and \acp{psg} within each group of genes is
+  shown. NPP---nearby paralogous pair; PSG---positively-selected gene;
+  FET---Fisher's exact test.}
 \label{table_psg_fams}
 \end{table}
 
@@ -1117,13 +1193,13 @@ on the current dataset by identifying \acp{npp} and comparing those to
 the list of \psgefive \acp{psg} from the relaxed \sw filter and the
 Mammals species group. I defined \acp{npp} as pairs of genes which are
 members of the same \ens gene family and which reside on the same
-chromosome within 2 Mb of each other; in total, 1,150 genes from 361
+chromosome within 2Mb of each other; in total, 1,150 genes from 361
 \ens families were identified as members of a \ac{npp}. The top
 section of Table \ref{table_psg_fams} summarizes the coincidence of
 \acp{npp} and \acp{psg} within Ensembl gene families containing at
-least 3 \acp{psg}, sorted by the number of genes which were both
+least three \acp{psg}, sorted by the number of genes which were both
 \acp{psg} and part of a \ac{npp}. The list was topped by the collagen
-type IV family, with all 6 family members showing evidence of positive
+type IV family, with all six family members showing evidence of positive
 selection in mammals and residing within 2Mb of another family
 member. Other families containing many \ac{npp}--\acp{psg} were the
 CD1 family of transmembrane glycoproteins \citep{Joyce2001}, several
@@ -1140,10 +1216,10 @@ in core immune system processes which have been consistently shown to
 harbor the highest fraction of \acp{psg}. Thus, although these gene
 families exhibited a striking coincidence of \acp{npp} and \acp{psg},
 the impact of such co-occurrence on the false detection of positive
-selection within any one family was highly dependent on the function
-of genes within that family and the associated prevalence of true
-\acp{psg}. Regardless of this complication, it could be asserted that
-gene families from the top section of Table \ref{table_psg_fams}
+selection within any one family was highly correlated with the
+function of genes within that family and the associated prevalence of
+true \acp{psg}. Regardless of this complication, it could be asserted
+that gene families from the top section of Table \ref{table_psg_fams}
 represented those with the highest likelihood of false positives
 resulting from gene conversion. A more in-depth study of the evolution
 of each family would be necessary to confidently assess whether
@@ -1171,7 +1247,19 @@ Name & Chr. & Loc. & Conservative & Relaxed & Lit. & \ac{npp} & \psgeone $p$-val
 
 \bottomrule
 \end{tabular}
-\caption{}
+\caption{Collagen and matrix metallopeptidase genes with evidence for
+  positive selection. Strings of characters under the ``Evidence for
+  Positive Selection'' heading indicate which methods from the current
+  study (``Conservative'' and ``Relaxed'') and which
+  previously-published studies (``Lit.'') identified each gene as a
+  \ac{psg} (see text for definitions). Genes which are members of a
+  \ac{npp} are marked with a ``+'' in the \ac{npp} column. Note that
+  all of the collagen genes shared the same \psgeone \pv of 2.8e-04;
+  this was the minimum possible empirical \pv based on the 10,000
+  pseudo-replicates tested by the empirical method, indicating that
+  the number of observed $p<0.01$ sites within each gene was greater
+  than in any of the pseudo-replicates. Chr. Loc.---the chromosomal
+  location of the human gene in Mb; NPP---nearby paralogous pair.}
 \label{table_psg_col_mmp}
 \end{table}
 
@@ -1254,119 +1342,20 @@ domains of the ``family'' and ``repeat'' types were excluded from the
 analysis, so only entries of the ``domain'' type remained.
 
 Table \ref{table_domains} summarizes the results of the Pfam domain
-analysis. As in Table \ref{table_go}, the presence or absence of
-significant evidence for positive selection is indicated by a string
-of characters; uppercase letters indicate a significant \psgeone
-result (e.g., \texttt{P}, \texttt{L}, \texttt{M} for Primates,
-Laurasiatheria, and Mammals), lowercase letters indicate a significant
-\psgefive result (e.g., \texttt{g}, \texttt{m} for Glires and
-Mammals), and \texttt{H} indicates a significant \psghoch
+analysis, showing all domains with significant evidence for enrichment
+of positive selection at FDR$<0.1$ in the Mammals species group using
+the \psgeone and \psgefive methods. As in Table \ref{table_go}, the
+presence or absence of significant evidence for positive selection is
+indicated by a string of characters; uppercase letters indicate a
+significant \psgeone result (e.g., \texttt{P}, \texttt{L}, \texttt{M}
+for Primates, Laurasiatheria, and Mammals), lowercase letters indicate
+a significant \psgefive result (e.g., \texttt{g}, \texttt{m} for
+Glires and Mammals), and \texttt{H} indicates a significant \psghoch
 result. Domains were categorized as primarily immune-related,
 protease, or protease inhibitor domains based on information from the
 Pfam database; domains with miscellaneous or uncharacterized functions
 are included in the ``Other Domains'' section of Table
 \ref{table_domains}.
-
-An initial observation was that the conservatively-filtered dataset
-did not yield as many significant results for most domains, indicating
-that a large portion of the signal for positive selection within these
-domains may reside in frequently duplicated genes or alignment regions
-with clusters of \nsyn substitutions. I chose to focus on the
-results from the relaxed dataset for the domain analysis, as the
-results were biologically interesting and the conservative filter
-appeared to have removed a large number of sites within evolutionarily
-conserved domains.
-
-As expected, immune-related functions dominated the list of
-significantly positively-selected Pfam domains. Together, the
-immunoglobulin and immunoglobulin V-set domains accounted for over 390
-$p<0.01$ \acp{psc} spread across 109 proteins, and both domains were
-significant at FDR$<0.1$ for multiple species groups and methods using
-the relaxed \sw filter. Interestingly, only a relatively small
-fraction of immunoglobulin-containing genes contributed to this
-significant evidence for positive selection, with only 51 out of 240
-total immunoglobulin-annotated genes containing $p<0.01$ sites within
-the domain. A similar fraction of genes containing $p<0.01$ sites was
-seen for the immunoglobulin V-set domain. This was not unexpected for
-immunoglobulins, which are known to be highly diverse protein domains
-in mammals, with representation in several hundred human genes
-comprising many immune and non-immune functions
-\citep{Lander2001}. However, the case of immunoglobulin suggests that
-for the study of less well-known domains or organisms, evidence for
-positive selection in a subset of domain instances could be taken as
-evidence of potential adaption of a domain for immune purposes.
-
-Other immune domains with significant positive selection included the
-lectin C-type domain, a carbohydrate binding domain involved in cell
-adhesion and apoptosis \citep{Cambi2009}, the IL-8 like cytokine
-domain involved in inflammation and chemotaxis in the immune response
-\citep{Stein2005}, and the membrane attack complex (MAC) domain, also
-known as perforin, involved in the creation of membrane pores causing
-lysis of bacterial and virus-infected host cells \citep{Lovelace2011}.
-
-The presence of a number of protease and protease inhibitor domains in
-Table \ref{table_domains} was consistent with a large amount oof
-positive selection in mammals having resulted from an evolutionary
-``arms race'' between invading microbes and the host mammalian immune
-system, as the buildup and continued evolution of proteases and their
-inhibitors is known to be a significant medium through which this
-conflict is expressed. Invading pathogens express a diverse array of
-proteases designed to facilitate physical dispersal within the host,
-subvert the blood clotting system which would otherwise immobilize the
-pathogen, or directly attack proteins of the host immune system
-through proteolysis \citep{Armstrong2006}. For example,
-\emph{Plasmodium falicparum}, one of the agents of malaria, expresses
-a variety of secreted and surface-bound proteases which aid infection
-\citep{McKerrow1993} and \emph{Yersinia pestis}, the causative agent
-of plague, contains a surface protease which activates plasminogen,
-thus reducing the blood clotting reaction and significantly increasing
-the pathogen's virulence \citep{Sodeinde1992}.
-
-Host immune systems have accordingly evolved proteases and protease
-inhibitors which can act to inhibit or destroy various pathogenic
-factors: this analysis found that three classes of protease
-inhibitors, the serine protease inhibitors (or \emph{serpins}),
-cystatin cysteine protease inhibitors, and the \amac domain, showed
-evidence for positive selection in mammals. Meanwhile, a number of
-mammalian proteases have themselves been subject to significant
-positive selection, including trypsin, caspase, zinc carboxypeptidase,
-and the alpha/beta hydrolase fold. Interestingly, trypsin---one of the
-protease domains under the strongest positive selection in Table
-\ref{table_domains}, containing 184 $p<0.01$ sites---is a typical
-serine protease domain, which can be inhibited by members of the
-\emph{serpin} family noted above. Caspases, which are centrally
-involved in apoptosis and also help trigger the inflammatory response
-to viral infection \citep{Nicholson1997}, are inhibited by two known
-viral proteins, CrmA from the cowpox virus and p35 from baculovirus
-\citep{Villa1997}. The evidence for positive selection on genes
-containing this domain may reflect the importance of viral infection
-throughout mammalian history. Other explanations are possible, of
-course; caspase proteins were highlighted by \citet{Fonseca2010} in
-their review of \acp{psg} involved in apoptosis, showing how they
-interact with a number of homeostatic, immune, and reproductive
-pathways.
-
-Most of the domains contained within the ``Other Domains'' section of
-Table \ref{table_domains} are less well-characterized than the
-categorized domains or exhibit a less specific range of functions
-within the context of mammalian biology. Some of these domains may
-ultimately belong within the immune category, or some of the genes
-containing \acp{psc} within those domain regions may have obvious
-immune functions. It is worth noting that a number of the domains and
-genes within this section have been implicated in spermatogenesis, the
-main non-immune function often associated with positive selection
-\citep{Wyckoff2000,Torgerson2002,Nielsen2005}: defects in
-phospholipases are associated with sperm immobility and infertility in
-mice \citep{Murakami2010,Sato2010} and the \gene{SPAM1} gene
-containing \acp{psc} within its hyaluronidase domain is a major sperm
-cell antigen \citep{MartinDeLeon2006}. Other domains are known to have
-important cellular roles, but evoke no immediate hypothesis for why
-they contain an excess of \acp{psc}. For example, cytochrome P450
-proteins are involved in largely metabolic and biosynthetic processes
-including hormone biosynthesis and drug metabolism
-\citep{WerckReichhart2000}, and the \emph{Schlafen} genes containing
-the AAA domain have been characterized as being involved in the immune
-response and cell proliferation \citep{Bustos2009}.
 
 \begin{landscape}
 \scriptsize
@@ -1418,24 +1407,134 @@ Genes & Sites & Top 5 Genes with $p<0.01$ \acp{psc} \\
 \caption{\footnotesize Pfam domains with significant evidence for
   positive selection in mammals. Sitewise estimates from within each
   domain were combined to identify significant evidence for positive
-  selection at FDR$<0.1$ in 4 species groups (Primates, Glires,
+  selection at FDR$<0.1$ in four species groups (Primates, Glires,
   Laurasiatheria, and Mammals) using two \sw filtered datasets
-  (conservative and relaxed) and 3 methods to combine \sw estimates
-  (\psgefive, \psgeone, \psghoch). Characters used to indicate
-  positive selection in the ``Cons.'' and ``Relaxed'' columns are the
-  same as those used in Tables \ref{table_go} and
+  (conservative and relaxed) and three methods to combine \sw
+  estimates (\psgefive, \psgeone, \psghoch). Characters used to
+  indicate positive selection in the ``Cons.'' and ``Relaxed'' columns
+  are the same as those used in Tables \ref{table_go} and
   \ref{table_psg_col_mmp}. Columns under the ``All Sites'' heading
   contain the number of unique genes and sites annotated with each
   Pfam domain; columns under the ``$p<0.01$ Sites'' heading contain
   the number of unique genes and sites with nominal $p<0.01$ for
-  positive selection. Only domains with 10 or more $p<0.01$ sites, 3
+  positive selection. Only domains with 10 or more $p<0.01$ sites, three
   or more genes, and FDR$<0.1$ in Mammals using the \psgefive and
   \psgeone methods are shown.}
 \label{table_domains}
 \end{longtable}
 \end{landscape}
 
-\subsection{\Sw evolutionary history of \ac{mbl2}}
+
+An initial observation is that the conservatively-filtered dataset did
+not yield as many significant results for most domains, indicating
+that a large portion of the signal for positive selection within these
+domains may reside in frequently duplicated genes or alignment regions
+with clusters of \nsyn substitutions. I chose to focus on the results
+from the relaxed dataset for the domain analysis, as the results were
+biologically interesting and the conservative filter appeared to have
+removed a large number of sites within evolutionarily conserved
+domains. As noted in Chapter \ref{ch_mammals1}, the conservative
+filter removed over 3,000 genes with more than two sets of putative
+mammalian paralogs; the results in this chapter suggested that
+filtering so many genes based on apparent paralogy is perhaps overly
+stringent. Further refinement of the criteria used to define the
+different levels of \sw filters may be an interesting direction for
+future research.
+
+As expected, immune-related functions dominate the list of
+significantly positively-selected Pfam domains. Together, the
+immunoglobulin and immunoglobulin V-set domains accounted for over 390
+$p<0.01$ \acp{psc} spread across 109 proteins, and both domains were
+significant at FDR$<0.1$ for multiple species groups and methods using
+the relaxed \sw filter. Interestingly, only a relatively small
+fraction of immunoglobulin-containing genes contributed to this
+significant evidence for positive selection, with only 51 out of 240
+total immunoglobulin-annotated genes containing $p<0.01$ sites within
+the domain. A similar fraction of genes containing $p<0.01$ sites was
+seen for the immunoglobulin V-set domain. This was not unexpected for
+immunoglobulins, which are known to be highly diverse protein domains
+in mammals, with representation in several hundred human genes
+comprising many immune and non-immune functions
+\citep{Lander2001}. However, the case of immunoglobulin suggests that
+for the study of less well-known domains or organisms, evidence for
+positive selection in a subset of domain instances could be taken as
+evidence of potential adaption of a domain for immune purposes.
+
+Other immune domains with significant positive selection included the
+lectin C-type domain, a carbohydrate binding domain involved in cell
+adhesion and apoptosis \citep{Cambi2009}, the IL-8 like cytokine
+domain involved in inflammation and chemotaxis in the immune response
+\citep{Stein2005}, and the membrane attack complex (MAC) domain, also
+known as perforin, involved in the creation of membrane pores causing
+lysis of bacterial and virus-infected host cells \citep{Lovelace2011}.
+
+The presence of a number of protease and protease inhibitor domains in
+Table \ref{table_domains} was consistent with a large amount of
+positive selection in mammals having resulted from an evolutionary
+``arms race'' between invading microbes and the host mammalian immune
+system, as the buildup and continued evolution of proteases and their
+inhibitors is known to be a significant medium through which this
+conflict is expressed. Invading pathogens express a diverse array of
+proteases designed to facilitate physical dispersal within the host,
+subvert the blood clotting system which would otherwise immobilize the
+pathogen, or directly attack proteins of the host immune system
+through proteolysis \citep{Armstrong2006}. For example,
+\emph{Plasmodium falicparum}, one of the agents of malaria, expresses
+a variety of secreted and surface-bound proteases which aid infection
+\citep{McKerrow1993} and \emph{Yersinia pestis}, the causative agent
+of plague, contains a surface protease which activates plasminogen,
+thus reducing the blood clotting reaction and significantly increasing
+the pathogen's virulence \citep{Sodeinde1992}.
+
+Host immune systems have accordingly evolved proteases and protease
+inhibitors which can act to inhibit or destroy various pathogenic
+factors: this analysis found that three classes of protease
+inhibitors, the serine protease inhibitors (or \emph{serpins}),
+cystatin cysteine protease inhibitors, and the \amac domain, showed
+evidence for positive selection in mammals. Meanwhile, a number of
+mammalian proteases have themselves been subject to significant
+positive selection, including trypsin, caspase, zinc carboxypeptidase,
+and the alpha/beta hydrolase fold. Interestingly, trypsin---one of the
+protease domains under the strongest positive selection in Table
+\ref{table_domains}, containing 184 $p<0.01$ sites---is a typical
+serine protease domain, which can be inhibited by members of the
+\emph{serpin} family noted above. Caspases, which are centrally
+involved in apoptosis and also help trigger the inflammatory response
+to viral infection \citep{Nicholson1997}, are inhibited by two known
+viral proteins, CrmA from the cowpox virus and p35 from baculovirus
+\citep{Villa1997}. The evidence for positive selection on genes
+containing this domain may reflect the importance of viral infection
+throughout mammalian history. Other explanations are possible, of
+course; caspase proteins were highlighted by \citet{Fonseca2010} in
+their review of \acp{psg} involved in apoptosis, showing how they
+interact with a number of homeostatic, immune, and reproductive
+pathways.
+
+Most of the domains contained within the ``Other Domains'' section of
+Table \ref{table_domains} are less well-characterized than the
+categorized domains or exhibit a less-specific range of functions
+within the context of mammalian biology. Some of these domains may
+ultimately belong within the immune category, or some of the genes
+containing \acp{psc} within those domain regions may have obvious
+immune functions or be subject to other forms of ongoing genetic
+conflict. It is worth noting that a number of the domains and genes
+within this section have been implicated in spermatogenesis, the main
+non-immune function often associated with positive selection
+\citep{Wyckoff2000,Torgerson2002,Nielsen2005}: defects in
+phospholipases are associated with sperm immobility and infertility in
+mice \citep{Murakami2010,Sato2010} and the \gene{SPAM1} gene
+containing \acp{psc} within its hyaluronidase domain is a major sperm
+cell antigen \citep{MartinDeLeon2006}. Other domains are known to have
+important cellular roles, but evoke no immediate hypothesis for why
+they contain an excess of \acp{psc}. For example, cytochrome P450
+proteins are involved in largely metabolic and biosynthetic processes
+including hormone biosynthesis and drug metabolism
+\citep{WerckReichhart2000}, and the \emph{Schlafen} genes containing
+the AAA domain have been characterized as being involved in the immune
+response and cell proliferation \citep{Bustos2009}.
+
+
+\section{Case study: the \sw evolutionary history of \ac{mbl2}}
 
 I chose to highlight the human gene \ac{mbl2}, which codes for the MBL
 protein, as an example of how \sw patterns of purifying and positive
@@ -1453,14 +1552,14 @@ alleles disrupt the MBL protein's collagenous structure and are
 associated with decreased levels of the protein in blood serum. Thus,
 the high prevalence of MBL-disrupting alleles seemed at odds with its
 supposed important role in the innate immune response
-\citep{Seyfarth2005} and some studies even postulated a selective
-advantage for low MBL levels, which would help explain the high
-frequencies of MBL-disrupting alleles \citep{Garred2006}. One study of
-\ac{mbl2} alleles in humans found high levels of heterozygosity
-supporting a selective interpretation \citep{Bernig2004}, but a second
-study by \citet{Verdu2006} found no evidence of strong purifying or
-positive selection, leading the authors to endorse a purely neutral
-interpretation, writing that ``The evolutionary neutrality of MBL2
+\citep{Seyfarth2005} and some studies postulated a selective advantage
+for low MBL levels, which would help explain the high frequencies of
+MBL-disrupting alleles \citep{Garred2006}. One study of \ac{mbl2}
+alleles in humans found high levels of heterozygosity supporting a
+selective interpretation \citep{Bernig2004}, but a second study
+\citep{Verdu2006} found no evidence of strong purifying or positive
+selection, leading the authors to endorse a purely neutral
+interpretation, writing that ``The evolutionary neutrality of \ac{mbl2}
 strongly supports [...]  that this lectin is largely redundant in host
 human defences.'' Thus, the evidence from within human populations was
 somewhat conflicting.
@@ -1475,7 +1574,7 @@ useful additional information. A comparative study in 12 non-human
 primates was indeed conducted by \citet{Falzacappa2004}. Their
 analysis revealed a strong signal of purifying constraint within the
 collagen helix region, but they found no evidence for positive
-selection, concluding that ``MBL2 is well conserved in agreement with
+selection, concluding that ``\ac{mbl2} is well conserved in agreement with
 its important role in the immune system.''
 
 \bbfig
@@ -1516,14 +1615,14 @@ The \sw view of selective pressures in \ac{mbl2}, shown in Figure
 \ref{fig_mbl2}, paints a detailed picture of the evolutionary forces
 shaping this gene within mammals. The protein alignment is shown
 alongside the exon and Pfam domain organization, and \sw selective
-pressures in 6 species groups are displayed below the protein
+pressures in six species groups are displayed below the protein
 alignment. (A detailed description of the colors and conventions used
 is included in the caption to Figure \ref{fig_mbl2}.) In this view,
 the effect of branch length on each species group can be clearly seen
 by the different numbers of sites with $\omega<1$ at $p<0.05$ and
 $p<0.01$ significance, shown as gray boxes below the alignment:
 Mammals and Eutheria detect significant purifying selection in a
-majority of sites, with slightly fewer in Glires, and far fewer in
+majority of sites, with slightly fewer in Glires and far fewer in
 Atlantogenata, Laurasiatheria and Primates. On the other hand, for
 sites with $\omega>1$ at $p<0.05$ and $p<0.01$, shown as red boxes, no
 clear branch length-related pattern exists. Instead, Laurasiatheria
@@ -1532,13 +1631,14 @@ slightly fewer, and the other mammalian orders show some, but
 significantly less, positive selection. Two regions of \ac{mbl2} in
 particular show strong evidence for positive selection in multiple
 independent species groups: first, the last 20 codons of the collagen
-helix domain contain at least 2 $p<0.01$ or $p<0.05$ \acp{psc} in each
-of Primates, Glires, and Laurasiatheria and 1 $p<0.01$ \acp{psc} in
-Atlantogenata, and second, the last 30 codons of the lectin domain
-contain multiple \acp{psc} in all four species groups at $p<0.05$
-significance. A total of 9 sites elsewhere in the lectin domain are
-also significant in Mammals, but the evidence for those \acp{psc}
-seems weak and is not corroborated by individual mammalian orders.
+helix domain contain at least two $p<0.01$ or $p<0.05$ \acp{psc} in
+each of Primates, Glires, and Laurasiatheria and one $p<0.01$
+\acp{psc} in Atlantogenata, and second, the last 30 codons of the
+lectin domain contain multiple \acp{psc} in all four species groups at
+$p<0.05$ significance. A total of 9 sites elsewhere in the lectin
+domain are also significant in Mammals, but the evidence for those
+\acp{psc} seems weak and is not corroborated by individual mammalian
+orders.
 
 So what conclusions can be made regarding the evolution of \ac{mbl2}
 and its potential immune function from these \sw data? First, it was
@@ -1549,7 +1649,7 @@ strong conservation within the collagen helix domain. Second, in
 contrast to \citet{Falzacappa2004}, the distribution of \acp{psc}
 showed that certain regions of \ac{mbl2} do show strong evidence for
 positive selection, but these regions do not overlap with the location
-of the human variants in question. Finally, the existence of \acp{psg}
+of the human variants in question. Finally, the existence of \acp{psc}
 across a number of different mammalian species groups suggested that
 the evolutionary forces causing the observed positive selection in
 \ac{mbl2} have been phylogenetically widespread and ongoing in the
@@ -1597,13 +1697,14 @@ certainly not all, of these differences could be explained by
 differences in the methods used to detect selection. While
 \citet{Clark2003} used a branch-specific test to infer positive
 selection in human and chimpanzee, the \acp{psg} that I compared from
-\citet{Nielsen2005,Macaque2007,Kosiol2008} all tested for positive
-selection across the entire tree under consideration. Perhaps a larger
-component of the variation in results is an unavoidable result of
-different species being analyzed: even with a consistent alignment and
-filtering strategy, I found that the Primates and Laurasiatheria
-species groups shared only roughly 20\% of their \acp{psg} (Figure
-\ref{fig_psg_vennes}A) and Glires contained far fewer \acp{psg}.
+\citet{Nielsen2005}, \citet{Macaque2007} and \citet{Kosiol2008} all
+tested for positive selection across the entire tree under
+consideration. Perhaps a larger component of the variation in results
+is an unavoidable result of different species being analyzed: even
+with a consistent alignment and filtering strategy, I found that the
+Primates and Laurasiatheria species groups shared only roughly 20\% of
+their \acp{psg} (Figure \ref{fig_psg_venns}A) and Glires contained far
+fewer \acp{psg}.
 
 There was more agreement between enriched functional categories: the
 \sw-based \acp{psg} were enriched in most of the well-established
@@ -1613,11 +1714,11 @@ were not. The somewhat unexpected enrichment for \acp{psg} involved in
 mitosis and centrosome organization was interesting and evocative of a
 form of hypothesized chromosomal genetic conflict \citep{Malik2002}. A
 number of gene families contained several \acp{psg}, which provided
-some cause for due to the potential for gene conversion between family
-members to produce false positive results. On a genome-wide scale,
-\acp{psg} and nearby paralogous pairs co-occurred more often than
-expected by chance, but the identification of false positives due to
-gene conversion was deferred for future research.
+some cause for concern due to the potential for gene conversion
+between family members to produce false positive results. On a
+genome-wide scale, \acp{psg} and nearby paralogous pairs co-occurred
+more often than expected by chance, but the identification of false
+positives due to gene conversion was deferred for future research.
 
 The last analysis performed in this chapter was the application of the
 same \sw methods to identifying positive selection within Pfam

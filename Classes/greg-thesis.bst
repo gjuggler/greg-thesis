@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `ay,nat,seq-lab,nm-rvv,jnrlst,nmlm,x10,x5,m10,m5,keyxyr,dt-beg,yr-par,yrp-per,note-yr,vol-bf,vnum-x,volp-com,num-xser,blk-tit,ppx,ed,abr,ord,jabr,amper,and-xcom,etal-it')
+%% merlin.mbs  (with options: `ay,nat,seq-lab,nm-rvv,jnrlst,nmlm,x10,x5,m10,m5,keyxyr,dt-beg,yr-par,yrp-per,note-yr,vol-bf,vnum-x,volp-com,num-xser,blk-tit,ppx,ed,abr,ord,jabr,and-xcom,etal-it')
 %% 
 %% This is for Greg's thesis.
 %% 
@@ -450,7 +450,7 @@ FUNCTION {format.names}
                   " " * bbl.etal emphasize *
                 }
                 {
-                  "\&"
+                  bbl.and
                   space.word * t *
                 }
               if$
@@ -495,7 +495,7 @@ FUNCTION {format.names.ed}
                   " " * bbl.etal emphasize *
                 }
                 {
-                  "\&"
+                  bbl.and
                   space.word * t *
                 }
               if$
@@ -593,7 +593,7 @@ FUNCTION {format.full.names}
                   " " * bbl.etal emphasize *
                 }
                 {
-                  "\&"
+                  bbl.and
                   space.word * t *
                 }
               if$
@@ -1304,7 +1304,7 @@ FUNCTION {format.lab.names}
             {
               " " * bbl.etal emphasize *
             }
-            { " \& " * s #2 "{vv~}{ll}" format.name$
+            { bbl.and space.word * s #2 "{vv~}{ll}" format.name$
               * }
           if$
         }
