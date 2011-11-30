@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `ay,nat,seq-lab,nm-rvv,jnrlst,nmlm,x10,x5,m10,m5,keyxyr,dt-beg,yr-par,yrp-per,note-yr,vol-bf,vnum-x,volp-com,num-xser,blk-tit,ppx,ed,abr,ord,jabr,and-xcom,etal-it')
+%% merlin.mbs  (with options: `ay,nat,seq-lab,nm-rvv,jnrlst,nmlm,x10,x5,m10,m5,keyxyr,dt-beg,yr-par,yrp-per,note-yr,vol-bf,vnum-x,volp-com,num-xser,blk-tit,ppx,ed,abr,ord,jabr,and-xcom,etal-it,atit-u')
 %% 
 %% This is for Greg's thesis.
 %% 
@@ -554,9 +554,6 @@ FUNCTION {format.note}
 
 FUNCTION {format.title}
 { title
-  duplicate$ empty$ 'skip$
-    { "t" change.case$ }
-  if$
   "title" bibinfo.check
 }
 FUNCTION {format.full.names}

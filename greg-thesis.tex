@@ -1,6 +1,6 @@
 %input macros (i.e. write your own macros file called MacroFile1.tex)
 %\include{Macros/MacroFile1}
-\documentclass[11pt]{Classes/CUEDthesisPSnPDF}
+\documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
 
 \newcommand{\mytitle}{Analysis of alignment error and sitewise
   constraint in mammalian comparative genomics}
@@ -39,7 +39,7 @@
 %
 %\renewcommand{\submittedtext}{change the default text here if needed}
 \degree{Doctor of Philosophy}
-\degreedate{September 29, 2011 (Hah!)}
+\degreedate{November 30, 2011}
 
 % turn of those nasty overfull and underfull hboxes
 \hbadness=10000
@@ -101,10 +101,10 @@
 \setcounter{tocdepth}{1}
 
 \frontmatter % book mode only
-%\include{Frontmatter/Dedication}
-%\include{Frontmatter/Acknowledgements}
+\include{Frontmatter/Dedication}
 \include{Frontmatter/Declaration}
 \include{Frontmatter/Abstract}
+\include{Frontmatter/Acknowledgements}
 
 \tableofcontents
 
@@ -123,6 +123,10 @@
 
 \backmatter % book mode only
 
+\def\bibpreamble{\emph{After each reference, a list of pages from
+    which the reference is cited is included in brackets.}}
+
+\renewcommand*\backref[1]{\ifx#1\relax \else [#1] \fi}
 \bibliographystyle{Classes/greg-thesis.bst}
 \bibliography{references} % References file
 \end{document}
