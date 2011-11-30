@@ -161,8 +161,8 @@
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter. #1 }}{}}
 \renewcommand{\sectionmark}[1]{}
 \fancyhf{}
-\fancyhead[RO]{\bfseries\rightmark}
-\fancyhead[LE]{\bfseries\leftmark}
+\fancyhead[RO]{\bfseries}
+\fancyhead[LE]{\bfseries}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
