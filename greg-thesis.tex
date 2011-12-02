@@ -76,6 +76,8 @@
 \setcounter{topnumber}{50}
 \setcounter{bottomnumber}{50}
 
+\renewcommand*\backref[1]{\ifx#1\relax \else [#1] \fi}
+
 \begin{document}
 
 %\language{english}
@@ -126,7 +128,6 @@
 \def\bibpreamble{\emph{After each reference, a list of pages from
     which the reference is cited is included in brackets.}}
 
-\renewcommand*\backref[1]{\ifx#1\relax \else [#1] \fi}
 \bibliographystyle{Classes/greg-thesis.bst}
 \bibliography{references} % References file
 \end{document}
