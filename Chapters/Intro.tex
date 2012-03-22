@@ -49,9 +49,30 @@ contribute to our understanding of the impact of some sources of error
 on large-scale comparative analyses and to further develop methods for
 appropriately predicting and handling such error.
 
-\bresp{Alignment}
-Blah blah blah...
-\eresp{Alignment}
+\bresp{Hypothesis}A major hypothesis underlying the work described in
+this thesis is the idea that a fine-scale comparison of differences in
+the evolutionary rates of genes---both within genomes (i.e.\ between
+different genes) and across evolutionary histories (i.e.\ between
+different species groups)---can be used to identify distinct
+biological features and patterns related to the impact of natural
+selection on the molecular evolution of proteins in mammals. Following
+from this hypothesis, some major points of consideration include the
+question of whether errors in genome-scale analysis methods reduce our
+ability to detect such features with reasonable accuracy (as
+investigated in Chapters \ref{ch_indels1} and \ref{ch_mammals1}),
+whether heterogeneous evolutionary patterns in genes can be suitably
+and reliably summarized to identify genes with the strongest evidence
+of long-term adaptive evolution (as explored in Chapter
+\ref{ch_mammals2}), and whether there is sufficient signal within
+fixed protein-coding differences to shed light on unique adaptive
+events experienced by different primates and mammals (considered in
+Chapters \ref{ch_mammals1} and \ref{ch_gorilla}). Each of these topics
+is quite broad, with a relatively distinct sub-field devoted to the
+development of better models and an improved understanding, but they
+together feed into the overall question of whether data from across
+dozens of genomes can be successfully used to gather a global picture
+of the impact of long-term adaptive evolution on mammalian
+genes. \eresp{Hypothesis}
 
 Although each subsequent chapter contains its own short introduction,
 this chapter presents some of the key concepts and methods which are
@@ -814,6 +835,24 @@ detect \sw positive selection under a wide range of conditions, and in
 Chapters \ref{ch_mammals1} and \ref{ch_mammals2} I apply \ac{slr} on a
 large scale to analyze genome-wide patterns of \sw positive selection
 in mammals.
+
+\subsection{Alignment and selection analyses}
+
+\bresp{Alignment}[Won't go into detail about methods for alignment,
+  but discussion of dealing with *uncertainty*, esp. wrt selection, is needed.]
+
+[Alignment can be ambiguous, and computationally intractable for optimal solutions]
+
+[For ambiguity, statistical approach has often been taken. Involves
+  explicit model of insertion and deletion, sampling over large
+  population of suboptimal alignments, or weighting downstream estimates based on alignment probability]
+
+[Explain why I didn't use any of these super-cool approaches here:
+  computational issues, prevalence of non-indel versus indel errors,
+  difficulty of directly incorporating selection estimates into
+  alignment uncertainty]
+
+\eresp{Alignment}
 
 \section{Outline of the thesis}
 

@@ -6,8 +6,6 @@
 
 \section{Introduction}
 
-
-
 The decreasing cost of DNA sequencing has triggered a striking
 increase in the number of model and non-model organisms with planned
 genome sequencing projects, suggesting that the range and scale of
@@ -209,7 +207,6 @@ those encountered in the \sw analysis of vertebrate gene families.
 
 \section{Methods}
 
-
 \bbtable
 \centering
 \begin{tabular}{lllllllll}
@@ -231,6 +228,10 @@ Taxa & Source & MPL & Size Distribution & (Std. Dev.) & Rate & Shape & Mean & $p
   per substitution.}
 \label{table_indels_1}
 \eetable
+
+\subsection{Simulation and Analysis Framework}
+
+\bresp{Pipeline}Blah blah blah...\eresp{Pipeline}
 
 \subsection{Alignment Simulations}
 
@@ -579,6 +580,8 @@ experiments. As the runtime for SLR was significantly lower than that
 of either PAML model, all subsequent results are presented only based
 on the SLR test.
 
+\bresp{Power}Blah blah blah...\eresp{Power}
+
 \subsection{The Effect of Alignment Error on \Sw Power}
 
 When the indel rate was greater than zero, performance levels varied
@@ -625,11 +628,14 @@ expected, since even in the absence of alignment error alignment
 columns containing gaps harbor less evolutionary information than
 columns with complete sequence data. The lack of increased FPR showed
 that SLR retained its conservative statistical performance even when
-analyzing gapped alignments. Surprisingly, at higher divergences (MPL$>$1.0) under the six-taxon tree, the FPR with indels was lower than
-the FPR without indels. This unexpected result may be attributed to
-the large number of alignment columns under such conditions that
-contained only a single non-gap sequence, as those columns were never
-inferred as positively-selected by SLR due to the complete lack of
+analyzing gapped alignments.
+
+\bresp{False Positives}Surprisingly, at higher divergences (MPL$>$1.0)
+under the six-taxon tree, the FPR with indels was lower than the FPR
+without indels. This unexpected result may be attributed to the large
+number of alignment columns under such conditions that contained only
+a single non-gap sequence, as those columns were never inferred as
+positively-selected by SLR due to the complete lack of
 information. The two larger trees did not show a similar trend at high
 divergence levels, suggesting that this effect was indeed due to the
 highly sparse nature of the alignments in the 6-taxon tree. All other
@@ -637,7 +643,7 @@ results from the 6-taxon tree at high divergences were similarly
 anomalous in this respect; I surmised that the sparseness of the true
 alignment, combined with the extreme difficulty of accurately aligning
 sequences along very long branches, made \sw analysis with indels very
-unreliable at high divergences in the smallest tree.
+unreliable at high divergences in the smallest tree.\eresp{False Positives}
 
 When alignments were inferred using one of the three aligners tested,
 the TPR, \tpr{} and \omg correlation were all reduced relative to
@@ -1093,6 +1099,8 @@ when the number of sequences in the tree was large, \prankc{}'s
 sitewise FPRs were virtually indistinguishable from those of the true
 alignment.
 
+\bresp{Overalignment}blah blah blah...\eresp{Overalignment}
+
 An important observation regarding the size of tree analyzed was that
 the 6-taxon tree caused qualitatively similar problems (e.g.\,
 elevated FPRs and reduced TPRs) for all aligners, suggesting that poor
@@ -1209,6 +1217,8 @@ results either less or more likely, respectively. As such, the
 appropriateness of any simulation scheme should be critically
 considered when evaluating specific power and error rate estimates in
 the context of real-world data analysis.
+
+\bresp{Applicability of Simulations}Blah blah blah...\eresp{Applicability of Simulations}
 
 %% In the case of a protein evolving with a mix of insertion and deletion
 %% rates, the current results based on uniform rates could be used to
