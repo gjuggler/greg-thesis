@@ -13,3 +13,9 @@ wc:
 
 style: greg-style.tex
 	latex greg-style;
+
+clean:
+	rm *.aux */*.aux *.toc *.log *.bbl *.blg *.brf *.nlo
+
+corrections: corrections.tex
+	pdflatex corrections

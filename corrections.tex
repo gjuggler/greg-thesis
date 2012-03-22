@@ -1,0 +1,165 @@
+\section*{Corrections}
+
+\newcommand{\resp}[2]{{\bf $>$ #1 (\hyperref[#2]{page \pageref{#2}})}}
+
+\begin{enumerate}
+
+\subsection{Chapter 1}
+
+\item{[Hypothesis] Please include whether there are overarching hypotheses guiding the
+proposed research.}
+
+\item{[Alignment] Please include a discussion of statistical approaches to alignment
+that might also be gainfully used to address the issue of misalignment
+in selection analyses. You mentioned the use of FSA and BaliPhy during
+the viva; can you comment why such approaches were not used (e.g.\ for
+computational reasons)?
+\label{Alignment_correction}
+
+\resp{Discussion has been added.}{Alignment}
+}
+
+\subsection{Chapter 2}
+\item{[Pipeline] Please describe more regarding the technical details of the analytical
+pipeline; how it was implemented (language etc.), how it integrates
+into ENSEMBL, how jobs were distributed etc. As the construction of
+this pipeline is the main methodological contribution of this thesis,
+it is important to include details to demonstrate your role.}
+
+\item{[Power] Please discuss why SLR had better power as (under a correctly
+specified model) one would expect that adding distributional
+assumptions, one would get a better power using the 'random effects'
+approaches as implemented in PAML.}
+
+\item{[Overalignment] In general, how do you tell if an alignment is 'wrong'? Please also
+clarify what 'overalignment' is.}
+
+\item{[False Positives] Please explain in more detail why there is an increase in false
+positives at intermediate levels of divergence in Figure 2.3.}
+
+\item{[Applicability of Simulations] Please expand the discussion to consider how the results presented
+here on mammalian genes (e.g.\ choice of aligner) may/may not be
+applicable to other taxa such as viruses, expanding the comparison
+with Privman et al.\ [2011].}
+
+\subsection{Chapter 3}
+
+\item{[Large Trees] Why are there are significant number of trees with $>100$ sequences in
+Figure 3.5?}
+
+\subsection{Chapter 4}
+
+\item{[Synonymous Rate Variation] Sitewise variation in synonymous substitution rates is ubiquitous (see
+e.g. Kosakovsky Pond and Muse 2005,
+http://mbe.oxfordjournals.org/content/22/12/2375.full), yet all the
+methods employed assume no synonymous variation. Sites with unusually
+high synonymous rates (but with $\omega=1$) might be misclassified as
+under positive selection. To what extent are the results biased due to
+a failure to incorporate synonymous variation? Ideally, please present
+some goodness-of-fit tests to demonstrate that this is not a serious
+problem.}
+
+\item{[Duplicated Genes] Page 84; isn't the study of adaptive evolution in duplicated genes of
+great biological interest?}
+
+\item{[Window Size] Please discuss the rationale for using 15 codon, nonoverlapping
+windows to examine potential misalignments.}
+
+\item{[Impact of Filtering] Page 97. There is quite a strong impact of filtering on the results;
+which are to be believed?}
+
+\item{[Terminal Versus Internal Branches] Comparison of patterns of substitution between terminal and internal
+branches of a phylogeny was used as the basis for a test of adaptive
+evolution by Kosakovsky Pond et al.\
+(http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.0020062);
+are there any such patterns here?}
+
+\subsection{Chapter 5}
+
+\item{[P-values and Effect Sizes] Please discuss the advantages and disadvantages of using sitewise p
+values rather than the effect sizes ($\omega$ and associated standard
+errors) when conducting genomic level analyses. You may also want to
+take a look at this paper
+(http://mbe.oxfordjournals.org/content/27/3/520.abstract) which
+describes an approach which uses the pattern of nonsynonymous and
+synonymous rate variation as the basis of e.g.\ clustering. For the
+corrections, and given that all the estimates of $\omega$ and associated
+standard errors have already been produced, do the results of a
+standard meta-analysis type approach based on effect size differ from
+the p value based approach presented here?}
+
+\item{[Gene Annotation Bias] In table 5.2, there is a lot of redundancy in the gene lists
+(e.g.\ SAMHD1, TLR1/4), partly due to the multiple GO terms associated
+with these genes, which are mostly immune related. To what extent do
+the same genes crop up again due to the large number of terms (as
+opposed to their actual importance)?}
+
+\item{[Low PSG Overlap] Please discuss in more detail why there was so little overlap between
+PSGs described in different studies, as shown in Figure 5.4.}
+
+\subsection{Chapter 6}
+
+\item{[King Wilson Discussion] The discussion of King and Wilson's hypothesis should probably be
+moved to the discussion section, as it is more of a distraction in the
+introduction.}
+
+\item{[Model Misspecification] Please discuss the potential problem of model misspecification when
+employing models that assume different models in different
+branches. It is entirely possible that none of the prespecified models
+in Figure 6.2 are the 'best', and hence any site-by-site models built
+on top of these may also be compromised (see
+http://mbe.oxfordjournals.org/content/28/11/3033.long for a further
+discussion of this). Please consider a wider range of 'alternative'
+models, and compare the goodness-of-fit with the prespecified ones.}
+
+\item{[Slightly Deleterious Polymorphism] What might the contribution of slightly deleterious polymorphisms be
+to apparent accelerated evolution in humans?}
+
+\item{[Considering Polymorphisms] To what extent might the results differ if you had multiple genomes
+per species? What might be the contribution of shared polymorphisms in
+the ancestral species in driving apparent accelerations?}
+
+\item{[Relevance of dN/dS Differences] Please discuss the biological relevance of small (0.01--0.05)
+differences in genome-wide dN/dS (Figure 6.5).}
+
+\subsection{Chapter 7}
+
+\item{Please expand the discussion to include issues such as:
+  \begin{itemize}
+  \item{The connection between the phylogenetic approaches used here
+    and other population-genetic approaches. In particular, please
+    comment on why there is an apparent discrepancy between these
+    approaches in the proportion of sites under adaptive
+    evolution. How does the finding of positive selection relate to
+    change in phenotype/fitness, and its magnitude?}
+  \item{Please comment on the limitations of the approaches used
+    here--the restriction to analysis of coding regions, detection of
+    particular types of selection, etc.}
+  \item{Given that low-coverage genomes were used in the analysis,
+    please comment on whether sequencing errors may have affected the
+    results.}
+  \end{itemize}
+}
+
+\subsection{General comments}
+
+\item{[Acronyms] Please include a table of abbreviations.
+
+\resp{Done.}{Acronyms}
+}
+
+\item{Please fix references (e.g.\ [Yang]).}
+
+\item{Typographical errors:
+  \begin{itemize}
+  \item{Page 1, line 2. 'evoluion' should be evolution.}
+  \item{Page 50, paragraph 4. “This chapter begins with an overview
+    OF”.}
+  \item{Page 75, paragraph 3. 'identify' should be 'identity'.}
+  \item{Page 81, last paragraph. 'twp' should be 'two'.}
+  \item{Page 96, paragraph 5, 'clsutered' should be 'clustered'.}
+  \item{Page 148, first sentence. Missing beginning of sentence.}
+  \item{Page 150, second paragraph. “designed BY all three of us”.}
+  \end{itemize}
+}
+\end{enumerate}
