@@ -307,7 +307,7 @@ large \ac{ne}, natural selection acts efficiently to weed out alleles
 containing slightly deleterious mutations, whereas a population with
 small \ac{ne} is more subject to the sampling effects of genetic drift
 and is more likely to see slightly deleterious mutations reach 100\%
-frequency within the population (i.e.\, become fixed). Closely tied to
+frequency within the population (i.e.\ become fixed). Closely tied to
 this effect is the prediction of the nearly neutral thoery of
 molecular evolution \citep{Kimura1985} that many mutations in
 protein-coding regions are slightly deleterious and thus subject to
@@ -319,13 +319,12 @@ different rates of protein evolution in bacteria
 \citep{Kosiol2008,Ellegren2009} (but see \citet{Bachtrog2008} for
 potentially contradictory evidence from \emph{Drosophila}). Any
 analysis of comparative evolution in mammals should thus evaluated
-with respect to these well-established trends; in Chapters~
-\ref{ch_mammals1} and~\ref{ch_mammals2} I consider the possible
+with respect to these well-established trends; in Chapters~\ref{ch_mammals1}~and~\ref{ch_mammals2} I consider the possible
 effects of \ac{ne} on the observed patterns of positive selection
 within different groups of mammals, and in Chapter~\ref{ch_gorilla} I
 use genome-wide \dnds ratio estimates (a fundamental measurement in
 the study of protein evolution which will be introduced in Section
-\ref{section_codon_models}), to compare the relative efficacy of
+\ref{section_codon_models}) to compare the relative efficacy of
 natural selection (and through the prediction of the nearly neutral
 theory, the ancestral \ac{ne}) between our closest primate relatives
 and their ancestral lineages.
@@ -838,19 +837,138 @@ in mammals.
 
 \subsection{Alignment and selection analyses}
 
-\bresp{Alignment}[Won't go into detail about methods for alignment,
-  but discussion of dealing with *uncertainty*, esp. wrt selection, is needed.]
+\bresp{Alignment}
 
-[Alignment can be ambiguous, and computationally intractable for optimal solutions]
+It should be emphasized that the above-mentioned methods for detecting
+selective pressures in genes all assume that the nucleotides within
+each alignment column are homologous (i.e.\ they all share the same
+ancestral nucleotide). However, this assumption is often violated when
+sequence insertions and deletions in orthologous genes lead to an
+incorrect inference of homology between sequence regions during the
+process of sequence alignment. While a comprehensive introduction to
+the methods and models used for multiple sequence alignment is beyond
+the scope of this thesis (see \citet{Kemena2009} and
+\citet{Notredame2007} for reviews of contemporary issues and progress
+in sequence alignment methods), this section introduces the concept of
+multiple sequence alignment and some discussion of the various
+approaches typically taken towards minimizing the impact of
+misalignment on downstream analyses.
 
-[For ambiguity, statistical approach has often been taken. Involves
-  explicit model of insertion and deletion, sampling over large
-  population of suboptimal alignments, or weighting downstream estimates based on alignment probability]
+Insertions and deletion mutations tend to occur randomly throughout
+time and across DNA sequences; in this way they are somewhat similar
+to sequence base mutations, although insertions and deletions arise at
+a much lower rate \citep{Benner1993}. As with sequence mutations, the
+fixation of an insertion or deletion mutation is dependent on its
+fitness effect; for example, an insertion within a conserved protein
+domain is much less likely to become fixed in the population than an
+insertion within a noncoding intergenic region. Within proteins,
+structural constraints dominate the fitness landscape for insertion
+and deletions, leading to relatively low rates in well-folded protein
+domains and somewhat higher (but still low relative to the
+substitution rate) rates in unstructured or linker regions
+\citep{TODO}.
 
-[Explain why I didn't use any of these super-cool approaches here:
-  computational issues, prevalence of non-indel versus indel errors,
-  difficulty of directly incorporating selection estimates into
-  alignment uncertainty]
+When an insertion or deletion has occurred in the sequence of one
+species, the length of all descendant sequences is altered and an
+alignment is required to reconstruct the homology between the observed
+nucleotides. This process is difficult, especially when aligning many
+sequences or highly divergent sequences, for a variety of reasons: the
+limited number of nucleotide or amino acid characters leads to
+ambiguous or equally-likely alternative alignments; multiple
+insertions and deletions may independently occur in nearby positions
+along different lineages; and algorithms for optimally aligning more
+than two sequences are prohibitively slow. Developers of sequence
+alignment software are particularly constrained by our limited
+knowledge about the mutation and selection processes leading to
+sequence insertions and deletions and the computational challenge of
+quickly aligning large numbers of sequences.
+
+Misalignment occurs when the sequence-level homology between
+nucleotides, amino acids, or codons is incorrectly reconstructed. As a
+result, downstream analyses that strongly depend on accurate homology
+between aligned characters (for instance, in estimating ancestral
+sequences or evolutionary rates) will be negatively affected. The
+magnitude and nature of this impact depends on the type of study being
+conducted and the amount of misalignment involved. For
+highly-divergent sequences separated by lots of insertions and
+deletions, the prevalence of misalignment can cause high error rates
+in phylogenetic tree inference \citep{TODO}, while studies have
+suggested that the detection of positive selection is affected by even
+a few misaligned columns in less highly divergent alignments
+\citep{Fletcher2010}. This difference may be due to differences in the
+overall signal being leveraged by the two types of downstream
+analysis: phylogenetic inference attempts to make efficient use of the
+information across an entire alignment to identify the best-fit
+phylogenetic tree, while the detection of positive selection is often
+sensitive to a strong signal of excessive nonsynonymous substitutions
+at one or a few (potentially misaligned) columns in the alignment.
+
+Given the widespread evidence that misalignment is a prevalent form of
+error in evolutionary analyses, a researcher applying such
+alignment-based methods must be aware that any given alignment is, in
+essence, an evolutionary hypothesis which contains some inherent
+uncertainty. (This is analagous to uncertainty in the analysis of DNA
+sequence reads, where knowledge about error rates in a given DNA
+sequencing process results in uncertainty about the true underlying
+sequence \citep{TODO}.)
+
+One approach to dealing with such uncertainty is to filter out
+alignment regions which are most likely to contain misaligned
+characters. This approach has been widely adopted in phylogenetic
+inference \citep{TODO} and is simple to include in a large-scale
+analysis, since the resulting filtered dataset is just a subset of the
+original alignment and no modification to the downstream inference is
+needed. However, the performance of an alignment filter depends
+strongly on both the filter's ability to discriminate between
+alignment regions more or less likely to contain misalignment, and the
+filter's stringency (i.e.\ the amount of sequence data
+removed). Despite widespread use of alignment filtering in sequence
+analysis pipelines, scant evidence exists showing that
+currently-available filters improve the power or accuracy of
+downstream evolutionary analyses. For this reason, the simulation
+study in Chapter \ref{ch_indels1} included an explicit evaluation of
+the impact of alignment filtering on the detection of positive
+selection.
+
+A more desirable approach to mitigating the impact of misalignment
+error would be to directly incorporate alignment uncertainty into the
+downstream analysis. Here, the alignment may be considered a parameter
+which is estimated from the data, and the effect of uncertainty in
+this parameter estimate on the downstream analysis may be
+assessed. One protocol for assessing this uncertainty would be to
+generate a set of alternative alignments, together representing the
+range of uncertainty in the ``alignment parameter,'' and run the
+downstream analysis separately on each alternative
+alignment. Variation in the result of the downstream analysis can then
+be attributed to alignment uncertainty. The Bali-Phy software package
+\citep{Suchard2006,Bradley2009} is an example of a more rigorous
+statistical approach which combines the alignment and phylogeny
+inference steps into one joint Bayesian framework. This allows an
+alignment and phylogenetic tree to be co-estimated by integrating
+completely over uncertainty in the alignment, and can result in
+accurate phylogenetic inference even under extreme alignment
+uncertainty \citep{Redelings2007}.
+
+The main drawback of the statistical approach to handling alignment
+uncertainty is its computational expense. For example, the authors of
+Bali-Phy note that the software can be impractical for use with
+datasets containing more than 50 taxa or 1,000 characters. Part of
+this computational burden is due to Bali-Phy's use of a statistical
+model of sequence insertions and deletions, which is more powerful but
+slower than the approach taken by most popular progressive multiple
+alignment software. However, even if a fast aligner is used to sample
+alternative alignments, the downstream analysis must be repeated many
+times. Detection of positive selection in a gene across a large
+phylogenetic tree can take several hours to compute, so the use of
+alignment sampling for the purpose of the genome-wide study presented
+in Chapters \ref{ch_mammals1} and \ref{ch_mammals2} would have been
+impractical. Furthermore, the low levels of divergence within the
+mammalian clade suggested that biological insertions and deletions
+would not be a major source of alignment error; Chapter
+\ref{ch_indels1} confirms this supposition, showing that for
+mammalian-like alignments, most multiple alignment software does not
+produce strongly elevated false positive rates in the downstream
+detection of positive selection.
 
 \eresp{Alignment}
 
