@@ -1,0 +1,12 @@
+% latex table generated in R 2.14.0 by xtable 1.5-6 package
+% Sun Apr 22 12:02:02 2012
+   7 & \cellcolor[HTML]{CBCBFF}2771626031.77 & 1.00 & \cellcolor[HTML]{FDFDFF}1.36 & \color[HTML]{808080} 0.14 & \cellcolor[HTML]{CBCBFF}12.70 & 0.00 & 2.31 & 3.38 \\ 
+   11 & \cellcolor[HTML]{FFFFFF}29.21 & \color[HTML]{808080} 0.86 & \cellcolor[HTML]{DDDDFF}80.36 & \color[HTML]{808080} 0.90 & \cellcolor[HTML]{FFFFFF}0.45 & \color[HTML]{808080} 0.50 & 0.65 & 1.00 \\ 
+   42 & \cellcolor[HTML]{DBDBFF}17536588.01 & 1.00 & \cellcolor[HTML]{CFCFFF}382.34 & 0.98 & \cellcolor[HTML]{D6D6FF}6.99 & 0.01 & 1.76 & 2.49 \\ 
+   48 & \cellcolor[HTML]{F3F3FF}3260.19 & 1.00 & \cellcolor[HTML]{E6E6FF}26.93 & \color[HTML]{808080} 0.76 & \cellcolor[HTML]{F7F7FF}0.81 & \color[HTML]{808080} 0.37 & 1.08 & 1.62 \\ 
+   50 & \cellcolor[HTML]{D1D1FF}473754588.59 & 1.00 & \cellcolor[HTML]{D4D4FF}229.53 & 0.96 & \cellcolor[HTML]{D3D3FF}8.40 & 0.00 & 1.86 & 2.67 \\ 
+   54 & \cellcolor[HTML]{D9D9FF}32861095.22 & 1.00 & \cellcolor[HTML]{CBCBFF}588.03 & 0.99 & \cellcolor[HTML]{DBDBFF}5.13 & 0.02 & 1.54 & 2.18 \\ 
+   67 & \cellcolor[HTML]{CCCCFF}2182637838.66 & 1.00 & \cellcolor[HTML]{DFDFFF}64.48 & \color[HTML]{808080} 0.88 & \cellcolor[HTML]{D2D2FF}8.55 & 0.00 & 1.77 & 2.42 \\ 
+   85 & \cellcolor[HTML]{E0E0FF}3467345.94 & 1.00 & \cellcolor[HTML]{FFFFFF}1.00 & \color[HTML]{808080} 0.10 & \cellcolor[HTML]{ECECFF}1.72 & \color[HTML]{808080} 0.19 & 1.18 & 1.65 \\ 
+  123 & \cellcolor[HTML]{DFDFFF}4476714.66 & 1.00 & \cellcolor[HTML]{F8F8FF}2.84 & \color[HTML]{808080} 0.25 & \cellcolor[HTML]{E0E0FF}3.85 & 0.05 & 1.45 & 2.12 \\ 
+  

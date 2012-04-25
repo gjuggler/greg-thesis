@@ -1,5 +1,5 @@
 \chapter{Corrections}
-
+ 
 \newcommand{\resp}[2]{{\bf $>$ #1 (\hyperref[#2]{page \pageref{#2}})}}
 \newcommand{\corr}[1]{{\bf[#1]\label{#1_correction}}}
 
@@ -69,24 +69,36 @@ with Privman et al.\ [2011].
 \section{Chapter 3}
 
 \item{\corr{Large Trees} Why are there are significant number of trees with $>100$ sequences in
-Figure 3.5?}
+Figure 3.5?
+
+\resp{A short explanation has been added to the text.}{Large Trees}
+}
 
 \section{Chapter 4}
 
 \item{\corr{Synonymous Rate Variation} Sitewise variation in
   synonymous substitution rates is ubiquitous (see e.g. Kosakovsky
-  Pond and Muse 2005,
-
-  http://mbe.oxfordjournals.org/content/22/12/2375.full), yet all the
+  Pond and Muse 2005, http://mbe.oxfordjournals.org/content/22/12/2375.full), yet all the
   methods employed assume no synonymous variation. Sites with
   unusually high synonymous rates (but with $\omega=1$) might be
   misclassified as under positive selection. To what extent are the
   results biased due to a failure to incorporate synonymous variation?
   Ideally, please present some goodness-of-fit tests to demonstrate
-  that this is not a serious problem.}
+  that this is not a serious problem.
+
+\resp{Two additional analyses have been performed to assess the impact
+  of synonymous rate variation on the analyses presented: a
+  small-scale analysis in hemoglobin directly comparing SLR, PAML and
+  HyPhy's two-rates models, and a bulk analysis across the genome-wide
+  dataset which uses inferred substitutions to assess the extent to
+  which synonymous rate variation may have affected the
+  results.}{Synonymous Rate Variation}}
 
 \item{\corr{Duplicated Genes} Page 84; isn't the study of adaptive evolution in duplicated genes of
-great biological interest?}
+great biological interest?
+
+\resp{asdf}{Duplicated Genes}
+}
 
 \item{\corr{Window Size} Please discuss the rationale for using 15 codon, nonoverlapping
 windows to examine potential misalignments.}

@@ -1747,6 +1747,182 @@ whether the \ac{lrt} performed by \ac{slr} is more sensitive to
 episodic positive selection occurring within short branches than
 within longer branches of the phylogeny.
 
+\section{Synonymous rate variation}
+
+\bresp{Synonymous Rate Variation}
+
+An important concern in the estimation of molecular evolutionary rates
+and the detection of positive selection is that the neutral
+substitution rate of a DNA sequence can vary significantly depending
+on its organismal, chromosomal, genic, or sequence context
+\citep{Wolfe1987,Gaut1996,Hurst2001,Tuplin2002,Mugal2010}. The most
+likely explanation for the observed variation in neutral substitution
+rates is variation in the underlying mutation process, which can be
+caused by a number of biological, sequence context, or structural
+factors \citep{Ellegren2003,Gaffney2005,Mugal2010}. Accounting for
+spatial variation in the neutral mutation rate is of extreme
+importance in the inference of natural selection from comparative
+sequence data, as the main signal comes from the impact of natural
+selection on the probability of fixation of non-neutral mutations (see
+Chapter \ref{ch_intro}). In the case of detecting non-neutral
+evolution in protein-coding regions, the occurrence of synonymous
+mutations interleaved with nonsynonymous mutations provides a
+convenient source of nearby and putatively neutral mutations which can
+be used to estimate a neutral substitution rate. In contrast, the
+detection of non-neutral evolution in noncoding elements is fraught
+with difficulty in identifying regions from which to estimate a
+suitable neutral evolutionary rate, i.e.\ \citep{Taylor2008}.
+
+However, some methods for detecting sitewise positive selection assume
+a constant neutral mutation rate within a given gene. Although it
+appears that most mutation rate variation occurs on a scale of $>$100
+kilobases \citep{Gaffney2005} which is greater than the average gene
+length, some variation still exists within genes and at individual
+sites. At sites with high neutral mutation rates but $\omega\leq1$,
+both the synonymous and nonsynonymous substitution rates will be
+elevated. As a result, methods which do not model variation in the
+synonymous substitution rate will attribute this increase in
+nonsynonymous substitutions to an elevated $\omega$ parameter,
+potentially causing false positive results. \citet{Pond2005b}
+described a modified codon model which allows variation in both the
+synonymous and nonsynonymous substitution rates and showed that many
+genes show significant evidence of synonymous rate
+variation. Furthermore, they presented a detailed analysis of
+selection in mammalian $\beta$-globin genes, identifying key
+differences between sitewise models which account for synonymous rate
+variation (termed ``dual'' models) and those which do not (termed
+``nonsynonymous'' models).
+
+In light of this evidence for significant synonymous rate variation
+within mammalian genes, this section presents two analyses which
+evaluate the potential impact of synonymous rate variation on the
+results shown in Tables \ref{table_pset_summaries_1} and
+\ref{table_pset_summaries_2}. First, I undertook a re-analysis of the
+evidence for positive selection in $\beta$-globin in mammals to
+directly compare the sitewise results from the model of
+\citet{Pond2005b} which accounts for synonymous rate variation and
+those from recent versions of PAML and SLR. Second, I examined the
+genome-wide dataset for correlations between synonymous substitutions
+and evidence for positive selection that might be indicative of a bias
+due to synonymous rate variation.
+
+\subsection{Analysis of selection in mammalian $\beta$-globin genes}
+
+\citet{Pond2005b} compared the results of a sitewise Empirical Bayes
+analysis of positive selection in mammalian $\beta$-globin genes using
+two models: a model based on the M3 model of \citet{TODO}, termed the
+``nonsynonymous'' model, and a model with separate parameters for the
+nonsynonymous and synonymous evolutionary rates, termed the ``dual''
+model. The HyPhy software package \citep{TODO} was used to optimize
+parameters and calculate likelihoods for both models. I first
+attempted to reproduce the results from Table 5 of \citet{Pond2005b},
+using the same alignment and tree and calculating the Bayes factors
+for positive selection and the posterior probabilities of positive
+selection under four models implemented by HyPhy: the
+``nonsynonymous'' model using either the MG94 or GY94 codon model
+specification, and the ``dual'' model using either the MG94 or GY94
+specification. Then, to compare those results to what a typical user
+of PAML or SLR might see, I used each of those programs to estimate
+sitewise positive selection using a Bayes Empirical Bayes analysis
+under the M8 model as implemented by PAML, and the SLR test as
+implemented by SLR. Finally, to assess the impact of the dataset on
+these results, I extracted the equivalent alignment sites from the
+genome-wide mammalian datasets and ran the same set of
+analyses. Tables \ref{table_syn_rates_hbb_paml} and
+\ref{table_syn_rates_hbb_ensembl} present the Bayes factors and
+posterior probabilities for $\omega>1$ (for HyPhy analyses), posterior
+probability for $\omega>1$ and posterior mean $\omega$ (for the PAML
+analysis), or the sitewise LRT, p-value for $\omega>1$, and lower and
+upper 95\% confidence intervals for $\omega$ (for the SLR analysis)
+for each of the analyses run.
+
+As expected, the results shown in Table \ref{table_syn_rates_hbb_paml}
+for the nonsynonymous and dual models implemented by HyPhy
+corresponded well with those from Table 5 of \citet{Pond2005b},
+showing strong evidence for positive selection from the nonsynonymous
+models at most of the shown sites and weaker evidence from the dual
+models at a few sites. \citet{Pond2005b} highlighted codon 85 as a
+site with a particularly striking difference between the nonsynonymous
+and dual models, owing to the high estimated synonymous rate. Other
+sites highlighted by the authors were codons 7, 67, and 123. In most
+of these cases the dual model was in contrast to the nonsynonymous
+model, showing non-significant evidence for positive
+selection. Although \citet{Pond2005b} did not analyze the difference
+between GY94 and MG94 codon models in their $\beta$-globain analysis,
+results from the two models are largely in agreement; the main
+exceptions are codon 11, where both the nonsynonymous and dual models
+yielded a significant result with MG94 but not GY94, and codons 50 and
+123, where the dual model yielded significant results with GY94 but
+not with MG94.
+
+The PAML M8 and SLR results were similar to the HyPhy nonsynonymous
+models at some sites (including codons 7, 50, 67, and 123 where all
+four models had PP>0.9 or p<0.05), but different at others (including
+codons 42, 48 and 54, which were strongly significant for all HyPhy
+models and non-significant or marginally significant for PAML M8 and
+SLR). At codon 85, PAML M8 and SLR yielded non-significant evidence
+for positive selection---in agreement with the dual HyPhy model, and
+in disagreement with the nonsynonymous HyPhy model. These results
+suggest that the detection of positive selection can be dependent both
+on the software used and the models underlying the software
+implementation. While the lack of explicitly modeling synonymous rate
+variation may have led to misleading positive results at some sites,
+it appears that the M8 model combined with the Bayes Empirical Bayes
+approach suffers less from this problem than does the M3-like
+nonsynonymous model as implemented by HyPhy.
+
+Table \ref{table_syn_rates_hbb_ensembl} shows the same set of analyses
+performed on the $\beta$-globin alignment from the genome-wide
+analysis presented in this chapter. 
+
+
+\subsection{Analysis of genome-wide biases}
+
+
+
+\bbtable
+\centering \footnotesize
+\begin{tabular}{rrrrrrrrrrrrrrr}
+\toprule
+ & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
+ \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
+ \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
+ & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
+\cmidrule(r){1-15}
+Site & BF & PP & BF & PP & 
+BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
+  \midrule
+\input{Tables/correction_syn_rates_table_yang.txt}
+\bottomrule
+\end{tabular}
+\caption{Some stuff.}
+\label{table_syn_rates_hbb_paml}
+
+\begin{tabular}{rrrrrrrrrrrrrrr}
+\toprule
+ & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
+ \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
+ \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
+ & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
+\cmidrule(r){1-15}
+Site & BF & PP & BF & PP & 
+BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
+  \midrule
+\input{Tables/correction_syn_rates_table_ensembl.txt}
+\bottomrule
+\end{tabular}
+\caption{Some stuff.}
+\label{table_syn_rates_hbb_ensembl}
+\eetable
+
+
+\eresp{Synonymous Rate Variation}
+
+
 \section{The impact of effective population size on protein-coding constraint in mammals}
 
 Another possible source of variation in levels of positive selection

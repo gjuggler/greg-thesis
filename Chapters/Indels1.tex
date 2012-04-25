@@ -131,10 +131,10 @@ selective pressures. More recently, \citet{Fletcher2010} performed a
 series of simulation experiments investigating alignment error in the
 use of the branch-site test to detect positive selection in
 genes. Their results showed that most aligners caused false positives
-by over-aligning codons and that datasets from mammalian and
-vertebrate gene families contain enough evolutionary divergence to
-make false positive errors resulting from misalignment a legitimate
-concern.
+by over-aligning codons (i.e.\ placing non-homologous codons in the
+same alignment column) and that datasets from mammalian and vertebrate
+gene families contain enough evolutionary divergence to make false
+positive errors resulting from misalignment a legitimate concern.
 
 Reflecting a widespread awareness of the problem of misalignment,
 methods for identifying and removing uncertain or unreliable alignment
@@ -229,9 +229,50 @@ Taxa & Source & MPL & Size Distribution & (Std. Dev.) & Rate & Shape & Mean & $p
 \label{table_indels_1}
 \eetable
 
-\subsection{Simulation and Analysis Framework}
+\subsection{Simulation and Analysis Pipeline}
 
-\bresp{Pipeline}Blah blah blah...\eresp{Pipeline}
+\bresp{Pipeline}
+
+The majority of simulations and analyses presented in this and the
+next two chapters were performed using a pipeline system based on
+eHive, a powerful data analysis workflow system built by the Ensembl
+comparative genomics team \citep{Severin2010}. The eHive system allows
+each data generation or processing step to be modularized into an
+individual Perl script; to construct a full analysis pipeline, the
+desired flow of data between these individual components is defined in
+a configuration file.
+
+This approach yielded two main benefits. First, much of the code which
+was written to interface with various sequence alignment and analysis
+programs could be shared between different pipelines. Thus, even
+though the three main analyses described in this thesis (the
+simulation study described in this chapter, the mammalian study in
+Chapters \ref{ch_mammals1} and \ref{ch_mammals2}, and the primate
+study in Chapter \ref{ch_gorilla}) were run as entirely separate
+pipelines, the scripts used to gather sequences from the Ensembl
+database, infer multiple alignments, and estimate evolutionary rates
+were written as generic modules and reused within each subsequent
+analysis.
+
+Second, the modular pipeline organization allowed each analysis to be
+repeated or expanded as datasets, alignment software, or parameter
+choices were refined. For example, if a new aligner is developed in
+the future, its performance may easily be compared to the other
+aligners in this study by creating a new module and including it in a
+new run of the alignment simulation pipeline described below.
+
+Once the eHive modules were written and the pipeline was configured,
+the distribution of jobs across the compute cluster at the EMBL-EBI
+was optimally managed by the eHive system. As each gene was usually
+analyzed independently from all other genes, jobs were generally
+parallelized on the gene level. To further improve performance, all
+Ensembl data were collected from internal mirrors of the Ensembl
+databases. The results of each individual gene analysis were typically
+stored as rows in a shared MySQL table, and the R statistical
+computing environment was used to extract, summarize and evaluate
+these results in aggregate.
+
+\eresp{Pipeline}
 
 \subsection{Alignment Simulations}
 
@@ -572,6 +613,27 @@ yield false positives than sites under neutral evolution (\omg$=$1), the
 null model against which tests for positive selection are
 traditionally controlled.
 
+\bresp{Power}
+
+In theory, the \mtwo or \meight tests should have more power than SLR
+to detect positive selection across a gene when the data is generated
+under the null model of each test, because PAML infers parameters
+across the entire alignment (including parameters describing the \omg
+distribution) while SLR infers some parameters across the alignment
+and some parameters at each site. However, it should be emphasized
+that only sitewise estimates were collected in this study; the power
+to detect positive selection across an entire alignment was not
+assessed. Furthermore, the \omg distribution used to generate the
+alignments does not correspond to either the \mtwo or \meight null
+models, so the distributional assumptions made by PAML may not have
+been a benefit. Given these major differences from previous simulation
+studies which tested PAML's performance
+\citep{Anisimova2002,Pond2005a}, the roughly equivalent sitewise
+performance of SLR and PAML is not unexpected.
+
+\eresp{Power}
+
+
 For the purposes of these indel experiments, the observed similarity in
 error-controlled power levels indicated that the behavior of \mtwo,
 \meight, and SLR was similar enough not to warrant separately
@@ -579,8 +641,6 @@ evaluating all three methods in the subsequent indel simulation
 experiments. As the runtime for SLR was significantly lower than that
 of either PAML model, all subsequent results are presented only based
 on the SLR test.
-
-\bresp{Power}Blah blah blah...\eresp{Power}
 
 \subsection{The Effect of Alignment Error on \Sw Power}
 
@@ -1082,6 +1142,21 @@ methods to produce alignments for detecting positively selected sites,
 using the FPR, TPR, and error-controlled \tpr of the sitewise
 detection of positive selection as measures of performance.
 
+\bresp{Overalignment}
+
+An important feature of this simulation study was that the true
+alignment and the \omg value at each alignment site were known. The
+existence of a known true alignment provided an absolute reference by
+which to judge misaligned columns and false and true positives in the
+sitewise identification of positive selection. This contrasts strongly
+with any empirical analysis, where the true alignment is never
+known. However, by using realistic parameter estimates and a wide
+range of divergence levels and indel rates, it was hoped that these
+simulations might shed light on important differences between aligners
+that could be applied in empirical studies.
+
+\eresp{Overalignment}
+
 The simulation results showed that alignment error can have a
 measurable impact on the error rates and power of the sitewise
 detection of positive selection under all but the least difficult
@@ -1098,8 +1173,6 @@ resulted in very low FPRs even at higher divergences. In particular,
 when the number of sequences in the tree was large, \prankc{}'s
 sitewise FPRs were virtually indistinguishable from those of the true
 alignment.
-
-\bresp{Overalignment}blah blah blah...\eresp{Overalignment}
 
 An important observation regarding the size of tree analyzed was that
 the 6-taxon tree caused qualitatively similar problems (e.g.\,
@@ -1192,16 +1265,42 @@ sequences, while I have shown that divergence levels and indel rates
 have a significant impact on the performance of different aligners and
 filters.
 
-It is important to note that the current simulations did not include
-fully biologically realistic models of spatial or temporal variability
-in the rate of indel formation or in the distribution of selective
-pressures (e.g.\, \citet{Whelan2008}). Such heterogeneity should not
-affect the main conclusions regarding the relative performance of
-different aligners and filters: the trends I observed were consistent
-across a wide range of parameter values and tree sizes, suggesting
-that they reflect fundamental differences in each method's ability to
-align or filter sequences as opposed to artifacts due to the relative
-simplicity of the framework introduced here.
+\bresp{Applicability of Simulations}
+
+Beyond the direct comparison to the results from
+\citet{Privman2011Improving}, it is useful to consider the extent to
+which the true and false positive rates identified in this study would
+apply to the empirical analysis of protein alignments from a wider
+range of taxa. One may approach this by asking which of the parameters
+that were held at a fixed value in the current study would be most
+likely to show variation between different biological groups. First,
+the shape of the \omg distribution and the proportion of sites under
+positive selection are two parameters which likely vary significantly
+between different species groups, perhaps as a result of different
+effective population sizes in Eukaryotic species. Differences in those
+parameters would strongly affect the absolute value of the sitewise
+FPR and TPR due to the presence of more or fewer sites with
+nearly-neutral \omg values, but the observed trends across different
+divergence levels and indel rates would not likely be impacted unless
+the patterns of sequence insertions and deletions differed from those
+used in this study. Empirical data regarding patterns of insertion and
+deletion mutations across the taxonomic space are sparse, but one may
+reasonably expect such patterns to be dramatically different in viral
+and bacterial proteins compared to most mammalian genes.
+
+\eresp{Applicability of Simulations}
+
+Along similar lines, it is important to note that the current
+simulations did not include fully biologically realistic models of
+spatial or temporal variability in the rate of indel formation or in
+the distribution of selective pressures (e.g.\,
+\citet{Whelan2008}). Such heterogeneity should not affect the main
+conclusions regarding the relative performance of different aligners
+and filters: the trends I observed were consistent across a wide range
+of parameter values and tree sizes, suggesting that they reflect
+fundamental differences in each method's ability to align or filter
+sequences as opposed to artifacts due to the relative simplicity of
+the framework introduced here.
 
 However, such heterogeneity is clearly important to the evolution of
 mammalian proteins \citep{Fay2003}. Many proteins contain combinations
@@ -1217,8 +1316,6 @@ results either less or more likely, respectively. As such, the
 appropriateness of any simulation scheme should be critically
 considered when evaluating specific power and error rate estimates in
 the context of real-world data analysis.
-
-\bresp{Applicability of Simulations}Blah blah blah...\eresp{Applicability of Simulations}
 
 %% In the case of a protein evolving with a mix of insertion and deletion
 %% rates, the current results based on uniform rates could be used to
