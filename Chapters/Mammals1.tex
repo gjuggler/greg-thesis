@@ -1754,15 +1754,15 @@ within longer branches of the phylogeny.
 An important concern in the estimation of molecular evolutionary rates
 and the detection of positive selection is that the neutral
 substitution rate of a DNA sequence can vary significantly depending
-on its organismal, chromosomal, genic, or sequence context
+on its organismal, chromosomal, or genic context
 \citep{Wolfe1987,Gaut1996,Hurst2001,Tuplin2002,Mugal2010}. The most
 likely explanation for the observed variation in neutral substitution
-rates is variation in the underlying mutation process, which can be
-caused by a number of biological, sequence context, or structural
+rates is some variation in the underlying mutation process, which can
+be caused by a number of biological, sequence context, or structural
 factors \citep{Ellegren2003,Gaffney2005,Mugal2010}. Accounting for
 spatial variation in the neutral mutation rate is of extreme
 importance in the inference of natural selection from comparative
-sequence data, as the main signal comes from the impact of natural
+sequence data, as the main signal results from the impact of natural
 selection on the probability of fixation of non-neutral mutations (see
 Chapter \ref{ch_intro}). In the case of detecting non-neutral
 evolution in protein-coding regions, the occurrence of synonymous
@@ -1794,17 +1794,16 @@ variation (termed ``dual'' models) and those which do not (termed
 ``nonsynonymous'' models).
 
 In light of this evidence for significant synonymous rate variation
-within mammalian genes, this section presents two analyses which
-evaluate the potential impact of synonymous rate variation on the
-results shown in Tables \ref{table_pset_summaries_1} and
-\ref{table_pset_summaries_2}. First, I undertook a re-analysis of the
-evidence for positive selection in $\beta$-globin in mammals to
-directly compare the sitewise results from the model of
-\citet{Pond2005b} which accounts for synonymous rate variation and
-those from recent versions of PAML and SLR. Second, I examined the
-genome-wide dataset for correlations between synonymous substitutions
-and evidence for positive selection that might be indicative of a bias
-due to synonymous rate variation.
+within mammalian genes, this section evaluates the potential impact of
+synonymous rate variation on the results shown in Tables
+\ref{table_pset_summaries_1} and \ref{table_pset_summaries_2}. First,
+I undertook a re-analysis of the evidence for positive selection in
+$\beta$-globin in mammals to directly compare the sitewise results
+from the model of \citet{Pond2005b} which accounts for synonymous rate
+variation and those from recent versions of PAML and SLR. Second, I
+examined the genome-wide dataset for correlations between synonymous
+substitutions and evidence for positive selection that might be
+indicative of a bias due to synonymous rate variation.
 
 \subsection{Analysis of selection in mammalian $\beta$-globin genes}
 
@@ -1839,14 +1838,14 @@ for each of the analyses run.
 As expected, the results shown in Table \ref{table_syn_rates_hbb_paml}
 for the nonsynonymous and dual models implemented by HyPhy
 corresponded well with those from Table 5 of \citet{Pond2005b},
-showing strong evidence for positive selection from the nonsynonymous
-models at most of the shown sites and weaker evidence from the dual
-models at a few sites. \citet{Pond2005b} highlighted codon 85 as a
-site with a particularly striking difference between the nonsynonymous
-and dual models, owing to the high estimated synonymous rate. Other
-sites highlighted by the authors were codons 7, 67, and 123. In most
-of these cases the dual model was in contrast to the nonsynonymous
-model, showing non-significant evidence for positive
+displaying strong evidence for positive selection from the
+nonsynonymous models at most of the highlighted sites and weaker
+evidence from the dual models at a few sites. \citet{Pond2005b}
+highlighted codon 85 as a site with a particularly striking difference
+between the nonsynonymous and dual models, owing to the high estimated
+synonymous rate. Other sites highlighted by the authors were codons 7,
+67, and 123. In most of these cases the dual model was in contrast to
+the nonsynonymous model, showing non-significant evidence for positive
 selection. Although \citet{Pond2005b} did not analyze the difference
 between GY94 and MG94 codon models in their $\beta$-globain analysis,
 results from the two models are largely in agreement; the main
@@ -1857,7 +1856,7 @@ not with MG94.
 
 The PAML M8 and SLR results were similar to the HyPhy nonsynonymous
 models at some sites (including codons 7, 50, 67, and 123 where all
-four models had PP>0.9 or p<0.05), but different at others (including
+four models had PP$>$0.9 or p$<$0.05), but different at others (including
 codons 42, 48 and 54, which were strongly significant for all HyPhy
 models and non-significant or marginally significant for PAML M8 and
 SLR). At codon 85, PAML M8 and SLR yielded non-significant evidence
@@ -1871,14 +1870,29 @@ it appears that the M8 model combined with the Bayes Empirical Bayes
 approach suffers less from this problem than does the M3-like
 nonsynonymous model as implemented by HyPhy.
 
-Table \ref{table_syn_rates_hbb_ensembl} shows the same set of analyses
-performed on the $\beta$-globin alignment from the genome-wide
-analysis presented in this chapter. 
+Table \ref{table_syn_rates_hbb_ensembl} shows, for comparison, the
+same set of analyses performed on the $\beta$-globin alignment from
+the genome-wide analysis presented in this chapter. Differences
+between corresponding cells in Tables \ref{table_syn_rates_hbb_paml}
+and \ref{table_syn_rates_hbb_ensembl} underscore the impact of
+different alignment sources and species sampling on the detection of
+positive selection; in many cases, the same method yielded significant
+evidence in one alignment and insignificant evidence in the other
+alignment at the same site (e.g., codon 7 for the GY94 Dual model and
+codon 42 for SLR). Overall, the evidence for positive selection at
+individual sites seemed stronger in Table
+\ref{table_syn_rates_hbb_ensembl}: three codons (42, 50, and 54)
+showed significant evidence across all methods tested, while no sites
+showed the same result in Table \ref{table_syn_rates_hbb_ensembl}.
 
-
-\subsection{Analysis of genome-wide biases}
-
-
+Overall, these results suggest that accounting for synonymous rate
+variation may be important at sites with elevated long-term mutation
+rates, but PAML M8 (using the Bayes Empirical Bayes method) and SLR do
+not appear to be as prone to over-confidence at sites with high
+synonymous mutation rates as the ``nonsynonymous'' model as
+implemented in HyPhy. Further testing using simulation-based
+experiments could confirm these observations, but such an analysis is
+beyond the scope of this thesis.
 
 \bbtable
 \centering \footnotesize
@@ -1920,8 +1934,182 @@ BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}
 \eetable
 
 
-\eresp{Synonymous Rate Variation}
+\subsection{Genome-wide analysis}
 
+While it was impractical to analybze every gene in as much detail as
+presented for $\beta$-globin in the previous subsection, some
+assessment of the potential impact of synonymous rate variation on the
+sitewise results was warranted. Even if SLR is not strongly biased
+towards false positives at sites with high mutation rates, the
+analysis of \citet{Pond2005b} showed that synonymous rate variation is
+widespread, and some quantification of how many of the
+positively-selected sites identified in this chapter might be false
+positives due to elevated mutation rates would be helpful in
+addressing this concern. Specifically, two questions were asked in the
+genome-wide analysis: first, whether SLR showed a general tendency
+towards inferring positive selection at sites with a high rate of
+synonymous substitution, and second, what proportion of inferred
+positively-selected sites showed evidence for an elevated synonymous
+rate.
+
+For this analysis, I used the genome-wide inferred ancestral sequences
+as in sectionb \ref{section_windows_clustered_subs}, inferring
+synonymous and nonsynonymous substitutions along each branch of the
+phylogenetic tree at each protein-coding site. Although this approach
+was not ideal, as it does not account for multiple substitutions along
+a single branch, the lack of very long branches in the Eutherian
+phylogenetic tree suggested that this drawback would not severely bias
+the results. A more formal approach would involve estimating the
+expected counts of synonymous and nonsynonymous substitutions at each
+site, but for computational reasons this was not performed.
+
+Using the counts of inferred synonymous and nonsynonymous
+substitutions at each site, I first examined the correlation between
+SLR's LRT statistic and the counts of synonymous and nonsynonymous
+substitutions at each site. Figure XYZ shows the LRT statistic plotted
+against substitution counts for all sites in the $\beta$-globin gene
+and \gene{FCRL4}, a glycoprotein member of the immunoglobulin receptor
+superfamily. Each codon was categorized as either a purifying,
+neutral, or positively-selected site based on the LRT statistic: a LRT
+value below the 95\% nominal threshold was considered neutral, and a
+LRT value above the 95\% threshold was considered either purifying or
+positive depending on the inferred $\omega$ value.
+
+The plot for $\beta$-globin in Figure \ref{fig_gene_syn_scatter} shows
+that the variation in SLR's LRT score was driven largely by variation
+in nonsynonymous substitutions at each site: all six of the sites
+categorized as ``positive'' fell within the middle range of synonymous
+substitution counts, but all were at the high end of nonsynonymous
+substitution counts. \gene{FCRL4} shows largely the same pattern
+except for two sites (highlighted in red) with very high synonymous
+rates and only moderate nonsynonymous rates. Sites like these are
+candidates for false positives due to a high mutation rate.
+
+\bbfig
+\centering
+\includegraphics[scale=0.6]{Figs/gene_syn_scatter.pdf}
+\caption{Sitewise LRT statistics and synonymous and nonsynonymous
+  substitution counts for $\beta$-globin and
+  \gene{FCRL4}. Substitution counts were inferred from ancestral
+  sequence reconstructions, and sites were categorized based on their
+  SLR LRT as purifying (LRT$<-3.84$, green), neutral
+  ($-3.84<$LRT$<3.84$, purple), and positive (LRT$>3.84$, orange). Two
+  sites with high synonymous substitution counts and LRT$>3.84$ are
+  outlined in red. }
+\label{fig_gene_syn_scatter}
+\eefig
+
+In order to identify a suitable cutoff by which to identify sites with
+elevated synonymous substitution rates in different genes, the counts
+of synonymous and nonsynonymous substitutions at each site were
+log-transformed with a pseudocount (i.e., $x = ln(n + 1)$) and
+converted into standard z-scores using the following normalization:
+$z_{i} = \frac{x_{i} - \mu}{\rho}$ where $\mu$ is the mean of all
+log-transformed scores within a gene and $\rho$ is their standard
+deviation. (Note that synonymous and non-synonymous z-scores were
+calculated separately, and that the log-transformation was found
+necessary to better fit the resulting z-scores to a standard normal
+distribution.) Figure \ref{fig_zscore_histogram}A shows the
+non-log-transformed distribution of z-scores for synonymous
+substitution counts, and Figures \ref{fig_zscore_histogram}B and C
+show the log-transformed z-scores for synonymous and synonymous
+substitution counts, respectively, against the standard normal curve.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{Figs/zscore_histograms.pdf}
+\caption{Global distribution of site-wise synonymous and nonsynonymous
+  substitution counts. (A) Synonymous relative rates, calculated as
+  the synonymous substitution counts divided by the mean synonymous
+  substitution count across each gene; a vertical red line is drawn at
+  $x=1$. (B) Synonymous z-scores, calculated using log-transformed
+  substitution counts as describd in the text; a standard normal
+  distribution is shown with a dashed red line. (C) Nonsynonymous
+  z-scores, calculated as described in the text; a standard normal is
+  shown with a dashed red line.}
+\label{fig_zscore_histogram}
+\end{figure}
+
+
+It could be argued that the normalization of synonymous substitution
+counts to z-scores is unnecessary and perhaps misleading, as the
+z-score is a relative, rather than absolute, measure of an elevated
+synonymous rate. Although this section shows results based on the
+z-scores, the analysis was performed separately using absolute
+synonymous substitution rates compared to the mean (i.e., $z_{i} =
+x_{i} / \mu$ where $\mu$ is the mean of all synonymous substitution
+counts within a gene) and the results were qualitatively similar. For
+reference, 25\% of sites had an absolute synonymous rate of $>$1.31,
+10\% had a rate above 1.79, and 5\% above 2.11.
+
+Figure \ref{fig_zscore_sites} shows the pattern of synonymous
+substitution counts, nonsynonymous counts, and SLR LRT scores for
+\gene{FCRL4}, with sites corresponding to the 75\% z-score percentile
+(z$=0.67$) highlighted in orange (for synonymous substitutions) and
+purple (for nonsynonymous substitutions) and sites corresponding to
+the 95\% LRT threshold highlighted in red. The bottom row of colored
+blocks summarizes the coincidence of positively-selected sites with
+high numbers of synonymous or nonsynonymous substitutions, again
+showing that most positively-selected sites (except for the
+aforementioned two codons, again highlighted in red) did not show
+strongly elevated synonymous rates.
+
+\bbfig
+\centering
+\includegraphics[scale=0.7]{Figs/zscore_sites.pdf}
+\caption{Sitewise LRT statistics and synonymous and nonsynonymous
+  substitution counts for \gene{FCRL4}. Substitution counts and
+  sitewise LRT scores for positive selection were calculated as
+  previously described. Sites with synonymous and nonsynonymous
+  substitution counts corresponding to the 75\% z-score threshold are
+  highlighted in orange and purple, respectively; a dotted black line
+  is drawn at the gene-wide mean substitution count and a gray line is
+  drawn at the 75\% threshold. Sites with LRT$>3.84$ corresponding to
+  the 95\% SLR threshold are highlighted in red; a dotted black line
+  is drawn at zero and a gray line is drawn at the 95\%
+  threshold. Bottom, colored squares show the co-incidence of sites
+  with high synonymous or nonsynonymous substitution counts and
+  evidence for positive selection. Sites with evidence for positive
+  selection and a high synonymous substitution count are highlighted
+  with red rectangles.}
+\label{fig_zscore_sites}
+\eefig
+
+
+To assess whether SLR showed a bias towards identifying positive
+selection at sites with high synonymous rates, z-scores were
+calculated for sites within the 5,569 genes containing at least one
+nominal p$<0.05$ positively-selected site. Three z-score thresholds
+(50\%, 75\%, 90\% and 95\%) were used to identify sites with high
+synonymous rates, and Fisher's exact test (FET) was used to test for
+non-random co-occurrence of positively-selected and high-synonymous
+rate sites. The results of this analysis are shown in Table
+\ref{table_zscore_tests}, and Figure \ref{fig_zscore_hist} shows the
+genome-wide distribution of synonymous substitution z-scores
+separately for purifying, neutral and positively-selected sites.
+Figure \ref{fig_zscore_hist} indicates no shift towards elevated
+synonymous z-scores for positively-selected sites. Were SLR prone to
+identifying positive selection at sites with high synonymous
+substitution rates, one would have expected such a shift in
+positively-selected compared to neutral and purifying
+sites. Furthermore, there appeared to be a genome-wide depletion of
+positively-selected sites with high synonymous rates compared to the
+random expectation (Fisher's exact test p$=1$, odds ratio 0.49--0.68,
+Table \ref{table_zscore_tests}).
+
+Overall, there appeared to be no significant evidence for a strong
+impact of synonymous rate variation on the detection of positive
+selection using these data. Still, strong variation in the synonymous
+substitution rate was observed, and some small proportion of the
+positively-selected sites inferred by SLR showed high synonymous
+substitution rates. For example, between 1,000 and 5,000 sites (out of
+59,000 positively-selected sites and 4 million total sites) contained
+synonymous z-scores in the 90-100\% percentile range, indicative of a
+very high synonymous substitution rate compared to other sites in the
+gene. These sites might reasonably be filtered from a high-confidence
+dataset of positively-selected sites. 
+
+\eresp{Synonymous Rate Variation}
 
 \section{The impact of effective population size on protein-coding constraint in mammals}
 
