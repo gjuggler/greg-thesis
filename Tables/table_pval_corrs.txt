@@ -1,0 +1,9 @@
+% latex table generated in R 2.14.0 by xtable 1.5-6 package
+% Tue May 15 17:05:18 2012
+ Hochberg & \cellcolor[HTML]{CBCBFF}1.00 & \cellcolor[HTML]{FDFDFF}0.15 & \cellcolor[HTML]{ECECFF}0.53 & \cellcolor[HTML]{DBDBFF}0.76 & \cellcolor[HTML]{E4E4FF}0.60 & \cellcolor[HTML]{DCDCFF}0.75 \\ 
+  Fisher & \cellcolor[HTML]{FFFFFF}0.15 & \cellcolor[HTML]{CBCBFF}1.00 & \cellcolor[HTML]{FFFFFF}0.21 & \cellcolor[HTML]{FFFFFF}0.14 & \cellcolor[HTML]{FFFFFF}0.11 & \cellcolor[HTML]{FFFFFF}0.13 \\ 
+  TPM 0.05 & \cellcolor[HTML]{EAEAFF}0.53 & \cellcolor[HTML]{FAFAFF}0.21 & \cellcolor[HTML]{CBCBFF}1.00 & \cellcolor[HTML]{E9E9FF}0.54 & \cellcolor[HTML]{ECECFF}0.46 & \cellcolor[HTML]{ECECFF}0.48 \\ 
+  Empirical 0.01 & \cellcolor[HTML]{DBDBFF}0.76 & \cellcolor[HTML]{FDFDFF}0.14 & \cellcolor[HTML]{EBEBFF}0.54 & \cellcolor[HTML]{CBCBFF}1.00 & \cellcolor[HTML]{D9D9FF}0.79 & \cellcolor[HTML]{CCCCFF}0.99 \\ 
+  Meta 0.1 & \cellcolor[HTML]{E5E5FF}0.60 & \cellcolor[HTML]{FFFFFF}0.11 & \cellcolor[HTML]{F0F0FF}0.46 & \cellcolor[HTML]{D9D9FF}0.79 & \cellcolor[HTML]{CBCBFF}1.00 & \cellcolor[HTML]{D8D8FF}0.81 \\ 
+  Meta 0.01 & \cellcolor[HTML]{DCDCFF}0.75 & \cellcolor[HTML]{FEFEFF}0.13 & \cellcolor[HTML]{EFEFFF}0.48 & \cellcolor[HTML]{CCCCFF}0.99 & \cellcolor[HTML]{D8D8FF}0.81 & \cellcolor[HTML]{CBCBFF}1.00 \\ 
+  

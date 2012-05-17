@@ -94,73 +94,179 @@ Figure 3.5?
   the extent to which synonymous rate variation may have affected the
   results. Overall, SLR does not show a significant bias towards
   inferring positive selection at sites with high synonymous rates of
-  substitution; at most, .}{Synonymous Rate Variation}}
+  substitution; only a small fraction of identified
+  positively-selected sites are likely false positives due to
+  synonymous rate variation.}{Synonymous Rate Variation}}
 
 \item{\corr{Duplicated Genes} Page 84; isn't the study of adaptive evolution in duplicated genes of
 great biological interest?
 
-\resp{asdf}{Duplicated Genes}
-}
+\resp{Yes -- it is an area of widespread research interest and
+  biological significance, but gene duplications strongly impact the
+  nature of the data under analysis (i.e., altering the phylogenetic
+  tree which describes a gene family's evolution) in a way that is
+  unique for each duplicated family. As a result, it was beyond the
+  scope of this thesis to specifically analyze th evolution of
+  duplicated genes. A few additional sentences were added to the
+  relevant section to highlight this point.}{Duplicated Genes}}
 
 \item{\corr{Window Size} Please discuss the rationale for using 15 codon, nonoverlapping
-windows to examine potential misalignments.}
+windows to examine potential misalignments.
+
+\resp{A paragraph discussing the issue of window size was added to the text.}{Window Size}}
 
 \item{\corr{Impact of Filtering} Page 97. There is quite a strong impact of filtering on the results;
-which are to be believed?}
+which are to be believed?
 
-\item{\corr{Terminal Versus Internal Branches} Comparison of patterns of substitution between terminal and internal
-branches of a phylogeny was used as the basis for a test of adaptive
-evolution by Kosakovsky Pond et al.\
-(http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.0020062);
-are there any such patterns here?}
+\resp{A paragraph discussing further the variability due to filtering was added to the text.}{Impact of Filtering}}
+
+\item{\corr{Terminal Versus Internal Branches} Comparison of patterns
+  of substitution between terminal and internal branches of a
+  phylogeny was used as the basis for a test of adaptive evolution by
+  Kosakovsky Pond et
+  al.\ (http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.0020062);
+  are there any such patterns here?
+
+\resp{While it would be interesting to compare patterns of evolution
+  in terminal and internal branches, there would be no compelling
+  biological reason to expect that any mammalian population evolved
+  differently during the period of time represented by a terminal
+  branch in the phylogeny under analysis compared to the time
+  represented by an internal branch. Put differently, the same period
+  of evolutionary time may exist as a terminal or internal branch
+  depending on the density of the phylogenetic tree: in a human-mouse
+  phylogeny, the entire 60 million years of rodent evolution is one
+  very long terminal branch, but in the 38-species mammalian tree used
+  in this thesis, only the mouse-specific portion of the same
+  evolutionary period is a terminal branch.
+
+  Furthermore, the mammalian analysis focused solely on
+  non-lineage-specific adaptive evolution. The comparison of internal
+  versus terminal branches in the clustered substitution analysis
+  (e.g. Figure 4.5) was anecdotal and served only to highlight the
+  fact that terminal branches (which were likely to contain potential
+  sequencing or annotation errors) showed more high-substitution
+  windows than internal branches (which were generally not prone to
+  such errors).}{Terminal Versus Internal Branches}}
 
 \section{Chapter 5}
 
-\item{\corr{P-values and Effect Sizes} Please discuss the advantages and disadvantages of using sitewise p
-values rather than the effect sizes ($\omega$ and associated standard
-errors) when conducting genomic level analyses. You may also want to
-take a look at this paper
-(http://mbe.oxfordjournals.org/content/27/3/520.abstract) which
-describes an approach which uses the pattern of nonsynonymous and
-synonymous rate variation as the basis of e.g.\ clustering. For the
-corrections, and given that all the estimates of $\omega$ and associated
-standard errors have already been produced, do the results of a
-standard meta-analysis type approach based on effect size differ from
-the p value based approach presented here?}
+\item{\corr{P-values and Effect Sizes} Please discuss the advantages
+  and disadvantages of using sitewise p values rather than the effect
+  sizes ($\omega$ and associated standard errors) when conducting
+  genomic level analyses. You may also want to take a look at this
+  paper (http://mbe.oxfordjournals.org/content/27/3/520.abstract)
+  which describes an approach which uses the pattern of nonsynonymous
+  and synonymous rate variation as the basis of e.g.\ clustering. For
+  the corrections, and given that all the estimates of $\omega$ and
+  associated standard errors have already been produced, do the
+  results of a standard meta-analysis type approach based on effect
+  size differ from the p value based approach presented here?
+
+\resp{A subsection describing the differences between ``p-value
+  combination'' methods and meta-analysis methods was added to the
+  text, and a standard meta-analysis approach was implemented and
+  compared to the results using the p-values alone.}{P-values and Effect Sizes}
+}
 
 \item{\corr{Gene Annotation Bias} In table 5.2, there is a lot of redundancy in the gene lists
 (e.g.\ SAMHD1, TLR1/4), partly due to the multiple GO terms associated
 with these genes, which are mostly immune related. To what extent do
 the same genes crop up again due to the large number of terms (as
-opposed to their actual importance)?}
+opposed to their actual importance)?
+
+\resp{The ``Top 5 Genes'' column in that table was included mostly to
+  highlight the genes with the lowest gene-wide p-values that
+  contributed to the enrichment of that given term. While the presence
+  of highly-annotated genes may cause functionally similar terms to
+  end up at the top of the enriched term list (for example, the
+  ``response to...'' terms in Table \ref{table_go} contain many
+  similar genes), it should not affect the fact that each term is
+  independently statistically enriched for \acp{psg}. The \topgo
+  method was designed in part to actively correct for this bias, and
+  it was for that reason that I included the topGO derived p-values in
+  Table \ref{table_go}.}{Gene Annotation Bias}
+
+}
 
 \item{\corr{Low PSG Overlap} Please discuss in more detail why there was so little overlap between
-PSGs described in different studies, as shown in Figure 5.4.}
+PSGs described in different studies, as shown in Figure 5.4.
+
+\resp{An additional paragraph was added to the relevant section
+  further discussing the issue.}{Low PSG Overlap} }
 
 \section{Chapter 6}
 
-\item{\corr{King Wilson Discussion} The discussion of King and Wilson's hypothesis should probably be
-moved to the discussion section, as it is more of a distraction in the
-introduction.}
+\item{\corr{King Wilson Discussion} The discussion of King and
+  Wilson's hypothesis should probably be moved to the discussion
+  section, as it is more of a distraction in the introduction.
 
-\item{\corr{Model Misspecification} Please discuss the potential problem of model misspecification when
-employing models that assume different models in different
-branches. It is entirely possible that none of the prespecified models
-in Figure 6.2 are the 'best', and hence any site-by-site models built
-on top of these may also be compromised (see
-http://mbe.oxfordjournals.org/content/28/11/3033.long for a further
-discussion of this). Please consider a wider range of 'alternative'
-models, and compare the goodness-of-fit with the prespecified ones.}
+\resp{The aforementioned discussion was secondary to the analysis
+  presented in the chapter, so for the (somewhat futile) sake of
+  brevity it was removed from the thesis altogether.}{King Wilson
+  Discussion} }
 
-\item{\corr{Slightly Deleterious Polymorphism} What might the contribution of slightly deleterious polymorphisms be
-to apparent accelerated evolution in humans?}
+\item{\corr{Model Misspecification} Please discuss the potential
+  problem of model misspecification when employing models that assume
+  different models in different branches. It is entirely possible that
+  none of the prespecified models in Figure 6.2 are the 'best', and
+  hence any site-by-site models built on top of these may also be
+  compromised (see
+  http://mbe.oxfordjournals.org/content/28/11/3033.long for a further
+  discussion of this). Please consider a wider range of 'alternative'
+  models, and compare the goodness-of-fit with the prespecified ones.
 
-\item{\corr{Considering Polymorphisms} To what extent might the results differ if you had multiple genomes
-per species? What might be the contribution of shared polymorphisms in
-the ancestral species in driving apparent accelerations?}
+\resp{No claim was made that any of the branch models used in this
+  chapter would be the ``best'' for any given gene. Rather, the main
+  point of using several prespecified models was to sort the set of
+  all genes by how well they fit each model, thus identifying the set
+  of genes (out of the entire genome-wide set) which are best
+  explained by that given pattern. While a detailed analysis of any
+  single gene should certainly consider a wider variety of possible
+  evolutionary scenarios, when analyzing several thousand genes it
+  becomes very difficult to analyze and summarize the results of an
+  intensive model comparison. The challenge is not so much in the
+  computation, but rather in the interpretation and analysis of many
+  model fits across many genes.
 
-\item{\corr{Relevance of dN/dS Differences} Please discuss the biological relevance of small (0.01--0.05)
-differences in genome-wide dN/dS (Figure 6.5).}
+  (Informally, I did evaluate a wider range of models by running
+  Hyphy's GA branch selection model on the top 10 accelerated genes
+  for each of the prespecified models. For the majority of genes the
+  best-fit branch model class contained 1 or 2 rates, suggesting that
+  a more complicated pattern of evolution rarely better explained the
+  data than a one- or two-rate model. However, the limited amount of
+  data within these closely-related primate alignments was also
+  evident, as the AIC difference between the best-fit and suboptimal
+  models was often small, and in some cases the estimated $\omega$
+  ratios were extremely high. Given these issues, I decided that the
+  partial GA branch analysis did not add enough to the chapter to
+  warrant its inclusion.)
+
+  A few paragraphs of new text were added to the chapter explicitly
+  discussing the issue of model misspecification.}{Model
+  Misspecification}}
+
+\item{\corr{Slightly Deleterious Polymorphism} What might the
+  contribution of slightly deleterious polymorphisms be to apparent
+  accelerated evolution in humans?
+
+\resp{Text has been added to a new subsection in Chapter 6.}{Slightly
+  Deleterious Polymorphism}}
+
+\item{\corr{Considering Polymorphisms} To what extent might the
+  results differ if you had multiple genomes per species? What might
+  be the contribution of shared polymorphisms in the ancestral species
+  in driving apparent accelerations?
+
+\resp{Text has been added to a new subsection in Chapter
+  6.}{Considering Polymorphisms}}
+
+\item{\corr{Relevance of dN/dS Differences} Please discuss the
+  biological relevance of small (0.01--0.05) differences in
+  genome-wide dN/dS (Figure 6.5).
+
+\resp{Text has been added to the new subsection in Chapter
+  6.}{Relevance of dN/dS Differences}}
 
 \section{Chapter 7}
 

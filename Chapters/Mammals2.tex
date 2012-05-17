@@ -343,6 +343,129 @@ the Primates species group, as the genome-wide ``null'' distribution
 of \sw \pvs in Primates contained many more sites with $p<0.01$ (as
 seen in Figure \ref{fig_pset_pvals}).
 
+\subsection{Effect sizes and meta-analysis}
+
+\bresp{P-values and Effect Sizes}
+
+The task of combining multiple sitewise results across a gene may also
+viewed as a type of meta-analysis, where the results of multiple
+largely independent tests of the same hypothesis are quantitatively
+combined to improve the power of the overall test
+\citep{Lipsey2001,Stewart2010}. In this case, the hypothesis would be
+whether any sites in the gene are subject to positive selection, and
+each site is considered a test of that hypothesis derived from
+independent data. Most methods for meta-analysis take into account the
+effect size and the standard error of each individual test, whereas
+the methods described above for combining tests across sites use only
+the p-value of the sitewise test at each site.
+
+In principle, the inclusion of effect size (e.g. the value of the
+$\omega$ parameter in the case of the SLR test) could have a strong
+impact on the significance of the overall test result, producing a
+different list of top \acp{psg} for a given dataset. Furthermore,
+meta-analysis methods typically provide an explicit estimate of the
+true effect size (with an associated confidence interval) in addition
+to an overall p-value for given test. However, the nature of the SLR
+test results suggested that meta-analysis may not be significantly
+different or more useful than the p-value based methods. First, for
+positively-selected sites the LRT of the SLR test is highly correlated
+with the estimated $\omega$ parameter (as seen in the left-hand panels
+of \ref{fig_sites_scatters}), suggesting that the magnitude of the
+effect size does not provide much more information than the LRT
+p-value itself. Second, standard models of meta-analysis assume that
+there is one underlying effect size common to all of the test being
+performed, while it is clear that different sites within a protein are
+subject to a wide variety of selective constraints. Thus, some sort of
+truncation approach would still be necessary to remove purifying sites
+from the meta-analysis, and the effect size estimate resulting from a
+meta-analysis across sites may not be biologically meaningful or
+easily interpretable. As opposed to the fields of medicine or
+epidemiology, where the effect size is believed to have a single value
+across independent tests, one would not expect all positively-selected
+sites in a gene to be evolving with a single $\omega$ parameter.
+
+\begin{figure}
+\centering \scriptsize
+\includegraphics[scale=0.8]{Figs/meta_pvals.pdf}
+\caption{Cumulative distributions of gene-wide p-values for different
+  methods of combining sitewise estimates across genes, using the
+  Mammals species group and the stringent filter. Note the axis
+  scales; this plot shows only the high-specificity range of p-values
+  between 0 and 0.2.}
+\label{fig_meta_pvals}
+\end{figure}
+
+Despite these caveats, it was interesting to compare a meta-analysis
+method to the p-value based approaches described above. The
+\texttt{metafor} R package \citep{Viechtbauer2010} was used to apply a
+random-effects meta-analysis model to the set of sitewise estimates
+from each gene for the Mammals species group, using truncation
+thresholds of the 1\%, 5\%, and 10\% nominal FPR thresholds as
+previously described. The p-value corresponding to the probability
+that the true effect size is below 1 was stored along with the
+estimated effect size and its 95\% confidence interval. Figure
+\ref{fig_meta_pvals} shows the cumulative distributions of p-values
+for the meta-analysis method alongside the p-value based methods
+applied to the same data. With a lenient truncation threshold of 5\%
+or 10\%, the meta-analysis method resulted in a greater proportion of
+genes with relatively low p-values than the other methods, with
+20-25\% of genes yielding an effect size above 1 at p$<0.05$
+significance or greater (orange and yellow lines, Figure
+\ref{fig_meta_pvals}). Meta-analysis at the 1\% truncation threshold
+produced a curve more similar to the empirical and Hochberg methods,
+with roughly 10\% of genes with a nominal p$<0.1$.
+
+To understand how similar each method behaved, Spearman's rank
+correlation coefficient was calculated between the complete set of
+gene-wise p-values for each pair of methods; these values are shown in
+Table \ref{table_pval_corrs}. Among the p-value based methods the
+Hochberg and empirical methods were most similar in their patterns of
+sensitivity, while Fisher's method was dissimilar from most of the
+others and the \ac{tpm} showed a slight correlation with most other
+methods. The meta-analysis results correlated extremely well with the
+empirical method (Spearman's rho$=0.99$ between Meta 0.01 and
+Empirical 0.01), suggesting that they share similar sensitivities in
+assigning p-values to genes based on the set of sites above a given
+truncation threshold. This is reasonable, as the meta-analysis and
+empirical methods are both more sensitive than the other methods to
+genes with a large number of sites with weak evidence for positive
+selection.
+
+\begin{table}
+\centering
+\begin{tabular}{rrrrrrr}
+\toprule
+ & Hochberg & Fisher & TPM 0.05 & Empirical 0.01 & Meta 0.1 & Meta 0.01 \\
+
+\midrule
+
+\input{Tables/table_pval_corrs.txt}
+
+\bottomrule
+\end{tabular}
+\caption{Spearman's rank correlation between gene-wide p-values from
+  different methods using the Mammals species group and stringent
+  filter.}
+\label{table_pval_corrs}
+\end{table}
+
+The similarity between the meta-analysis and empirical methods was
+further confirmed by looking at the number of shared genes within the
+top 200 \acp{psg} between pairs of methods: the overlaps between the
+meta-analysis at a 1\% truncation threshold and the Fisher, Hochberg,
+and TPM methods were 22, 60, and 83 genes, respectively, while the
+overlap with the Empirical method was 153 out of 200 genes. Although
+the meta-analysis approach showed a good ability to combine sitewise
+estimates to identify \acp{psg}, it was not included in further
+analyses in this chapter. The high correlation with p-values from the
+Empirical method suggested that not much information would be lost by
+doing so, and further work would need to be done (for instance, to
+better characterize the impact of site heterogeneity and the use of a
+truncation threshold on the meta-analysis) before such meta-analysis
+methods could confidently be used in the conteext of detecting
+sitewise positive selection.
+\eresp{P-values and Effect Sizes}
+
 \section{Analysis of \acp{psg} identified using \sw selective pressures}
 
 The methods described above were applied to the one-tailed \sw \pvs
@@ -932,6 +1055,38 @@ component of the overall set of \acp{psg} throughout mammals. In all,
 evidence of positive selection in either the relaxed or
 conservatively-filtered datasets.
 
+\bresp{Gene Annotation Bias}
+
+The identification of enriched \ac{go} terms within groups of related
+genes has become a standard tool in the analysis of genome-wide
+evolutionary or functional datasets \citep{Khatri2012}, but it does
+not come without certain limitations. Most importantly, the Gene
+Ontology annotations used as the source of functional information
+about each gene almost certainly contain errors, uneven coverage
+between different genes and functional categories, and potential
+biases towards the model organisms from which most annotations are
+derived \citep{Rhee2008}. Some important genes may be missing any
+functional annotation, while other well-studied genes may be annotated
+with several different functions. Some individual \acp{psg} in this
+study were annotated with several different enriched \ac{go} terms,
+showing up multiple times in Table \ref{table_go}. However, the
+presence of highly-annotated genes should not on its own cause a bias
+in the detection of enriched functional categories, as highly
+annotated non-\acp{psg} are also expected to be present in the
+\acp{go} dataset. It should also be noted that the list of the top 5
+\acp{psg} for each enriched category in Table \ref{table_go} is a
+partial list of the genes driving the enrichment of each \ac{go} term,
+and is included for reference only. The \topgo method was designed to
+avoid assigning low p-values to multiple terms with overlapping sets
+of genes (for instance the terms ``response to wounding,'' ``response
+to stimulus,'' and ``response to biotic stimulus'' in the middle
+section of Table \ref{table_go}, which are co-annotated with a number
+of genes); although each term is enriched with respect to the random
+expectation, it may not be essential to separately report each term
+due to their overlapping sets of annotated genes.
+
+\eresp{Gene Annotation Bias}
+
 \section{Comparing \acp{psg} identified by different studies}
 
 Somewhat surprisingly, no direct comparison between \acp{psg}
@@ -1018,6 +1173,37 @@ between the two most recent studies, with 45 \acp{psg} shared between
 genes, even though a slightly higher number of overlapping \acp{psg}
 may have been expected due to the larger overall number of \acp{psg}
 identified in the current study.
+
+\bresp{Low PSG Overlap}
+
+Many possible factors could have contributed to the low number of
+overlapping \acp{psg} between subsequent studies in mammals and
+primates. First, the evolutionary models and software used to infer
+positive selection were different for each study: \citet{Clark2003}
+used a branch-specific model to specifically detect selection along
+the human lineage, \citet{Nielsen2005} used a non-lineage-specific
+\ac{lrt} against a null model of \dnds$=1$, and \citet{Macaque2007}
+and \citet{Kosiol2008} employed branch-site \acp{lrt}. Although PAML
+was used for three of the studies, the test used by \citet{Clark2003}
+has since been deprecated in favor of a modified test, and
+\citet{Kosiol2008} used a novel implementation. As seen in the
+comparison of results from different models and software when
+investigating selection in $\beta$-globin (Table
+\ref{table_syn_rates_hbb_paml}), model and implementation differences
+can affect exactly which sites in a gene are inferred to be evolving
+with high nonsynonymous substitution rates. A second possible reason
+for the low overlap is differences in the alignment data obtained for
+each gene. The studies ranged widely in species coverage (from 2
+hominid species in \citet{Nielsen2005} to 6 mammalian species in
+\citet{Kosiol2008}), and each study adopted a different approach
+toward identifying orthologs, filtering alignments, and excluding
+sequences from analysis. As observed in the previous chapter, the
+choices made during the data gathering and filtering process can
+strongly affect the location and levels of positive selection
+detected; this may be a strong contributing factor to the lack of
+common \acp{psg} between studies.
+
+\eresp{Low PSG Overlap}
 
 The comparison of overlapping \acp{psg} was somewhat limited, as it
 required the use of a cutoff threshold to identify each set of

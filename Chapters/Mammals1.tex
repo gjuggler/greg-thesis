@@ -571,14 +571,25 @@ probability of erroneous inclusion of altogether non-homologous
 sequences was low, but the existence of paralogous relationships
 within the alignments used for \sw analysis was still a concern.
 
-The inclusion of paralogous gene relationships in a large-scale
-analysis of orthologous gene evolution may produce unwanted signals of
-adaptive evolution following gene duplication \citep{Lynch2000},
-artifacts resulting from gene conversion \citep{Casola2009} or biases
-due to lineage-specific family expansion, a process which is
-relatively common in mammalian gene families \citep{Gu2002}. As a
-result, it has traditionally been considered important to filter out
-recently-duplicated genes (e.g., genes duplicated after the
+\bresp{Duplicated Genes}
+
+Although the identification and analysis of adaptive evolution
+following gene duplication is of great interest
+\citep{Lynch2000,Zhang2002,He2005,Hahn2009a}, duplicated genes are
+complex to analyze, in part because the presence of duplications in a
+gene family affects the structure of the phylogenetic tree relating
+that family's member genes. Furthermore, the inclusion of paralogous
+gene relationships in a large-scale analysis of orthologous gene
+evolution may produce unwanted signals of adaptive evolution following
+gene duplication \citep{Lynch2000}, artifacts resulting from gene
+conversion \citep{Casola2009} or biases due to lineage-specific family
+expansion, a process which is relatively common in mammalian gene
+families \citep{Gu2002}.
+
+\eresp{Duplicated Genes}
+
+As a result, it has traditionally been considered important to filter
+out recently-duplicated genes (e.g., genes duplicated after the
 whole-genome duplication event in the vertebrate ancestor) in
 large-scale evolutionary analyses. Previous genome-wide scans for
 positive selection involving six or fewer mammalian genomes have
@@ -970,6 +981,25 @@ stretch, causing clustered substitutions to be inferred along the
 internal rodent branch. This raised the possibility that the entire
 rodent clade contains many misaligned \nhom stretches due to shared
 differences in gene annotations between rodent and non-rodent species.
+
+
+\bresp{Window Size}
+
+Window sizes of 8 and 30 codons were also tested using the same
+approach; the data are not shown here, but the results were
+qualitatively similar. Visual inspection of several problematic
+alignments showed that the nonhomologous aligned sequence was often
+between 10-20 codons in length, so a 15-codon window seemed to be the
+size best suited for detecting these problematic regions. Smaller
+windows might suffer from decreased specificity, as non-erroneous
+alignments might reasonably contain very small clusters of
+nonsynonymous substitutions. Too large a window size could yield
+reduced sensitivity, because a given window might extend beyond a
+given stretch of nonhomologous aligned sequence, resulting in a mix of
+nonhomologous and homologous sequence contributing to the substitution
+counts.
+
+\eresp{Window Size}
 
 %This appeared to be the case for at least one gene: Figure
 %\ref{fig_mouse_crap_aln} shows the region surrounding a 15-codon
@@ -1377,6 +1407,25 @@ of being within genes containing recent duplications showed less
 enrichment for positive selection, but the proportions of \acp{psc}
 and sites with \omgml~$>1$ were still above those seen in either the
 relaxed or conservatively filtered datasets.
+
+\bresp{Impact of Filtering}
+
+The data in Tables \ref{table_filter_summaries_1} and
+\ref{table_filter_summaries_2} highlight the strong impact of
+filtering on the proportion of positively-selected sites detected in
+mammals. While the unfiltered dataset probably contains unacceptable
+numbers of false positives (with over 5\% of sites having $\omega>1$
+and 0.72\% of sites positively selected at a p$<0.05$ threshold in
+Mammals), the relaxed and conservative datasets yielded more similar
+results. Overall it appears that across Mammals, 3-4\% of sites have
+$\omega>1$ and ca. 0.5\% of all sites show evidence of positive
+selection at a nominal p$<0.05$ threshold. The variability in these
+numbers resulting from different filtering approaches suggests that
+researchers performing genome-wide scans for positive selection should
+carefully consider the decisions made when data filtering, and ideally
+present results using a range of stringencies.
+
+\eresp{Impact of Filtering}
 
 %\begin{landscape}
 %\begin{table}
@@ -2084,10 +2133,10 @@ nominal p$<0.05$ positively-selected site. Three z-score thresholds
 synonymous rates, and Fisher's exact test (FET) was used to test for
 non-random co-occurrence of positively-selected and high-synonymous
 rate sites. The results of this analysis are shown in Table
-\ref{table_zscore_tests}, and Figure \ref{fig_zscore_hist} shows the
+\ref{table_zscore_tests}, and Figure \ref{fig_zscore_density} shows the
 genome-wide distribution of synonymous substitution z-scores
 separately for purifying, neutral and positively-selected sites.
-Figure \ref{fig_zscore_hist} indicates no shift towards elevated
+Figure \ref{fig_zscore_density} indicates no shift towards elevated
 synonymous z-scores for positively-selected sites. Were SLR prone to
 identifying positive selection at sites with high synonymous
 substitution rates, one would have expected such a shift in
@@ -2096,6 +2145,51 @@ sites. Furthermore, there appeared to be a genome-wide depletion of
 positively-selected sites with high synonymous rates compared to the
 random expectation (Fisher's exact test p$=1$, odds ratio 0.49--0.68,
 Table \ref{table_zscore_tests}).
+
+\begin{table}
+\centering \footnotesize
+\begin{tabular}{rrrrrrrrrrrrr}
+\toprule
+ \multicolumn{2}{c}{Z-score Thresh.} & Mean & \multicolumn{2}{c}{High-Syn. Sites} & \multicolumn{2}{c}{High-Syn. and Pos.} & \multicolumn{3}{c}{FET Results} \\
+\cmidrule(r){1-2} \cmidrule(r){4-5} \cmidrule(r){6-7} \cmidrule(r){8-10}
+Quantile & Value & Rel. Rate & Count & \% of All & Count & \% of Pos. & Over & Under & OR \\
+  \midrule
+\input{Tables/zscore_tests.txt}
+\bottomrule
+\end{tabular}
+\caption{Genome-wide overlap between sites with high synonymous
+  substitution counts and evidence for positive selection. Synonymous
+  rate z-scores were calculated for 3.9 million sites as described in
+  the text. Sites with high synonymous rates were identified at
+  various thresholds, and 59,801 sites with evidence for positive
+  selection were identified using the nominal 95\% LRT threshold. The
+  ``Mean Rel. Rate'' column shows the mean relative synonymous rate
+  (defined in the text and shown in Figure
+  \ref{fig_zscore_histogram}A) for all sites having a z-score above
+  the given threshold. The ``High-Syn. Sites'' columns show the count
+  and percentage of all sites with a high synonymous rate at the given
+  threshold, and the ``High-Syn. and Pos.''  columns show the count of
+  sites with both a high synonymous rate and evidence for positive
+  selection. The ``Over'' and ``Under'' columns show the p-values for the
+  one-tailed Fisher's Exact Test for over- and under-representation,
+  respectively, and the ``OR'' column shows the estimated odds ratio.}
+\label{table_zscore_tests}
+\end{table}
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{Figs/zscore_density.pdf}
+\caption{Global distribution of synonymous count z-scores separated by
+  purifying (green), neutral (purple), and positive (orange) sites
+  base on the SLR LRT score. Note the under-representation of low
+  z-scores at purifying sites (seen in the green curve between z$=-2$
+  and z$=-1$): at sites with very few synonymous substitutions, there
+  is little data to distinguish between purifying and neutral sites,
+  so the magnitude of the LRT score is very low and sites are
+  identified as neutral.}
+\label{fig_zscore_density}
+\end{figure}
 
 Overall, there appeared to be no significant evidence for a strong
 impact of synonymous rate variation on the detection of positive
