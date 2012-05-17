@@ -352,7 +352,7 @@ viewed as a type of meta-analysis, where the results of multiple
 largely independent tests of the same hypothesis are quantitatively
 combined to improve the power of the overall test
 \citep{Lipsey2001,Stewart2010}. In this case, the hypothesis would be
-whether any sites in the gene are subject to positive selection, and
+whether any sites in the gene are subject to positive selection with $\omega>1$, and
 each site is considered a test of that hypothesis derived from
 independent data. Most methods for meta-analysis take into account the
 effect size and the standard error of each individual test, whereas
@@ -399,21 +399,21 @@ Despite these caveats, it was interesting to compare a meta-analysis
 method to the p-value based approaches described above. The
 \texttt{metafor} R package \citep{Viechtbauer2010} was used to apply a
 random-effects meta-analysis model to the set of sitewise estimates
-from each gene for the Mammals species group, using truncation
-thresholds of the 1\%, 5\%, and 10\% nominal FPR thresholds as
-previously described. The p-value corresponding to the probability
-that the true effect size is below 1 was stored along with the
-estimated effect size and its 95\% confidence interval. Figure
-\ref{fig_meta_pvals} shows the cumulative distributions of p-values
-for the meta-analysis method alongside the p-value based methods
-applied to the same data. With a lenient truncation threshold of 5\%
-or 10\%, the meta-analysis method resulted in a greater proportion of
-genes with relatively low p-values than the other methods, with
-20-25\% of genes yielding an effect size above 1 at p$<0.05$
-significance or greater (orange and yellow lines, Figure
-\ref{fig_meta_pvals}). Meta-analysis at the 1\% truncation threshold
-produced a curve more similar to the empirical and Hochberg methods,
-with roughly 10\% of genes with a nominal p$<0.1$.
+from each gene for the Mammals species group, using truncation at the
+1\%, 5\%, and 10\% nominal FPR thresholds as previously described for
+the TPR method. The p-value corresponding to the probability that the
+true effect size is below 1 was stored along with the estimated effect
+size and its 95\% confidence interval. Figure \ref{fig_meta_pvals}
+shows the cumulative distributions of p-values for the meta-analysis
+method alongside the p-value based methods applied to the same
+data. With a lenient truncation threshold of 5\% or 10\%, the
+meta-analysis method resulted in a greater proportion of genes with
+relatively low p-values than the other methods, with 20-25\% of genes
+yielding an effect size above 1 at p$<0.05$ significance or greater
+(orange and yellow lines, Figure \ref{fig_meta_pvals}). Meta-analysis
+at the 1\% truncation threshold produced a curve more similar to the
+empirical and Hochberg methods, with roughly 10\% of genes with a
+nominal p$<0.1$.
 
 To understand how similar each method behaved, Spearman's rank
 correlation coefficient was calculated between the complete set of
@@ -432,7 +432,7 @@ genes with a large number of sites with weak evidence for positive
 selection.
 
 \begin{table}
-\centering
+\centering \scriptsize
 \begin{tabular}{rrrrrrr}
 \toprule
  & Hochberg & Fisher & TPM 0.05 & Empirical 0.01 & Meta 0.1 & Meta 0.01 \\
@@ -460,11 +460,11 @@ estimates to identify \acp{psg}, it was not included in further
 analyses in this chapter. The high correlation with p-values from the
 Empirical method suggested that not much information would be lost by
 doing so, and further work would need to be done (for instance, to
-better characterize the impact of site heterogeneity and the use of a
-truncation threshold on the meta-analysis) before such meta-analysis
-methods could confidently be used in the conteext of detecting
-sitewise positive selection.
-\eresp{P-values and Effect Sizes}
+better characterize the impact of site heterogeneity and evaluate the
+use of a truncation threshold on the meta-analysis) before such
+meta-analysis methods could confidently be used in the conteext of
+detecting sitewise positive selection.  \eresp{P-values and Effect
+  Sizes}
 
 \section{Analysis of \acp{psg} identified using \sw selective pressures}
 
@@ -1073,7 +1073,7 @@ showing up multiple times in Table \ref{table_go}. However, the
 presence of highly-annotated genes should not on its own cause a bias
 in the detection of enriched functional categories, as highly
 annotated non-\acp{psg} are also expected to be present in the
-\acp{go} dataset. It should also be noted that the list of the top 5
+\ac{go} dataset. It should also be noted that the list of the top 5
 \acp{psg} for each enriched category in Table \ref{table_go} is a
 partial list of the genes driving the enrichment of each \ac{go} term,
 and is included for reference only. The \topgo method was designed to
@@ -1186,8 +1186,8 @@ the human lineage, \citet{Nielsen2005} used a non-lineage-specific
 and \citet{Kosiol2008} employed branch-site \acp{lrt}. Although PAML
 was used for three of the studies, the test used by \citet{Clark2003}
 has since been deprecated in favor of a modified test, and
-\citet{Kosiol2008} used a novel implementation. As seen in the
-comparison of results from different models and software when
+\citet{Kosiol2008} used an entirely novel implementation. As seen in
+the comparison of results from different models and software when
 investigating selection in $\beta$-globin (Table
 \ref{table_syn_rates_hbb_paml}), model and implementation differences
 can affect exactly which sites in a gene are inferred to be evolving
@@ -1197,11 +1197,10 @@ each gene. The studies ranged widely in species coverage (from 2
 hominid species in \citet{Nielsen2005} to 6 mammalian species in
 \citet{Kosiol2008}), and each study adopted a different approach
 toward identifying orthologs, filtering alignments, and excluding
-sequences from analysis. As observed in the previous chapter, the
-choices made during the data gathering and filtering process can
-strongly affect the location and levels of positive selection
-detected; this may be a strong contributing factor to the lack of
-common \acp{psg} between studies.
+sequences from analysis. The many choices made during the data
+gathering and filtering process can strongly affect the location and
+levels of positive selection detected, and this may be a strong
+contributing factor to the lack of common \acp{psg} between studies.
 
 \eresp{Low PSG Overlap}
 

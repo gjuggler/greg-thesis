@@ -72,14 +72,199 @@ result of lower long-term \ac{ne}, higher error rates for detecting
 \acp{psc} in primates due to the shorter total branch length, or a
 historically greater prevalence of positive selection in primates and
 laurasiatheria could all plausibly be responsible for the observed
-species-dependent differences in patterns of positive selection.
+species-dependent differences in patterns of positive
+selection. Future work could be directed towards an improved
+understanding of what biological or methodological factors caused
+these observed differences.
 
-Future work could be directed towards an improved understanding of
-these differences. Results from the study of genetic variation in
-present-day populations may help shed light on levels of purifying and
-positive selection in the recent history of diverse mammals, and
-reasonable extrapolations deeper into history may provide new insight
-into the patterns observed here. Alternatively, the development of
+\bresp{Low Coverage}
+
+One of the goals of this thesis was to investigate whether the
+low-coverage genome assemblies provided by the \ac{mgp} could be
+successfully incorporated into a sensitive comparative genomic
+analysis. Although the low-coverage genomes required some additional
+filtering steps (including a filter for sequence quality and the
+removal of short ``split paralogs'' resulting from low-coverage
+assembly breakpoints, as described in Chapter \ref{ch_mammals1}), they
+did not appear to strongly impact the results of the scan for
+positively-selected sites and genes. Although I did not examine
+alignments consisting exclusively of low-coverage genomes, the ``HQ
+Mammals'' species group contained no low-coverage genomes and had a
+prevalence of positively-selected sites comparable to the Mammals and
+Primates species groups, both of which contained some low-coverage
+species. It appeared that the choice of species included in the
+analysis had a greater impact on the detection of positive selection
+than the presence or absence of low-coverage species, which is
+consistent with no significant increase in false positives due to the
+inclusion of low-coverage species.
+
+Further evidence for a lack of increased errors came from the analysis
+of clusters of \nsyn substitutions along terminal branches of the
+tree. All short terminal branches, whether they corresponded to a
+low-coverage or high-coverage genome, showed an excess of long runs of
+\nsyn substitutions presumably resulting from assembly or annotation
+errors. If sequencing errors in low-coverage genomes were responsible
+for alignment errors or contained a greater amount of misassembly or
+incorrect annotations, this excess should have been more pronounced
+for low-coverage than high-coverage terminal branches.
+
+As noted in Chapter \ref{ch_mammals1}, the potential negative impact
+of sequencing error rates on a phylogenetic analysis is modulated by
+the length of the terminal branch leading to the genome being
+considered. Shorter branches contain fewer true substitutions, so a
+small amount of error may cause an unacceptable increase in false
+positive rates; on the other hand, longer branches contain more
+biological substitutions, decreasing the expected impact of an
+equivalent error rate. It is thus relevant that the species sequenced
+to low coverage for the \ac{mgp} were chosen specifically to maximize
+the covered branch length of the mammalian tree. The long branches
+covered by low-coverage genomes may have reduced the potential impact
+of low-coverage sequence-based errors on the detection of positive
+selection across the tree. Had a much closer relative of human been
+sequenced to low coverage, it might have presented more problems for
+the analysis.
+
+\eresp{Low Coverage}
+
+\bresp{Limitations}
+
+The methods and analyses presented in this thesis were subject to a
+number of important limitations. Although any analysis or simulation
+experiment necessarily involves making limiting choices in order to
+reduce the computational cost, parameter space, or analytical
+complexity, identifying those choices which might be reconsidered or
+further explored might be helpful in guiding future work.
+
+The foremost limiting factor was the simplistic nature and narrow
+range of the phylogenetic codon models used throughout this
+analysis. Although the sitewise methods implemented in PAML and SLR
+were compared using simulated data in Chapter \ref{ch_indels1}, those
+two methods share the same codon model definition and achieved nearly
+identical performance for detecting sitewise positive selection under
+realistic conditions. For each of the empirical analyses, only one
+software program was used to infer selective pressures: the SLR test
+was used to detect sitewise selection in the mammalian study, while
+PAML's branch models were used to detect gene-wide \dnds shifts in the
+primate study. It was a pragmatic decision to focus on a single codon
+model and method, which allowed other parameters, such as the species
+choice, filtering protocol, and the approach to combining sitewise
+estimates, to vary. However, numerous variations on the
+parameterization of phylogenetic codon models do exist (as in the
+model of \citet{Muse1994}), and although codon-based methods have been
+shown to have similar performance under a range of ``normal''
+conditions \citep{Pond2005a}, it may be that the methods used
+throughout this thesis perform poorly under certain
+circumstances---for instance, when analyzing short alignments, genes
+with extreme GC content, or genes subject to complex patterns of
+selective pressure throughout mammalian history.
+
+It is also clear that the methods used in this thesis are only useful
+for investigating natural selection within protein-coding
+regions. While there is undoubtedly value in understanding the
+selective forces shaping the evolution of proteins, protein-coding
+sequence represents only a small fraction of the evolutionary
+conserved and putatively functional genomic sequence in mammals
+\citep{Ponting2011}. Other methods would be required to investigate
+the evolutionary and functional dynamics of noncoding regions; for
+example, explicitly evolutionary ChIP-seq experiments
+\citep{Schmidt2010} and phylogenetic methods for detecting purifying
+and positive selection in noncoding elements
+\citep{Siepel2005,Pollard2010} have been used to identify genomic
+regions and sequence elements which have undergone significant
+evolutionary conservation or change throughout mammalian
+evolution. With respect to the infamous hypothesis of
+\citet{King1975}, namely that noncoding differences are more
+responsible for the phenotypic differences between human and
+chimpanzee than protein-coding differences, the primate study in
+Chapter \ref{ch_gorilla} only investigated one side of the
+story. Given that a major difficulty in analyzing the evolution of
+primate genomes using codon-based methods is the paucity of fixed
+substitutions within a given gene, the increasing availability of
+comparative functional and population genetic data within different
+primate species (driven largely by the decreasing cost of acquiring
+sequence data) may be more important to our improved understanding of
+primate evolution than the further development and use of codon-based
+models.
+
+One of the most important limitations of the analytical approach taken
+in this thesis was its sole reliance on divergence data. Although the
+estimation of evolutionary parameters using phylogenetic codon models
+has proven to be a very successful strategy toward studying protein
+function and evolution \citep{Yang2005c}, many aspects of our
+evolutionary history may be more sensitively analyzed using population
+genetic data or some combination of population-based and
+divergence-based methods. Fixed nucleotide substitutions can only be
+localized to a single branch in the phylogenetic tree relating a given
+set of sequences; even the shortest of these branches typically covers
+millions of years of evolutionary time. On the other hand, patterns of
+polymorphism between individuals within a given population can provide
+useful information regarding that population's recent evolutionary
+history, including the presence and location of recent selective
+sweeps \citep{Hernandez2011} and patterns of population size expansion
+and contraction \citep{Pool2010}. While population genetic data may be
+unable to provide much information about more distant evolutionary
+events (such as the potential adaptive substituions which occurred
+during the mammalian radiation or in the ancestors of the African
+great apes), it could significantly improve the ability of a purely
+divergence-based method to identify proteins or sites subject to
+recent positive selection. Along these lines, methods which explicitly
+combine population genetics and divergence data into a phylogenetic
+framework (e.g., \citet{Wilson2011}) seem especially promising.
+\eresp{Limitations}
+
+\bresp{Population Genetic and Phylogenetic Methods}
+
+However, there are some apparent discrepancies between the models and
+results associated with population genetic versus phylogenetic
+methods.  Although the two approaches are intimately related by the
+source of their data and the types of biological questions they
+investigate (i.e., the location and strength of selective constraint
+acting on protein-coding and noncoding regions), phylogenetic methods
+typically identify positive selection with a long-term elevated \nsyn
+substitution rate, while population genetic studies have focused on
+identifying recent selective sweeps or on estimating the proportion of
+mutations and of fixed substitutions which are advantageous or
+deleterious. Although there has been significant variation in
+published population genetic estimates of $\alpha$ (a parameter which
+describes the proportion of \nsyn substitutions which have been fixed
+by positive selection), studies have suggested that a value anywhere
+from 0 to 0.4 is plausible \citep{EyreWalker2009}. At first, these
+estimates sound extremely high compared to the proportions of
+positively-selected sites identified in Chapter \ref{ch_mammals1},
+ranging from 0.5\% to 1\%. However, the proportion of sites subject to
+long-term positive selection is a very different measure than
+$\alpha$.  Estimation of $\alpha$ typically involves inferring the
+distribution of fitness effects of new mutations along with the \nsyn
+and \syn substitution rates, and any excess of fixed \nsyn
+substitutions is then attributed to the adaptive fixation of
+deleterious \nsyn mutations. If the distribution of fitness effects is
+shaped a certain way, even a small proportion of fixed \nsyn
+substitutions can lead to the inference of a relatively high
+$\alpha$. Thus, even though very few protein-coding sites show an
+overall greater rate of \nsyn versus \syn substitution, fixed \nsyn
+substitutions from across all sites point to a nonzero proportion of
+\nsyn substitutions being fixed as a result of positive selection.
+
+Estimating the \ac{ne} of a population is an important component of
+methods which estimate the distribution of fitness effects and
+$\alpha$ \citep{EyreWalker2006,EyreWalker2009}. Given the detectable
+impact of \ac{ne} on divergence-based data, which was found to be
+pervasive throughout the analyses presented in this thesis, it seems
+likely that the connection between \ac{ne} and the strength of natural
+selection will be a focal point for future corroboration between
+population genetic and divergence-based studies. Few studies have
+explicitly combined divergence-based and population genetics methods,
+but such a combination has good potential to either improve analytical
+power or provide valuable information supporting or rejecting certain
+models or hypotheses.
+
+As more and more high-quality population genetic data becomes
+available (especially in phylogenetically distant, non-model
+organisms), results from the study of genetic variation in present-day
+populations may help shed light on levels of purifying and positive
+selection in the recent history of diverse mammals, and reasonable
+extrapolations deeper into history may provide new insight into the
+more distant patterns observed here. Alternatively, the development of
 evolutionary models that explicitly account for changing \ac{ne} may
 help us better understand the impact of \ac{ne} on the evolution of
 mammalian genomes. The results from Chapter \ref{ch_gorilla}, which
@@ -88,27 +273,30 @@ estimated a lower historical \ac{ne} for human than for all other
 development of advanced evolutionary models incorporating the effects
 of \ac{ne} within the framework of the nearly neutral theory.
 
-The cost of sequencing a human-sized genome has dropped nearly
-700-fold during the four years of my Ph.D. research (from \$7M to
-\$10k per genome, \citep{Wetterstrand2011}), and ambitious yet
-realistic plans have been drawn to sequence several thousand
-vertebrate genomes in the near future \citep{Haussler2009}. With
-respect to the rapidly-developing technology of genome sequencing, two
-concluding points seem especially pertinent. First, the increasing
-amount of available genomic data will be matched perhaps only by the
-increasing number of potential false discoveries made possible by the
-error-prone nature of such high-throughput data collection and
-analysis. Whereas researchers used to manually fix alignment or
-sequencing errors ``by eye'', this approach clearly does not work at a
-genomic scale, and well-designed automated methods should almost
-always outperform manual assessment. As a result, a rigorous and
-comprehensive understanding of sources of error in comparative
-genomics, combined with widespread adoption of best practices for
-reducing their impact on all types of downstream evolutionary
-analyses, will become increasingly important. Second, given the small
-number of observed fixed differences in comparative studies of humans
-and closely-related primates, it seems likely that the continued
-development of more complex evolutionary models and inference methods,
+\eresp{Population Genetic and Phylogenetic Methods}
+
+As a final point, it is striking that the cost of sequencing a
+human-sized genome has dropped nearly 700-fold during the four years
+of my Ph.D. research (from \$7M to \$10k per genome,
+\citep{Wetterstrand2011}), and ambitious yet realistic plans have been
+drawn to sequence several thousand vertebrate genomes in the near
+future \citep{Haussler2009}. With respect to the rapidly-developing
+technology of genome sequencing, two concluding points seem especially
+pertinent. First, the increasing amount of available genomic data will
+be matched perhaps only by the increasing number of potential false
+discoveries made possible by the error-prone nature of such
+high-throughput data collection and analysis. Whereas researchers used
+to manually fix alignment or sequencing errors ``by eye'', this
+approach clearly does not work at a genomic scale, and well-designed
+automated methods should almost always outperform manual
+assessment. As a result, a rigorous and comprehensive understanding of
+sources of error in comparative genomics, combined with widespread
+adoption of best practices for reducing their impact on all types of
+downstream evolutionary analyses, will become increasingly
+important. Second, given the small number of observed fixed
+differences in comparative studies of humans and closely-related
+primates, it seems likely that the continued development of more
+powerful or more complex evolutionary models and inference methods,
 rather than the sequencing of more primate genomes, has the most
 potential to significantly improve our power to identify and
 understand the molecular signatures of adaptive changes in our recent

@@ -289,7 +289,7 @@ misaligned regions.
 
 The impact of these types of errors on detecting positive selection at
 any given codon should depend on the model used to infer selection,
-the number and identify of the \nhom nucleotides placed in the same
+the number and identity of the \nhom nucleotides placed in the same
 aligned codon, and the branch length leading to the sequence
 containing the misaligned bases. Misalignment of multiple nucleotides
 in the same codon would tend to produce more false positives than
@@ -694,7 +694,7 @@ length across the tree (hereafter referred to as the length ratio) was
 also calculated.
 
 Genes were grouped by species within each gene tree, and any group of
-twp or more genes from the same species was considered to be a set of
+two or more genes from the same species was considered to be a set of
 putative paralogs. Within each set of putative paralogs, a single gene
 was chosen to be retained for evolutionary analysis based on three
 rules applied in the following order: (1) if only one sequence had a
@@ -1335,7 +1335,7 @@ Three additional criteria were added to create the more conservative
 filtered dataset. First, the threshold on \ngap sequence counts was
 increased: all sites with a \ngap codon count below 75\% of the
 maximum \ngap count for that species group were removed. Second, sites
-and genes containing windows of clsutered \nsyn substitutions (as
+and genes containing windows of clustered \nsyn substitutions (as
 identified in Section \ref{section_windows_clustered_subs}) were
 removed: all sites overlapping the 23,116 15-codon windows with excess
 \nsyn substitutions (using the 99.9\% quantile based definition of
@@ -1820,26 +1820,26 @@ convenient source of nearby and putatively neutral mutations which can
 be used to estimate a neutral substitution rate. In contrast, the
 detection of non-neutral evolution in noncoding elements is fraught
 with difficulty in identifying regions from which to estimate a
-suitable neutral evolutionary rate, i.e.\ \citep{Taylor2008}.
+suitable neutral evolutionary rate \citep{Taylor2008}.
 
-However, some methods for detecting sitewise positive selection assume
-a constant neutral mutation rate within a given gene. Although it
-appears that most mutation rate variation occurs on a scale of $>$100
-kilobases \citep{Gaffney2005} which is greater than the average gene
-length, some variation still exists within genes and at individual
-sites. At sites with high neutral mutation rates but $\omega\leq1$,
-both the synonymous and nonsynonymous substitution rates will be
-elevated. As a result, methods which do not model variation in the
-synonymous substitution rate will attribute this increase in
-nonsynonymous substitutions to an elevated $\omega$ parameter,
-potentially causing false positive results. \citet{Pond2005b}
-described a modified codon model which allows variation in both the
-synonymous and nonsynonymous substitution rates and showed that many
-genes show significant evidence of synonymous rate
-variation. Furthermore, they presented a detailed analysis of
-selection in mammalian $\beta$-globin genes, identifying key
-differences between sitewise models which account for synonymous rate
-variation (termed ``dual'' models) and those which do not (termed
+However, some popular methods for detecting sitewise positive
+selection assume a constant neutral mutation rate within a given
+gene. Although it appears that most mutation rate variation occurs on
+a scale of $>$100 kilobases \citep{Gaffney2005} which is greater than
+the average gene length, a significant amount of variation still
+exists within genes and at individual sites. At sites with high
+neutral mutation rates but $\omega\leq1$, both the synonymous and
+nonsynonymous substitution rates will be elevated. As a result,
+methods which do not model variation in the synonymous substitution
+rate may attribute this increase in nonsynonymous substitutions to an
+elevated $\omega$ parameter, causing false positive
+results. \citet{Pond2005b} described a modified codon model which
+allows variation in both the synonymous and nonsynonymous substitution
+rates and showed that many genes show significant evidence of
+synonymous rate variation. Furthermore, they presented a detailed
+analysis of selection in mammalian $\beta$-globin genes, identifying
+key differences between sitewise models which account for synonymous
+rate variation (termed ``dual'' models) and those which do not (termed
 ``nonsynonymous'' models).
 
 In light of this evidence for significant synonymous rate variation
@@ -1848,34 +1848,35 @@ synonymous rate variation on the results shown in Tables
 \ref{table_pset_summaries_1} and \ref{table_pset_summaries_2}. First,
 I undertook a re-analysis of the evidence for positive selection in
 $\beta$-globin in mammals to directly compare the sitewise results
-from the model of \citet{Pond2005b} which accounts for synonymous rate
-variation and those from recent versions of PAML and SLR. Second, I
-examined the genome-wide dataset for correlations between synonymous
-substitutions and evidence for positive selection that might be
-indicative of a bias due to synonymous rate variation.
+from the model of \citet{Pond2005b} with those from recent versions of
+PAML and SLR. Second, I examined the genome-wide dataset for
+correlations between synonymous substitutions and evidence for
+positive selection that might be indicative of a bias due to
+synonymous rate variation.
 
 \subsection{Analysis of selection in mammalian $\beta$-globin genes}
 
 \citet{Pond2005b} compared the results of a sitewise Empirical Bayes
 analysis of positive selection in mammalian $\beta$-globin genes using
-two models: a model based on the M3 model of \citet{TODO}, termed the
-``nonsynonymous'' model, and a model with separate parameters for the
-nonsynonymous and synonymous evolutionary rates, termed the ``dual''
-model. The HyPhy software package \citep{TODO} was used to optimize
-parameters and calculate likelihoods for both models. I first
-attempted to reproduce the results from Table 5 of \citet{Pond2005b},
-using the same alignment and tree and calculating the Bayes factors
-for positive selection and the posterior probabilities of positive
-selection under four models implemented by HyPhy: the
-``nonsynonymous'' model using either the MG94 or GY94 codon model
-specification, and the ``dual'' model using either the MG94 or GY94
-specification. Then, to compare those results to what a typical user
-of PAML or SLR might see, I used each of those programs to estimate
-sitewise positive selection using a Bayes Empirical Bayes analysis
-under the M8 model as implemented by PAML, and the SLR test as
-implemented by SLR. Finally, to assess the impact of the dataset on
-these results, I extracted the equivalent alignment sites from the
-genome-wide mammalian datasets and ran the same set of
+two models: a model based on the M3 model of \citet{Yang2007}, termed
+the ``nonsynonymous'' model, and a model with separate parameters for
+the nonsynonymous and synonymous evolutionary rates, termed the
+``dual'' model. The HyPhy software package \citep{Pond2005} was used
+to optimize parameters and calculate likelihoods for both models. I
+first attempted to reproduce the results from Table 5 of
+\citet{Pond2005b}, using the same alignment and tree and calculating
+the Bayes factors for positive selection and the posterior
+probabilities of positive selection under four models implemented by
+HyPhy: the ``nonsynonymous'' model using either the MG94 or GY94 codon
+model specification, and the ``dual'' model using either the MG94 or
+GY94 specification. Then, to compare those results to what a typical
+user of PAML or SLR might see, I used each of those programs with
+their default parameters to estimate sitewise positive selection using
+a Bayes Empirical Bayes analysis under the M8 model as implemented by
+PAML, and the SLR test as implemented by SLR. Finally, to assess the
+impact of the species sampling and data source on these results, I
+extracted the equivalent alignment sites from the genome-wide
+mammalian dataset used in this chapter and ran the same set of
 analyses. Tables \ref{table_syn_rates_hbb_paml} and
 \ref{table_syn_rates_hbb_ensembl} present the Bayes factors and
 posterior probabilities for $\omega>1$ (for HyPhy analyses), posterior
@@ -1883,6 +1884,61 @@ probability for $\omega>1$ and posterior mean $\omega$ (for the PAML
 analysis), or the sitewise LRT, p-value for $\omega>1$, and lower and
 upper 95\% confidence intervals for $\omega$ (for the SLR analysis)
 for each of the analyses run.
+
+\bbtable
+\centering \footnotesize
+\begin{tabular}{rrrrrrrrrrrrrrr}
+\toprule
+ & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
+ \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
+ \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
+ & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
+\cmidrule(r){1-15}
+Site & BF & PP & BF & PP & 
+BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
+  \midrule
+\input{Tables/correction_syn_rates_table_yang.txt}
+\bottomrule
+\end{tabular}
+\caption{\scriptsize Evidence for sitewise positive selection in mammalian
+  $\beta$-globin using a variety of codon models and mammalian
+  alignments from \citet{Pond2005b}. Nsyn---''nonsynonymous'' models,
+  which do not model variation in the \syn substitution rate;
+  Dual---''dual'' models, which model variation in the \syn
+  substitution rate; GY94---a model parameterized using the method of
+  \citet{Goldman1994a}; MG94---model parameterized using the method of
+  \citet{Muse1994}; BF---Bayes Factor for positive selection;
+  PP---posterior probability of positive selection; LRT---likelihood
+  ratio test statistic for positive selection.
+\vspace*{1 cm}}
+\label{table_syn_rates_hbb_paml}
+
+
+\begin{tabular}{rrrrrrrrrrrrrrr}
+
+\toprule
+ & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
+ \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
+ \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
+ & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
+ & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
+\cmidrule(r){1-15}
+Site & BF & PP & BF & PP & 
+BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
+  \midrule
+\input{Tables/correction_syn_rates_table_ensembl.txt}
+\bottomrule
+\end{tabular}
+\caption{\scriptsize Evidence for sitewise positive selection in mammalian
+  $\beta$-globin using a variety of codon models and mammalian
+  alignments from the genome-wide dataset from this
+  thesis. Abbreviations are the same as in Table
+  \ref{table_syn_rates_hbb_paml}.}
+\label{table_syn_rates_hbb_ensembl}
+\eetable
 
 As expected, the results shown in Table \ref{table_syn_rates_hbb_paml}
 for the nonsynonymous and dual models implemented by HyPhy
@@ -1943,45 +1999,6 @@ implemented in HyPhy. Further testing using simulation-based
 experiments could confirm these observations, but such an analysis is
 beyond the scope of this thesis.
 
-\bbtable
-\centering \footnotesize
-\begin{tabular}{rrrrrrrrrrrrrrr}
-\toprule
- & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
- \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
- & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
- \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
- & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
- & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
-\cmidrule(r){1-15}
-Site & BF & PP & BF & PP & 
-BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
-  \midrule
-\input{Tables/correction_syn_rates_table_yang.txt}
-\bottomrule
-\end{tabular}
-\caption{Some stuff.}
-\label{table_syn_rates_hbb_paml}
-
-\begin{tabular}{rrrrrrrrrrrrrrr}
-\toprule
- & \multicolumn{8}{c}{HyPhy} & \multicolumn{2}{c}{PAML} & \multicolumn{4}{c}{SLR} \\
- \cmidrule(r){2-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
- & \multicolumn{4}{c}{Nsyn} & \multicolumn{4}{c}{Dual} & \multicolumn{2}{c}{Nsyn} & \multicolumn{4}{c}{--} \\
- \cmidrule(r){2-5} \cmidrule(r){6-9} \cmidrule(r){10-11} \cmidrule(r){12-15}
- & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} & \multicolumn{2}{c}{GY94} & \multicolumn{2}{c}{MG94} 
- & \multicolumn{2}{c}{GY94} & \multicolumn{4}{c}{GY94} \\
-\cmidrule(r){1-15}
-Site & BF & PP & BF & PP & 
-BF & PP & BF & PP & PP & $\omega$ & LRT & pval & $\omega_{low}$ & $\omega_{high}$ \\
-  \midrule
-\input{Tables/correction_syn_rates_table_ensembl.txt}
-\bottomrule
-\end{tabular}
-\caption{Some stuff.}
-\label{table_syn_rates_hbb_ensembl}
-\eetable
-
 
 \subsection{Genome-wide analysis}
 
@@ -2002,7 +2019,7 @@ positively-selected sites showed evidence for an elevated synonymous
 rate.
 
 For this analysis, I used the genome-wide inferred ancestral sequences
-as in sectionb \ref{section_windows_clustered_subs}, inferring
+as in section \ref{section_windows_clustered_subs}, inferring
 synonymous and nonsynonymous substitutions along each branch of the
 phylogenetic tree at each protein-coding site. Although this approach
 was not ideal, as it does not account for multiple substitutions along
@@ -2015,7 +2032,7 @@ site, but for computational reasons this was not performed.
 Using the counts of inferred synonymous and nonsynonymous
 substitutions at each site, I first examined the correlation between
 SLR's LRT statistic and the counts of synonymous and nonsynonymous
-substitutions at each site. Figure XYZ shows the LRT statistic plotted
+substitutions at each site. Figure \ref{fig_gene_syn_scatter} shows the LRT statistic plotted
 against substitution counts for all sites in the $\beta$-globin gene
 and \gene{FCRL4}, a glycoprotein member of the immunoglobulin receptor
 superfamily. Each codon was categorized as either a purifying,
@@ -2024,19 +2041,9 @@ value below the 95\% nominal threshold was considered neutral, and a
 LRT value above the 95\% threshold was considered either purifying or
 positive depending on the inferred $\omega$ value.
 
-The plot for $\beta$-globin in Figure \ref{fig_gene_syn_scatter} shows
-that the variation in SLR's LRT score was driven largely by variation
-in nonsynonymous substitutions at each site: all six of the sites
-categorized as ``positive'' fell within the middle range of synonymous
-substitution counts, but all were at the high end of nonsynonymous
-substitution counts. \gene{FCRL4} shows largely the same pattern
-except for two sites (highlighted in red) with very high synonymous
-rates and only moderate nonsynonymous rates. Sites like these are
-candidates for false positives due to a high mutation rate.
-
 \bbfig
 \centering
-\includegraphics[scale=0.6]{Figs/gene_syn_scatter.pdf}
+\includegraphics[scale=0.5]{Figs/gene_syn_scatter.pdf}
 \caption{Sitewise LRT statistics and synonymous and nonsynonymous
   substitution counts for $\beta$-globin and
   \gene{FCRL4}. Substitution counts were inferred from ancestral
@@ -2047,6 +2054,16 @@ candidates for false positives due to a high mutation rate.
   outlined in red. }
 \label{fig_gene_syn_scatter}
 \eefig
+
+The plot for $\beta$-globin in Figure \ref{fig_gene_syn_scatter} shows
+that the variation in SLR's LRT score was driven largely by variation
+in nonsynonymous substitutions at each site: all six of the sites
+categorized as ``positive'' fell within the middle range of synonymous
+substitution counts, but all were at the high end of nonsynonymous
+substitution counts. \gene{FCRL4} shows largely the same pattern
+except for two sites (highlighted in red) with very high synonymous
+rates and only moderate nonsynonymous rates. Sites like these are
+candidates for false positives due to a high mutation rate.
 
 In order to identify a suitable cutoff by which to identify sites with
 elevated synonymous substitution rates in different genes, the counts
@@ -2091,18 +2108,6 @@ counts within a gene) and the results were qualitatively similar. For
 reference, 25\% of sites had an absolute synonymous rate of $>$1.31,
 10\% had a rate above 1.79, and 5\% above 2.11.
 
-Figure \ref{fig_zscore_sites} shows the pattern of synonymous
-substitution counts, nonsynonymous counts, and SLR LRT scores for
-\gene{FCRL4}, with sites corresponding to the 75\% z-score percentile
-(z$=0.67$) highlighted in orange (for synonymous substitutions) and
-purple (for nonsynonymous substitutions) and sites corresponding to
-the 95\% LRT threshold highlighted in red. The bottom row of colored
-blocks summarizes the coincidence of positively-selected sites with
-high numbers of synonymous or nonsynonymous substitutions, again
-showing that most positively-selected sites (except for the
-aforementioned two codons, again highlighted in red) did not show
-strongly elevated synonymous rates.
-
 \bbfig
 \centering
 \includegraphics[scale=0.7]{Figs/zscore_sites.pdf}
@@ -2123,6 +2128,17 @@ strongly elevated synonymous rates.
   with red rectangles.}
 \label{fig_zscore_sites}
 \eefig
+
+Figure \ref{fig_zscore_sites} shows the pattern of synonymous
+substitution counts, nonsynonymous counts, and SLR LRT scores for
+\gene{FCRL4}, with sites corresponding to the 75\% z-score percentile
+(z$=0.67$) highlighted in orange (for synonymous substitutions) and
+purple (for nonsynonymous substitutions) and sites corresponding to
+the 95\% LRT threshold highlighted in red. The bottom row of colored
+blocks summarizes the coincidence of positively-selected sites with
+high numbers of synonymous or nonsynonymous substitutions, again
+showing that most positively-selected sites (except for the codons
+highlighted in red) did not show strongly elevated synonymous rates.
 
 
 To assess whether SLR showed a bias towards identifying positive
