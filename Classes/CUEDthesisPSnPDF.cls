@@ -91,7 +91,7 @@
                  breaklinks = true,
                  linktocpage,
                  pagebackref,
-                 colorlinks = true,
+                 colorlinks = false,
                  %linkcolor = black,
                  linkcolor = midnight,
                  urlcolor  = black,
